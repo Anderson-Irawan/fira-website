@@ -1,0 +1,15 @@
+<!--
+  FIRA Logo — Placeholder SVG
+  Replace this file with the actual brand logo.
+  Two internal variants are used:
+    .logo-nav  → white/light version (used in navbar)
+    .logo-footer → cream version (large, used in footer)
+  The SVG uses `currentColor` so the parent's CSS `color` property controls fill.
+  The yellow dot on the "i" is always #F5C518 in the footer variant, #2563EB in the nav variant.
+-->
+<svg id="logo-nav" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 64" fill="none" role="img" aria-label="Fira">
+  <text x="2" y="58" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="900" font-size="60" fill="currentColor" letter-spacing="-2">fira</text>
+  <!-- Blue dot replacing the dot on the letter "i" — adjust cx if font metrics differ -->
+  <circle cx="78" cy="13" r="8" fill="#2563EB"/>
+</svg>

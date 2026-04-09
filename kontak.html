@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-url" content="">
+  <title>Kontak — FIRA</title>
+  <meta name="description" content="Hubungi Fira — PT Bangun Citra Irawan. JL. Kedinding Tengah II No. 16, Surabaya.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div id="nav-placeholder" data-page="kontak"></div>
+
+  <main class="kontak-page">
+
+    <!-- ── CONTACT FORM ── -->
+    <div class="kontak-form-wrap">
+      <h1 class="kontak-title">Kerja Sama dengan Fira</h1>
+
+      <!--
+        TO ENABLE REAL EMAIL DELIVERY:
+        1. Sign up at https://formspree.io (free tier available)
+        2. Create a form and get your endpoint URL
+        3. Replace action="#" below with your Formspree URL
+           e.g. action="https://formspree.io/f/abcdefgh"
+      -->
+      <form
+        id="contact-form"
+        class="contact-form"
+        action="#"
+        method="POST"
+        novalidate
+      >
+        <div>
+          <input
+            type="text"
+            name="nama"
+            placeholder="Nama ..."
+            required
+            autocomplete="name"
+          >
+        </div>
+        <div>
+          <input
+            type="text"
+            name="departemen"
+            placeholder="Departemen ..."
+          >
+        </div>
+        <div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email ..."
+            required
+            autocomplete="email"
+          >
+        </div>
+        <div>
+          <input
+            type="tel"
+            name="telepon"
+            placeholder="Nomor telfon ..."
+            autocomplete="tel"
+          >
+        </div>
+        <div class="full">
+          <textarea
+            name="deskripsi"
+            placeholder="Deskripsi ..."
+            rows="5"
+          ></textarea>
+        </div>
+
+        <div class="submit-row full">
+          <button type="submit" class="btn btn--blue">
+            Kirim Pesan
+          </button>
+        </div>
+
+        <div id="form-success" class="form-success full" role="status" aria-live="polite">
+          ✓ Pesan berhasil terkirim! Tim kami akan segera menghubungi Anda.
+        </div>
+      </form>
+    </div>
+
+    <!-- ── MAP + OFFICE INFO ── -->
+    <section class="map-split" aria-label="Lokasi kantor">
+      <div class="map-split__map">
+        <!--
+          TO ADD GOOGLE MAPS:
+          1. Go to maps.google.com
+          2. Search "Jalan Kedinding Tengah II No. 16, Surabaya"
+          3. Click Share → Embed a map → Copy HTML
+          4. Paste the <iframe> here and remove the placeholder text below
+        -->
+        <p class="map-placeholder-note">// Map goes here — paste Google Maps embed iframe</p>
+        <address class="map-address" style="font-style: normal; font-size: 13px; line-height: 1.85;">
+          Jalan Kedinding Tengah II<br>
+          No. 16<br>
+          Surabaya<br>
+          60129<br>
+          Jawa Timur<br>
+          Indonesia
+        </address>
+      </div>
+      <div class="map-split__info">
+        <h2 class="map-split__title">Lokasi Kantor</h2>
+        <address class="map-split__address" style="font-style: normal;">
+          Jalan Kedinding Tengah II<br>
+          No. 16<br>
+          Surabaya<br>
+          60129<br>
+          Jawa Timur<br>
+          Indonesia
+        </address>
+      </div>
+    </section>
+
+    <!-- ── OPERATING HOURS ── -->
+    <section class="hours" aria-labelledby="hours-heading">
+      <div class="hours__inner">
+        <h2 class="hours__title" id="hours-heading">Jam<br>Operasional</h2>
+        <div>
+          <p class="hours__day">Senin — Jumat</p>
+          <p class="hours__time">08:00 — 17:00</p>
+        </div>
+        <div>
+          <p class="hours__day">Sabtu</p>
+          <p class="hours__time">08:00 — 16:00</p>
+        </div>
+        <div>
+          <p class="hours__day">Minggu</p>
+          <p class="hours__time hours__time--closed">TUTUP</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/cms.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

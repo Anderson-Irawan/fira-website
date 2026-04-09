@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-url" content="">
+  <title>Produk — FIRA</title>
+  <meta name="description" content="Katalog produk baja ringan Fira — Atap, Truss, Reng, Holo, Wallpanel, PVC dan lebih.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div id="nav-placeholder" data-page="produk"></div>
+
+  <main class="produk-page">
+
+    <!-- ── HEADER ── -->
+    <header class="produk-header">
+      <h1 class="produk-header__title">Produk Kita</h1>
+    </header>
+
+    <!-- ── SEARCH ── -->
+    <div class="search-wrap" role="search">
+      <div class="search-bar">
+        <div class="search-bar__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <input
+          id="search-input"
+          class="search-bar__input"
+          type="search"
+          placeholder="Cari dari Katalog Produk Kami ..."
+          aria-label="Cari produk"
+          autocomplete="off"
+        >
+      </div>
+    </div>
+
+    <!-- ── CATALOGUE ── -->
+    <div class="catalogue" aria-live="polite">
+      <div id="catalogue-root">
+        <!-- Populated dynamically by cms.js from data/products.json -->
+        <p style="color: var(--clr-gray-mid); font-size:14px; padding: 24px 0;">
+          Memuat katalog produk...
+        </p>
+      </div>
+      <p id="search-empty" class="search-empty" role="status">
+        Produk tidak ditemukan. Coba kata kunci lain.
+      </p>
+    </div>
+
+    <!-- ── TORO PARTNER ── -->
+    <section class="toro" aria-label="Mitra distribusi">
+      <div class="toro__inner">
+        <div class="toro__brand">
+          <div class="toro__icon" aria-hidden="true">T</div>
+          <p class="toro__name">TORO</p>
+          <p class="toro__url">www.torolife.com</p>
+        </div>
+        <div class="toro__content">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla
+            est ligula sed porttitor. Ut orci purus, consectetur quis condimentum quis,
+            semper, quis elementum justo faucibus. In sit ornare vitam, vitae
+            malesuada ante. Vestibulum suscipit blandit text.
+          </p>
+          <p>
+            Fusce eget bibendum duis. Pellentesque pharetra sollicitudin varius.
+            Nulla auctor metus nor elit vulputate, at varius lacus molestie. Cras
+            vehicula tempor leo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/cms.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

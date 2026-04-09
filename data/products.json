@@ -1,0 +1,348 @@
+{
+  "_comment": "FIRA Product Catalogue — edit this file to update all product listings on the website. To integrate a real CMS (Contentful, Sanity, etc.), replace the fetch call in js/cms.js with your CMS API endpoint and map the response to this same shape.",
+  "categories": [
+    {
+      "id": "atap",
+      "name": "Atap",
+      "description": "Produk atap baja ringan berkualitas tinggi untuk hunian dan komersial",
+      "products": [
+        {
+          "id": "atap-001",
+          "name": "Atap Spandek 0.25mm",
+          "material": "Zincalume",
+          "thickness": "0.25 mm",
+          "image": "",
+          "description": "Atap baja ringan standar cocok untuk hunian residensial"
+        },
+        {
+          "id": "atap-002",
+          "name": "Atap Spandek 0.30mm",
+          "material": "Zincalume",
+          "thickness": "0.30 mm",
+          "image": "",
+          "description": "Atap dengan ketebalan premium untuk daya tahan lebih"
+        },
+        {
+          "id": "atap-003",
+          "name": "Atap Gelombang",
+          "material": "Zincalume",
+          "thickness": "0.28 mm",
+          "image": "",
+          "description": "Profil gelombang ideal untuk kebutuhan industri dan gudang"
+        },
+        {
+          "id": "atap-004",
+          "name": "Atap Standing Seam",
+          "material": "Zincalume",
+          "thickness": "0.40 mm",
+          "image": "",
+          "description": "Sistem atap modern standing seam untuk bangunan komersial"
+        }
+      ]
+    },
+    {
+      "id": "truss",
+      "name": "Truss",
+      "description": "Rangka atap baja ringan Fira Truss — kuat, ringan, terpercaya",
+      "products": [
+        {
+          "id": "truss-001",
+          "name": "Truss C75.75",
+          "material": "Zincalume",
+          "thickness": "0.75 mm",
+          "image": "",
+          "description": "Profil C standar untuk rangka atap hunian"
+        },
+        {
+          "id": "truss-002",
+          "name": "Truss C75.100",
+          "material": "Zincalume",
+          "thickness": "1.00 mm",
+          "image": "",
+          "description": "Profil C premium untuk bentangan lebar"
+        },
+        {
+          "id": "truss-003",
+          "name": "Truss U 0.45",
+          "material": "Zincalume",
+          "thickness": "0.45 mm",
+          "image": "",
+          "description": "Profil U penopang rangka atap"
+        },
+        {
+          "id": "truss-004",
+          "name": "Truss Custom",
+          "material": "Zincalume",
+          "thickness": "Custom",
+          "image": "",
+          "description": "Truss custom sesuai kebutuhan proyek — hubungi tim kami"
+        }
+      ]
+    },
+    {
+      "id": "reng",
+      "name": "Reng",
+      "description": "Reng baja ringan sebagai penopang penutup atap",
+      "products": [
+        {
+          "id": "reng-001",
+          "name": "Reng 0.40mm",
+          "material": "Zincalume",
+          "thickness": "0.40 mm",
+          "image": "",
+          "description": "Reng standar paling umum digunakan"
+        },
+        {
+          "id": "reng-002",
+          "name": "Reng 0.45mm",
+          "material": "Zincalume",
+          "thickness": "0.45 mm",
+          "image": "",
+          "description": "Reng medium ketebalan 0.45mm"
+        },
+        {
+          "id": "reng-003",
+          "name": "Reng 0.50mm",
+          "material": "Zincalume",
+          "thickness": "0.50 mm",
+          "image": "",
+          "description": "Reng tebal untuk beban lebih berat"
+        },
+        {
+          "id": "reng-004",
+          "name": "Reng Custom",
+          "material": "Zincalume",
+          "thickness": "Custom",
+          "image": "",
+          "description": "Reng ukuran custom sesuai kebutuhan"
+        }
+      ]
+    },
+    {
+      "id": "holo",
+      "name": "Holo",
+      "description": "Profil holo baja ringan berbagai ukuran untuk partisi dan rangka",
+      "products": [
+        {
+          "id": "holo-001",
+          "name": "Holo 2×4 cm",
+          "material": "Baja Ringan",
+          "thickness": "0.8 mm",
+          "image": "",
+          "description": "Holo persegi panjang standar 2×4 cm"
+        },
+        {
+          "id": "holo-002",
+          "name": "Holo 4×4 cm",
+          "material": "Baja Ringan",
+          "thickness": "0.8 mm",
+          "image": "",
+          "description": "Holo persegi simetris 4×4 cm"
+        },
+        {
+          "id": "holo-003",
+          "name": "Holo 4×6 cm",
+          "material": "Baja Ringan",
+          "thickness": "1.0 mm",
+          "image": "",
+          "description": "Holo medium untuk partisi dan furnitur"
+        },
+        {
+          "id": "holo-004",
+          "name": "Holo 6×6 cm",
+          "material": "Baja Ringan",
+          "thickness": "1.0 mm",
+          "image": "",
+          "description": "Holo besar untuk struktur lebih kuat"
+        }
+      ]
+    },
+    {
+      "id": "wallpanel",
+      "name": "Wallpanel",
+      "description": "Panel dinding baja ringan modern, ringan, dan mudah dipasang",
+      "products": [
+        {
+          "id": "wp-001",
+          "name": "Wallpanel Standar",
+          "material": "Zincalume",
+          "thickness": "0.30 mm",
+          "image": "",
+          "description": "Panel dinding standar untuk hunian"
+        },
+        {
+          "id": "wp-002",
+          "name": "Wallpanel Premium",
+          "material": "Zincalume",
+          "thickness": "0.40 mm",
+          "image": "",
+          "description": "Panel dinding ketebalan premium"
+        },
+        {
+          "id": "wp-003",
+          "name": "Wallpanel Insulasi",
+          "material": "Sandwich Panel",
+          "thickness": "50 mm",
+          "image": "",
+          "description": "Panel sandwich dengan lapisan insulasi termal"
+        },
+        {
+          "id": "wp-004",
+          "name": "Wallpanel Custom",
+          "material": "Zincalume",
+          "thickness": "Custom",
+          "image": "",
+          "description": "Panel custom sesuai kebutuhan proyek"
+        }
+      ]
+    },
+    {
+      "id": "pvc",
+      "name": "PVC",
+      "description": "Produk PVC berkualitas untuk plafon dan dinding interior",
+      "products": [
+        {
+          "id": "pvc-001",
+          "name": "PVC Ceiling 8mm",
+          "material": "PVC",
+          "thickness": "8 mm",
+          "image": "",
+          "description": "Plafon PVC putih bersih standar"
+        },
+        {
+          "id": "pvc-002",
+          "name": "PVC Wall Panel",
+          "material": "PVC",
+          "thickness": "8 mm",
+          "image": "",
+          "description": "Panel dinding PVC tahan lembab"
+        },
+        {
+          "id": "pvc-003",
+          "name": "PVC List / Cornice",
+          "material": "PVC",
+          "thickness": "2 mm",
+          "image": "",
+          "description": "Aksen list finishing PVC"
+        },
+        {
+          "id": "pvc-004",
+          "name": "PVC Custom",
+          "material": "PVC",
+          "thickness": "Custom",
+          "image": "",
+          "description": "Produk PVC sesuai order"
+        }
+      ]
+    },
+    {
+      "id": "produk-lain",
+      "name": "Produk Lain",
+      "description": "Aksesori dan produk pelengkap baja ringan dari Fira",
+      "products": [
+        {
+          "id": "lain-001",
+          "name": "Baut & Sekrup",
+          "material": "Stainless Steel",
+          "thickness": "—",
+          "image": "",
+          "description": "Aksesori pemasangan baja ringan bergaransi"
+        },
+        {
+          "id": "lain-002",
+          "name": "Talang Air",
+          "material": "Zincalume",
+          "thickness": "0.30 mm",
+          "image": "",
+          "description": "Talang air baja ringan anti karat"
+        },
+        {
+          "id": "lain-003",
+          "name": "Nok Atap",
+          "material": "Zincalume",
+          "thickness": "0.30 mm",
+          "image": "",
+          "description": "Ridge cap / nok untuk penutup puncak atap"
+        },
+        {
+          "id": "lain-004",
+          "name": "Flashing",
+          "material": "Zincalume",
+          "thickness": "0.30 mm",
+          "image": "",
+          "description": "Flashing waterproofing sambungan atap"
+        }
+      ]
+    }
+  ],
+  "certifications": [
+    { "id": "cert-001", "name": "SNI",          "issuer": "BSN",       "year": "2020", "image": "" },
+    { "id": "cert-002", "name": "ISO 9001:2015","issuer": "ISO",       "year": "2021", "image": "" },
+    { "id": "cert-003", "name": "Sertifikat Halal","issuer": "MUI",   "year": "2022", "image": "" },
+    { "id": "cert-004", "name": "TKDN",         "issuer": "Kemenperin","year": "2021", "image": "" }
+  ],
+  "testimonials": [
+    {
+      "name": "Imelda Mandeli",
+      "company": "",
+      "rating": 5,
+      "text": "I highly recommend this place to any one who wants great quality, honest value, and really great people."
+    },
+    {
+      "name": "Franata Mahardika",
+      "company": "",
+      "rating": 5,
+      "text": "I always trusted Fira to get the job done right, and at a fair price."
+    },
+    {
+      "name": "Tania",
+      "company": "",
+      "rating": 4,
+      "text": "Good service, honest work!"
+    }
+  ],
+  "stats": {
+    "products": 26,
+    "projects": 22,
+    "yearsExperience": 20,
+    "certifications": 14
+  },
+  "services": [
+    {
+      "id": "svc-001",
+      "name": "Atap Residensial",
+      "description": "Pemasangan atap baja ringan berkualitas tinggi untuk rumah tinggal pribadi.",
+      "image": ""
+    },
+    {
+      "id": "svc-002",
+      "name": "Atap Komersial",
+      "description": "Pengerjaan atap skala besar untuk perkantoran, ruko, dan fasilitas komersial.",
+      "image": ""
+    },
+    {
+      "id": "svc-003",
+      "name": "Fabrikasi Golvalume",
+      "description": "Produksi dan fabrikasi produk Golvalume sesuai standar presisi, kekuatan, dan ketebalan.",
+      "image": ""
+    }
+  ],
+  "company": {
+    "name": "PT Bangun Citra Irawan",
+    "brand": "Fira",
+    "tagline": "Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.",
+    "address": {
+      "street": "JL. Kedinding Tengah II No. 16",
+      "city": "Surabaya",
+      "postalCode": "60129",
+      "province": "Jawa Timur",
+      "country": "Indonesia"
+    },
+    "phones": ["+62 313 714 362", "+62 811 325 4929"],
+    "hours": {
+      "weekdays": { "label": "Senin — Jumat", "time": "08:00 — 17:00" },
+      "saturday": { "label": "Sabtu",          "time": "08:00 — 16:00" },
+      "sunday":   { "label": "Minggu",         "time": "TUTUP" }
+    }
+  }
+}
