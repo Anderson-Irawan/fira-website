@@ -5,6 +5,49 @@
    properties. Change them here to retheme the site.
    ===================================================== */
 
+/* =====================================================
+   SELF-HOSTED FONTS
+   Fira Sans  — primary UI, body, headings, logo
+   IBM Plex Mono — italic section titles, addresses,
+                   form labels, monospace accents
+   ===================================================== */
+
+/* Fira Sans */
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-Thin.ttf') format('truetype'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-ThinItalic.ttf') format('truetype'); font-weight: 100; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-ExtraLight.ttf') format('truetype'); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-ExtraLightItalic.ttf') format('truetype'); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-LightItalic.ttf') format('truetype'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-ExtraBoldItalic.ttf') format('truetype'); font-weight: 800; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-Black.ttf') format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-BlackItalic.ttf') format('truetype'); font-weight: 900; font-style: italic; font-display: swap; }
+
+/* IBM Plex Mono */
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-Thin.ttf') format('truetype'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-ThinItalic.ttf') format('truetype'); font-weight: 100; font-style: italic; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-ExtraLight.ttf') format('truetype'); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-ExtraLightItalic.ttf') format('truetype'); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-LightItalic.ttf') format('truetype'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/ibm-plex-mono/IBMPlexMono-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+
 :root {
   /* --- COLOR PALETTE --- */
   --clr-blue:        #2563EB;   /* Primary brand blue          */
@@ -16,9 +59,13 @@
   --clr-gray-mid:    #888480;
   --clr-toro:        #F5A623;   /* TORO partner section        */
 
-  /* --- TYPOGRAPHY --- */
-  --font-sans:  'Space Grotesk', system-ui, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  /* --- TYPOGRAPHY ---
+     --font-sans  → Fira Sans: body, nav, buttons, stats, logo, "TRUSTWORTHY."
+     --font-mono  → IBM Plex Mono: italic section headings, addresses,
+                    form labels, monospace accents
+  */
+  --font-sans: 'Fira Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
 
   /* --- LAYOUT --- */
   --max-w:      1200px;
@@ -40,6 +87,7 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-sans);
+  font-weight: 400;
   background-color: var(--clr-cream);
   color: var(--clr-black);
   line-height: 1.65;
@@ -86,7 +134,7 @@ button { cursor: pointer; }
   margin-bottom: 28px;
 }
 .sec-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(26px, 3.5vw, 42px);
@@ -204,9 +252,13 @@ button { cursor: pointer; }
 }
 .footer__col li + li { margin-top: 8px; }
 .footer__col a {
+  font-family: var(--font-mono);
   font-size: 13px;
   color: rgba(255,255,255,0.65);
   transition: color var(--ease);
+}
+.footer__contact p {
+  font-family: var(--font-mono);
 }
 .footer__col a:hover { color: var(--clr-white); }
 .footer__contact {
@@ -233,14 +285,14 @@ button { cursor: pointer; }
 }
 .home-hero__quote-mark {
   color: var(--clr-yellow);
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-size: 120px;
   line-height: 0.6;
   font-weight: 900;
   user-select: none;
 }
 .home-hero__quote {
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(22px, 3vw, 38px);
@@ -287,7 +339,7 @@ button { cursor: pointer; }
 }
 
 .split__heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(28px, 3.5vw, 48px);
@@ -334,7 +386,7 @@ button { cursor: pointer; }
   gap: 48px;
 }
 .qit__label {
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-style: italic;
   font-size: clamp(18px, 2vw, 28px);
   font-weight: 700;
@@ -706,7 +758,7 @@ button { cursor: pointer; }
   margin-bottom: 20px;
 }
 .cat-name {
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(22px, 2.5vw, 34px);
@@ -764,7 +816,7 @@ button { cursor: pointer; }
   text-align: center;
 }
 .kontak-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(28px, 4vw, 52px);
@@ -784,6 +836,7 @@ button { cursor: pointer; }
   border: 2px solid var(--clr-black);
   border-radius: var(--radius);
   padding: 14px 16px;
+  font-family: var(--font-mono);
   font-size: 14px;
   color: var(--clr-black);
   transition: border-color var(--ease);
@@ -838,9 +891,10 @@ button { cursor: pointer; }
   border: none;
 }
 .map-placeholder-note {
+  font-family: var(--font-mono);
   font-size: 12px;
   color: rgba(0,0,0,0.35);
-  font-style: italic;
+  font-style: normal;
   background: rgba(255,255,255,0.5);
   padding: 8px 12px;
   border-radius: 4px;
@@ -857,16 +911,20 @@ button { cursor: pointer; }
   padding: 64px 56px;
 }
 .map-split__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(24px, 3vw, 40px);
   margin-bottom: 24px;
 }
 .map-split__address {
+  font-family: var(--font-mono);
   font-size: 14px;
   line-height: 2;
   color: rgba(255,255,255,0.75);
+}
+.map-address {
+  font-family: var(--font-mono);
 }
 
 /* Hours section */
@@ -883,7 +941,7 @@ button { cursor: pointer; }
   align-items: center;
 }
 .hours__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(20px, 2.5vw, 32px);
