@@ -10,24 +10,12 @@
  *   <script src="js/components.js"></script>
  */
 
-// ─── LOGO SVGs ───────────────────────────────────────────────
-// Nav version: white fill with blue dot
-const LOGO_NAV = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 64" fill="none" aria-label="Fira" role="img">
-  <text x="2" y="58"
-    font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
-    font-weight="900" font-size="60" fill="white" letter-spacing="-2">fira</text>
-  <circle cx="78" cy="13" r="8" fill="#2563EB"/>
-</svg>`;
+// ─── LOGO ────────────────────────────────────────────────────
+// Nav version: real logo SVG file (cream + yellow, suits dark nav)
+const LOGO_NAV = `<img src="assets/logo-fira.svg" alt="Fira" class="navbar__logo-img">`;
 
-// Footer version: cream fill with yellow dot (large wordmark)
-const LOGO_FOOTER = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 200" fill="none" aria-label="Fira" role="img">
-  <text x="4" y="185"
-    font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
-    font-weight="900" font-size="188" fill="#EDE8DC" letter-spacing="-6">fira</text>
-  <circle cx="244" cy="42" r="26" fill="#F5C518"/>
-</svg>`;
+// Footer version: same file, styled larger via CSS
+const LOGO_FOOTER = `<img src="assets/logo-fira.svg" alt="Fira" class="footer__logo-img">`;
 
 // ─── NAV CONFIG ──────────────────────────────────────────────
 const NAV_LINKS = [
@@ -63,10 +51,14 @@ function renderNav(activePage = '') {
     `<li><a href="${href}" class="navbar__link${activePage === id ? ' active' : ''}">${label}</a></li>`
   ).join('');
 
+  const logoHTML = activePage === 'home'
+    ? ''
+    : `<a href="index.html" class="navbar__logo" aria-label="Fira — Home">${LOGO_NAV}</a>`;
+
   return `
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo" aria-label="Fira — Home">${LOGO_NAV}</a>
+    ${logoHTML}
     <ul class="navbar__links">${links}</ul>
   </div>
 </nav>

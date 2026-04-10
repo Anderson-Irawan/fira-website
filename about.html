@@ -4,95 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="base-url" content="">
-  <title>FIRA — Produsen Baja Ringan</title>
-  <meta name="description" content="PT Bangun Citra Irawan — Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.">
-  <!-- Open Graph -->
-  <meta property="og:title" content="FIRA — Produsen Baja Ringan">
-  <meta property="og:description" content="Kualitas terbaik, selalu berinovasi, dan dapat diandalkan.">
-  <meta property="og:type" content="website">
-  <!-- Fonts -->
+  <title>About — FIRA</title>
+  <meta name="description" content="Tentang PT Bangun Citra Irawan — produsen baja ringan terpercaya di Indonesia Timur.">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!-- ── NAVIGATION (injected by components.js) ── -->
-  <div id="nav-placeholder" data-page="home"></div>
+  <div id="nav-placeholder" data-page="about"></div>
 
   <main>
 
     <!-- ── HERO ── -->
-    <section class="home-hero" aria-label="Tagline">
-      <div class="container">
-        <p class="home-hero__quote-mark" aria-hidden="true">"</p>
-        <blockquote class="home-hero__quote">
-          Kami adalah produsen baja ringan yang memberikan kualitas terbaik,
-          selalu berinovasi, dan dapat diandalkan.
-        </blockquote>
+    <section class="about-hero" aria-label="Hero">
+      <!--
+        Replace the img src below with a real factory/industrial photo.
+        Recommended: high-resolution landscape photo, dark tones.
+      -->
+      <img
+        class="about-hero__bg"
+        src="assets/images/about-hero.jpg"
+        alt="Fasilitas produksi Fira"
+        onerror="this.style.display='none'"
+      >
+      <div class="about-hero__overlay" aria-hidden="true"></div>
+      <div class="about-hero__content">
+        <p class="about-hero__tagline">
+          PT Bangun Citra Irawan adalah produsen tunggal atau baja ringan "Fira"
+          yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.
+        </p>
       </div>
     </section>
 
-    <!-- ── LATAR BELAKANG ── -->
-    <section class="split bg-blue" aria-labelledby="lb-heading">
-      <div class="split__text">
-        <h2 class="split__heading" id="lb-heading">Latar<br>Belakang</h2>
-        <div class="split__body">
+    <!-- ── WE ARE TRUSTWORTHY ── -->
+    <section class="trustworthy" aria-labelledby="trust-heading">
+      <div class="trustworthy__inner">
+        <p class="trustworthy__pre">We are</p>
+        <h1 class="trustworthy__word" id="trust-heading">TRUSTWORTHY.</h1>
+        <div class="trustworthy__body">
           <p>
-            Di era saat ini, banyak kebutuhan bangunan yang menggunakan bahan baja ringan
-            dikarenakan faktor kecepatan pengerjaan dengan kualitas yang baik dan kuat.
-            Bangunan seperti rumah, perkantoran maupun industri amat membutuhkan bahan baja
-            ringan ini sebagai penopang gaya yang saat ini sudah tidak bisa ditawarkan.
+            Baja ringan atau yang familiar kita sebut dengan <strong>Golvalume / Zincalume</strong>
+            pada akhir-akhir ini mempunyai peranan yang penting dalam pembangunan
+            perumahan maupun bangunan-bangunan tipis lainnya.
           </p>
           <p>
-            PT Bangun Citra Irawan selaku pemegang merk Fira adalah produsen lokal yang
-            bergerak di bidang produksi dan konstruksi baja ringan untuk daerah Indonesia
-            Timur secara spesifik dan Indonesia secara keseluruhan.
+            Di rumahannya ini, banyak kebutuhan untuk bangunan yang membutuhkan dimensi
+            yang lebar atau lantai yang tidak terlalu tinggi dan tidak terlalu berat.
+            Rangka atap berbahan baja ringan dapat dibuat dengan rangka baja ringan karena
+            ringan serta bisa memikul berbagai rangka atap yang terbuat dari bahan baja
+            ringan terus berinovasi untuk memberikan bahan bangunan berkualitas terbaik
+            untuk masyarakat Indonesia.
           </p>
         </div>
-      </div>
-      <div class="split__media split__media--placeholder">
-        <!-- Replace with: <img src="assets/images/latar-belakang.jpg" alt="Fasilitas produksi Fira" class="img-cover"> -->
-        <span>[ Factory photo ]</span>
-      </div>
-    </section>
-
-    <!-- ── VISI ── -->
-    <section class="split bg-blue" id="visi-misi" aria-labelledby="visi-heading">
-      <div class="split__text">
-        <h2 class="split__heading" id="visi-heading">Visi</h2>
-        <ul class="split__list">
-          <li>Menjadi perusahaan yang memproduksi bahan baja ringan dengan kualitas yang dapat dipertanggungjawabkan.</li>
-          <li>Menjadi perusahaan yang dapat mengerjakan semua projek baja ringan dengan baik, tepat, dan berkualitas.</li>
-          <li>Menjadi perusahaan yang terintegrasi baik sehingga mampu memasarkan produknya ke seluruh Indonesia.</li>
-        </ul>
-      </div>
-      <div class="split__media split__media--placeholder">
-        <!-- Replace with: <img src="assets/images/visi.jpg" alt="Produk baja ringan Fira" class="img-cover"> -->
-        <span>[ Product photo ]</span>
-      </div>
-    </section>
-
-    <!-- ── MISI ── -->
-    <section class="split split--reverse bg-blue" aria-labelledby="misi-heading">
-      <div class="split__text">
-        <h2 class="split__heading" id="misi-heading">Misi</h2>
-        <ul class="split__list">
-          <li>Mendukung konsumen dan meningkatkan kepercayaan konsumen dengan produk Fira Truss &amp; Roof.</li>
-          <li>Mengutamakan jasa distribusi dengan mengandeng distributor lokal di berbagai daerah di Indonesia.</li>
-          <li>Memperluas jalinan relasi dengan membuat produk baru dari bahan baja ringan.</li>
-          <li>Terus berinovasi untuk membuat produk baru dari bahan baja ringan.</li>
-        </ul>
-      </div>
-      <div class="split__media split__media--placeholder">
-        <!-- Replace with: <img src="assets/images/misi.jpg" alt="Tim Fira bekerja" class="img-cover"> -->
-        <span>[ Team / factory photo ]</span>
       </div>
     </section>
 
     <!-- ── QUALITY / INNOVATION / TRUST ── -->
     <section class="qit" aria-label="Nilai perusahaan">
       <div class="qit__inner">
-        <div class="qit__item" data-animate>
-          <h3 class="qit__label">Quality</h3>
+        <div class="qit__item">
+          <h2 class="qit__label">Quality</h2>
           <p class="qit__body">
             Pabrik kami dilengkapi dengan fasilitas produksi yang lengkap dan berteknologi,
             seperti mesin roll-forming, crane, forklift, dan mesin slitting untuk
@@ -100,32 +70,108 @@
             400 ton per bulan dengan tenaga kerja lebih dari 100 orang.
           </p>
         </div>
-        <div class="qit__item" data-animate>
-          <h3 class="qit__label">Innovation</h3>
+        <div class="qit__item">
+          <h2 class="qit__label">Innovation</h2>
           <p class="qit__body">
             Inovasi dan produk yang unggul adalah keistimewaan kami. Kami terus berusaha
-            untuk lebih baik, berinovasi dalam menghasilkan produk. Maupun layanan kepada
-            pelanggan. Kami yakin bahwa kami harus didukung oleh pelayanan terbaik sehingga
-            kami dapat semakin mantap dan selalu menjadi yang terdepan.
+            untuk lebih baik, berinovasi dalam menghasilkan produk maupun layanan kepada
+            pelanggan. Kami yakin bahwa kami harus didukung oleh pelayanan terbaik
+            sehingga kami dapat semakin mantap dan selalu menjadi yang terdepan.
           </p>
         </div>
-        <div class="qit__item" data-animate>
-          <h3 class="qit__label">Trust</h3>
+        <div class="qit__item">
+          <h2 class="qit__label">Trust</h2>
           <p class="qit__body">
-            Fira Trust pada saat ini telah membuat berbagai macam produk Truss dan Roof yang
-            disesuaikan dengan kebutuhan pasar. Kami selalu menjamin menghasilkan produk yang
-            berkualitas baik secara nasional maupun internasional.
+            Fira Trust pada saat ini telah membuat berbagai macam produk Truss dan Roof
+            yang disesuaikan dengan kebutuhan pasar. Kami selalu menjamin menghasilkan
+            produk yang berkualitas baik secara nasional maupun internasional.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ── SERTIFIKASI ── -->
-    <section class="sertifikasi section" id="sertifikasi" aria-labelledby="sert-heading">
+    <!-- ── SERVIS KITA ── -->
+    <section class="servis section" aria-labelledby="servis-heading">
       <div class="container">
         <div class="sec-header">
-          <h2 class="sec-title" id="sert-heading">Sertifikasi</h2>
-          <a href="about.html#sertifikasi" class="sec-link">Tampil Semua</a>
+          <h2 class="sec-title" id="servis-heading">Servis Kita</h2>
+        </div>
+        <div class="servis-grid" data-cms="services">
+          <!-- Populated by cms.js -->
+          <div class="servis-card">
+            <div class="servis-card__img"></div>
+            <p class="servis-card__name">Atap Residensial</p>
+          </div>
+          <div class="servis-card">
+            <div class="servis-card__img"></div>
+            <p class="servis-card__name">Atap Komersial</p>
+          </div>
+          <div class="servis-card">
+            <div class="servis-card__img"></div>
+            <p class="servis-card__name">Fabrikasi Golvalume</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STATS ── -->
+    <section class="stats" aria-label="Statistik perusahaan">
+      <div class="stats__inner" data-cms="stats">
+        <!-- Populated by cms.js -->
+        <div class="stat"><p class="stat__number">26</p><p class="stat__label">Produk</p></div>
+        <div class="stat"><p class="stat__number">22</p><p class="stat__label">Projek</p></div>
+        <div class="stat"><p class="stat__number">20</p><p class="stat__label">Tahun Pengalaman</p></div>
+        <div class="stat"><p class="stat__number">14</p><p class="stat__label">Sertifikasi</p></div>
+      </div>
+    </section>
+
+    <!-- ── PRODUK OVERVIEW ── -->
+    <section class="about-products" aria-labelledby="ap-heading">
+      <div class="container">
+        <div class="about-products__intro">
+          <p class="sub">Produk Unggulan</p>
+          <h2 id="ap-heading">Produk</h2>
+          <p>
+            Baja yang kita kenal dan umum adalah Baja Siku, Baja WF, H, I dst, berbeda
+            dengan baja konvensional tersebut, baja ringan merupakan baja mutu tinggi yang
+            memiliki bobot ringan dan sangat tipis, namun memiliki kekuatan setara dengan
+            baja konvensional.
+          </p>
+        </div>
+
+        <!-- Kelebihan baja ringan -->
+        <p style="font-size:13px; font-weight:700; margin-bottom:16px; color:var(--clr-blue);">
+          Kelebihan Baja Ringan (+)
+        </p>
+        <p style="font-size:13px; color:#555; margin-bottom:28px; max-width:560px; line-height:1.7">
+          Kekuatan tertinggi di antara semua bahan konstruksi. 100% bisa didaur ulang.
+          Tidak akan membias dan tidak pernah berubah. Terbuat dari bahan baku dan
+          berkonstruksi secara standar nasional.
+        </p>
+
+        <!-- Product grid — one card per category -->
+        <div class="about-prod-grid" data-cms="about-products">
+          <!-- Populated by cms.js -->
+          <a href="produk.html#atap"      class="about-prod-card"><span class="about-prod-card__label">Atap</span></a>
+          <a href="produk.html#truss"     class="about-prod-card"><span class="about-prod-card__label">Truss</span></a>
+          <a href="produk.html#reng"      class="about-prod-card"><span class="about-prod-card__label">Reng</span></a>
+          <a href="produk.html#holo"      class="about-prod-card"><span class="about-prod-card__label">Holo</span></a>
+          <a href="produk.html#wallpanel" class="about-prod-card"><span class="about-prod-card__label">Wallpanel</span></a>
+          <a href="produk.html#pvc"       class="about-prod-card"><span class="about-prod-card__label">PVC</span></a>
+        </div>
+
+        <div class="about-produk-cta" style="margin-top: 16px;">
+          <a href="produk.html" class="sec-link">Tampil Katalog Lengkap →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERTIFIKASI ── -->
+    <section class="sertifikasi section" id="sertifikasi" aria-labelledby="sert2-heading">
+      <div class="container">
+        <div class="sec-header">
+          <h2 class="sec-title" id="sert2-heading">Sertifikasi</h2>
+          <a href="#sertifikasi" class="sec-link">Tampil Semua</a>
         </div>
         <div class="cert-grid" data-cms="certifications">
           <!-- Populated by cms.js -->
@@ -138,10 +184,10 @@
     </section>
 
     <!-- ── TESTIMONI ── -->
-    <section class="testimoni section--sm" id="testimoni" aria-labelledby="testi-heading">
+    <section class="testimoni section--sm" id="testimoni" aria-labelledby="testi2-heading">
       <div class="container">
         <div class="sec-header">
-          <h2 class="sec-title" id="testi-heading">Testimoni</h2>
+          <h2 class="sec-title" id="testi2-heading">Testimoni</h2>
         </div>
         <div class="testi-grid" data-cms="testimonials">
           <!-- Populated by cms.js -->
@@ -161,17 +207,11 @@
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla
             est ligula sed porttitor. Ut orci purus, consectetur quis condimentum quis,
-            semper, quis elementum justo faucibus. In sit ornare vitam, vitae
-            malesuada ante. Vestibulum suscipit blandit text, adipiscer blandit sapien
-            turton eu. Nam eu sam urna.
+            semper, quis elementum justo faucibus. In sit ornare vitam.
           </p>
           <p>
             Fusce eget bibendum duis. Pellentesque pharetra sollicitudin varius.
-            Nulla auctor metus nor elit vulputate, at varius lacus molestie. Cras
-            vehicula tempor leo. In bibendum tellus cursus et, mauris ullamcorper
-            dui elit, in semper velit pellentesque et. Suspendisse layin libero,
-            eleifend eget felis aget, euismod tristique duis erat varius neque
-            auctor, et malesuada namos et arcu ipsum primis in faucibus.
+            Nulla auctor metus nor elit vulputate, at varius lacus molestie.
           </p>
         </div>
       </div>
@@ -179,7 +219,6 @@
 
   </main>
 
-  <!-- ── FOOTER (injected by components.js) ── -->
   <div id="footer-placeholder"></div>
 
   <script src="js/components.js"></script>

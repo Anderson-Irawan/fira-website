@@ -180,6 +180,7 @@ button { cursor: pointer; }
 }
 .navbar__logo:hover { opacity: 0.8; }
 .navbar__logo svg { height: 100%; width: auto; }
+.navbar__logo-img { height: 100%; width: auto; display: block; }
 .navbar__links {
   display: flex;
   align-items: center;
@@ -231,7 +232,8 @@ button { cursor: pointer; }
   color: var(--clr-cream);
   /* SVG fills with currentColor */
 }
-.footer__logo-wrap svg {
+.footer__logo-wrap svg,
+.footer__logo-img {
   width: 100%;
   max-width: 460px;
   display: block;
