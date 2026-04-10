@@ -345,7 +345,7 @@ button { cursor: pointer; }
 .footer__col li + li { margin-top: 8px; }
 .footer__col a {
   font-size: 13px;
-  color: rgba(255,255,255,0.65);
+  color: var(--clr-white);
   transition: color var(--ease);
 }
 .footer__contact p {
@@ -358,21 +358,26 @@ button { cursor: pointer; }
 }
 .footer__contact p {
   font-size: 13px;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.85;
+  color: var(--clr-white);
+  line-height: 2;
 }
 
 /* =====================================================
    HERO — HOME
    ===================================================== */
 .about-hero {
-  background: var(--clr-cream);
+  background: var(--clr-black);
   padding: 80px var(--pad-x) 88px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .about-hero .container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 12px;
 }
 .about-hero__quote-mark {
   color: var(--clr-yellow);
@@ -387,8 +392,9 @@ button { cursor: pointer; }
   font-style: italic;
   font-weight: 500;
   font-size: clamp(22px, 3vw, 38px);
-  line-height: 1.1;
-  color: var(--clr-black);
+  line-height: 1.2;
+  max-width: 680px;
+  color: var(--clr-white);
 }
 
 /* =====================================================
@@ -898,9 +904,9 @@ button { cursor: pointer; }
   padding: 56px var(--pad-x) 40px;
 }
 .produk-header__title {
+  font-family: var(--font-sans);
   font-weight: 900;
   font-size: clamp(28px, 4vw, 52px);
-  letter-spacing: -0.02em;
 }
 
 /* Search bar */
