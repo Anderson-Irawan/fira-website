@@ -171,7 +171,7 @@ async function renderServices() {
  * Renders featured product overview on about page
  */
 async function renderAboutProducts() {
-  const root = document.querySelector('[data-cms="about-products"]');
+  const root = document.querySelector('[data-cms="home-products"]');
   if (!root) return;
 
   const data = await fetchData();
