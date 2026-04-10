@@ -92,23 +92,119 @@ async function renderCatalogue() {
   }
 }
 
+// ─── CERT LIGHTBOX ───────────────────────────────────────────
+let _lbCerts = [];
+let _lbIdx   = 0;
+
+function _lbBuild() {
+  if (document.getElementById('cert-lightbox')) return;
+  const el = document.createElement('div');
+  el.id        = 'cert-lightbox';
+  el.className = 'lightbox-overlay';
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-modal', 'true');
+  el.innerHTML = `
+    <button class="lightbox-close" aria-label="Tutup">&times;</button>
+    <button class="lightbox-prev" aria-label="Sebelumnya">&#8249;</button>
+    <img class="lightbox-img" src="" alt="">
+    <button class="lightbox-next" aria-label="Berikutnya">&#8250;</button>
+  `;
+  document.body.appendChild(el);
+  el.querySelector('.lightbox-close').addEventListener('click', _lbClose);
+  el.querySelector('.lightbox-prev').addEventListener('click', () => _lbNav(-1));
+  el.querySelector('.lightbox-next').addEventListener('click', () => _lbNav(1));
+  el.addEventListener('click', e => { if (e.target === el) _lbClose(); });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('cert-lightbox')?.classList.contains('is-open')) return;
+    if (e.key === 'Escape')    _lbClose();
+    if (e.key === 'ArrowLeft') _lbNav(-1);
+    if (e.key === 'ArrowRight') _lbNav(1);
+  });
+}
+
+function _lbOpen(idx) {
+  _lbIdx = idx;
+  const el  = document.getElementById('cert-lightbox');
+  const img = el.querySelector('.lightbox-img');
+  img.src = _lbCerts[_lbIdx].image;
+  img.alt = _lbCerts[_lbIdx].name;
+  el.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function _lbClose() {
+  document.getElementById('cert-lightbox').classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+function _lbNav(dir) {
+  _lbIdx = (_lbIdx + dir + _lbCerts.length) % _lbCerts.length;
+  const img = document.querySelector('#cert-lightbox .lightbox-img');
+  img.src = _lbCerts[_lbIdx].image;
+  img.alt = _lbCerts[_lbIdx].name;
+}
+
 /**
- * Renders certifications grid (index + about)
+ * Renders certifications grid.
+ * - index.html (data-page=""): shows 4, no toggle
+ * - about.html (data-page="about"): shows 4 initially, toggle to expand all
+ * - All pages: clicking a cert opens a lightbox with prev/next navigation
  */
 async function renderCertifications() {
   const grids = document.querySelectorAll('[data-cms="certifications"]');
   if (!grids.length) return;
 
-  const data  = await fetchData();
-  const html  = data.certifications.map(c => `
-    <div class="cert-card">
-      ${c.image
-        ? `<img src="${c.image}" alt="${c.name}" loading="lazy">`
-        : `<span>${c.name}</span>`
-      }
-    </div>
-  `).join('');
-  grids.forEach(g => g.innerHTML = html);
+  const data   = await fetchData();
+  const certs  = data.certifications;
+  const isHome = !!document.querySelector('[data-page=""]');
+
+  _lbCerts = certs.filter(c => c.image);
+  if (_lbCerts.length) _lbBuild();
+
+  grids.forEach(g => {
+    const list = isHome ? certs.slice(0, 4) : certs;
+
+    g.innerHTML = list.map((c, i) => {
+      const lbIdx   = _lbCerts.findIndex(lc => lc.id === c.id);
+      const hidden  = !isHome && i >= 4 ? ' cert-hidden' : '';
+      const clickable = lbIdx >= 0
+        ? `data-lb-idx="${lbIdx}" role="button" tabindex="0"`
+        : '';
+      return `
+        <div class="cert-card${hidden}" ${clickable} aria-label="${c.name}">
+          ${c.image
+            ? `<img src="${c.image}" alt="${c.name}" loading="lazy">`
+            : `<span>${c.name}</span>`
+          }
+        </div>`;
+    }).join('');
+
+    // Lightbox click handlers
+    g.querySelectorAll('.cert-card[data-lb-idx]').forEach(card => {
+      card.addEventListener('click', () => _lbOpen(+card.dataset.lbIdx));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); _lbOpen(+card.dataset.lbIdx); }
+      });
+    });
+
+    // Expand/collapse toggle — about page only
+    if (!isHome && certs.length > 4) {
+      g.parentElement.querySelector('.cert-toggle')?.remove();
+      const btn = document.createElement('button');
+      btn.className = 'cert-toggle';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = 'Tampil Semua';
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        Array.from(g.querySelectorAll('.cert-card')).forEach((c, i) => {
+          c.classList.toggle('cert-hidden', expanded && i >= 4);
+        });
+        btn.setAttribute('aria-expanded', String(!expanded));
+        btn.textContent = expanded ? 'Tampil Semua' : 'Tampilkan Lebih Sedikit';
+      });
+      g.insertAdjacentElement('afterend', btn);
+    }
+  });
 }
 
 /**

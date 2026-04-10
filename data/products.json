@@ -276,10 +276,20 @@
     }
   ],
   "certifications": [
-    { "id": "cert-001", "name": "SNI",          "issuer": "BSN",       "year": "2020", "image": "" },
-    { "id": "cert-002", "name": "ISO 9001:2015","issuer": "ISO",       "year": "2021", "image": "" },
-    { "id": "cert-003", "name": "Sertifikat Halal","issuer": "MUI",   "year": "2022", "image": "" },
-    { "id": "cert-004", "name": "TKDN",         "issuer": "Kemenperin","year": "2021", "image": "" }
+    { "id": "cert-001", "name": "Sertifikasi 1",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification1.png"  },
+    { "id": "cert-002", "name": "Sertifikasi 2",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification2.png"  },
+    { "id": "cert-003", "name": "Sertifikasi 3",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification3.png"  },
+    { "id": "cert-004", "name": "Sertifikasi 4",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification4.png"  },
+    { "id": "cert-005", "name": "Sertifikasi 5",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification5.png"  },
+    { "id": "cert-006", "name": "Sertifikasi 6",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification6.png"  },
+    { "id": "cert-007", "name": "Sertifikasi 7",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification7.png"  },
+    { "id": "cert-008", "name": "Sertifikasi 8",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification8.png"  },
+    { "id": "cert-009", "name": "Sertifikasi 9",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification9.png"  },
+    { "id": "cert-010", "name": "Sertifikasi 10", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification10.png" },
+    { "id": "cert-011", "name": "Sertifikasi 11", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification11.png" },
+    { "id": "cert-012", "name": "Sertifikasi 12", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification12.png" },
+    { "id": "cert-013", "name": "Sertifikasi 13", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification13.png" },
+    { "id": "cert-014", "name": "Sertifikasi 14", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification14.png" }
   ],
   "testimonials": [
     {
