@@ -11,7 +11,7 @@
           "name": "Atap Spandek 0.25mm",
           "material": "Zincalume",
           "thickness": "0.25 mm",
-          "image": "",
+          "image": "assets/products/produk-1.jpg",
           "description": "Atap baja ringan standar cocok untuk hunian residensial"
         },
         {
@@ -50,7 +50,7 @@
           "name": "Truss C75.75",
           "material": "Zincalume",
           "thickness": "0.75 mm",
-          "image": "",
+          "image": "assets/products/produk-2.jpg",
           "description": "Profil C standar untuk rangka atap hunian"
         },
         {
@@ -89,7 +89,7 @@
           "name": "Reng 0.40mm",
           "material": "Zincalume",
           "thickness": "0.40 mm",
-          "image": "",
+          "image": "assets/products/produk-3.jpg",
           "description": "Reng standar paling umum digunakan"
         },
         {
@@ -128,7 +128,7 @@
           "name": "Holo 2×4 cm",
           "material": "Baja Ringan",
           "thickness": "0.8 mm",
-          "image": "",
+          "image": "assets/products/produk-1.jpg",
           "description": "Holo persegi panjang standar 2×4 cm"
         },
         {
@@ -167,7 +167,7 @@
           "name": "Wallpanel Standar",
           "material": "Zincalume",
           "thickness": "0.30 mm",
-          "image": "",
+          "image": "assets/products/produk-2.jpg",
           "description": "Panel dinding standar untuk hunian"
         },
         {
@@ -206,7 +206,7 @@
           "name": "PVC Ceiling 8mm",
           "material": "PVC",
           "thickness": "8 mm",
-          "image": "",
+          "image": "assets/products/produk-3.jpg",
           "description": "Plafon PVC putih bersih standar"
         },
         {
