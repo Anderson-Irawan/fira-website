@@ -41,8 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerObserver = new IntersectionObserver(
       (entries) => {
         const entering = entries[0].isIntersecting;
-        sidenav?.classList.toggle('is-hidden', entering);
-        sidenavLogo?.classList.toggle('is-hidden', entering);
+        // Sidenav visibility is owned entirely by the hero observer —
+        // touching it here causes a flicker when scrolling back from the
+        // footer, so we leave it alone.
         if (navbar && !homeHero) {
           // Non-home pages: topnav follows footer — hide when footer
           // is visible, reappear when footer leaves.
