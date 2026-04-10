@@ -178,7 +178,8 @@ button { cursor: pointer; }
   transition: opacity var(--ease);
 }
 .navbar__logo:hover { opacity: 0.8; }
-.navbar__logo svg { height: 100%; width: auto; }
+.navbar__logo svg,
+.navbar__logo img { height: 100%; width: auto; display: block; }
 .navbar__links {
   display: flex;
   align-items: center;
@@ -229,7 +230,8 @@ button { cursor: pointer; }
   filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55));
   transition: opacity 0.35s ease, visibility 0.35s ease;
 }
-.sidenav-logo svg { height: 100%; width: auto; }
+.sidenav-logo svg,
+.sidenav-logo img { height: 100%; width: auto; display: block; }
 .sidenav-logo:hover { opacity: 0.75; }
 
 /* Fade out when footer is in view */
@@ -319,7 +321,8 @@ button { cursor: pointer; }
   color: var(--clr-cream);
   /* SVG fills with currentColor */
 }
-.footer__logo-wrap svg {
+.footer__logo-wrap svg,
+.footer__logo-wrap img {
   width: 100%;
   max-width: 460px;
   display: block;

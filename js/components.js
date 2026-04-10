@@ -10,19 +10,9 @@
  *   <script src="js/components.js"></script>
  */
 
-// ─── LOGO SVGs ───────────────────────────────────────────────
-// Nav version: white fill with blue dot
-const LOGO_NAV = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 64" fill="none" aria-label="Fira" role="img">
-  <text x="2" y="58"
-    font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
-    font-weight="900" font-size="60" fill="white" letter-spacing="-2">fira</text>
-  <circle cx="78" cy="13" r="8" fill="#2563EB"/>
-</svg>`;
-
-// Footer version: cream fill with yellow dot (large wordmark)
-const LOGO_FOOTER = `
-<img src="assets/logo-fira.svg" viewBox="0 0 180 64" width="400vw">`;
+// ─── LOGO ────────────────────────────────────────────────────
+const LOGO_NAV    = `<img src="assets/logo-fira.svg" alt="Fira" class="navbar__logo-img">`;
+const LOGO_FOOTER = `<img src="assets/logo-fira.svg" alt="Fira" class="footer__logo-img">`;
 
 // ─── NAV CONFIG ──────────────────────────────────────────────
 const NAV_LINKS = [
@@ -84,8 +74,11 @@ function renderSideNav(activePage = '') {
     </a>`
   ).join('');
 
-  return `
-<a href="index.html" class="sidenav-logo" aria-label="Fira — Home">${LOGO_NAV}</a>
+  const logoHTML = activePage === ''
+    ? ''
+    : `<a href="index.html" class="sidenav-logo" aria-label="Fira — Home">${LOGO_NAV}</a>`;
+
+  return `${logoHTML}
 <nav class="sidenav" role="navigation" aria-label="Main navigation">
   ${items}
 </nav>`;
