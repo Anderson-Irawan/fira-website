@@ -86,8 +86,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
-  font-family: var(--font-sans);
-  font-weight: 400;
+  font-family: var(--font-mono);
+  font-weight: 300;
+  letter-spacing: -0.03vw;
   background-color: var(--clr-cream);
   color: var(--clr-black);
   line-height: 1.65;
@@ -134,6 +135,7 @@ button { cursor: pointer; }
   margin-bottom: 28px;
 }
 .sec-title {
+  font-family: var(--font-sans);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(26px, 3.5vw, 42px);
@@ -269,12 +271,11 @@ button { cursor: pointer; }
 }
 .sidenav__label {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 1.5vw;
   font-weight: 300;
-  letter-spacing: 0.12em;
   /* Readable on both light and dark backgrounds */
   color: #f7f4eb;
-  /*text-shadow: 0 1px 8px rgba(0,0,0,0.65), 0 0 24px rgba(0,0,0,0.3);*/
+  text-shadow: 0 1px 8px rgba(0,0,0,0.3), 0 0 24px rgba(0,0,0,0.1);
   white-space: nowrap;
   transition: color var(--ease), transform var(--ease);
 }
@@ -375,17 +376,18 @@ button { cursor: pointer; }
 }
 .about-hero__quote-mark {
   color: var(--clr-yellow);
-  font-size: 120px;
-  line-height: 0.6;
+  font-family: var(--font-sans);
+  font-style: italic;
   font-weight: 900;
+  font-size: clamp(100px, 14vw, 180px);
+  line-height: 0.6;
   user-select: none;
 }
 .about-hero__quote {
   font-style: italic;
-  font-weight: 700;
+  font-weight: 500;
   font-size: clamp(22px, 3vw, 38px);
-  line-height: 1.35;
-  max-width: 680px;
+  line-height: 1.1;
   color: var(--clr-black);
 }
 
@@ -473,10 +475,9 @@ button { cursor: pointer; }
   gap: 48px;
 }
 .qit__label {
-  font-style: italic;
+  font-family: var(--font-sans);
   font-size: clamp(18px, 2vw, 28px);
   font-weight: 700;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--clr-white);
   margin-bottom: 18px;
@@ -723,6 +724,7 @@ button { cursor: pointer; }
 
 /* Trustworthy section */
 .trustworthy {
+  font-family: var(--font-sans);
   background: var(--clr-blue);
   padding: var(--sec-v) var(--pad-x);
 }
@@ -731,10 +733,9 @@ button { cursor: pointer; }
   margin-inline: auto;
 }
 .trustworthy__pre {
-  font-size: clamp(14px, 1.5vw, 18px);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--clr-black);
+  font-size: clamp(14px, 4.5vw, 8vw);
+  font-weight: 900;
+  color: var(--clr-yellow);
   margin-bottom: 4px;
 }
 .trustworthy__word {
@@ -765,10 +766,11 @@ button { cursor: pointer; }
   50%       { opacity: 0; }
 }
 .trustworthy__body {
+  font-family: var(--font-mono);
   max-width: 660px;
   font-size: 16px;
   line-height: 1.75;
-  color: var(--clr-black);
+  color: var(--clr-cream);
 }
 .trustworthy__body p + p { margin-top: 14px; }
 
