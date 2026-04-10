@@ -7,16 +7,34 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ─── SIDENAV — HIDE ON FOOTER ──────────────────────────────
+  // Uses IntersectionObserver so the sidenav and logo fade out
+  // smoothly the moment the footer enters the viewport, and
+  // fade back in as soon as the footer leaves.
+  const footer      = document.querySelector('.footer');
+  const sidenav     = document.querySelector('.sidenav');
+  const sidenavLogo = document.querySelector('.sidenav-logo');
+
+  if (footer && (sidenav || sidenavLogo)) {
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        const entering = entries[0].isIntersecting;
+        sidenav?.classList.toggle('is-hidden', entering);
+        sidenavLogo?.classList.toggle('is-hidden', entering);
+      },
+      { threshold: 0.05 }   // triggers as soon as 5% of footer is visible
+    );
+    footerObserver.observe(footer);
+  }
+
   // ─── NAVBAR SCROLL OPACITY ─────────────────────────────────
-  // Subtly increases navbar opacity / adds border on scroll
+  // Kept for any page that may still use the top navbar fallback
   const navbar = document.querySelector('.navbar');
   if (navbar) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
-        navbar.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
-      } else {
-        navbar.style.borderBottom = 'none';
-      }
+      navbar.style.borderBottom = window.scrollY > 40
+        ? '1px solid rgba(255,255,255,0.06)'
+        : 'none';
     }, { passive: true });
   }
 
@@ -55,6 +73,58 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.textContent = 'Kirim Pesan';
       }
     });
+  }
+
+  // ─── TYPEWRITER — "We are ___." cycling slogan ─────────────
+  // Cycles: QUALITY → INNOVATION → TRUSTWORTHY.
+  // Each word types in over 1.5 s, lingers for 4 s, then erases.
+  const typeTarget = document.getElementById('typewriter-text');
+  const typeCursor = document.querySelector('.typewriter-cursor');
+
+  if (typeTarget && typeCursor) {
+    const words       = ['QUALITY.', 'INNOVATION.', 'TRUSTWORTHY.'];
+    const TYPE_MS     = 1500;   // total time to type one word
+    const LINGER_MS   = 4000;   // how long the full word stays visible
+    const ERASE_MS    = 700;    // total time to erase (fast wipe)
+
+    let wordIndex = 0;
+
+    function delay(ms) {
+      return new Promise(res => setTimeout(res, ms));
+    }
+
+    async function typeWord(word) {
+      const charDelay = TYPE_MS / word.length;
+      typeCursor.classList.add('typing');       // solid cursor while typing
+      for (let i = 0; i <= word.length; i++) {
+        typeTarget.textContent = word.slice(0, i);
+        await delay(charDelay);
+      }
+      typeCursor.classList.remove('typing');    // resume blinking while lingering
+    }
+
+    async function eraseWord(word) {
+      const charDelay = ERASE_MS / word.length;
+      typeCursor.classList.add('typing');
+      for (let i = word.length; i >= 0; i--) {
+        typeTarget.textContent = word.slice(0, i);
+        await delay(charDelay);
+      }
+      typeCursor.classList.remove('typing');
+    }
+
+    async function runLoop() {
+      while (true) {
+        const word = words[wordIndex];
+        await typeWord(word);
+        await delay(LINGER_MS);
+        await eraseWord(word);
+        await delay(200);                       // brief pause before next word
+        wordIndex = (wordIndex + 1) % words.length;
+      }
+    }
+
+    runLoop();
   }
 
   // ─── SMOOTH SCROLL FOR ANCHOR LINKS ────────────────────────

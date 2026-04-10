@@ -22,12 +22,7 @@ const LOGO_NAV = `
 
 // Footer version: cream fill with yellow dot (large wordmark)
 const LOGO_FOOTER = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 200" fill="none" aria-label="Fira" role="img">
-  <text x="4" y="185"
-    font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
-    font-weight="900" font-size="188" fill="#EDE8DC" letter-spacing="-6">fira</text>
-  <circle cx="244" cy="42" r="26" fill="#F5C518"/>
-</svg>`;
+<img src="assets/logo-fira.svg" viewBox="0 0 180 64" width="400vw">`;
 
 // ─── NAV CONFIG ──────────────────────────────────────────────
 const NAV_LINKS = [
@@ -38,7 +33,7 @@ const NAV_LINKS = [
 
 // ─── FOOTER CONFIG ───────────────────────────────────────────
 const FOOTER_PRODUK = [
-  { label: 'Roof',         href: 'produk.html#atap'       },
+  { label: 'Atap',         href: 'produk.html#atap'       },
   { label: 'Truss',        href: 'produk.html#truss'      },
   { label: 'Reng',         href: 'produk.html#reng'       },
   { label: 'Holo',         href: 'produk.html#holo'       },
@@ -58,6 +53,10 @@ const CONTACT_INFO = {
 };
 
 // ─── RENDER FUNCTIONS ────────────────────────────────────────
+
+/**
+ * Standard top navbar — used on About, Produk, Kontak pages.
+ */
 function renderNav(activePage = '') {
   const links = NAV_LINKS.map(({ id, label, href }) =>
     `<li><a href="${href}" class="navbar__link${activePage === id ? ' active' : ''}">${label}</a></li>`
@@ -71,6 +70,25 @@ function renderNav(activePage = '') {
   </div>
 </nav>
 <div class="nav-spacer" aria-hidden="true"></div>`;
+}
+
+/**
+ * Side nav — used on the Home page (index.html) only.
+ * Logo floats top-left; 3 nav items with blue bars sit on the right edge.
+ */
+function renderSideNav(activePage = '') {
+  const items = NAV_LINKS.map(({ id, label, href }) =>
+    `<a href="${href}" class="sidenav__item${activePage === id ? ' active' : ''}" aria-label="${label}">
+      <span class="sidenav__label">${label}</span>
+      <span class="sidenav__bar" aria-hidden="true"></span>
+    </a>`
+  ).join('');
+
+  return `
+<a href="index.html" class="sidenav-logo" aria-label="Fira — Home">${LOGO_NAV}</a>
+<nav class="sidenav" role="navigation" aria-label="Main navigation">
+  ${items}
+</nav>`;
 }
 
 function renderFooter() {
@@ -107,12 +125,17 @@ function renderFooter() {
 
 // ─── AUTO-INJECT ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  const navSlot    = document.getElementById('nav-placeholder');
-  const footerSlot = document.getElementById('footer-placeholder');
+  const navSlot     = document.getElementById('nav-placeholder');
+  const sideNavSlot = document.getElementById('sidenav-placeholder');
+  const footerSlot  = document.getElementById('footer-placeholder');
 
   if (navSlot) {
     const page = navSlot.dataset.page || '';
     navSlot.outerHTML = renderNav(page);
+  }
+  if (sideNavSlot) {
+    const page = sideNavSlot.dataset.page || '';
+    sideNavSlot.outerHTML = renderSideNav(page);
   }
   if (footerSlot) {
     footerSlot.outerHTML = renderFooter();

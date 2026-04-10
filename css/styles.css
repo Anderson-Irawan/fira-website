@@ -134,7 +134,6 @@ button { cursor: pointer; }
   margin-bottom: 28px;
 }
 .sec-title {
-  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(26px, 3.5vw, 42px);
@@ -212,6 +211,93 @@ button { cursor: pointer; }
 .nav-spacer { height: var(--nav-h); }
 
 /* =====================================================
+   SIDE NAV — Home page only
+   Fixed vertical nav on the right edge of the screen.
+   The logo floats top-left independently.
+   3 blue bars sit beside each nav link.
+   ===================================================== */
+.sidenav-logo {
+  position: fixed;
+  top: 28px;
+  left: 28px;
+  z-index: 200;
+  color: var(--clr-white);
+  height: 36px;
+  display: flex;
+  align-items: center;
+  /* Drop-shadow keeps the logo legible on any background colour */
+  filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55));
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.sidenav-logo svg { height: 100%; width: auto; }
+.sidenav-logo:hover { opacity: 0.75; }
+
+/* Fade out when footer is in view */
+.sidenav-logo.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sidenav {
+  position: fixed;
+  top: 50%;
+  right: 32px;
+  transform: translateY(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+/* Fade out when footer is in view */
+.sidenav.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sidenav__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+.sidenav__label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  /* Readable on both light and dark backgrounds */
+  color: rgba(255,255,255,0.82);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.65), 0 0 24px rgba(0,0,0,0.3);
+  white-space: nowrap;
+  transition: color var(--ease), transform var(--ease);
+}
+.sidenav__bar {
+  width: 24px;
+  height: 3px;
+  background: var(--clr-blue);
+  border-radius: 2px;
+  flex-shrink: 0;
+  transition: width var(--ease), background var(--ease);
+}
+
+/* Hover — label brightens and nudges left, bar extends */
+.sidenav__item:hover .sidenav__label {
+  color: var(--clr-white);
+  transform: translateX(-5px);
+}
+.sidenav__item:hover .sidenav__bar { width: 36px; }
+
+/* Active page — label is full white, bar turns yellow */
+.sidenav__item.active .sidenav__label { color: var(--clr-white); }
+.sidenav__item.active .sidenav__bar   { width: 36px; background: var(--clr-yellow); }
+
+/* =====================================================
    FOOTER
    ===================================================== */
 .footer {
@@ -252,7 +338,6 @@ button { cursor: pointer; }
 }
 .footer__col li + li { margin-top: 8px; }
 .footer__col a {
-  font-family: var(--font-mono);
   font-size: 13px;
   color: rgba(255,255,255,0.65);
   transition: color var(--ease);
@@ -285,14 +370,12 @@ button { cursor: pointer; }
 }
 .home-hero__quote-mark {
   color: var(--clr-yellow);
-  font-family: var(--font-mono);
   font-size: 120px;
   line-height: 0.6;
   font-weight: 900;
   user-select: none;
 }
 .home-hero__quote {
-  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(22px, 3vw, 38px);
@@ -339,7 +422,6 @@ button { cursor: pointer; }
 }
 
 .split__heading {
-  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(28px, 3.5vw, 48px);
@@ -386,7 +468,6 @@ button { cursor: pointer; }
   gap: 48px;
 }
 .qit__label {
-  font-family: var(--font-mono);
   font-style: italic;
   font-size: clamp(18px, 2vw, 28px);
   font-weight: 700;
@@ -569,6 +650,25 @@ button { cursor: pointer; }
   color: var(--clr-yellow);
   letter-spacing: -0.02em;
   margin-bottom: 36px;
+  /* Reserve height so layout doesn't jump between words */
+  min-height: 1em;
+}
+
+/* Blinking cursor that pauses while typing, blinks while lingering */
+.typewriter-cursor {
+  display: inline-block;
+  font-weight: 300;
+  color: var(--clr-yellow);
+  margin-left: 4px;
+  animation: cursorBlink 0.75s step-end infinite;
+}
+.typewriter-cursor.typing {
+  animation: none;   /* cursor stays solid while typing */
+  opacity: 1;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 .trustworthy__body {
   max-width: 660px;
@@ -758,7 +858,6 @@ button { cursor: pointer; }
   margin-bottom: 20px;
 }
 .cat-name {
-  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(22px, 2.5vw, 34px);
@@ -816,7 +915,6 @@ button { cursor: pointer; }
   text-align: center;
 }
 .kontak-title {
-  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(28px, 4vw, 52px);
@@ -911,7 +1009,6 @@ button { cursor: pointer; }
   padding: 64px 56px;
 }
 .map-split__title {
-  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(24px, 3vw, 40px);
@@ -941,7 +1038,6 @@ button { cursor: pointer; }
   align-items: center;
 }
 .hours__title {
-  font-family: var(--font-mono);
   font-style: italic;
   font-weight: 700;
   font-size: clamp(20px, 2.5vw, 32px);
