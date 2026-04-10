@@ -246,12 +246,12 @@ button { cursor: pointer; }
 .sidenav {
   position: fixed;
   top: 50%;
-  right: 32px;
+  left: 32px;
   transform: translateY(-50%);
   z-index: 200;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 24px;
   transition: opacity 0.35s ease, visibility 0.35s ease;
 }
@@ -265,6 +265,7 @@ button { cursor: pointer; }
 
 .sidenav__item {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 14px;
   cursor: pointer;
@@ -273,7 +274,6 @@ button { cursor: pointer; }
   font-family: var(--font-mono);
   font-size: 1.5vw;
   font-weight: 300;
-  /* Readable on both light and dark backgrounds */
   color: #f7f4eb;
   text-shadow: 0 1px 8px rgba(0,0,0,0.3), 0 0 24px rgba(0,0,0,0.1);
   white-space: nowrap;
@@ -287,15 +287,15 @@ button { cursor: pointer; }
   transition: width var(--ease), background var(--ease);
 }
 
-/* Hover — label brightens and nudges left, bar extends */
+/* Hover — label brightens and nudges right, bar extends */
 .sidenav__item:hover .sidenav__label {
   color: var(--clr-yellow);
-  transform: translateX(-5px);
+  transform: translateX(5px);
   font-weight: 900;
 }
 .sidenav__item:hover .sidenav__bar {
-  width: 36px; 
-  color: var(--clr-yellow);
+  width: 36px;
+  background: var(--clr-yellow);
 }
 
 /* Active page — label is full white, bar turns yellow */
@@ -390,10 +390,10 @@ button { cursor: pointer; }
 }
 .about-hero__quote {
   font-style: italic;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-weight: 300;
   font-size: clamp(22px, 3vw, 38px);
   line-height: 1.2;
-  max-width: 680px;
   color: var(--clr-white);
 }
 

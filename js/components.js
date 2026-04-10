@@ -16,9 +16,9 @@ const LOGO_FOOTER = `<img src="assets/logo-fira.svg" alt="Fira" class="footer__l
 
 // ─── NAV CONFIG ──────────────────────────────────────────────
 const NAV_LINKS = [
-  { id: 'produk',  label: 'Produk',  href: 'produk.html' },
-  { id: 'about',   label: 'About',   href: 'about.html'  },
-  { id: 'kontak',  label: 'Kontak',  href: 'kontak.html' },
+  { id: 'produk',  label: 'PRODUK',  href: 'produk.html' },
+  { id: 'about',   label: 'ABOUT',   href: 'about.html'  },
+  { id: 'kontak',  label: 'KONTAK',  href: 'kontak.html' },
 ];
 
 // ─── FOOTER CONFIG ───────────────────────────────────────────
@@ -69,8 +69,8 @@ function renderNav(activePage = '') {
 function renderSideNav(activePage = '') {
   const items = NAV_LINKS.map(({ id, label, href }) =>
     `<a href="${href}" class="sidenav__item${activePage === id ? ' active' : ''}" aria-label="${label}">
-      <span class="sidenav__label">${label}</span>
       <span class="sidenav__bar" aria-hidden="true"></span>
+      <span class="sidenav__label">${label}</span>
     </a>`
   ).join('');
 
