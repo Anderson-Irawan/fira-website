@@ -49,7 +49,14 @@ const CONTACT_INFO = {
  */
 function renderNav(activePage = '') {
   const links = NAV_LINKS.map(({ id, label, href }) =>
-    `<li><a href="${href}" class="navbar__link${activePage === id ? ' active' : ''}">${label}</a></li>`
+    `<li>
+      <a href="${href}" class="navbar__link${activePage === id ? ' active' : ''}">
+        <span class="navbar__link-inner">
+          <span>${label}</span>
+          <span aria-hidden="true">${label}</span>
+        </span>
+      </a>
+    </li>`
   ).join('');
 
   return `
@@ -124,7 +131,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (navSlot) {
     const page = navSlot.dataset.page || '';
-    navSlot.outerHTML = renderNav(page);
+    let navHTML = renderNav(page);
+    // On the home page the topnav starts hidden; it slides in once
+    // the hero section scrolls fully out of view (see main.js).
+    // The nav-spacer is also removed — the full-screen hero needs no
+    // offset, and we don't want a layout jump when the navbar appears.
+    if (page === '') {
+      navHTML = navHTML
+        .replace('<nav class="navbar"', '<nav class="navbar is-hidden"')
+        .replace('<div class="nav-spacer" aria-hidden="true"></div>', '');
+    }
+    navSlot.outerHTML = navHTML;
   }
   if (sideNavSlot) {
     const page = sideNavSlot.dataset.page || '';

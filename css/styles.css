@@ -163,6 +163,18 @@ button { cursor: pointer; }
   display: flex;
   align-items: center;
   padding-inline: var(--pad-x);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Hidden state — slides up out of view (used on home page hero) */
+.navbar.is-hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* When topnav is hidden, the spacer below it is irrelevant */
+.navbar.is-hidden + .nav-spacer {
+  display: none;
 }
 .navbar__inner {
   width: 100%;
@@ -187,28 +199,37 @@ button { cursor: pointer; }
   align-items: center;
   gap: 40px;
 }
+/* ── Split-text vertical-slide hover (slot-machine effect) ──
+   Each link contains two identical text spans stacked in a column.
+   The outer <a> clips to one line; on hover the inner wrapper
+   slides up to reveal the yellow duplicate beneath it.           */
 .navbar__link {
   font-size: 14px;
   font-weight: 500;
-  color: var(--clr-white);
   letter-spacing: 0.03em;
-  position: relative;
-  padding-bottom: 3px;
-  transition: color var(--ease);
+  display: block;
+  overflow: hidden;
+  height: 1em;
+  line-height: 1;
 }
-.navbar__link::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--clr-blue);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--ease);
+.navbar__link-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
 }
-.navbar__link:hover { color: var(--clr-yellow); }
-.navbar__link.active { color: var(--clr-blue); }
-.navbar__link.active::after { transform: scaleX(1); }
+.navbar__link-inner span {
+  display: block;
+  line-height: 1;
+}
+.navbar__link-inner span:first-child { color: var(--clr-white); }
+.navbar__link-inner span:last-child  { color: var(--clr-yellow); }
+
+/* Active page — both spans show brand blue */
+.navbar__link.active .navbar__link-inner span:first-child,
+.navbar__link.active .navbar__link-inner span:last-child { color: var(--clr-blue); }
+
+/* Hover — slide inner up to reveal yellow duplicate */
+.navbar__link:hover .navbar__link-inner { transform: translateY(-50%); }
 
 /* Push content below fixed navbar */
 .nav-spacer { height: var(--nav-h); }
@@ -246,12 +267,12 @@ button { cursor: pointer; }
 .sidenav {
   position: fixed;
   top: 50%;
-  left: 32px;
+  right: 32px;
   transform: translateY(-50%);
   z-index: 200;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 24px;
   transition: opacity 0.35s ease, visibility 0.35s ease;
 }
@@ -265,7 +286,7 @@ button { cursor: pointer; }
 
 .sidenav__item {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   gap: 14px;
   cursor: pointer;
@@ -287,10 +308,10 @@ button { cursor: pointer; }
   transition: width var(--ease), background var(--ease);
 }
 
-/* Hover — label brightens and nudges right, bar extends */
+/* Hover — label brightens and nudges left (toward page), bar extends */
 .sidenav__item:hover .sidenav__label {
   color: var(--clr-yellow);
-  transform: translateX(5px);
+  transform: translateX(-5px);
   font-weight: 900;
 }
 .sidenav__item:hover .sidenav__bar {

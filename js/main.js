@@ -7,29 +7,63 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ─── SIDENAV — HIDE ON FOOTER ──────────────────────────────
-  // Uses IntersectionObserver so the sidenav and logo fade out
-  // smoothly the moment the footer enters the viewport, and
-  // fade back in as soon as the footer leaves.
+  // ─── TOPNAV: SHOW/HIDE BASED ON HERO VISIBILITY ───────────
+  // On the home page the top navbar starts hidden (see components.js).
+  // It slides in the moment the home-hero section is completely
+  // off-screen, and hides again as soon as any part of the hero
+  // re-enters the viewport (e.g. scroll back to top).
+  const navbar   = document.querySelector('.navbar');
+  const homeHero = document.querySelector('.home-hero');
+
+  if (navbar && homeHero) {
+    const heroObserver = new IntersectionObserver(
+      (entries) => {
+        const heroVisible = entries[0].isIntersecting;
+        // Hero on-screen → hide topnav; hero off-screen → show topnav
+        navbar.classList.toggle('is-hidden', heroVisible);
+      },
+      { threshold: 0 }  // fires as soon as a single pixel leaves/enters
+    );
+    heroObserver.observe(homeHero);
+  }
+
+  // ─── ALL NAVS — HIDE ON FOOTER ─────────────────────────────
+  // Sidenav, sidenav-logo AND the top navbar all fade / slide out
+  // smoothly the moment the footer enters the viewport.
   const footer      = document.querySelector('.footer');
   const sidenav     = document.querySelector('.sidenav');
   const sidenavLogo = document.querySelector('.sidenav-logo');
 
-  if (footer && (sidenav || sidenavLogo)) {
+  if (footer) {
     const footerObserver = new IntersectionObserver(
       (entries) => {
         const entering = entries[0].isIntersecting;
         sidenav?.classList.toggle('is-hidden', entering);
         sidenavLogo?.classList.toggle('is-hidden', entering);
+        if (navbar && !homeHero) {
+          // Non-home pages: topnav follows footer — hide when footer
+          // is visible, reappear when footer leaves.
+          navbar.classList.toggle('is-hidden', entering);
+        } else if (navbar && homeHero) {
+          if (entering) {
+            // Footer entering → always hide topnav
+            navbar.classList.add('is-hidden');
+          } else {
+            // Footer leaving — restore topnav only if the hero is
+            // completely off-screen (i.e. user is mid-page, not at top)
+            const heroRect = homeHero.getBoundingClientRect();
+            if (heroRect.bottom <= 0) {
+              navbar.classList.remove('is-hidden');
+            }
+          }
+        }
       },
-      { threshold: 0.05 }   // triggers as soon as 5% of footer is visible
+      { threshold: 0.05 }
     );
     footerObserver.observe(footer);
   }
 
-  // ─── NAVBAR SCROLL OPACITY ─────────────────────────────────
-  // Kept for any page that may still use the top navbar fallback
-  const navbar = document.querySelector('.navbar');
+  // ─── NAVBAR SUBTLE BORDER ON SCROLL ────────────────────────
   if (navbar) {
     window.addEventListener('scroll', () => {
       navbar.style.borderBottom = window.scrollY > 40
