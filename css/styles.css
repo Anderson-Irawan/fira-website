@@ -50,11 +50,11 @@
 
 :root {
   /* --- COLOR PALETTE --- */
-  --clr-blue:        #2563EB;   /* Primary brand blue          */
+  --clr-blue:        #0357dd;   /* Primary brand blue          */
   --clr-yellow:      #F5C518;   /* Accent / highlight yellow   */
   --clr-cream:       #EDE8DC;   /* Page background             */
   --clr-black:       #0A0A0A;   /* Near-black for text/navbar  */
-  --clr-white:       #FFFFFF;
+  --clr-white:       #f7f4eb;
   --clr-gray:        #C8C4BB;   /* Placeholder / muted         */
   --clr-gray-mid:    #888480;
   --clr-toro:        #F5A623;   /* TORO partner section        */
@@ -266,14 +266,13 @@ button { cursor: pointer; }
   cursor: pointer;
 }
 .sidenav__label {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 300;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   /* Readable on both light and dark backgrounds */
-  color: rgba(255,255,255,0.82);
-  text-shadow: 0 1px 8px rgba(0,0,0,0.65), 0 0 24px rgba(0,0,0,0.3);
+  color: #f7f4eb;
+  /*text-shadow: 0 1px 8px rgba(0,0,0,0.65), 0 0 24px rgba(0,0,0,0.3);*/
   white-space: nowrap;
   transition: color var(--ease), transform var(--ease);
 }
@@ -281,17 +280,20 @@ button { cursor: pointer; }
   width: 24px;
   height: 3px;
   background: var(--clr-blue);
-  border-radius: 2px;
   flex-shrink: 0;
   transition: width var(--ease), background var(--ease);
 }
 
 /* Hover — label brightens and nudges left, bar extends */
 .sidenav__item:hover .sidenav__label {
-  color: var(--clr-white);
+  color: var(--clr-yellow);
   transform: translateX(-5px);
+  font-weight: 900;
 }
-.sidenav__item:hover .sidenav__bar { width: 36px; }
+.sidenav__item:hover .sidenav__bar {
+  width: 36px; 
+  color: var(--clr-yellow);
+}
 
 /* Active page — label is full white, bar turns yellow */
 .sidenav__item.active .sidenav__label { color: var(--clr-white); }
@@ -591,7 +593,7 @@ button { cursor: pointer; }
    ===================================================== */
 .about-hero {
   position: relative;
-  min-height: 55vh;
+  min-height: 100vh;
   background: var(--clr-black);
   display: flex;
   flex-direction: column;
@@ -604,11 +606,13 @@ button { cursor: pointer; }
   width: 100%; height: 100%;
   object-fit: cover;
   opacity: 0.45;
+  filter: grayscale(100%);
 }
 .about-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%);
+  filter: grayscale(100%);
+  background-image: url('assets/images/hero-img');
 }
 .about-hero__content {
   position: relative;
@@ -618,18 +622,24 @@ button { cursor: pointer; }
   margin-inline: auto;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 .about-hero__tagline {
   max-width: 380px;
+  margin-left: 2.5vw;
   font-size: 14px;
   line-height: 1.7;
   color: rgba(255,255,255,0.85);
 }
 
+.about-hero__img {
+  min-width: clamp(10vw, 50vw, 25vw)
+}
+
 /* Trustworthy section */
 .trustworthy {
-  background: var(--clr-cream);
+  background: var(--clr-blue);
   padding: var(--sec-v) var(--pad-x);
 }
 .trustworthy__inner {
@@ -679,7 +689,7 @@ button { cursor: pointer; }
 .trustworthy__body p + p { margin-top: 14px; }
 
 /* Servis Kita */
-.servis { background: var(--clr-cream); padding-top: 0; }
+.servis { background: var(--clr-cream); }
 .servis-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -756,13 +766,13 @@ button { cursor: pointer; }
 }
 .about-prod-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin-bottom: 24px;
 }
 .about-prod-card {
   position: relative;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/1;
   background: var(--clr-gray);
   border-radius: var(--radius);
   overflow: hidden;
@@ -785,7 +795,6 @@ button { cursor: pointer; }
   font-weight: 700;
   font-size: 14px;
   color: var(--clr-white);
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
   width: 100%;
 }
 .about-produk-cta {
