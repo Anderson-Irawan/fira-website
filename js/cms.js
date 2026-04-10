@@ -177,12 +177,12 @@ async function renderAboutProducts() {
   const data = await fetchData();
   // Show one card per category
   root.innerHTML = data.categories.map(cat => `
-    <a href="produk.html#${cat.id}" class="about-prod-card">
+    <a href="produk.html#${cat.id}" class="home-prod-card">
       ${cat.products[0]?.image
         ? `<img src="${cat.products[0].image}" alt="${cat.name}" loading="lazy">`
         : ''
       }
-      <span class="about-prod-card__label">${cat.name}</span>
+      <span class="home-prod-card__label">${cat.name}</span>
     </a>
   `).join('');
 }
