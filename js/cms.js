@@ -146,27 +146,28 @@ function _lbNav(dir) {
 
 /**
  * Renders certifications grid.
- * - index.html (data-page=""): shows 4, no toggle
- * - about.html (data-page="about"): shows 4 initially, toggle to expand all
+ * - index.html: shows 4, central button navigates to about.html cert section (expanded)
+ * - about.html: shows 4 initially, toggle expands/collapses all; auto-expands if
+ *               arriving with ?certs=open in the URL
  * - All pages: clicking a cert opens a lightbox with prev/next navigation
  */
 async function renderCertifications() {
   const grids = document.querySelectorAll('[data-cms="certifications"]');
   if (!grids.length) return;
 
-  const data   = await fetchData();
-  const certs  = data.certifications;
-  const isHome = !!document.querySelector('[data-page=""]');
+  const data    = await fetchData();
+  const certs   = data.certifications;
+  const isAbout = window.location.pathname.endsWith('about.html');
 
   _lbCerts = certs.filter(c => c.image);
   if (_lbCerts.length) _lbBuild();
 
   grids.forEach(g => {
-    const list = isHome ? certs.slice(0, 4) : certs;
+    const list = isAbout ? certs : certs.slice(0, 4);
 
     g.innerHTML = list.map((c, i) => {
-      const lbIdx   = _lbCerts.findIndex(lc => lc.id === c.id);
-      const hidden  = !isHome && i >= 4 ? ' cert-hidden' : '';
+      const lbIdx     = _lbCerts.findIndex(lc => lc.id === c.id);
+      const hidden    = isAbout && i >= 4 ? ' cert-hidden' : '';
       const clickable = lbIdx >= 0
         ? `data-lb-idx="${lbIdx}" role="button" tabindex="0"`
         : '';
@@ -187,11 +188,12 @@ async function renderCertifications() {
       });
     });
 
-    // Expand/collapse toggle — about page only
-    if (!isHome && certs.length > 4) {
-      g.parentElement.querySelector('.cert-toggle')?.remove();
-      const btn = document.createElement('button');
-      btn.className = 'cert-toggle';
+    g.parentElement.querySelector('.cert-toggle')?.remove();
+    const btn = document.createElement('button');
+    btn.className = 'cert-toggle';
+
+    if (isAbout) {
+      // Expand / collapse in place
       btn.setAttribute('aria-expanded', 'false');
       btn.textContent = 'Tampil Semua';
       btn.addEventListener('click', () => {
@@ -202,8 +204,20 @@ async function renderCertifications() {
         btn.setAttribute('aria-expanded', String(!expanded));
         btn.textContent = expanded ? 'Tampil Semua' : 'Tampilkan Lebih Sedikit';
       });
-      g.insertAdjacentElement('afterend', btn);
+
+      // Auto-expand when arriving with ?certs=open (e.g. from index page button)
+      if (new URLSearchParams(location.search).has('certs')) {
+        btn.click();
+      }
+    } else {
+      // Home page: navigate to about cert section, already expanded
+      btn.textContent = 'Tampil Semua';
+      btn.addEventListener('click', () => {
+        window.location.href = 'about.html?certs=open#sertifikasi';
+      });
     }
+
+    g.insertAdjacentElement('afterend', btn);
   });
 }
 
