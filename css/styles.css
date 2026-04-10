@@ -294,7 +294,7 @@ button { cursor: pointer; }
 .sidenav__label {
   font-family: var(--font-mono);
   font-size: 1.5vw;
-  font-weight: 300;
+  font-weight: 700;
   color: #f7f4eb;
   text-shadow: 0 1px 8px rgba(0,0,0,0.3), 0 0 24px rgba(0,0,0,0.1);
   white-space: nowrap;
@@ -303,7 +303,7 @@ button { cursor: pointer; }
 .sidenav__bar {
   width: 24px;
   height: 3px;
-  background: var(--clr-blue);
+  background: var(--clr-yellow);
   flex-shrink: 0;
   transition: width var(--ease), background var(--ease);
 }
@@ -387,9 +387,9 @@ button { cursor: pointer; }
    HERO — HOME
    ===================================================== */
 .about-hero {
-  background: var(--clr-black);
+  background: var(--clr-white);
   padding: 80px var(--pad-x) 88px;
-  min-height: 100vh;
+  min-height: 92vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -415,7 +415,7 @@ button { cursor: pointer; }
   font-weight: 300;
   font-size: clamp(22px, 3vw, 38px);
   line-height: 1.2;
-  color: var(--clr-white);
+  color: var(--clr-black);
 }
 
 /* =====================================================
@@ -794,7 +794,7 @@ button { cursor: pointer; }
 }
 .trustworthy__body {
   font-family: var(--font-mono);
-  max-width: 660px;
+  max-width: 400vw;
   font-size: 16px;
   line-height: 1.75;
   color: var(--clr-cream);
