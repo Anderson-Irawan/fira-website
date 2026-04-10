@@ -19,8 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroObserver = new IntersectionObserver(
       (entries) => {
         const heroVisible = entries[0].isIntersecting;
-        // Hero on-screen → hide topnav; hero off-screen → show topnav
+        // Hero on-screen  → topnav hidden,  sidenav visible
+        // Hero off-screen → topnav visible, sidenav hidden
         navbar.classList.toggle('is-hidden', heroVisible);
+        sidenav?.classList.toggle('is-hidden', !heroVisible);
+        sidenavLogo?.classList.toggle('is-hidden', !heroVisible);
       },
       { threshold: 0 }  // fires as soon as a single pixel leaves/enters
     );
