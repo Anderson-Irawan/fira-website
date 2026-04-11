@@ -121,9 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (typeTarget && typeCursor) {
     const words       = ['QUALITY.', 'INNOVATION.', 'TRUSTWORTHY.'];
-    const TYPE_MS     = 1500;   // total time to type one word
-    const LINGER_MS   = 4000;   // how long the full word stays visible
-    const ERASE_MS    = 700;    // total time to erase (fast wipe)
+    const TYPE_MS     = 800;    // total time to type one word
+    const LINGER_MS   = 2000;   // how long the full word stays visible
+    const ERASE_MS    = 500;    // total time to erase (fast wipe)
 
     let wordIndex = 0;
 
@@ -165,6 +165,66 @@ document.addEventListener('DOMContentLoaded', () => {
     runLoop();
   }
 
+  // ─── STATS COUNT-UP ─────────────────────────────────────────
+  // All numbers increment at the same absolute rate, so smaller
+  // values finish first — 14 locks in before 20, then 22, then 26.
+  function runStatCountup(container) {
+    const els = [...container.querySelectorAll('.stat__number')];
+    if (!els.length) return;
+
+    const targets = els.map(el => parseInt(el.textContent, 10) || 0);
+    const max     = Math.max(...targets);
+    if (!max) return;
+
+    // Reset all to 0 before animating
+    els.forEach(el => { el.textContent = '0'; });
+
+    const DURATION = 1800; // ms — time for the largest number to finish
+    const begin    = performance.now();
+
+    (function tick(now) {
+      const rate    = Math.min((now - begin) / DURATION, 1);
+      const current = rate * max;                          // same speed for all
+      els.forEach((el, i) => {
+        el.textContent = Math.min(Math.round(current), targets[i]);
+      });
+      if (rate < 1) requestAnimationFrame(tick);
+      else els.forEach((el, i) => { el.textContent = targets[i]; }); // exact final
+    }(performance.now()));
+  }
+
+  const statsContainer = document.querySelector('.stats__inner');
+  if (statsContainer) {
+    let counted = false;
+    let inView  = false;
+    let hasData = false;
+
+    const tryCount = () => {
+      if (counted || !inView || !hasData) return;
+      counted = true;
+      runStatCountup(statsContainer);
+    };
+
+    // Handle CMS rendering stats asynchronously
+    new MutationObserver(() => {
+      if (statsContainer.querySelector('.stat__number')) {
+        hasData = true;
+        tryCount();
+      }
+    }).observe(statsContainer, { childList: true });
+
+    // Also check if stats are already in the DOM (non-CMS fallback)
+    if (statsContainer.querySelector('.stat__number')) hasData = true;
+
+    new IntersectionObserver(([entry], obs) => {
+      if (entry.isIntersecting) {
+        inView = true;
+        tryCount();
+        obs.disconnect();
+      }
+    }, { threshold: 0.4 }).observe(statsContainer);
+  }
+
   // ─── SMOOTH SCROLL FOR ANCHOR LINKS ────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
@@ -178,20 +238,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ─── SCROLL-IN ANIMATIONS (Intersection Observer) ──────────
-  // Adds .is-visible class when elements enter viewport.
-  // Hook CSS transitions onto [data-animate] elements.
-  const observer = new IntersectionObserver((entries) => {
+  // ─── SCROLL-IN: single elements [data-animate] ─────────────
+  const animateObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+        animateObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.12 });
 
   document.querySelectorAll('[data-animate]').forEach(el => {
-    observer.observe(el);
+    animateObserver.observe(el);
+  });
+
+  // ─── SCROLL-IN: stagger grid children [data-stagger] ────────
+  // Works for both static HTML and CMS-rendered children —
+  // a MutationObserver watches for late-arriving DOM nodes and
+  // animates them the moment they appear (if already in view).
+  document.querySelectorAll('[data-stagger]').forEach(container => {
+    let inView = false;
+
+    const revealChildren = () => {
+      [...container.children].forEach((child, i) => {
+        if (!child.classList.contains('is-visible')) {
+          child.style.transitionDelay = `${i * 0.08}s`;
+          requestAnimationFrame(() => child.classList.add('is-visible'));
+        }
+      });
+    };
+
+    // Watch for CMS injecting children after the observer fires
+    new MutationObserver(() => {
+      if (inView) revealChildren();
+    }).observe(container, { childList: true });
+
+    new IntersectionObserver(([entry], obs) => {
+      if (entry.isIntersecting) {
+        inView = true;
+        revealChildren();
+        obs.disconnect();
+      }
+    }, { threshold: 0.08 }).observe(container);
   });
 
 });

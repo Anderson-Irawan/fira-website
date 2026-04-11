@@ -33,7 +33,7 @@
 
     <!-- ── LATAR BELAKANG ── -->
     <section class="split bg-blue" aria-labelledby="lb-heading">
-      <div class="split__text">
+      <div class="split__text" data-animate>
         <h2 class="split__heading" id="lb-heading">Latar<br>Belakang</h2>
         <div class="split__body">
           <p>
@@ -57,7 +57,7 @@
 
     <!-- ── VISI ── -->
     <section class="split bg-blue" id="visi-misi" aria-labelledby="visi-heading">
-      <div class="split__text">
+      <div class="split__text" data-animate>
         <h2 class="split__heading" id="visi-heading">Visi</h2>
         <ul class="split__list">
           <li>Menjadi perusahaan yang memproduksi bahan baja ringan dengan kualitas yang dapat dipertanggungjawabkan.</li>
@@ -73,7 +73,7 @@
 
     <!-- ── MISI ── -->
     <section class="split split--reverse bg-blue" aria-labelledby="misi-heading">
-      <div class="split__text">
+      <div class="split__text" data-animate>
         <h2 class="split__heading" id="misi-heading">Misi</h2>
         <ul class="split__list">
           <li>Mendukung konsumen dan meningkatkan kepercayaan konsumen dengan produk Fira Truss &amp; Roof.</li>
@@ -123,10 +123,10 @@
     <!-- ── SERTIFIKASI ── -->
     <section class="sertifikasi section" id="sertifikasi" aria-labelledby="sert-heading">
       <div class="container">
-        <div class="sec-header">
+        <div class="sec-header" data-animate>
           <h2 class="sec-title" id="sert-heading">Sertifikasi</h2>
         </div>
-        <div class="cert-grid" data-cms="certifications">
+        <div class="cert-grid" data-cms="certifications" data-stagger>
           <!-- Populated by cms.js -->
           <div class="cert-card">SNI</div>
           <div class="cert-card">ISO 9001</div>
@@ -139,10 +139,10 @@
     <!-- ── TESTIMONI ── -->
     <section class="testimoni section--sm" id="testimoni" aria-labelledby="testi-heading">
       <div class="container">
-        <div class="sec-header">
+        <div class="sec-header" data-animate>
           <h2 class="sec-title" id="testi-heading">Testimoni</h2>
         </div>
-        <div class="testi-grid" data-cms="testimonials">
+        <div class="testi-grid" data-cms="testimonials" data-stagger>
           <!-- Populated by cms.js -->
         </div>
       </div>
@@ -150,7 +150,7 @@
 
     <!-- ── TORO PARTNER ── -->
     <section class="toro" aria-label="Mitra distribusi">
-      <div class="toro__inner">
+      <div class="toro__inner" data-animate>
         <div class="toro__brand">
           <div class="toro__icon" aria-hidden="true">T</div>
           <p class="toro__name">TORO</p>
@@ -181,6 +181,7 @@
   <!-- ── FOOTER (injected by components.js) ── -->
   <div id="footer-placeholder"></div>
 
+  <script src="js/loader.js"></script>
   <script src="js/components.js"></script>
   <script src="js/cms.js"></script>
   <script src="js/main.js"></script>

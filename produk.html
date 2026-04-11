@@ -16,12 +16,12 @@
   <main class="produk-page">
 
     <!-- ── HEADER ── -->
-    <header class="produk-header">
+    <header class="produk-header" data-animate>
       <h1 class="produk-header__title">Produk Kita</h1>
     </header>
 
     <!-- ── SEARCH ── -->
-    <div class="search-wrap" role="search">
+    <div class="search-wrap" role="search" data-animate style="transition-delay:0.15s">
       <div class="search-bar">
         <div class="search-bar__icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -56,7 +56,7 @@
 
     <!-- ── TORO PARTNER ── -->
     <section class="toro" aria-label="Mitra distribusi">
-      <div class="toro__inner">
+      <div class="toro__inner" data-animate>
         <div class="toro__brand">
           <div class="toro__icon" aria-hidden="true">T</div>
           <p class="toro__name">TORO</p>
@@ -82,6 +82,7 @@
 
   <div id="footer-placeholder"></div>
 
+  <script src="js/loader.js"></script>
   <script src="js/components.js"></script>
   <script src="js/cms.js"></script>
   <script src="js/main.js"></script>

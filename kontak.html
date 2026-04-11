@@ -17,7 +17,7 @@
 
     <!-- ── CONTACT FORM ── -->
     <div class="kontak-form-wrap">
-      <h1 class="kontak-title">Kerja Sama dengan Fira</h1>
+      <h1 class="kontak-title" data-animate>Kerja Sama dengan Fira</h1>
 
       <!--
         TO ENABLE REAL EMAIL DELIVERY:
@@ -29,6 +29,7 @@
       <form
         id="contact-form"
         class="contact-form"
+        data-animate style="transition-delay:0.15s"
         action="#"
         method="POST"
         novalidate
@@ -87,7 +88,7 @@
     </div>
 
     <!-- ── MAP + OFFICE INFO ── -->
-    <section class="map-split" aria-label="Lokasi kantor">
+    <section class="map-split" aria-label="Lokasi kantor" data-animate>
       <div class="map-split__map">
         <!--
           TO ADD GOOGLE MAPS:
@@ -121,7 +122,7 @@
 
     <!-- ── OPERATING HOURS ── -->
     <section class="hours" aria-labelledby="hours-heading">
-      <div class="hours__inner">
+      <div class="hours__inner" data-animate>
         <h2 class="hours__title" id="hours-heading">Jam<br>Operasional</h2>
         <div>
           <p class="hours__day">Senin — Jumat</p>
@@ -142,6 +143,7 @@
 
   <div id="footer-placeholder"></div>
 
+  <script src="js/loader.js"></script>
   <script src="js/components.js"></script>
   <script src="js/cms.js"></script>
   <script src="js/main.js"></script>

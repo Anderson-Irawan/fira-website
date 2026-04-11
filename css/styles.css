@@ -492,15 +492,47 @@ button { cursor: pointer; }
    ===================================================== */
 .qit {
   background: var(--clr-black);
-  padding: var(--sec-v) var(--pad-x);
 }
 .qit__inner {
-  max-width: var(--max-w);
-  margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
+  gap: 0;
 }
+.qit__item {
+  position: relative;
+  overflow: hidden;
+  padding: 48px 36px;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: default;
+}
+
+/* Background image layer */
+.qit__item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.32) grayscale(25%);
+  transform: scale(1);
+  transition: filter 0.5s ease, transform 0.6s ease;
+  z-index: 0;
+}
+.qit__item:nth-child(1)::before { background-image: url('../assets/images/produk-1.jpg'); }
+.qit__item:nth-child(2)::before { background-image: url('../assets/images/produk-2.jpg'); }
+.qit__item:nth-child(3)::before { background-image: url('../assets/images/produk-3.jpg'); }
+
+/* Hover — image darkens slightly and zooms, text turns yellow */
+.qit__item:hover::before {
+  filter: brightness(0.18) grayscale(0%);
+  transform: scale(1.05);
+}
+.qit__item:hover .qit__label  { color: var(--clr-yellow); }
+.qit__item:hover .qit__body   { color: rgba(245, 197, 24, 0.72); }
+
 .qit__label {
   font-family: var(--font-sans);
   font-size: clamp(18px, 2vw, 28px);
@@ -508,11 +540,22 @@ button { cursor: pointer; }
   text-transform: uppercase;
   color: var(--clr-white);
   margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+  transition: color 0.4s ease;
 }
 .qit__body {
   font-size: 13px;
   line-height: 1.75;
   color: rgba(255,255,255,0.58);
+  position: relative;
+  z-index: 1;
+  transition: color 0.4s ease;
+  /* Clamp to 4 lines so all cards are equal height → labels align */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* =====================================================
@@ -621,17 +664,48 @@ button { cursor: pointer; }
 /* =====================================================
    TESTIMONI
    ===================================================== */
-.testimoni { background: var(--clr-cream); padding-top: 0; }
+.testimoni { background: var(--clr-cream); padding-top: 0; padding-bottom: var(--sec-v); }
+
+/* Marquee container — clips the scrolling track */
 .testi-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  overflow: hidden;
+  /* Fade edges so cards dissolve in/out naturally */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
 }
+
+/* Scrolling track — contains two identical sets of cards */
+.testi-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: testiScroll 40s linear infinite;
+}
+
+@keyframes testiScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 .testi-card {
+  width: 320px;
+  flex-shrink: 0;
   background: var(--clr-white);
-  border-radius: var(--radius);
+  border-radius: 0;
   padding: 28px 24px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 .testi-card__name {
   font-weight: 700;
@@ -701,6 +775,111 @@ button { cursor: pointer; }
 .toro__content p + p { margin-top: 10px; }
 
 /* =====================================================
+   PAGE LOADER
+   ===================================================== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--clr-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  /* Exit: slides up off-screen */
+  transition: transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.page-loader--done {
+  transform: translateY(-100%);
+}
+.page-loader__logo {
+  width: clamp(80px, 10vw, 110px);
+  animation: loaderBounce 1.4s ease-in-out infinite;
+}
+@keyframes loaderBounce {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-10px); }
+}
+.page-loader__pct {
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.4vw, 16px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* =====================================================
+   ANIMATIONS
+   =====================================================
+   Keyframes used for both page-load (hero) and
+   scroll-triggered ([data-animate] / [data-stagger]).
+   ===================================================== */
+
+@keyframes aniFadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes aniFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes aniSlideLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes aniSlideRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Scroll-triggered: single elements ── */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+[data-animate].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Scroll-triggered: stagger grid children ── */
+[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+[data-stagger] > *.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── index.html hero — plays on page load ── */
+.home-hero__img {
+  animation: aniSlideLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.home-hero__tagline {
+  animation: aniFadeUp 0.75s ease both 0.3s;
+}
+.sidenav__item:nth-child(1) { animation: aniSlideRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) both 0.10s; }
+.sidenav__item:nth-child(2) { animation: aniSlideRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) both 0.22s; }
+.sidenav__item:nth-child(3) { animation: aniSlideRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) both 0.34s; }
+
+/* ── about.html hero — plays on page load ── */
+.about-hero__quote-mark {
+  animation: aniFadeIn 1.2s ease both 0.1s;
+}
+.about-hero__quote {
+  animation: aniFadeUp 0.85s ease both 0.45s;
+}
+
+/* ── top navbar on inner pages — subtle fade-down on load ── */
+.navbar:not(.is-hidden) {
+  animation: aniFadeIn 0.5s ease both;
+}
+
+/* =====================================================
    ABOUT PAGE
    ===================================================== */
 .home-hero {
@@ -755,6 +934,8 @@ button { cursor: pointer; }
   background: var(--clr-blue);
   padding: var(--sec-v) var(--pad-x);
   min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 .trustworthy__inner {
   max-width: var(--max-w);
@@ -768,7 +949,7 @@ button { cursor: pointer; }
 }
 .trustworthy__word {
   font-weight: 900;
-  font-size: clamp(52px, 9vw, 112px);
+  font-size: clamp(4vw, 8vw, 10vw);
   line-height: 0.9;
   color: var(--clr-yellow);
   letter-spacing: -0.02em;
@@ -825,8 +1006,11 @@ button { cursor: pointer; }
 
 /* Stats bar */
 .stats {
+  min-height: 75vh;
   background: var(--clr-blue);
   padding: var(--sec-v-sm) var(--pad-x);
+  display: flex;
+  align-items: center;
 }
 .stats__inner {
   max-width: var(--max-w);
@@ -835,6 +1019,19 @@ button { cursor: pointer; }
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   text-align: center;
+  width: 100%;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.stat__icon {
+  width: 40px;
+  height: 40px;
+  color: var(--clr-white);
+  flex-shrink: 0;
 }
 .stat__number {
   font-size: clamp(42px, 6vw, 72px);
@@ -848,7 +1045,6 @@ button { cursor: pointer; }
   color: rgba(255,255,255,0.75);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-top: 6px;
 }
 
 /* About product overview */
@@ -857,7 +1053,6 @@ button { cursor: pointer; }
   padding: var(--sec-v) var(--pad-x);
 }
 .home-products__intro {
-  max-width: 600px;
   margin-bottom: 40px;
 }
 .home-products__intro h2 {
@@ -1035,12 +1230,12 @@ button { cursor: pointer; }
 .kontak-form-wrap {
   max-width: 860px;
   margin-inline: auto;
-  padding: var(--sec-v) var(--pad-x);
+  padding: 56px var(--pad-x) var(--sec-v);
   text-align: center;
 }
 .kontak-title {
-  font-style: italic;
-  font-weight: 700;
+  font-family: var(--font-sans);
+  font-weight: 900;
   font-size: clamp(28px, 4vw, 52px);
   margin-bottom: 40px;
 }
@@ -1209,9 +1404,10 @@ button { cursor: pointer; }
   .split__media { min-height: 280px; }
   .split__text { padding: 48px 32px; }
 
-  .qit__inner { grid-template-columns: 1fr; gap: 36px; }
+  .qit__inner { grid-template-columns: 1fr; gap: 0; }
+  .qit__item  { min-height: 50vh; }
   .cert-grid { grid-template-columns: repeat(2, 1fr); }
-  .testi-grid { grid-template-columns: 1fr; }
+  .testi-card { width: 280px; }
   .servis-grid { grid-template-columns: 1fr 1fr; }
   .stats__inner { grid-template-columns: repeat(2, 1fr); }
   .home-prod-grid { grid-template-columns: repeat(2, 1fr); }

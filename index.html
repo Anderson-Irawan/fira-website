@@ -46,7 +46,7 @@
 
     <!-- ── WE ARE ── -->
     <section class="trustworthy" aria-labelledby="trust-heading">
-      <div class="trustworthy__inner">
+      <div class="trustworthy__inner" data-animate>
         <p class="trustworthy__pre">We are ...</p>
         <h1 class="trustworthy__word" id="trust-heading" aria-label="QUALITY, INNOVATION, TRUSTWORTHY."><span id="typewriter-text"></span><span class="typewriter-cursor" aria-hidden="true">|</span></h1>
         <div class="trustworthy__body">
@@ -70,7 +70,7 @@
     <!-- ── QUALITY / INNOVATION / TRUST ── -->
     <section class="qit" aria-label="Nilai perusahaan">
       <div class="qit__inner">
-        <div class="qit__item">
+        <div class="qit__item" data-animate>
           <h2 class="qit__label">Quality</h2>
           <p class="qit__body">
             Pabrik kami dilengkapi dengan fasilitas produksi yang lengkap dan berteknologi,
@@ -79,7 +79,7 @@
             400 ton per bulan dengan tenaga kerja lebih dari 100 orang.
           </p>
         </div>
-        <div class="qit__item">
+        <div class="qit__item" data-animate style="transition-delay:0.12s">
           <h2 class="qit__label">Innovation</h2>
           <p class="qit__body">
             Inovasi dan produk yang unggul adalah keistimewaan kami. Kami terus berusaha
@@ -88,8 +88,8 @@
             sehingga kami dapat semakin mantap dan selalu menjadi yang terdepan.
           </p>
         </div>
-        <div class="qit__item">
-          <h2 class="qit__label">Trust</h2>
+        <div class="qit__item" data-animate style="transition-delay:0.24s">
+          <h2 class="qit__label">Trustworthy</h2>
           <p class="qit__body">
             Fira Trust pada saat ini telah membuat berbagai macam produk Truss dan Roof
             yang disesuaikan dengan kebutuhan pasar. Kami selalu menjamin menghasilkan
@@ -99,13 +99,24 @@
       </div>
     </section>
 
+    <!-- ── STATS ── -->
+    <section class="stats" aria-label="Statistik perusahaan">
+      <div class="stats__inner" data-cms="stats" data-stagger>
+        <!-- Populated by cms.js -->
+        <div class="stat"><p class="stat__number">26</p><p class="stat__label">Produk</p></div>
+        <div class="stat"><p class="stat__number">22</p><p class="stat__label">Projek</p></div>
+        <div class="stat"><p class="stat__number">20</p><p class="stat__label">Tahun Pengalaman</p></div>
+        <div class="stat"><p class="stat__number">14</p><p class="stat__label">Sertifikasi</p></div>
+      </div>
+    </section>
+
     <!-- ── SERVIS KITA ── -->
     <section class="servis section" aria-labelledby="servis-heading">
       <div class="container">
-        <div class="sec-header">
+        <div class="sec-header" data-animate>
           <h2 class="sec-title" id="servis-heading">Servis Kita</h2>
         </div>
-        <div class="servis-grid" data-cms="services">
+        <div class="servis-grid" data-cms="services" data-stagger>
           <!-- Populated by cms.js -->
           <div class="servis-card">
             <div class="servis-card__img"></div>
@@ -123,22 +134,11 @@
       </div>
     </section>
 
-    <!-- ── STATS ── -->
-    <section class="stats" aria-label="Statistik perusahaan">
-      <div class="stats__inner" data-cms="stats">
-        <!-- Populated by cms.js -->
-        <div class="stat"><p class="stat__number">26</p><p class="stat__label">Produk</p></div>
-        <div class="stat"><p class="stat__number">22</p><p class="stat__label">Projek</p></div>
-        <div class="stat"><p class="stat__number">20</p><p class="stat__label">Tahun Pengalaman</p></div>
-        <div class="stat"><p class="stat__number">14</p><p class="stat__label">Sertifikasi</p></div>
-      </div>
-    </section>
-
     <!-- ── PRODUK OVERVIEW ── -->
     <section class="home-products" aria-labelledby="ap-heading">
       <div class="container">
 
-        <div class="sec-header">
+        <div class="sec-header" data-animate>
             <h2 class="sec-title" id="ap-heading">Produk</h2>
         </div>
 
@@ -156,14 +156,14 @@
         <p style="font-size:13px; font-weight:700; margin-bottom:16px; color:var(--clr-blue);">
           Kelebihan Baja Ringan (+)
         </p>
-        <p style="font-size:13px; color:#555; margin-bottom:28px; max-width:560px; line-height:1.7">
-          Kekuatan tertinggi di antara semua bahan konstruksi. 100% bisa didaur ulang.
-          Tidak akan membias dan tidak pernah berubah. Terbuat dari bahan baku dan
+        <p style="font-size:13px; color:#555; margin-bottom:28px;line-height:1.7">
+          Kekuatan tertinggi di antara semua bahan konstruksi. // 100% bisa didaur ulang. // 
+          Tidak akan membias dan tidak pernah berubah. // Terbuat dari bahan baku dan
           berkonstruksi secara standar nasional.
         </p>
 
         <!-- Product grid — one card per category -->
-        <div class="home-prod-grid" data-cms="home-products">
+        <div class="home-prod-grid" data-cms="home-products" data-stagger>
           <!-- Populated by cms.js -->
           <a href="produk.html#atap"      class="home-prod-card"><span class="home-prod-card__label">Atap</span></a>
           <a href="produk.html#truss"     class="home-prod-card"><span class="home-prod-card__label">Truss</span></a>
@@ -182,10 +182,10 @@
     <!-- ── SERTIFIKASI ── -->
     <section class="sertifikasi section" id="sertifikasi" aria-labelledby="sert2-heading">
       <div class="container">
-        <div class="sec-header">
+        <div class="sec-header" data-animate>
           <h2 class="sec-title" id="sert2-heading">Sertifikasi</h2>
         </div>
-        <div class="cert-grid" data-cms="certifications">
+        <div class="cert-grid" data-cms="certifications" data-stagger>
           <!-- Populated by cms.js -->
           <div class="cert-card">SNI</div>
           <div class="cert-card">ISO 9001</div>
@@ -198,10 +198,10 @@
     <!-- ── TESTIMONI ── -->
     <section class="testimoni section--sm" id="testimoni" aria-labelledby="testi2-heading">
       <div class="container">
-        <div class="sec-header">
+        <div class="sec-header" data-animate>
           <h2 class="sec-title" id="testi2-heading">Testimoni</h2>
         </div>
-        <div class="testi-grid" data-cms="testimonials">
+        <div class="testi-grid" data-cms="testimonials" data-stagger>
           <!-- Populated by cms.js -->
         </div>
       </div>
@@ -209,7 +209,7 @@
 
     <!-- ── TORO PARTNER ── -->
     <section class="toro" aria-label="Mitra distribusi">
-      <div class="toro__inner">
+      <div class="toro__inner" data-animate>
         <div class="toro__brand">
           <div class="toro__icon" aria-hidden="true">T</div>
           <p class="toro__name">TORO</p>
@@ -233,6 +233,7 @@
 
   <div id="footer-placeholder"></div>
 
+  <script src="js/loader.js"></script>
   <script src="js/components.js"></script>
   <script src="js/cms.js"></script>
   <script src="js/main.js"></script>
