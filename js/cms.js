@@ -283,36 +283,46 @@ async function renderCertifications() {
       });
     });
 
+    // Remove any previously-injected toggle
     g.parentElement.querySelector('.cert-toggle')?.remove();
+    g.closest('.container')?.querySelector('.sec-header .cat-toggle')?.remove();
+
     const btn = document.createElement('button');
-    btn.className = 'cert-toggle';
+    btn.className = 'cat-toggle';
+    btn.innerHTML = `
+      <span class="cat-toggle__label">Tampil Semua</span>
+      <span class="cat-toggle__count">(${certs.length})</span>
+      <svg class="cat-toggle__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    `;
+    btn.setAttribute('aria-expanded', 'false');
 
     if (isAbout) {
-      // Expand / collapse in place
-      btn.setAttribute('aria-expanded', 'false');
-      btn.textContent = 'Tampil Semua';
       btn.addEventListener('click', () => {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
         Array.from(g.querySelectorAll('.cert-card')).forEach((c, i) => {
           c.classList.toggle('cert-hidden', expanded && i >= 4);
         });
         btn.setAttribute('aria-expanded', String(!expanded));
-        btn.textContent = expanded ? 'Tampil Semua' : 'Tampilkan Lebih Sedikit';
+        const lbl = btn.querySelector('.cat-toggle__label');
+        if (lbl) lbl.textContent = expanded ? 'Tampil Semua' : 'Sembunyikan';
       });
 
-      // Auto-expand when arriving with ?certs=open (e.g. from index page button)
       if (new URLSearchParams(location.search).has('certs')) {
         btn.click();
       }
+
+      // Place inside sec-header so it sits inline with the title, right-aligned
+      const secHeader = g.closest('.container')?.querySelector('.sec-header');
+      if (secHeader) secHeader.appendChild(btn);
+      else g.insertAdjacentElement('afterend', btn);
     } else {
-      // Home page: navigate to about cert section, already expanded
-      btn.textContent = 'Tampil Semua';
       btn.addEventListener('click', () => {
         window.location.href = 'about.html?certs=open#sertifikasi';
       });
+      const secHeader = g.closest('.container')?.querySelector('.sec-header');
+      if (secHeader) secHeader.appendChild(btn);
+      else g.insertAdjacentElement('afterend', btn);
     }
-
-    g.insertAdjacentElement('afterend', btn);
   });
 }
 
