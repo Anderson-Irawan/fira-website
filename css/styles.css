@@ -356,14 +356,22 @@ button { cursor: pointer; }
   gap: 24px 32px;
 }
 .footer__col-title {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--clr-white);
   margin-bottom: 14px;
+  display: block;
 }
-.footer__col li + li { margin-top: 8px; }
+.footer__col-title--link {
+  transition: color var(--ease);
+  text-decoration: none;
+}
+.footer__col-title--link:hover {
+  color: var(--clr-yellow);
+}
+.footer__col li + li { margin-top: 4px; }
 .footer__col a {
   font-size: 13px;
   color: var(--clr-white);
@@ -372,13 +380,16 @@ button { cursor: pointer; }
 .footer__contact p {
   font-family: var(--font-mono);
 }
-.footer__col a:hover { color: var(--clr-white); }
+.footer__col a:hover {
+  color: var(--clr-yellow);
+  font-weight: 700;
+}
 .footer__contact {
   grid-column: 1 / -1;
   padding-top: 8px;
 }
 .footer__contact p {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--clr-white);
   line-height: 2;
 }
@@ -1002,6 +1013,12 @@ button { cursor: pointer; }
   font-weight: 700;
   font-size: 14px;
   color: var(--clr-black);
+  margin-bottom: 8px;
+}
+.servis-card__desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--clr-gray-mid);
 }
 
 /* Stats bar */
@@ -1093,18 +1110,39 @@ button { cursor: pointer; }
   inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: grayscale(100%);
-  transition: filter var(--ease);
+  transition: transform var(--ease);
 }
-.home-prod-card:hover img { filter: grayscale(0%); }
+.home-prod-card:hover img {
+  transform: scale(1.06);
+}
+/* Overlay: yellow left-half at rest → full blue on hover */
+.home-prod-card::after {
+  content: '';
+  position: absolute;
+  inset: 0 50% 0 0;        /* covers left half only */
+  background: rgba(245, 197, 24, 0.8);   /* yellow 80% */
+  pointer-events: none;
+  transition: inset 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.home-prod-card:hover::after {
+  inset: 0;                              /* full cover */
+  background: rgba(3, 87, 221, 0.5);    /* blue 50% */
+}
 .home-prod-card__label {
   position: relative;
   z-index: 1;
   padding: 10px 14px;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--clr-white);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--clr-black);
   width: 100%;
+  transition: color var(--ease);
+}
+.home-prod-card:hover .home-prod-card__label {
+  color: var(--clr-white);
 }
 .home-produk-cta {
   text-align: right;
@@ -1169,7 +1207,7 @@ button { cursor: pointer; }
 }
 .cat-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   border-bottom: 1.5px solid rgba(0,0,0,0.12);
   padding-bottom: 12px;
@@ -1185,6 +1223,56 @@ button { cursor: pointer; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+}
+
+/* ── Category accordion toggle ─────────────────────────── */
+.cat-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1.5px solid var(--clr-blue);
+  color: var(--clr-blue);
+  padding: 6px 14px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: background var(--ease), color var(--ease);
+  white-space: nowrap;
+}
+.cat-toggle:hover,
+.cat-toggle[aria-expanded="true"] {
+  background: var(--clr-blue);
+  color: var(--clr-white);
+}
+.cat-toggle__count {
+  opacity: 0.7;
+}
+.cat-toggle__arrow {
+  flex-shrink: 0;
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cat-toggle[aria-expanded="true"] .cat-toggle__arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Overflow panel (accordion body) ───────────────────── */
+.prod-overflow {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.48s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.prod-overflow__inner {
+  overflow: hidden;
+}
+.prod-overflow__inner .prod-grid {
+  padding-top: 16px; /* visually continues the grid gap */
+}
+.prod-overflow--open {
+  grid-template-rows: 1fr;
 }
 .prod-card {
   background: var(--clr-white);

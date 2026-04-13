@@ -8,35 +8,67 @@
       "products": [
         {
           "id": "atap-001",
-          "name": "Atap Spandek 0.25mm",
-          "material": "Zincalume",
+          "name": "Atap FR 4",
+          "material": "Galvalume",
           "thickness": "0.25 mm",
-          "image": "assets/products/produk-1.jpg",
-          "description": "Atap baja ringan standar cocok untuk hunian residensial"
+          "image": "assets/products/atap/atap fr 4.jpg",
+          "description": "Profil atap FR seri 4 untuk hunian residensial"
         },
         {
           "id": "atap-002",
-          "name": "Atap Spandek 0.30mm",
-          "material": "Zincalume",
-          "thickness": "0.30 mm",
-          "image": "",
-          "description": "Atap dengan ketebalan premium untuk daya tahan lebih"
+          "name": "Atap FR 5",
+          "material": "Galvalume",
+          "thickness": "0.25 mm",
+          "image": "assets/products/atap/atap fr 5.jpg",
+          "description": "Profil atap FR seri 5 ketebalan standar"
         },
         {
           "id": "atap-003",
-          "name": "Atap Gelombang",
-          "material": "Zincalume",
-          "thickness": "0.28 mm",
-          "image": "",
-          "description": "Profil gelombang ideal untuk kebutuhan industri dan gudang"
+          "name": "Atap FR 9",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/atap fr 9.jpg",
+          "description": "Profil atap FR seri 9 untuk kebutuhan semi-komersial"
         },
         {
           "id": "atap-004",
-          "name": "Atap Standing Seam",
-          "material": "Zincalume",
-          "thickness": "0.40 mm",
-          "image": "",
-          "description": "Sistem atap modern standing seam untuk bangunan komersial"
+          "name": "Atap FR 12",
+          "material": "Galvalume",
+          "thickness": "0.35 mm",
+          "image": "assets/products/atap/atap fr 12.jpg",
+          "description": "Profil atap FR seri 12 ketebalan premium"
+        },
+        {
+          "id": "atap-005",
+          "name": "Nok Galvalum",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/nok galvalum.jpg",
+          "description": "Ridge cap / nok galvalume untuk penutup puncak atap"
+        },
+        {
+          "id": "atap-006",
+          "name": "Talang Jurai",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/talang jurai.jpg",
+          "description": "Talang jurai untuk membuang air hujan di pertemuan atap"
+        },
+        {
+          "id": "atap-007",
+          "name": "Talang Kotak",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/talang kotak.jpg",
+          "description": "Talang kotak standar untuk saluran air hujan"
+        },
+        {
+          "id": "atap-008",
+          "name": "Talang Tepi",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/talang tepi.jpg",
+          "description": "Talang tepi untuk finishing ujung atap"
         }
       ]
     },
@@ -47,35 +79,35 @@
       "products": [
         {
           "id": "truss-001",
-          "name": "Truss C75.75",
+          "name": "C Truss",
           "material": "Zincalume",
           "thickness": "0.75 mm",
-          "image": "assets/products/produk-2.jpg",
+          "image": "assets/products/truss/c truss.png",
           "description": "Profil C standar untuk rangka atap hunian"
         },
         {
           "id": "truss-002",
-          "name": "Truss C75.100",
+          "name": "C Truss Mini",
           "material": "Zincalume",
-          "thickness": "1.00 mm",
-          "image": "",
-          "description": "Profil C premium untuk bentangan lebar"
+          "thickness": "0.55 mm",
+          "image": "assets/products/truss/c truss mini.png",
+          "description": "Profil C mini untuk bentangan ringan"
         },
         {
           "id": "truss-003",
-          "name": "Truss U 0.45",
+          "name": "H Truss",
           "material": "Zincalume",
-          "thickness": "0.45 mm",
-          "image": "",
-          "description": "Profil U penopang rangka atap"
+          "thickness": "0.75 mm",
+          "image": "assets/products/truss/h truss.png",
+          "description": "Profil H untuk rangka atap kuat dan stabil"
         },
         {
           "id": "truss-004",
-          "name": "Truss Custom",
+          "name": "U Truss",
           "material": "Zincalume",
-          "thickness": "Custom",
-          "image": "",
-          "description": "Truss custom sesuai kebutuhan proyek — hubungi tim kami"
+          "thickness": "0.45 mm",
+          "image": "assets/products/truss/u truss.png",
+          "description": "Profil U penopang rangka atap dan partisi"
         }
       ]
     },
@@ -86,74 +118,82 @@
       "products": [
         {
           "id": "reng-001",
-          "name": "Reng 0.40mm",
+          "name": "Reng 100",
           "material": "Zincalume",
-          "thickness": "0.40 mm",
-          "image": "assets/products/produk-3.jpg",
-          "description": "Reng standar paling umum digunakan"
+          "thickness": "0.45 mm",
+          "image": "assets/products/reng/reng 100.png",
+          "description": "Reng 100 standar paling umum digunakan"
         },
         {
           "id": "reng-002",
-          "name": "Reng 0.45mm",
+          "name": "Reng 35L",
           "material": "Zincalume",
-          "thickness": "0.45 mm",
-          "image": "",
-          "description": "Reng medium ketebalan 0.45mm"
+          "thickness": "0.40 mm",
+          "image": "assets/products/reng/reng 35l.png",
+          "description": "Reng 35L ringan untuk hunian residensial"
         },
         {
           "id": "reng-003",
-          "name": "Reng 0.50mm",
+          "name": "Reng 35M",
           "material": "Zincalume",
-          "thickness": "0.50 mm",
-          "image": "",
-          "description": "Reng tebal untuk beban lebih berat"
+          "thickness": "0.45 mm",
+          "image": "assets/products/reng/reng 35m.png",
+          "description": "Reng 35M medium untuk ketebalan lebih"
         },
         {
           "id": "reng-004",
-          "name": "Reng Custom",
+          "name": "Reng Besar",
           "material": "Zincalume",
-          "thickness": "Custom",
-          "image": "",
-          "description": "Reng ukuran custom sesuai kebutuhan"
+          "thickness": "0.55 mm",
+          "image": "assets/products/reng/reng besar.png",
+          "description": "Reng besar untuk beban dan bentangan ekstra"
+        },
+        {
+          "id": "reng-005",
+          "name": "Reng Eco",
+          "material": "Zincalume",
+          "thickness": "0.35 mm",
+          "image": "assets/products/reng/reng eco.png",
+          "description": "Reng ekonomis tanpa mengorbankan kualitas"
+        },
+        {
+          "id": "reng-006",
+          "name": "Reng Neo",
+          "material": "Zincalume",
+          "thickness": "0.40 mm",
+          "image": "assets/products/reng/reng neo.png",
+          "description": "Reng Neo seri terbaru dengan presisi tinggi"
         }
       ]
     },
     {
       "id": "holo",
       "name": "Holo",
-      "description": "Profil holo baja ringan berbagai ukuran untuk partisi dan rangka",
+      "description": "Profil holo baja ringan berbagai ukuran untuk plafon dan rangka",
       "products": [
         {
           "id": "holo-001",
-          "name": "Holo 2×4 cm",
+          "name": "Holo Plafon 2×4",
           "material": "Baja Ringan",
           "thickness": "0.8 mm",
-          "image": "assets/products/produk-1.jpg",
-          "description": "Holo persegi panjang standar 2×4 cm"
+          "image": "assets/products/holo/holo plafon 2x4.jpg",
+          "description": "Holo plafon persegi panjang 2×4 cm standar"
         },
         {
           "id": "holo-002",
-          "name": "Holo 4×4 cm",
+          "name": "Holo Plafon 4×4",
           "material": "Baja Ringan",
           "thickness": "0.8 mm",
-          "image": "",
-          "description": "Holo persegi simetris 4×4 cm"
+          "image": "assets/products/holo/holo plafon 4x4.jpg",
+          "description": "Holo plafon persegi simetris 4×4 cm"
         },
         {
           "id": "holo-003",
-          "name": "Holo 4×6 cm",
+          "name": "Holo Wall Angle",
           "material": "Baja Ringan",
-          "thickness": "1.0 mm",
-          "image": "",
-          "description": "Holo medium untuk partisi dan furnitur"
-        },
-        {
-          "id": "holo-004",
-          "name": "Holo 6×6 cm",
-          "material": "Baja Ringan",
-          "thickness": "1.0 mm",
-          "image": "",
-          "description": "Holo besar untuk struktur lebih kuat"
+          "thickness": "0.4 mm",
+          "image": "assets/products/holo/holo wall angle.jpg",
+          "description": "Wall angle untuk penyelesaian tepi plafon"
         }
       ]
     },
@@ -167,7 +207,7 @@
           "name": "Wallpanel Standar",
           "material": "Zincalume",
           "thickness": "0.30 mm",
-          "image": "assets/products/produk-2.jpg",
+          "image": "",
           "description": "Panel dinding standar untuk hunian"
         },
         {
@@ -206,7 +246,7 @@
           "name": "PVC Ceiling 8mm",
           "material": "PVC",
           "thickness": "8 mm",
-          "image": "assets/products/produk-3.jpg",
+          "image": "",
           "description": "Plafon PVC putih bersih standar"
         },
         {
@@ -242,35 +282,35 @@
       "products": [
         {
           "id": "lain-001",
-          "name": "Baut & Sekrup",
-          "material": "Stainless Steel",
-          "thickness": "—",
-          "image": "",
-          "description": "Aksesori pemasangan baja ringan bergaransi"
+          "name": "Fira Deck",
+          "material": "Galvalume",
+          "thickness": "0.75 mm",
+          "image": "assets/products/produk lain/fira deck.jpg",
+          "description": "Metal deck Fira untuk struktur lantai komposit"
         },
         {
           "id": "lain-002",
-          "name": "Talang Air",
-          "material": "Zincalume",
+          "name": "Mawar",
+          "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "",
-          "description": "Talang air baja ringan anti karat"
+          "image": "assets/products/produk lain/mawar.png",
+          "description": "Produk aksesori seri Mawar dari Fira"
         },
         {
           "id": "lain-003",
-          "name": "Nok Atap",
-          "material": "Zincalume",
+          "name": "Raflesia",
+          "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "",
-          "description": "Ridge cap / nok untuk penutup puncak atap"
+          "image": "assets/products/produk lain/raflesia.png",
+          "description": "Produk aksesori seri Raflesia dari Fira"
         },
         {
           "id": "lain-004",
-          "name": "Flashing",
-          "material": "Zincalume",
+          "name": "Ventilasi",
+          "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "",
-          "description": "Flashing waterproofing sambungan atap"
+          "image": "assets/products/produk lain/ventilaio.jpg",
+          "description": "Produk ventilasi Fira untuk sirkulasi udara optimal"
         }
       ]
     }
@@ -321,20 +361,20 @@
     {
       "id": "svc-001",
       "name": "Atap Residensial",
-      "description": "Pemasangan atap baja ringan berkualitas tinggi untuk rumah tinggal pribadi.",
-      "image": ""
+      "description": "Kami memasang atap rumah berkualitas tinggi yang tahan lama dan mencerminkan gaya pribadi Anda.",
+      "image": "assets/images/pexels-rezwan-1145434.jpg"
     },
     {
       "id": "svc-002",
       "name": "Atap Komersial",
-      "description": "Pengerjaan atap skala besar untuk perkantoran, ruko, dan fasilitas komersial.",
-      "image": ""
+      "description": "Kami siap menangani pemasangan atap baru, penggantian atap, perbaikan, dan perawatan untuk seluruh fasilitas komersial dan industri.",
+      "image": "assets/images/pexels-equalstock-31112188.jpg"
     },
     {
       "id": "svc-003",
       "name": "Fabrikasi Galvalume",
-      "description": "Produksi dan fabrikasi produk Galvalume sesuai standar presisi, kekuatan, dan ketebalan.",
-      "image": ""
+      "description": "Fabrikator galvalume kami menghadirkan produk pesanan khusus yang menawarkan presisi, kekuatan, dan keindahan.",
+      "image": "assets/images/pexels-rolledalloys-metal-supply-8973680.jpg"
     }
   ],
   "company": {

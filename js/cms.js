@@ -56,8 +56,27 @@ function placeholderThumb(name) {
 
 // ─── RENDERERS ───────────────────────────────────────────────
 
+const CAT_PREVIEW = 4; // cards shown before "Tampil Semua"
+
+/** Renders a single product card */
+function renderProdCard(p, catId) {
+  return `
+    <article class="prod-card" data-name="${p.name.toLowerCase()}" data-category="${catId}">
+      ${p.image
+        ? `<div class="prod-card__thumb"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>`
+        : placeholderThumb(p.name)
+      }
+      <div class="prod-card__info">
+        <p class="prod-card__name">${p.name}</p>
+        <p class="prod-card__spec">${p.material} · ${p.thickness}</p>
+      </div>
+    </article>`;
+}
+
 /**
- * Renders the full product catalogue on produk.html
+ * Renders the full product catalogue on produk.html.
+ * Categories with >CAT_PREVIEW products show a toggle to expand/collapse.
+ * Only one category can be expanded at a time (accordion).
  */
 async function renderCatalogue() {
   const root = document.getElementById('catalogue-root');
@@ -65,30 +84,106 @@ async function renderCatalogue() {
 
   try {
     const data = await fetchData();
-    root.innerHTML = data.categories.map(cat => `
-      <section class="cat-section" id="${cat.id}" data-category="${cat.id}">
-        <div class="cat-header">
-          <h2 class="cat-name">${cat.name}</h2>
-          <a href="#${cat.id}" class="sec-link">Tampil Semua</a>
-        </div>
-        <div class="prod-grid">
-          ${cat.products.map(p => `
-            <article class="prod-card" data-name="${p.name.toLowerCase()}" data-category="${cat.id}">
-              ${p.image
-                ? `<div class="prod-card__thumb"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>`
-                : placeholderThumb(p.name)
-              }
-              <div class="prod-card__info">
-                <p class="prod-card__name">${p.name}</p>
-                <p class="prod-card__spec">${p.material} · ${p.thickness}</p>
+    root.innerHTML = data.categories.map(cat => {
+      const preview = cat.products.slice(0, CAT_PREVIEW);
+      const extra   = cat.products.slice(CAT_PREVIEW);
+      const hasMore = extra.length > 0;
+
+      return `
+        <section class="cat-section" id="${cat.id}" data-category="${cat.id}">
+          <div class="cat-header">
+            <h2 class="cat-name">${cat.name}</h2>
+            ${hasMore ? `
+              <button class="cat-toggle" aria-expanded="false" data-cat="${cat.id}">
+                <span class="cat-toggle__label">Tampil Semua</span>
+                <span class="cat-toggle__count">(${cat.products.length})</span>
+                <svg class="cat-toggle__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>` : ''}
+          </div>
+          <div class="prod-grid">
+            ${preview.map(p => renderProdCard(p, cat.id)).join('')}
+          </div>
+          ${hasMore ? `
+            <div class="prod-overflow" id="overflow-${cat.id}">
+              <div class="prod-overflow__inner">
+                <div class="prod-grid">
+                  ${extra.map(p => renderProdCard(p, cat.id)).join('')}
+                </div>
               </div>
-            </article>
-          `).join('')}
-        </div>
-      </section>
-    `).join('');
+            </div>` : ''}
+        </section>`;
+    }).join('');
+
+    initCatAccordion();
   } catch (e) {
     root.innerHTML = `<p style="color:red;padding:24px">Gagal memuat katalog produk. (${e.message})</p>`;
+  }
+}
+
+/**
+ * Expands a category section (collapses all others first).
+ * @param {string} catId  — category id
+ * @param {boolean} scroll — whether to scroll the section into view
+ */
+function expandCat(catId, scroll = false) {
+  const root = document.getElementById('catalogue-root');
+  if (!root) return;
+
+  // Collapse all
+  root.querySelectorAll('.cat-toggle').forEach(b => {
+    b.setAttribute('aria-expanded', 'false');
+    const lbl = b.querySelector('.cat-toggle__label');
+    if (lbl) lbl.textContent = 'Tampil Semua';
+    document.getElementById(`overflow-${b.dataset.cat}`)?.classList.remove('prod-overflow--open');
+  });
+
+  // Expand target
+  const section  = document.getElementById(catId);
+  const btn      = section?.querySelector('.cat-toggle');
+  const overflow = document.getElementById(`overflow-${catId}`);
+  if (btn && overflow) {
+    btn.setAttribute('aria-expanded', 'true');
+    const lbl = btn.querySelector('.cat-toggle__label');
+    if (lbl) lbl.textContent = 'Sembunyikan';
+    overflow.classList.add('prod-overflow--open');
+  }
+
+  if (scroll && section) {
+    // Wait one frame so layout settles before scrolling
+    requestAnimationFrame(() =>
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    );
+  }
+}
+
+/** Wires up accordion toggle clicks and hash-based auto-expand */
+function initCatAccordion() {
+  const root = document.getElementById('catalogue-root');
+  if (!root) return;
+
+  root.addEventListener('click', e => {
+    const btn = e.target.closest('.cat-toggle');
+    if (!btn) return;
+
+    const catId  = btn.dataset.cat;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+    if (isOpen) {
+      // Collapse this one
+      btn.setAttribute('aria-expanded', 'false');
+      const lbl = btn.querySelector('.cat-toggle__label');
+      if (lbl) lbl.textContent = 'Tampil Semua';
+      document.getElementById(`overflow-${catId}`)?.classList.remove('prod-overflow--open');
+    } else {
+      expandCat(catId);
+    }
+  });
+
+  // Auto-expand from URL hash (e.g. produk.html#atap)
+  const hash = window.location.hash.slice(1);
+  if (hash && document.getElementById(hash)) {
+    // Small delay so grid has painted before we scroll
+    setTimeout(() => expandCat(hash, true), 100);
   }
 }
 
@@ -300,6 +395,7 @@ async function renderServices() {
         }
       </div>
       <p class="servis-card__name">${s.name}</p>
+      ${s.description ? `<p class="servis-card__desc">${s.description}</p>` : ''}
     </article>
   `).join('');
 }
@@ -327,8 +423,8 @@ async function renderAboutProducts() {
 // ─── SEARCH ──────────────────────────────────────────────────
 
 function initSearch() {
-  const input   = document.getElementById('search-input');
-  const empty   = document.getElementById('search-empty');
+  const input = document.getElementById('search-input');
+  const empty = document.getElementById('search-empty');
   if (!input) return;
 
   input.addEventListener('input', () => {
@@ -343,11 +439,34 @@ function initSearch() {
       if (match) total++;
     });
 
-    // Hide empty category sections
     secs.forEach(sec => {
-      const visible = [...sec.querySelectorAll('.prod-card')]
-        .some(c => c.style.display !== 'none');
-      sec.style.display = visible ? '' : 'none';
+      const allCards   = [...sec.querySelectorAll('.prod-card')];
+      const hasVisible = allCards.some(c => c.style.display !== 'none');
+      sec.style.display = hasVisible ? '' : 'none';
+
+      if (!hasVisible) return;
+
+      const overflow = sec.querySelector('.prod-overflow');
+      const btn      = sec.querySelector('.cat-toggle');
+      if (!overflow || !btn) return;
+
+      if (q) {
+        // Auto-expand if any overflow card matches
+        const overflowMatch = [...overflow.querySelectorAll('.prod-card')]
+          .some(c => c.style.display !== 'none');
+        if (overflowMatch) {
+          overflow.classList.add('prod-overflow--open');
+          btn.setAttribute('aria-expanded', 'true');
+          const lbl = btn.querySelector('.cat-toggle__label');
+          if (lbl) lbl.textContent = 'Sembunyikan';
+        }
+      } else {
+        // Search cleared — collapse back to default
+        overflow.classList.remove('prod-overflow--open');
+        btn.setAttribute('aria-expanded', 'false');
+        const lbl = btn.querySelector('.cat-toggle__label');
+        if (lbl) lbl.textContent = 'Tampil Semua';
+      }
     });
 
     if (empty) empty.classList.toggle('visible', total === 0 && q.length > 0);

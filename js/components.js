@@ -107,15 +107,15 @@ function renderFooter() {
     </div>
     <div class="footer__cols">
       <div class="footer__col">
-        <p class="footer__col-title">Produk</p>
+        <a href="produk.html" class="footer__col-title footer__col-title--link">Produk</a>
         <ul>${produkLinks}</ul>
       </div>
       <div class="footer__col">
-        <p class="footer__col-title">About</p>
+        <a href="about.html" class="footer__col-title footer__col-title--link">About</a>
         <ul>${aboutLinks}</ul>
       </div>
       <div class="footer__col footer__contact">
-        <p class="footer__col-title">Kontak</p>
+        <a href="kontak.html" class="footer__col-title footer__col-title--link">Kontak</a>
         <p>${phones}${CONTACT_INFO.address}</p>
       </div>
     </div>
