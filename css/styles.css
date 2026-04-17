@@ -56,7 +56,7 @@
 
   /* --- LAYOUT --- */
   --max-w:      1200px;
-  --nav-h:      80px;
+  --nav-h:      100px;
   --pad-x:      24px;
   --sec-v:      88px;
   --sec-v-sm:   48px;
@@ -74,8 +74,8 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-mono);
-  font-weight: 300;
-  letter-spacing: -0.03vw;
+  font-weight: 400;
+  letter-spacing: 0vw;
   background-color: var(--clr-cream);
   color: var(--clr-black);
   line-height: 1.65;
@@ -112,6 +112,24 @@ button { cursor: pointer; }
 .text-blue      { color: var(--clr-blue); }
 .img-cover      { width: 100%; height: 100%; object-fit: cover; display: block; }
 .sr-only        { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+/* =====================================================
+   TYPOGRAPHY ROLES
+   Site-wide type is locked to 5 reusable roles. Pick
+   one when adding new components; the existing rules
+   below already conform.
+   ----------------------------------------------------
+   .h-display  → Fira Sans 900 upright (page titles, big numbers)
+   .h-section  → Fira Sans 700 italic  (section headings, card titles)
+   .h-eyebrow  → Fira Sans 500 italic  (small accent labels)
+   .text-body  → IBM Plex Sans 400     (paragraphs, default body)
+   .text-label → IBM Plex Sans 600     (nav, form labels, card names, eyebrow text)
+   ===================================================== */
+.h-display  { font-family: var(--font-sans); font-style: normal; font-weight: 900; line-height: 1.05; }
+.h-section  { font-family: var(--font-sans); font-style: italic; font-weight: 700; line-height: 1.1;  }
+.h-eyebrow  { font-family: var(--font-sans); font-style: italic; font-weight: 500; line-height: 1.2;  }
+.text-body  { font-family: var(--font-mono); font-style: normal; font-weight: 400; }
+.text-label { font-family: var(--font-mono); font-style: normal; font-weight: 600; }
 
 /* Section header row (title + "Tampil Semua" link) */
 .sec-header {
@@ -192,7 +210,7 @@ button { cursor: pointer; }
    slides up to reveal the yellow duplicate beneath it.           */
 .navbar__link {
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.03em;
   display: block;
   overflow: hidden;
@@ -281,7 +299,7 @@ button { cursor: pointer; }
 .sidenav__label {
   font-family: var(--font-mono);
   font-size: 1.5vw;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--clr-white);
   text-shadow: 0 1px 8px rgba(0,0,0,0.3), 0 0 24px rgba(0,0,0,0.1);
   white-space: nowrap;
@@ -299,7 +317,7 @@ button { cursor: pointer; }
 .sidenav__item:hover .sidenav__label {
   color: var(--clr-yellow);
   transform: translateX(-5px);
-  font-weight: 900;
+  font-weight: 700;
 }
 .sidenav__item:hover .sidenav__bar {
   width: 36px;
@@ -363,7 +381,7 @@ button { cursor: pointer; }
 }
 .footer__col-title {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--clr-white);
@@ -388,7 +406,7 @@ button { cursor: pointer; }
 }
 .footer__col a:hover {
   color: var(--clr-yellow);
-  font-weight: 700;
+  font-weight: 600;
 }
 .footer__contact {
   padding-top: 8px;
@@ -433,7 +451,7 @@ button { cursor: pointer; }
 .about-hero__quote-mark {
   color: var(--clr-yellow);
   font-family: var(--font-sans);
-  font-style: italic;
+  font-style: normal;
   font-weight: 900;
   font-size: clamp(100px, 14vw, 180px);
   line-height: 0.6;
@@ -442,7 +460,7 @@ button { cursor: pointer; }
 .about-hero__quote {
   font-style: italic;
   font-family: var(--font-sans);
-  font-weight: 300;
+  font-weight: 700;
   font-size: clamp(22px, 3vw, 38px);
   line-height: 1.2;
   color: var(--clr-white);
@@ -512,7 +530,7 @@ button { cursor: pointer; }
 .split__heading {
   font-style: italic;
   font-family: var(--font-sans);
-  font-weight: 500;
+  font-weight: 700;
   font-size: clamp(28px, 3.5vw, 48px);
   color: var(--clr-white);
   line-height: 1.1;
@@ -591,7 +609,7 @@ button { cursor: pointer; }
 .qit__label {
   font-family: var(--font-sans);
   font-size: clamp(18px, 2vw, 28px);
-  font-weight: 700;
+  font-weight: 900;
   text-transform: uppercase;
   color: var(--clr-white);
   margin-bottom: 18px;
@@ -748,7 +766,7 @@ button { cursor: pointer; }
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 .testi-card__name {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 15px;
   margin-bottom: 6px;
 }
@@ -794,7 +812,7 @@ button { cursor: pointer; }
 .page-loader__pct {
   font-family: var(--font-mono);
   font-size: clamp(13px, 1.4vw, 16px);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.75);
 }
@@ -951,7 +969,7 @@ button { cursor: pointer; }
 /* Blinking cursor that pauses while typing, blinks while lingering */
 .typewriter-cursor {
   display: inline-block;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--clr-yellow);
   margin-left: 4px;
   animation: cursorBlink 0.75s step-end infinite;
@@ -966,6 +984,7 @@ button { cursor: pointer; }
 }
 .trustworthy__body {
   font-family: var(--font-mono);
+  font-weight: 400;
   max-width: 400vw;
   font-size: 16px;
   line-height: 1.75;
@@ -989,7 +1008,7 @@ button { cursor: pointer; }
 }
 .servis-card__img img { width: 100%; height: 100%; object-fit: cover; }
 .servis-card__name {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   color: var(--clr-black);
   margin-bottom: 8px;
@@ -1030,6 +1049,7 @@ button { cursor: pointer; }
   flex-shrink: 0;
 }
 .stat__number {
+  font-family: var(--font-sans);
   font-size: clamp(42px, 6vw, 72px);
   font-weight: 900;
   color: var(--clr-white);
@@ -1052,13 +1072,14 @@ button { cursor: pointer; }
   margin-bottom: 40px;
 }
 .home-products__intro h2 {
+  font-family: var(--font-sans);
   font-weight: 900;
   font-size: clamp(20px, 2.5vw, 30px);
   margin-bottom: 10px;
 }
 .home-products__intro .sub {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--clr-blue);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1169,7 +1190,7 @@ button { cursor: pointer; }
   flex: 1;
   background: transparent;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--clr-black);
   padding: 12px 0;
 }
@@ -1195,7 +1216,7 @@ button { cursor: pointer; }
 .cat-name {
   font-family: var(--font-sans);
   font-style: italic;
-  font-weight: 500;
+  font-weight: 700;
   font-size: clamp(22px, 2.5vw, 34px);
 }
 .prod-grid {
@@ -1276,7 +1297,7 @@ button { cursor: pointer; }
 }
 .prod-card__thumb img { width: 100%; height: 100%; object-fit: cover; }
 .prod-card__info { padding: 12px 14px 14px; }
-.prod-card__name { font-weight: 700; font-size: 13px; margin-bottom: 3px; }
+.prod-card__name { font-weight: 600; font-size: 13px; margin-bottom: 3px; }
 .prod-card__spec { font-size: 11px; color: var(--clr-gray-mid); }
 
 /* Empty search state */
@@ -1344,7 +1365,7 @@ button { cursor: pointer; }
   align-items: center;
   gap: 8px;
   padding: 14px 36px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.04em;
   border-radius: var(--radius);
@@ -1435,15 +1456,16 @@ button { cursor: pointer; }
 }
 .hours__day {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--clr-yellow);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 6px;
 }
 .hours__time {
+  font-family: var(--font-sans);
   font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 800;
+  font-weight: 900;
   color: var(--clr-white);
 }
 
