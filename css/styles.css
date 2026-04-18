@@ -61,6 +61,11 @@
   --sec-v:      88px;
   --sec-v-sm:   48px;
 
+  /* --- BODY FONT SCALE --- */
+  --fs-body-sm: 12px;   /* meta/micro: tags, captions, eyebrows */
+  --fs-body-md: 14px;   /* standard: nav, buttons, labels, cards */
+  --fs-body-lg: 16px;   /* emphasized: main paragraph copy       */
+
   /* --- MISC --- */
   --radius:     6px;
   --ease:       0.22s ease;
@@ -128,8 +133,8 @@ button { cursor: pointer; }
 .h-display  { font-family: var(--font-sans); font-style: normal; font-weight: 900; line-height: 1.05; }
 .h-section  { font-family: var(--font-sans); font-style: italic; font-weight: 700; line-height: 1.1;  }
 .h-eyebrow  { font-family: var(--font-sans); font-style: italic; font-weight: 500; line-height: 1.2;  }
-.text-body  { font-family: var(--font-mono); font-style: normal; font-weight: 400; }
-.text-label { font-family: var(--font-mono); font-style: normal; font-weight: 600; }
+.text-body  { font-family: var(--font-mono); font-style: normal; font-weight: 400; font-size: var(--fs-body-lg); }
+.text-label { font-family: var(--font-mono); font-style: normal; font-weight: 600; font-size: var(--fs-body-md); }
 
 /* Section header row (title + "Tampil Semua" link) */
 .sec-header {
@@ -148,7 +153,7 @@ button { cursor: pointer; }
   color: var(--clr-black);
 }
 .sec-link {
-  font-size: 13px;
+  font-size: var(--fs-body-md);
   font-weight: 600;
   color: var(--clr-blue);
   white-space: nowrap;
@@ -209,7 +214,7 @@ button { cursor: pointer; }
    The outer <a> clips to one line; on hover the inner wrapper
    slides up to reveal the yellow duplicate beneath it.           */
 .navbar__link {
-  font-size: 15px;
+  font-size: var(--fs-body-md);
   font-weight: 600;
   letter-spacing: 0.03em;
   display: block;
@@ -380,7 +385,7 @@ button { cursor: pointer; }
   gap: 24px 32px;
 }
 .footer__col-title {
-  font-size: 13px;
+  font-size: var(--fs-body-md);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -397,7 +402,7 @@ button { cursor: pointer; }
 }
 .footer__col li + li { margin-top: 4px; }
 .footer__col a {
-  font-size: 13px;
+  font-size: var(--fs-body-md);
   color: var(--clr-white);
   transition: color var(--ease);
 }
@@ -412,7 +417,7 @@ button { cursor: pointer; }
   padding-top: 8px;
 }
 .footer__contact p {
-  font-size: 12px;
+  font-size: var(--fs-body-sm);
   color: var(--clr-white);
   line-height: 2;
 }
@@ -460,7 +465,8 @@ button { cursor: pointer; }
 .about-hero__quote {
   font-style: italic;
   font-family: var(--font-sans);
-  font-weight: 700;
+  font-weight: 300;
+  letter-spacing: -2px;
   font-size: clamp(22px, 3vw, 38px);
   line-height: 1.2;
   color: var(--clr-white);
@@ -523,7 +529,7 @@ button { cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: var(--fs-body-md);
   color: var(--clr-gray-mid);
 }
 
@@ -537,7 +543,7 @@ button { cursor: pointer; }
   margin-bottom: 24px;
 }
 .split__body {
-  font-size: 14px;
+  font-size: var(--fs-body-lg);
   line-height: 1.75;
   color: rgba(255,255,255,0.82);
 }
@@ -545,7 +551,7 @@ button { cursor: pointer; }
 
 .split__list { display: flex; flex-direction: column; gap: 14px; }
 .split__list li {
-  font-size: 14px;
+  font-size: var(--fs-body-lg);
   line-height: 1.65;
   color: rgba(255,255,255,0.82);
   padding-left: 18px;
@@ -618,7 +624,7 @@ button { cursor: pointer; }
   transition: color 0.4s ease;
 }
 .qit__body {
-  font-size: 13px;
+  font-size: var(--fs-body-lg);
   line-height: 1.75;
   color: rgba(255,255,255,0.58);
   position: relative;
@@ -649,7 +655,7 @@ button { cursor: pointer; }
   align-items: center;
   justify-content: center;
   color: var(--clr-gray-mid);
-  font-size: 12px;
+  font-size: var(--fs-body-sm);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -767,17 +773,17 @@ button { cursor: pointer; }
 }
 .testi-card__name {
   font-weight: 600;
-  font-size: 15px;
+  font-size: var(--fs-body-md);
   margin-bottom: 6px;
 }
 .testi-card__stars {
   color: var(--clr-yellow);
-  font-size: 15px;
+  font-size: var(--fs-body-md);
   letter-spacing: 2px;
   margin-bottom: 14px;
 }
 .testi-card__text {
-  font-size: 13px;
+  font-size: var(--fs-body-md);
   line-height: 1.7;
   color: #555;
 }
@@ -927,7 +933,7 @@ button { cursor: pointer; }
 .home-hero__tagline {
   max-width: 380px;
   margin-left: 2.5vw;
-  font-size: 14px;
+  font-size: var(--fs-body-md);
   line-height: 1.7;
   color: rgba(255,255,255,0.85);
 }
@@ -986,7 +992,7 @@ button { cursor: pointer; }
   font-family: var(--font-mono);
   font-weight: 400;
   max-width: 400vw;
-  font-size: 16px;
+  font-size: var(--fs-body-lg);
   line-height: 1.75;
   color: var(--clr-cream);
 }
@@ -1009,12 +1015,12 @@ button { cursor: pointer; }
 .servis-card__img img { width: 100%; height: 100%; object-fit: cover; }
 .servis-card__name {
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--fs-body-md);
   color: var(--clr-black);
   margin-bottom: 8px;
 }
 .servis-card__desc {
-  font-size: 13px;
+  font-size: var(--fs-body-md);
   line-height: 1.65;
   color: var(--clr-gray-mid);
 }
@@ -1056,7 +1062,7 @@ button { cursor: pointer; }
   line-height: 1;
 }
 .stat__label {
-  font-size: 12px;
+  font-size: var(--fs-body-sm);
   font-weight: 600;
   color: rgba(255,255,255,0.75);
   text-transform: uppercase;
@@ -1078,7 +1084,7 @@ button { cursor: pointer; }
   margin-bottom: 10px;
 }
 .home-products__intro .sub {
-  font-size: 13px;
+  font-size: var(--fs-body-md);
   font-weight: 600;
   color: var(--clr-blue);
   text-transform: uppercase;
@@ -1086,7 +1092,7 @@ button { cursor: pointer; }
   margin-bottom: 6px;
 }
 .home-products__intro p {
-  font-size: 14px;
+  font-size: var(--fs-body-lg);
   line-height: 1.7;
   color: #444;
 }
@@ -1189,7 +1195,7 @@ button { cursor: pointer; }
 .search-bar__input {
   flex: 1;
   background: transparent;
-  font-size: 15px;
+  font-size: var(--fs-body-md);
   font-weight: 400;
   color: var(--clr-black);
   padding: 12px 0;
@@ -1235,7 +1241,7 @@ button { cursor: pointer; }
   color: var(--clr-blue);
   padding: 6px 14px;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--fs-body-sm);
   font-weight: 600;
   letter-spacing: 0.05em;
   cursor: pointer;
@@ -1293,19 +1299,19 @@ button { cursor: pointer; }
   align-items: center;
   justify-content: center;
   color: var(--clr-gray-mid);
-  font-size: 11px;
+  font-size: var(--fs-body-sm);
 }
 .prod-card__thumb img { width: 100%; height: 100%; object-fit: cover; }
 .prod-card__info { padding: 12px 14px 14px; }
-.prod-card__name { font-weight: 600; font-size: 13px; margin-bottom: 3px; }
-.prod-card__spec { font-size: 11px; color: var(--clr-gray-mid); }
+.prod-card__name { font-weight: 600; font-size: var(--fs-body-md); margin-bottom: 3px; }
+.prod-card__spec { font-size: var(--fs-body-sm); color: var(--clr-gray-mid); }
 
 /* Empty search state */
 .search-empty {
   text-align: center;
   padding: 48px 0;
   color: var(--clr-gray-mid);
-  font-size: 14px;
+  font-size: var(--fs-body-md);
   display: none;
 }
 .search-empty.visible { display: block; }
@@ -1343,7 +1349,7 @@ button { cursor: pointer; }
   border-radius: var(--radius);
   padding: 14px 16px;
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: var(--fs-body-md);
   color: var(--clr-black);
   transition: border-color var(--ease);
 }
@@ -1366,7 +1372,7 @@ button { cursor: pointer; }
   gap: 8px;
   padding: 14px 36px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--fs-body-md);
   letter-spacing: 0.04em;
   border-radius: var(--radius);
   transition: opacity var(--ease), transform var(--ease);
@@ -1398,7 +1404,7 @@ button { cursor: pointer; }
 }
 .map-placeholder-note {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--fs-body-sm);
   color: rgba(0,0,0,0.35);
   font-style: normal;
   background: rgba(255,255,255,0.5);
@@ -1425,7 +1431,7 @@ button { cursor: pointer; }
 }
 .map-split__address {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: var(--fs-body-md);
   line-height: 2;
   color: rgba(255,255,255,0.75);
 }
@@ -1455,7 +1461,7 @@ button { cursor: pointer; }
   line-height: 1.2;
 }
 .hours__day {
-  font-size: 12px;
+  font-size: var(--fs-body-sm);
   font-weight: 600;
   color: var(--clr-yellow);
   text-transform: uppercase;
@@ -1507,7 +1513,7 @@ button { cursor: pointer; }
   border: 1px solid #c3e6cb;
   border-radius: var(--radius);
   color: #155724;
-  font-size: 14px;
+  font-size: var(--fs-body-md);
   margin-top: 16px;
   grid-column: 1 / -1;
 }
