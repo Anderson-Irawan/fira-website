@@ -377,6 +377,54 @@
       "image": "assets/images/pexels-rolledalloys-metal-supply-8973680.jpg"
     }
   ],
+  "projects": [
+    {
+      "id": "residensial",
+      "name": "Residensial",
+      "items": [
+        { "id": "res-001", "name": "Kedung Baruk",      "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/kedung baruk - surabaya - 2019.jpg" },
+        { "id": "res-002", "name": "Kenjeran",          "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/kenjeran - surabaya - 2019.jpg" },
+        { "id": "res-003", "name": "Laguna",            "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/laguna - surabaya - 2019.jpg" },
+        { "id": "res-004", "name": "Lebak Jaya III",   "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/lebak jaya iii - surabaya - 2019.jpg" },
+        { "id": "res-005", "name": "Pantai Menteri",   "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/pantai menteri - surabaya - 2019.jpg" },
+        { "id": "res-006", "name": "Pondok Candra",    "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/pondok candra - surabaya - 2019.jpg" },
+        { "id": "res-007", "name": "Puri Cempaka",     "location": "Malang",     "year": "2019", "image": "assets/projects/residential/puri cempaka - malang - 2019.jpg" },
+        { "id": "res-008", "name": "Rumah",            "location": "Banyuwangi", "year": "2019", "image": "assets/projects/residential/rumah - banyuwangi - 2019.jpg" },
+        { "id": "res-009", "name": "Rumah",            "location": "Mojokerto",  "year": "2019", "image": "assets/projects/residential/rumah - mojokerto - 2019.jpg" },
+        { "id": "res-010", "name": "Rumah",            "location": "Semarang",   "year": "2019", "image": "assets/projects/residential/rumah - semarang - 2019.jpg" },
+        { "id": "res-011", "name": "Rumah Tinggal",    "location": "Mojokerto",  "year": "2019", "image": "assets/projects/residential/rumah tinggal - mojokerto - 2019.jpg" },
+        { "id": "res-012", "name": "Rumah Tinggal",    "location": "Wiyung",     "year": "2019", "image": "assets/projects/residential/rumah tinggal - wiyung - 2019.jpg" },
+        { "id": "res-013", "name": "Rungkut Mapan",    "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/rungkut mapan - surabaya - 2019.jpg" },
+        { "id": "res-014", "name": "Darmo Permai",      "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/darmo permai - surabaya - 2019.jpg" },
+        { "id": "res-015", "name": "Galis",             "location": "Madura",     "year": "2019", "image": "assets/projects/residential/galis - madura - 2019.jpg" }
+      ]
+    },
+    {
+      "id": "komersial",
+      "name": "Komersial",
+      "items": [
+        { "id": "kom-001", "name": "Dharmahusada Emas",   "location": "Surabaya", "year": "2019", "image": "assets/projects/komersial/dharmahusada emas - surabaya - 2019.jpg" },
+        { "id": "kom-002", "name": "Ruko",                "location": "Jombang",  "year": "2017", "image": "assets/projects/komersial/ruko - jombang - 2017.jpg" },
+        { "id": "kom-003", "name": "Dian Istana Regency", "location": "Surabaya", "year": "2015", "image": "assets/projects/komersial/dian istana regency - surabaya - 2015.jpg" }
+      ]
+    },
+    {
+      "id": "industrial",
+      "name": "Industrial",
+      "items": [
+        { "id": "ind-001", "name": "Pogot", "location": "Surabaya", "year": "2019", "image": "assets/projects/industrial/pogot - surabaya - 2019.jpg" }
+      ]
+    },
+    {
+      "id": "institutional",
+      "name": "Institutional",
+      "items": [
+        { "id": "ins-001", "name": "ITS",          "location": "Surabaya", "year": "2019", "image": "assets/projects/institutional/its - surabaya - 2019.jpg" },
+        { "id": "ins-002", "name": "SD Banjarasi", "location": "Sidoarjo", "year": "2019", "image": "assets/projects/institutional/sd banjarasi - sidoarjo - 2019.jpg" },
+        { "id": "ins-003", "name": "Sekda",        "location": "Sidoarjo", "year": "2019", "image": "assets/projects/institutional/sekda - sidoarjo - 2019.jpg" }
+      ]
+    }
+  ],
   "company": {
     "name": "PT Bangun Citra Irawan",
     "brand": "Fira",

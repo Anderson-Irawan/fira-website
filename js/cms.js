@@ -430,6 +430,126 @@ async function renderAboutProducts() {
   `).join('');
 }
 
+// ─── PROJECT CATALOGUE ───────────────────────────────────────
+
+const PROJ_PREVIEW = 3; // cards shown before "Tampil Semua"
+
+function placeholderProjThumb(name) {
+  return `<div class="proj-card__thumb" aria-label="${name} placeholder">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <circle cx="8.5" cy="8.5" r="1.5"/>
+      <polyline points="21 15 16 10 5 21"/>
+    </svg>
+  </div>`;
+}
+
+function renderProjCard(item, catId) {
+  return `
+    <article class="proj-card" data-category="${catId}">
+      ${item.image
+        ? `<div class="proj-card__thumb"><img src="${item.image}" alt="${item.name}" loading="lazy"></div>`
+        : placeholderProjThumb(item.name)
+      }
+      <div class="proj-card__info">
+        <p class="proj-card__name">${item.name}</p>
+        <p class="proj-card__meta">${item.location}</p>
+        <p class="proj-card__meta">${item.year}</p>
+      </div>
+    </article>`;
+}
+
+async function renderProjects() {
+  const root = document.getElementById('projek-root');
+  if (!root) return;
+
+  try {
+    const data = await fetchData();
+    root.innerHTML = data.projects.map(cat => {
+      const sorted  = [...cat.items].sort((a, b) => b.year - a.year);
+      const preview = sorted.slice(0, PROJ_PREVIEW);
+      const extra   = sorted.slice(PROJ_PREVIEW);
+      const hasMore = extra.length > 0;
+
+      return `
+        <section class="cat-section" id="${cat.id}" data-category="${cat.id}">
+          <div class="cat-header">
+            <h2 class="cat-name">${cat.name}</h2>
+            ${hasMore ? `
+              <button class="cat-toggle" aria-expanded="false" data-cat="${cat.id}">
+                <span class="cat-toggle__label">Tampil Semua</span>
+                <span class="cat-toggle__count">(${cat.items.length})</span>
+                <svg class="cat-toggle__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>` : ''}
+          </div>
+          <div class="proj-grid">
+            ${preview.map(p => renderProjCard(p, cat.id)).join('')}
+          </div>
+          ${hasMore ? `
+            <div class="prod-overflow" id="overflow-${cat.id}">
+              <div class="prod-overflow__inner">
+                <div class="proj-grid">
+                  ${extra.map(p => renderProjCard(p, cat.id)).join('')}
+                </div>
+              </div>
+            </div>` : ''}
+        </section>`;
+    }).join('');
+
+    initProjAccordion();
+  } catch (e) {
+    root.innerHTML = `<p style="color:red;padding:24px">Gagal memuat katalog projek. (${e.message})</p>`;
+  }
+}
+
+function initProjAccordion() {
+  const root = document.getElementById('projek-root');
+  if (!root) return;
+
+  root.addEventListener('click', e => {
+    const btn = e.target.closest('.cat-toggle');
+    if (!btn) return;
+
+    const catId  = btn.dataset.cat;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+    if (isOpen) {
+      btn.setAttribute('aria-expanded', 'false');
+      const lbl = btn.querySelector('.cat-toggle__label');
+      if (lbl) lbl.textContent = 'Tampil Semua';
+      document.getElementById(`overflow-${catId}`)?.classList.remove('prod-overflow--open');
+    } else {
+      // Collapse all others first
+      root.querySelectorAll('.cat-toggle').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        const lbl = b.querySelector('.cat-toggle__label');
+        if (lbl) lbl.textContent = 'Tampil Semua';
+        document.getElementById(`overflow-${b.dataset.cat}`)?.classList.remove('prod-overflow--open');
+      });
+      btn.setAttribute('aria-expanded', 'true');
+      const lbl = btn.querySelector('.cat-toggle__label');
+      if (lbl) lbl.textContent = 'Sembunyikan';
+      document.getElementById(`overflow-${catId}`)?.classList.add('prod-overflow--open');
+    }
+  });
+
+  const hash = window.location.hash.slice(1);
+  if (hash && document.getElementById(hash)) {
+    setTimeout(() => {
+      const section  = document.getElementById(hash);
+      const btn      = section?.querySelector('.cat-toggle');
+      const overflow = document.getElementById(`overflow-${hash}`);
+      if (btn && overflow) {
+        btn.setAttribute('aria-expanded', 'true');
+        const lbl = btn.querySelector('.cat-toggle__label');
+        if (lbl) lbl.textContent = 'Sembunyikan';
+        overflow.classList.add('prod-overflow--open');
+      }
+      section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
+
 // ─── SEARCH ──────────────────────────────────────────────────
 
 function initSearch() {
@@ -487,6 +607,7 @@ function initSearch() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   await renderCatalogue();
+  await renderProjects();
   await Promise.all([
     renderCertifications(),
     renderTestimonials(),
