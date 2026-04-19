@@ -10,8 +10,38 @@
  *   <script src="js/components.js"></script>
  */
 
+// ─── INSTANT PRE-RENDER FROM CACHE ──────────────────────────
+// Runs synchronously at script-parse time — before DOMContentLoaded
+// fires — so nav and footer exist on the very first paint and never
+// flash in. Only uses sessionStorage + vanilla DOM; no reference to
+// the constants/functions defined below (safe at top of file).
+(function () {
+  try {
+    var ns  = document.getElementById('nav-placeholder');
+    var nav = sessionStorage.getItem('fira-nav');
+
+    if (ns && nav) {
+      var page = ns.dataset.page || '';
+      var html = nav;
+      if (page) {
+        // Activate the link that matches this page
+        html = html.replace(
+          'href="' + page + '.html" class="navbar__link"',
+          'href="' + page + '.html" class="navbar__link active"'
+        );
+      } else {
+        // Home page: nav hides behind hero, spacer not needed
+        html = html
+          .replace('class="navbar"', 'class="navbar is-hidden"')
+          .replace('<div class="nav-spacer" aria-hidden="true"></div>', '');
+      }
+      ns.outerHTML = html;
+    }
+  } catch (_) { /* sessionStorage blocked (private mode etc.) — graceful fallback */ }
+}());
+
 // ─── LOGO ────────────────────────────────────────────────────
-const LOGO_NAV    = `<img src="assets/logo-fira.svg" alt="Fira" class="navbar__logo-img">`;
+const LOGO_NAV    = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.64 127.06" aria-label="Fira" role="img"><path fill="#ffce00" d="M93.67,19.47c0,10.47-6.64,14.83-14.83,14.83-12.99,0-14.83-9.23-14.83-14.83,0-9.37,6.64-14.83,14.83-14.83,11.42,0,14.83,6.64,14.83,14.83Z"/><rect fill="#f7f4eb" x="64.89" y="40.96" width="27.91" height="83.82"/><path fill="#f7f4eb" d="M153.15,38.38c-4.93.56-12.13,1.8-17.24,4.92-4.69,2.87-8.71,8.75-10.48,14.66l-2.72-17.01h-20.77v83.83h27.91v-36.87c1.45-6.92,3.92-12.16,6.75-15.39,2.89-3.31,7.68-5.2,12.7-5.2l3.86-28.94Z"/><path fill="#f7f4eb" d="M199.9,39.01c-1.96-.3-3.98-.5-6.02-.63-19.17-1.78-36.19,4.42-36.19,4.42l4.75,19.33c13.12-3.54,36.59-11.06,36.3,10.54-13.7-.59-32.42,1.17-40.35,7.32-19.5,13.71-11.02,47.07,18.24,47.07,14.06,0,18.86-4.06,24.55-12.16l-.97,9.88h26.45v-58.52c-.44-17.28-12.07-24.99-26.74-27.26ZM198.74,100.88c-1.34,2.08-3.04,3.71-5.1,4.91-18.98,9.44-25.08-22.09,5.1-18.31v13.4Z"/><path fill="#f7f4eb" d="M56.35,28.18L61.35.61C36.45-3.19,12.56,10.93,11.28,41.41v10.79H0v27.91h11.28v44.57h27.93v-44.57h17.69l1.97-27.91h-19.66v-10.31c.68-11.8,8.57-14.98,17.14-13.71Z"/></svg>`;
 const LOGO_FOOTER = `<img src="assets/logo-fira.svg" alt="Fira" class="footer__logo-img">`;
 
 // ─── NAV CONFIG ──────────────────────────────────────────────
@@ -257,4 +287,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     btt.classList.toggle('back-to-top--visible', window.scrollY > 400);
   }, { passive: true });
+
+  // ── Populate sessionStorage cache for subsequent navigations ──
+  // renderNav('__none__') produces a base nav: no active link, no
+  // is-hidden — the pre-render IIFE applies those per-page at runtime.
+  try {
+    sessionStorage.setItem('fira-nav', renderNav('__none__'));
+  } catch (_) {}
 });

@@ -76,7 +76,7 @@
    RESET
    ===================================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; background-color: #f7f4eb; }
 body {
   font-family: var(--font-mono);
   font-weight: 400;
@@ -1615,4 +1615,34 @@ button { cursor: pointer; }
   .hours__inner { grid-template-columns: 1fr; gap: 28px; }
   .cert-grid { grid-template-columns: repeat(2, 1fr); }
   .servis-grid { grid-template-columns: 1fr; }
+}
+
+/* =====================================================
+   PAGE TRANSITIONS — View Transitions API
+   Nav and footer stay pinned (0 s); only <main> fades.
+   ===================================================== */
+@view-transition { navigation: auto; }
+
+/* Named elements captured across page navigations */
+.navbar { view-transition-name: site-nav; }
+.footer { view-transition-name: site-footer; }
+main    { view-transition-name: page-main; }
+
+/* Nav & footer: instant — they don't animate between pages */
+::view-transition-group(site-nav),
+::view-transition-group(site-footer) {
+  animation-duration: 0s;
+}
+
+/* Main content: brief crossfade */
+::view-transition-old(page-main) { animation: 120ms ease-in  both vt-out; }
+::view-transition-new(page-main) { animation: 180ms ease-out both vt-in;  }
+@keyframes vt-out { to   { opacity: 0; } }
+@keyframes vt-in  { from { opacity: 0; } }
+
+/* When the browser handles transitions, the per-page navbar
+   fade-in animation is redundant — suppress it to avoid a
+   double-flash caused by both running at once. */
+@supports (view-transition-name: none) {
+  .navbar:not(.is-hidden) { animation: none; }
 }

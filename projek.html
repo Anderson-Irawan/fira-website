@@ -12,6 +12,7 @@
 
   <!-- ── TOP NAV (injected by components.js) ── -->
   <div id="nav-placeholder" data-page="projek"></div>
+  <script>!function(){try{var c=sessionStorage.getItem('fira-nav'),s=document.getElementById('nav-placeholder');if(!c||!s)return;var p=s.dataset.page||'',h=c;if(p)h=h.replace('href="'+p+'.html" class="navbar__link"','href="'+p+'.html" class="navbar__link active"');else{h=h.replace('class="navbar"','class="navbar is-hidden"').replace('<div class="nav-spacer" aria-hidden="true"></div>','');}s.outerHTML=h;}catch(e){}}();</script>
 
   <main class="produk-page">
 
@@ -23,9 +24,6 @@
     <!-- ── PROJECT CATALOGUE ── -->
     <div class="catalogue" aria-live="polite">
       <div id="projek-root">
-        <p style="color: var(--clr-gray-mid); font-size:14px; padding: 24px 0;">
-          Memuat katalog projek...
-        </p>
       </div>
     </div>
 
