@@ -76,7 +76,7 @@ const FOOTER_ABOUT = [
 ];
 const CONTACT_INFO = {
   phones:  ['+62 313 714 362', '+62 811 325 4929'],
-  address: 'JL. Kedinding Tengah II No. 16, Surabaya 60129<br>Jawa Timur — Indonesia',
+  address: 'Jalan Kedinding Tengah II No. 16<br>Surabaya, Jawa Timur<br>60129, Indonesia',
 };
 
 // ─── RENDER FUNCTIONS ────────────────────────────────────────
