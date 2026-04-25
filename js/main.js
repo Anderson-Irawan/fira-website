@@ -76,6 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // ─── HERO PARALLAX ─────────────────────────────────────────
+  const heroBg = document.querySelector('.home-hero__bg');
+  if (heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let rafParallax = null;
+    window.addEventListener('scroll', () => {
+      if (rafParallax) return;
+      rafParallax = requestAnimationFrame(() => {
+        heroBg.style.transform = `translate3d(0,${window.scrollY * 0.35}px,0)`;
+        rafParallax = null;
+      });
+    }, { passive: true });
+  }
+
   // ─── CONTACT FORM ──────────────────────────────────────────
   // Intercepts submission for a smooth UX.
   // Replace the action attribute on the <form> with your
