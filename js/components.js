@@ -41,8 +41,8 @@
 }());
 
 // ─── LOGO ────────────────────────────────────────────────────
-const LOGO_NAV    = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.64 127.06" aria-label="Fira" role="img"><path fill="#ffce00" d="M93.67,19.47c0,10.47-6.64,14.83-14.83,14.83-12.99,0-14.83-9.23-14.83-14.83,0-9.37,6.64-14.83,14.83-14.83,11.42,0,14.83,6.64,14.83,14.83Z"/><rect fill="#f7f4eb" x="64.89" y="40.96" width="27.91" height="83.82"/><path fill="#f7f4eb" d="M153.15,38.38c-4.93.56-12.13,1.8-17.24,4.92-4.69,2.87-8.71,8.75-10.48,14.66l-2.72-17.01h-20.77v83.83h27.91v-36.87c1.45-6.92,3.92-12.16,6.75-15.39,2.89-3.31,7.68-5.2,12.7-5.2l3.86-28.94Z"/><path fill="#f7f4eb" d="M199.9,39.01c-1.96-.3-3.98-.5-6.02-.63-19.17-1.78-36.19,4.42-36.19,4.42l4.75,19.33c13.12-3.54,36.59-11.06,36.3,10.54-13.7-.59-32.42,1.17-40.35,7.32-19.5,13.71-11.02,47.07,18.24,47.07,14.06,0,18.86-4.06,24.55-12.16l-.97,9.88h26.45v-58.52c-.44-17.28-12.07-24.99-26.74-27.26ZM198.74,100.88c-1.34,2.08-3.04,3.71-5.1,4.91-18.98,9.44-25.08-22.09,5.1-18.31v13.4Z"/><path fill="#f7f4eb" d="M56.35,28.18L61.35.61C36.45-3.19,12.56,10.93,11.28,41.41v10.79H0v27.91h11.28v44.57h27.93v-44.57h17.69l1.97-27.91h-19.66v-10.31c.68-11.8,8.57-14.98,17.14-13.71Z"/></svg>`;
-const LOGO_FOOTER = `<img src="assets/logo-fira.svg" alt="Fira" class="footer__logo-img">`;
+const LOGO_NAV    = `<img src="assets/logos/logotype.svg" alt="Fira" class="navbar__logo-img">`;
+const LOGO_FOOTER = `<img src="assets/logos/logotype.svg" alt="Fira" class="footer__logo-img">`;
 
 // ─── NAV CONFIG ──────────────────────────────────────────────
 const NAV_LINKS = [
@@ -80,6 +80,47 @@ const CONTACT_INFO = {
 };
 
 // ─── RENDER FUNCTIONS ────────────────────────────────────────
+
+function renderKontakSidebar() {
+  const phones = CONTACT_INFO.phones.map(p => `<p>${p}</p>`).join('');
+  return `
+<aside id="kontak-sidebar" class="ksb" role="dialog" aria-label="Hubungi Kami" aria-modal="true" aria-hidden="true">
+  <div class="ksb__form-col">
+    <h2 class="ksb__title">Kerja Sama<br>dengan Fira</h2>
+    <form id="ksb-form" class="ksb-form" action="#" method="POST" novalidate>
+      <div><input type="text"  name="nama"       placeholder="Nama ..."         required autocomplete="name"></div>
+      <div><input type="text"  name="departemen" placeholder="Departemen ..."></div>
+      <div><input type="tel"   name="telepon"    placeholder="Nomor telfon ..."          autocomplete="tel"></div>
+      <div><input type="email" name="email"      placeholder="Email ..."        required autocomplete="email"></div>
+      <div><textarea name="deskripsi" placeholder="Isi Pesan ..." rows="4"></textarea></div>
+      <button type="submit" class="ksb__submit">
+        <span>KIRIM</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <p id="ksb-success" class="ksb__success" role="status" aria-live="polite">✓ Pesan berhasil terkirim!</p>
+    </form>
+  </div>
+  <div class="ksb__info-col">
+    <button class="ksb__close" id="ksb-close" aria-label="Tutup">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="ksb__section ksb__section--top">
+      <address class="ksb__address" style="font-style:normal">${CONTACT_INFO.address}</address>
+      <div class="ksb__phones">${phones}</div>
+    </div>
+    <div class="ksb__divider" role="separator"></div>
+    <div class="ksb__section">
+      <h3 class="ksb__hours-title">Jam Operasional</h3>
+      <div class="ksb__hours-rows">
+        <div><p class="hours__day">Senin — Jumat</p><p class="hours__time">08:00 — 17:00</p></div>
+        <div><p class="hours__day">Sabtu</p><p class="hours__time">08:00 — 16:00</p></div>
+        <div><p class="hours__day">Minggu</p><p class="hours__time hours__time--closed">TUTUP</p></div>
+      </div>
+    </div>
+  </div>
+</aside>
+<div id="kontak-overlay" class="kontak-overlay" aria-hidden="true"></div>`;
+}
 
 /**
  * Standard top navbar — used on About, Produk, Kontak pages.
@@ -273,6 +314,61 @@ document.addEventListener('DOMContentLoaded', () => {
     footerSlot.outerHTML = footerSlot.dataset.footer === 'v2'
       ? renderFooterV2()
       : renderFooter();
+  }
+
+  // ── Kontak sidebar ─────────────────────────────────────────
+  document.body.insertAdjacentHTML('beforeend', renderKontakSidebar());
+
+  const sidebar  = document.getElementById('kontak-sidebar');
+  const overlay  = document.getElementById('kontak-overlay');
+  const ksbClose = document.getElementById('ksb-close');
+
+  function openSidebar() {
+    sidebar.classList.add('is-open');
+    overlay.classList.add('is-open');
+    sidebar.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    ksbClose.focus();
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    sidebar.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Intercept every Kontak link across nav + footer
+  document.querySelectorAll('a[href="kontak.html"]').forEach(link => {
+    link.addEventListener('click', e => { e.preventDefault(); openSidebar(); });
+  });
+
+  ksbClose.addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+
+  // Sidebar form submission (same placeholder as kontak.html form)
+  const ksbForm    = document.getElementById('ksb-form');
+  const ksbSuccess = document.getElementById('ksb-success');
+  if (ksbForm) {
+    ksbForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = ksbForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      try {
+        const res = await fetch(ksbForm.action, {
+          method: 'POST',
+          body: new FormData(ksbForm),
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          ksbForm.reset();
+          if (ksbSuccess) ksbSuccess.classList.add('show');
+        } else throw new Error();
+      } catch {
+        alert('Pesan gagal terkirim. Silakan coba lagi.');
+        btn.disabled = false;
+      }
+    });
   }
 
   // ── Back-to-top button ─────────────────────────────────────

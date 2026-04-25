@@ -6,6 +6,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ─── TOPNAV: SHOW/HIDE BASED ON HERO VISIBILITY ───────────
   // On the home page the top navbar starts hidden (see components.js).
@@ -78,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── HERO PARALLAX ─────────────────────────────────────────
   const heroBg = document.querySelector('.home-hero__bg');
-  if (heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (heroBg && !noMotion) {
     let rafParallax = null;
     window.addEventListener('scroll', () => {
       if (rafParallax) return;
@@ -87,6 +88,86 @@ document.addEventListener('DOMContentLoaded', () => {
         rafParallax = null;
       });
     }, { passive: true });
+  }
+
+  // ─── QIT PARALLAX ──────────────────────────────────────────
+  // Injects a real <div> per card instead of relying on ::before
+  // + CSS custom properties. Direct style.transform is guaranteed
+  // to work regardless of data-animate / inline transition-delay.
+  const QIT_IMAGES = [
+    'assets/images/produk-1.jpg',
+    'assets/images/produk-2.jpg',
+    'assets/images/produk-3.jpg',
+  ];
+  const qitItems = [...document.querySelectorAll('.qit__item')];
+  const qitBgs   = [];
+
+  if (qitItems.length && !noMotion) {
+    qitItems.forEach((item, i) => {
+      const bg = document.createElement('div');
+      bg.className = 'qit__parallax-bg';
+      bg.style.backgroundImage = `url('${QIT_IMAGES[i % QIT_IMAGES.length]}')`;
+      item.classList.add('has-parallax-bg'); // hides ::before fallback
+      item.prepend(bg);
+      qitBgs.push(bg);
+    });
+
+    function updateQitParallax() {
+      const vh = window.innerHeight;
+      qitItems.forEach((item, i) => {
+        const rect     = item.getBoundingClientRect();
+        const center   = rect.top + rect.height / 2;
+        const progress = (center - vh / 2) / vh;
+        const ty       = Math.max(-150, Math.min(150, progress * 180));
+        qitBgs[i].style.transform = `translate3d(0,${ty.toFixed(1)}px,0)`;
+      });
+    }
+
+    let rafQit = null;
+    window.addEventListener('scroll', () => {
+      if (rafQit) return;
+      rafQit = requestAnimationFrame(() => { updateQitParallax(); rafQit = null; });
+    }, { passive: true });
+
+    updateQitParallax();
+  }
+
+  // ─── ABOUT-HERO PARALLAX ───────────────────────────────────
+  // Same scroll-from-top pattern as the home hero.
+  const aboutHero = document.querySelector('.about-hero');
+  if (aboutHero && !noMotion) {
+    let rafAbout = null;
+    window.addEventListener('scroll', () => {
+      if (rafAbout) return;
+      rafAbout = requestAnimationFrame(() => {
+        aboutHero.style.setProperty('--ahero-ty', `${(window.scrollY * 0.35).toFixed(1)}px`);
+        rafAbout = null;
+      });
+    }, { passive: true });
+  }
+
+  // ─── SPLIT MEDIA PARALLAX ──────────────────────────────────
+  // Visi / Misi images on about.html — viewport-centre approach,
+  // same as QIT. Images are oversized via CSS (inset: -20% 0) so
+  // translateY never reveals a gap.
+  const splitImgs = [...document.querySelectorAll('.split__media img')];
+  if (splitImgs.length && !noMotion) {
+    function updateSplitParallax() {
+      const vh = window.innerHeight;
+      splitImgs.forEach(img => {
+        const wrap    = img.closest('.split__media');
+        const rect    = wrap.getBoundingClientRect();
+        const center  = rect.top + rect.height / 2;
+        const progress = (center - vh / 2) / vh;
+        img.style.transform = `translateY(${(progress * 140).toFixed(1)}px) scale(1.5)`;
+      });
+    }
+    let rafSplit = null;
+    window.addEventListener('scroll', () => {
+      if (rafSplit) return;
+      rafSplit = requestAnimationFrame(() => { updateSplitParallax(); rafSplit = null; });
+    }, { passive: true });
+    updateSplitParallax();
   }
 
   // ─── CONTACT FORM ──────────────────────────────────────────

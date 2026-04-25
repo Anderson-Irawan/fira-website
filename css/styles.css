@@ -38,7 +38,7 @@
 
 :root {
   /* --- COLOR PALETTE --- */
-  --clr-blue:        #0357dd;   /* Primary brand blue          */
+  --clr-blue:        #0a4bff;   /* Primary brand blue          */
   --clr-yellow:      #F5C518;   /* Accent / highlight yellow   */
   --clr-cream:       #f7f4eb;   /* Page background             */
   --clr-black:       #060505;   /* Near-black for text/navbar  */
@@ -438,11 +438,13 @@ button { cursor: pointer; }
 .about-hero::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -20% 0;
   background-image: url('../assets/images/pexels-kateryna-babaieva-1423213-3736102.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.45;
+  transform: translateY(var(--ahero-ty, 0px));
+  will-change: transform;
   z-index: 0;
 }
 .about-hero .container {
@@ -523,6 +525,8 @@ button { cursor: pointer; }
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.5);   /* 50% oversized — prominent parallax travel room */
+  will-change: transform;
 }
 /* Placeholder when no image */
 .split__media--placeholder {
@@ -588,26 +592,37 @@ button { cursor: pointer; }
   cursor: default;
 }
 
-/* Background image layer */
+/* Background image layer — no-JS fallback via ::before */
 .qit__item::before {
   content: '';
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.32) grayscale(25%);
-  transform: scale(1);
-  transition: filter 0.5s ease, transform 0.6s ease;
+  filter: brightness(0.55) grayscale(15%);
   z-index: 0;
 }
 .qit__item:nth-child(1)::before { background-image: url('../assets/images/produk-1.jpg'); }
 .qit__item:nth-child(2)::before { background-image: url('../assets/images/produk-2.jpg'); }
 .qit__item:nth-child(3)::before { background-image: url('../assets/images/produk-3.jpg'); }
 
-/* Hover — image darkens slightly and zooms, text turns yellow */
-.qit__item:hover::before {
-  filter: brightness(0.18) grayscale(0%);
-  transform: scale(1.05);
+/* JS-injected parallax layer — hides the ::before fallback */
+.qit__parallax-bg {
+  position: absolute;
+  inset: -40% 0;   /* 80% taller: generous room for ±160px travel */
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55) grayscale(15%);
+  will-change: transform;
+  transition: filter 0.5s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.qit__item.has-parallax-bg::before { content: none; } /* hide fallback once JS runs */
+
+/* Hover — brighten image, turn labels yellow */
+.qit__item:hover .qit__parallax-bg {
+  filter: brightness(0.78) grayscale(0%);
 }
 .qit__item:hover .qit__label  { color: var(--clr-yellow); }
 .qit__item:hover .qit__body   { color: rgba(245, 197, 24, 0.72); }
@@ -942,7 +957,7 @@ button { cursor: pointer; }
 }
 
 .home-hero__img {
-  min-width: clamp(10vw, 50vw, 25vw)
+  min-width: clamp(10vw, 20vw, 15vw)
 }
 
 /* Trustworthy section */
@@ -1639,4 +1654,198 @@ main    { view-transition-name: page-main; }
    double-flash caused by both running at once. */
 @supports (view-transition-name: none) {
   .navbar:not(.is-hidden) { animation: none; }
+}
+
+/* =====================================================
+   KONTAK SIDEBAR
+   Slides in from the right at 50vw when the user
+   clicks any Kontak link. Thin white lines form the
+   brand divider language throughout.
+   ===================================================== */
+.kontak-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6,5,5,0.55);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.kontak-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ksb {
+  position: fixed;
+  top: 0; right: 0;
+  width: 50vw;
+  min-width: 520px;
+  height: 100vh;
+  background: var(--clr-blue);
+  color: var(--clr-white);
+  z-index: 1001;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  transform: translateX(100%);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow-y: auto;
+}
+.ksb.is-open { transform: translateX(0); }
+
+/* ── Left column: title + form ── */
+.ksb__form-col {
+  padding: 52px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+.ksb__title {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(24px, 2.8vw, 40px);
+  color: var(--clr-white);
+  line-height: 1.05;
+  margin-bottom: 36px;
+}
+.ksb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.ksb-form input,
+.ksb-form textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--clr-white);
+  padding: 11px 14px;
+  font-size: var(--fs-body-md);
+  font-family: var(--font-sans);
+  transition: border-color 0.2s ease;
+}
+.ksb-form input::placeholder,
+.ksb-form textarea::placeholder { color: rgba(255,255,255,0.4); }
+.ksb-form input:focus,
+.ksb-form textarea:focus { border-color: rgba(255,255,255,0.8); }
+.ksb-form textarea { resize: vertical; min-height: 88px; max-height: 40vh; }
+.ksb__submit {
+  background: var(--clr-white);
+  color: var(--clr-blue);
+  padding: 13px 18px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-body-md);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  transition: background 0.2s ease, color 0.2s ease;
+  margin-top: 8px;
+}
+.ksb__submit:hover { background: var(--clr-yellow); color: var(--clr-black); }
+.ksb__success {
+  display: none;
+  color: var(--clr-yellow);
+  font-size: var(--fs-body-sm);
+  padding-top: 10px;
+}
+.ksb__success.show { display: block; }
+
+/* ── Right column: info + close ── */
+.ksb__info-col {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Close button — forms the corner bracket decoration */
+.ksb__close {
+  position: absolute;
+  top: 0; right: 0;
+  width: 72px; height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-white);
+  background: none;
+  border-left: 1px solid rgba(255,255,255,0.25);
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.ksb__close:hover { background: rgba(255,255,255,0.08); }
+
+/* Address + phones */
+.ksb__section {
+  padding: 32px;
+}
+.ksb__section--top { padding-top: 88px; }
+.ksb__address {
+  font-family: var(--font-mono);
+  font-size: var(--fs-body-md);
+  line-height: 1.85;
+  color: var(--clr-white);
+  margin-bottom: 20px;
+}
+.ksb__phones p {
+  font-size: var(--fs-body-md);
+  color: var(--clr-white);
+  line-height: 1.9;
+}
+
+/* Thin white line divider — core brand element */
+.ksb__divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  margin: 0 32px;
+}
+
+/* Hours */
+.ksb__hours-title {
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(14px, 1.4vw, 18px);
+  color: var(--clr-white);
+  margin-bottom: 18px;
+}
+.ksb__hours-rows {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ksb__hours-rows .hours__day {
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.ksb__hours-rows .hours__time {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(13px, 1.1vw, 15px);
+  color: var(--clr-white);
+}
+.ksb__hours-rows .hours__time--closed { color: var(--clr-yellow); }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .ksb {
+    width: 100vw;
+    min-width: 0;
+    grid-template-columns: 1fr;
+  }
+  .ksb__form-col {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+}
+@media (max-width: 480px) {
+  .ksb__form-col,
+  .ksb__section { padding-inline: 20px; }
+  .ksb__divider { margin-inline: 20px; }
 }
