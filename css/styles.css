@@ -39,12 +39,12 @@
 :root {
   /* --- COLOR PALETTE --- */
   --clr-blue:        #0a4bff;   /* Primary brand blue          */
-  --clr-yellow:      #F5C518;   /* Accent / highlight yellow   */
-  --clr-cream:       #f7f4eb;   /* Page background             */
-  --clr-black:       #060505;   /* Near-black for text/navbar  */
-  --clr-white:       #f7f4eb;
-  --clr-gray:        #C8C4BB;   /* Placeholder / muted         */
-  --clr-gray-mid:    #888480;
+  --clr-yellow:      #FFD52E;   /* Accent / highlight yellow   */
+  --clr-cream:       #F7F5EB;   /* Page background             */
+  --clr-black:       #120F0D;   /* Near-black for text/navbar  */
+  --clr-white:       #F7F5EB;
+  --clr-gray:        #50514F;   /* Placeholder / muted         */
+  --clr-gray-mid:    #50514F;
 
   /* --- TYPOGRAPHY ---
      --font-sans  → Fira Sans: body, nav, buttons, stats, logo, "TRUSTWORTHY."
@@ -108,6 +108,7 @@ button { cursor: pointer; }
 }
 .section        { padding-block: var(--sec-v); }
 .section--sm    { padding-block: var(--sec-v-sm); }
+
 .bg-blue        { background-color: var(--clr-blue); }
 .bg-black       { background-color: var(--clr-black); }
 .bg-cream       { background-color: var(--clr-cream); }
@@ -173,8 +174,10 @@ button { cursor: pointer; }
   display: flex;
   align-items: center;
   padding-inline: var(--pad-x);
-  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1), background-color 0.4s ease;
 }
+.navbar.logo-hidden { background: transparent; }
 
 /* Hidden state — slides up out of view (used on home page hero) */
 .navbar.is-hidden {
@@ -202,6 +205,7 @@ button { cursor: pointer; }
   transition: opacity var(--ease);
 }
 .navbar__logo:hover { opacity: 0.8; }
+.navbar.logo-hidden .navbar__logo { opacity: 0; pointer-events: none; }
 .navbar__logo svg,
 .navbar__logo img { height: 100%; width: auto; display: block; }
 .navbar__links {
@@ -573,83 +577,79 @@ button { cursor: pointer; }
 /* =====================================================
    QUALITY / INNOVATION / TRUST
    ===================================================== */
-.qit {
+/* ── Quality / Innovation / Trustworthy — horizontal scroll ── */
+.qit-pin { height: 450vh; position: relative; }
+.qit-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
   background: var(--clr-black);
 }
-.qit__inner {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-}
-.qit__item {
-  position: relative;
-  overflow: hidden;
-  padding: 48px 36px;
-  min-height: 75vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  cursor: default;
-}
 
-/* Background image layer — no-JS fallback via ::before */
-.qit__item::before {
+.qit-slide {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  background: transparent;
+}
+/* Background image layer — sits behind the scrolling track */
+.qit-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.qit-bg-layer::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.55) grayscale(15%);
-  z-index: 0;
-}
-.qit__item:nth-child(1)::before { background-image: url('../assets/images/produk-1.jpg'); }
-.qit__item:nth-child(2)::before { background-image: url('../assets/images/produk-2.jpg'); }
-.qit__item:nth-child(3)::before { background-image: url('../assets/images/produk-3.jpg'); }
-
-/* JS-injected parallax layer — hides the ::before fallback */
-.qit__parallax-bg {
-  position: absolute;
-  inset: -40% 0;   /* 80% taller: generous room for ±160px travel */
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.55) grayscale(15%);
-  will-change: transform;
-  transition: filter 0.5s ease;
-  z-index: 0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 100%);
+  z-index: 1;
   pointer-events: none;
 }
-.qit__item.has-parallax-bg::before { content: none; } /* hide fallback once JS runs */
-
-/* Hover — brighten image, turn labels yellow */
-.qit__item:hover .qit__parallax-bg {
-  filter: brightness(0.78) grayscale(0%);
+.qit-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
-.qit__item:hover .qit__label  { color: var(--clr-yellow); }
-.qit__item:hover .qit__body   { color: rgba(245, 197, 24, 0.72); }
+.qit-bg.is-active { opacity: 1; }
 
-.qit__label {
+.qit-track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+  position: relative;
+  z-index: 2;
+}
+.qit-slide__content {
+  position: absolute;
+  inset: 0;
+  padding: 60px var(--pad-x);
+  z-index: 1;
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+.qit-slide__left { flex-shrink: 0; }
+.qit-slide__title {
   font-family: var(--font-sans);
-  font-size: clamp(18px, 2vw, 28px);
   font-weight: 900;
+  font-size: clamp(36px, 4.5vw, 60px);
+  line-height: 1;
   text-transform: uppercase;
-  color: var(--clr-white);
-  margin-bottom: 18px;
-  position: relative;
-  z-index: 1;
-  transition: color 0.4s ease;
 }
-.qit__body {
+.qit-slide__right { width: 480px; flex-shrink: 0; }
+.qit-slide__body {
   font-size: var(--fs-body-lg);
-  line-height: 1.75;
-  color: var(--clr-white);
-  position: relative;
-  z-index: 1;
-  transition: color 0.4s ease;
-  /* Clamp to 4 lines so all cards are equal height → labels align */
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
 }
 
 /* =====================================================
@@ -1595,11 +1595,10 @@ button { cursor: pointer; }
   .split__media { min-height: 280px; }
   .split__text { padding: 48px 32px; }
 
-  .qit__inner { grid-template-columns: 1fr; gap: 0; }
-  .qit__item  { min-height: 50vh; }
+
+  .servis-grid { grid-template-columns: 1fr 1fr; }
   .cert-grid { grid-template-columns: repeat(2, 1fr); }
   .testi-card { width: 280px; }
-  .servis-grid { grid-template-columns: 1fr 1fr; }
   .stats__inner { grid-template-columns: repeat(2, 1fr); }
   .home-prod-grid { grid-template-columns: repeat(2, 1fr); }
 

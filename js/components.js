@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // offset, and we don't want a layout jump when the navbar appears.
     if (page === '') {
       navHTML = navHTML
-        .replace('<nav class="navbar"', '<nav class="navbar is-hidden"')
+        .replace('<nav class="navbar"', '<nav class="navbar logo-hidden"')
         .replace('<div class="nav-spacer" aria-hidden="true"></div>', '');
     }
     navSlot.outerHTML = navHTML;

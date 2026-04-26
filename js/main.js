@@ -17,34 +17,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeHero = document.querySelector('.home-hero');
 
   if (navbar && homeHero) {
-    const heroObserver = new IntersectionObserver(
-      (entries) => {
-        const heroVisible = entries[0].isIntersecting;
-        // Hero on-screen  → topnav hidden,  sidenav visible
-        // Hero off-screen → topnav visible, sidenav hidden
-        navbar.classList.toggle('is-hidden', heroVisible);
-        sidenav?.classList.toggle('is-hidden', !heroVisible);
-        sidenavLogo?.classList.toggle('is-hidden', !heroVisible);
-      },
-      { threshold: 0 }  // fires as soon as a single pixel leaves/enters
-    );
-    heroObserver.observe(homeHero);
+    // Logo in nav only appears once the hero logo has scrolled off-screen
+    const heroLogo = homeHero.querySelector('.home-hero__img');
+    if (heroLogo) {
+      new IntersectionObserver(
+        (entries) => { navbar.classList.toggle('logo-hidden', entries[0].isIntersecting); },
+        { threshold: 0 }
+      ).observe(heroLogo);
+    }
   }
 
   // ─── ALL NAVS — HIDE ON FOOTER ─────────────────────────────
   // Sidenav, sidenav-logo AND the top navbar all fade / slide out
   // smoothly the moment the footer enters the viewport.
-  const footer      = document.querySelector('.footer');
-  const sidenav     = document.querySelector('.sidenav');
-  const sidenavLogo = document.querySelector('.sidenav-logo');
+  const footer = document.querySelector('.footer');
 
   if (footer) {
     const footerObserver = new IntersectionObserver(
       (entries) => {
         const entering = entries[0].isIntersecting;
-        // Sidenav visibility is owned entirely by the hero observer —
-        // touching it here causes a flicker when scrolling back from the
-        // footer, so we leave it alone.
         if (navbar && !homeHero) {
           // Non-home pages: topnav follows footer — hide when footer
           // is visible, reappear when footer leaves.
@@ -68,15 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     footerObserver.observe(footer);
   }
 
-  // ─── NAVBAR SUBTLE BORDER ON SCROLL ────────────────────────
-  if (navbar) {
-    window.addEventListener('scroll', () => {
-      navbar.style.borderBottom = window.scrollY > 40
-        ? '1px solid rgba(255,255,255,0.06)'
-        : 'none';
-    }, { passive: true });
-  }
-
   // ─── HERO PARALLAX ─────────────────────────────────────────
   const heroBg = document.querySelector('.home-hero__bg');
   if (heroBg && !noMotion) {
@@ -90,46 +72,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // ─── QIT PARALLAX ──────────────────────────────────────────
-  // Injects a real <div> per card instead of relying on ::before
-  // + CSS custom properties. Direct style.transform is guaranteed
-  // to work regardless of data-animate / inline transition-delay.
-  const QIT_IMAGES = [
-    'assets/images/produk-1.jpg',
-    'assets/images/produk-2.jpg',
-    'assets/images/produk-3.jpg',
-  ];
-  const qitItems = [...document.querySelectorAll('.qit__item')];
-  const qitBgs   = [];
+  // ─── QIT — HORIZONTAL SCROLL ───────────────────────────────
+  const qitPin   = document.querySelector('.qit-pin');
+  const qitTrack = document.getElementById('qit-track');
 
-  if (qitItems.length && !noMotion) {
-    qitItems.forEach((item, i) => {
-      const bg = document.createElement('div');
-      bg.className = 'qit__parallax-bg';
-      bg.style.backgroundImage = `url('${QIT_IMAGES[i % QIT_IMAGES.length]}')`;
-      item.classList.add('has-parallax-bg'); // hides ::before fallback
-      item.prepend(bg);
-      qitBgs.push(bg);
-    });
+  if (qitPin && qitTrack) {
+    const SLIDE_COUNT = qitTrack.querySelectorAll('.qit-slide').length;
+    const qitBgs = [...qitPin.querySelectorAll('.qit-bg')];
 
-    function updateQitParallax() {
-      const vh = window.innerHeight;
-      qitItems.forEach((item, i) => {
-        const rect     = item.getBoundingClientRect();
-        const center   = rect.top + rect.height / 2;
-        const progress = (center - vh / 2) / vh;
-        const ty       = Math.max(-150, Math.min(150, progress * 180));
-        qitBgs[i].style.transform = `translate3d(0,${ty.toFixed(1)}px,0)`;
-      });
+    function updateQit() {
+      const pinTop      = qitPin.getBoundingClientRect().top;
+      const totalScroll = qitPin.offsetHeight - window.innerHeight;
+      const scrolled    = Math.max(0, Math.min(-pinTop, totalScroll));
+      const progress    = totalScroll > 0 ? scrolled / totalScroll : 0;
+      const tx          = progress * (SLIDE_COUNT - 1) * window.innerWidth;
+
+      qitTrack.style.transform = `translateX(${-tx.toFixed(1)}px)`;
+
+      const activeIdx = Math.round(progress * (SLIDE_COUNT - 1));
+
+      qitBgs.forEach((bg, i) => bg.classList.toggle('is-active', i === activeIdx));
     }
 
     let rafQit = null;
     window.addEventListener('scroll', () => {
       if (rafQit) return;
-      rafQit = requestAnimationFrame(() => { updateQitParallax(); rafQit = null; });
+      rafQit = requestAnimationFrame(() => { updateQit(); rafQit = null; });
     }, { passive: true });
-
-    updateQitParallax();
+    updateQit();
   }
 
   // ─── ABOUT-HERO PARALLAX ───────────────────────────────────
