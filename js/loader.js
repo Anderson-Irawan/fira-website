@@ -13,7 +13,7 @@
   overlay.className = 'page-loader';
   overlay.innerHTML = `
     <img
-      src="assets/logo-fira.svg"
+      src="assets/logos/logotype-square.svg"
       alt="Fira"
       class="page-loader__logo"
     >

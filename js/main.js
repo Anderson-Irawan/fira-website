@@ -72,34 +72,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // ─── QIT — HORIZONTAL SCROLL ───────────────────────────────
-  const qitPin   = document.querySelector('.qit-pin');
-  const qitTrack = document.getElementById('qit-track');
+  // ─── HORIZONTAL SCROLL SECTIONS (.qit-pin) ─────────────────
+  // Generic — drives any number of pinned horizontal tracks on
+  // the same page (index: QIT values; about: LVM sections).
+  const hsPins = [...document.querySelectorAll('.qit-pin')];
 
-  if (qitPin && qitTrack) {
-    const SLIDE_COUNT = qitTrack.querySelectorAll('.qit-slide').length;
-    const qitBgs = [...qitPin.querySelectorAll('.qit-bg')];
+  if (hsPins.length) {
+    const hsInstances = hsPins.map(pinEl => {
+      const track = pinEl.querySelector('.qit-track');
+      if (!track) return null;
+      return {
+        pinEl,
+        track,
+        SLIDE_COUNT: track.querySelectorAll('.qit-slide').length,
+        bgs: [...pinEl.querySelectorAll('.qit-bg')],
+      };
+    }).filter(Boolean);
 
-    function updateQit() {
-      const pinTop      = qitPin.getBoundingClientRect().top;
-      const totalScroll = qitPin.offsetHeight - window.innerHeight;
-      const scrolled    = Math.max(0, Math.min(-pinTop, totalScroll));
-      const progress    = totalScroll > 0 ? scrolled / totalScroll : 0;
-      const tx          = progress * (SLIDE_COUNT - 1) * window.innerWidth;
+    function updateAllHs() {
+      hsInstances.forEach(({ pinEl, track, SLIDE_COUNT, bgs }) => {
+        const pinTop      = pinEl.getBoundingClientRect().top;
+        const totalScroll = pinEl.offsetHeight - window.innerHeight;
+        const scrolled    = Math.max(0, Math.min(-pinTop, totalScroll));
+        const progress    = totalScroll > 0 ? scrolled / totalScroll : 0;
+        const tx          = progress * (SLIDE_COUNT - 1) * window.innerWidth;
 
-      qitTrack.style.transform = `translateX(${-tx.toFixed(1)}px)`;
+        track.style.transform = `translateX(${-tx.toFixed(1)}px)`;
 
-      const activeIdx = Math.round(progress * (SLIDE_COUNT - 1));
-
-      qitBgs.forEach((bg, i) => bg.classList.toggle('is-active', i === activeIdx));
+        const activeIdx = Math.round(progress * (SLIDE_COUNT - 1));
+        bgs.forEach((bg, i) => bg.classList.toggle('is-active', i === activeIdx));
+      });
     }
 
-    let rafQit = null;
+    let rafHs = null;
     window.addEventListener('scroll', () => {
-      if (rafQit) return;
-      rafQit = requestAnimationFrame(() => { updateQit(); rafQit = null; });
+      if (rafHs) return;
+      rafHs = requestAnimationFrame(() => { updateAllHs(); rafHs = null; });
     }, { passive: true });
-    updateQit();
+    updateAllHs();
   }
 
   // ─── ABOUT-HERO PARALLAX ───────────────────────────────────
@@ -112,6 +122,19 @@ document.addEventListener('DOMContentLoaded', () => {
       rafAbout = requestAnimationFrame(() => {
         aboutHero.style.setProperty('--ahero-ty', `${(window.scrollY * 0.35).toFixed(1)}px`);
         rafAbout = null;
+      });
+    }, { passive: true });
+  }
+
+  // ─── PAGE-HERO PARALLAX (Produk / Projek) ──────────────────
+  const pageHero = document.querySelector('.page-hero');
+  if (pageHero && !noMotion) {
+    let rafPage = null;
+    window.addEventListener('scroll', () => {
+      if (rafPage) return;
+      rafPage = requestAnimationFrame(() => {
+        pageHero.style.setProperty('--phero-ty', `${(window.scrollY * 0.35).toFixed(1)}px`);
+        rafPage = null;
       });
     }, { passive: true });
   }

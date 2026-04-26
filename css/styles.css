@@ -479,6 +479,58 @@ button { cursor: pointer; }
 }
 
 /* =====================================================
+   HERO — INTERIOR PAGES (Produk, Projek)
+   ===================================================== */
+.page-hero {
+  background: var(--clr-black);
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: -20% 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+  opacity: 0.15;
+  transform: translateY(var(--phero-ty, 0px));
+  will-change: transform;
+  z-index: 0;
+}
+.page-hero--produk::before { background-image: url('../assets/images/produk-1.jpg'); }
+.page-hero--projek::before { background-image: url('../assets/images/pexels-rezwan-1145434.jpg'); }
+.page-hero__inner {
+  position: relative;
+  z-index: 1;
+  padding-inline: var(--pad-x);
+}
+.page-hero__eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-body-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clr-yellow);
+  margin-bottom: 16px;
+  animation: aniFadeIn 1s ease both 0.1s;
+}
+.page-hero__title {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.1;
+  color: var(--clr-white);
+  animation: aniFadeUp 0.85s ease both 0.35s;
+}
+
+/* =====================================================
    SPLIT SECTIONS (Latar Belakang, Visi, Misi)
    ===================================================== */
 .split {
@@ -494,7 +546,7 @@ button { cursor: pointer; }
 .split--lb {
   display: flex;
   flex-direction: column;
-  min-height: unset;
+  min-height: 100vh;
 }
 .split--lb .split__text {
   width: 100%;
@@ -604,7 +656,7 @@ button { cursor: pointer; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.15) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -617,6 +669,8 @@ button { cursor: pointer; }
   opacity: 0;
   transition: opacity 0.8s ease;
 }
+img.qit-bg { filter: grayscale(100%); }
+.qit-bg.is-active { opacity: 0.2; }
 .qit-bg.is-active { opacity: 1; }
 
 .qit-track {
@@ -649,8 +703,38 @@ button { cursor: pointer; }
 .qit-slide__body {
   font-size: var(--fs-body-lg);
   line-height: 1.7;
-  color: rgba(255,255,255,0.8);
+  color: var(--clr-white);
 }
+.qit-slide__body + .qit-slide__body { margin-top: 16px; }
+
+/* ── About page: QIT values as 3 side-by-side columns ── */
+.qit-static {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.qit-static__item {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-color: #111;
+  overflow: hidden;
+}
+.qit-static__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.15) 100%);
+  z-index: 1;
+}
+/* Stack title above body when in narrow columns */
+.qit-static .qit-slide__content {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 28px;
+  padding: 48px 40px;
+}
+.qit-static .qit-slide__right { width: auto; }
 
 /* =====================================================
    SERTIFIKASI
@@ -1087,32 +1171,60 @@ button { cursor: pointer; }
   letter-spacing: 0.08em;
 }
 
-/* About product overview */
-.home-products {
+/* ── PRODUK STICKY SPLIT ─────────────────────────────────────── */
+.prod-pin {
+  display: flex;
+  align-items: flex-start;
   background: var(--clr-cream);
-  padding: var(--sec-v) var(--pad-x);
 }
-.home-products__intro {
-  margin-bottom: 40px;
+.prod-pin__left {
+  position: sticky;
+  top: 0;
+  width: 38%;
+  flex-shrink: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px clamp(24px, 5vw, 80px);
 }
-.home-products__intro h2 {
+.prod-pin__title {
   font-family: var(--font-sans);
-  font-weight: 900;
-  font-size: clamp(20px, 2.5vw, 30px);
-  margin-bottom: 10px;
-}
-.home-products__intro .sub {
-  font-size: var(--fs-body-md);
-  font-weight: 600;
-  color: var(--clr-blue);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 6px;
-}
-.home-products__intro p {
-  font-size: var(--fs-body-lg);
-  line-height: 1.7;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(22px, 2.5vw, 34px);
+  line-height: 1;
   color: var(--clr-black);
+  margin-bottom: 28px;
+}
+.prod-pin__desc {
+  font-size: var(--fs-body-lg);
+  line-height: 1.75;
+  color: var(--clr-black);
+  margin-bottom: 48px;
+  opacity: 0.65;
+}
+.prod-pin__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-black);
+  text-decoration: none;
+  padding-bottom: 5px;
+  border-bottom: 2px solid currentColor;
+  width: fit-content;
+  transition: color var(--ease);
+}
+.prod-pin__cta:hover { color: var(--clr-blue); }
+.prod-pin__right {
+  flex: 1;
+  padding: 80px clamp(16px, 4vw, 60px) 80px 0;
+  min-width: 0;
 }
 .home-prod-grid {
   display: grid;
@@ -1168,9 +1280,10 @@ button { cursor: pointer; }
 .home-prod-card:hover .home-prod-card__label {
   color: var(--clr-white);
 }
-.home-produk-cta {
-  text-align: right;
-}
+/* Single-column square cards inside the sticky split */
+.prod-pin .home-prod-grid { margin-bottom: 0; grid-template-columns: 1fr; }
+.prod-pin .home-prod-card { aspect-ratio: 16 / 5; }
+.prod-pin .home-prod-card__label { font-size: clamp(18px, 2vw, 24px); }
 
 /* =====================================================
    PRODUCTS PAGE
@@ -1184,7 +1297,7 @@ button { cursor: pointer; }
 }
 .produk-header__title {
   font-family: var(--font-sans);
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(28px, 4vw, 52px);
 }
 
@@ -1601,6 +1714,11 @@ button { cursor: pointer; }
   .testi-card { width: 280px; }
   .stats__inner { grid-template-columns: repeat(2, 1fr); }
   .home-prod-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .prod-pin { flex-direction: column; }
+  .prod-pin__left { position: static; width: 100%; height: auto; padding: 60px var(--pad-x) 32px; }
+  .prod-pin__right { padding: 0 var(--pad-x) 60px; }
+  .prod-pin .home-prod-card { aspect-ratio: 4 / 3; }
 
   .prod-grid { grid-template-columns: repeat(2, 1fr); }
   .proj-grid { grid-template-columns: repeat(2, 1fr); }

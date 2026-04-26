@@ -6,7 +6,7 @@
   <meta name="base-url" content="">
   <title>Fira — Produsen Baja Ringan</title>
   <meta name="description" content="Tentang PT Bangun Citra Irawan — produsen baja ringan terpercaya di Indonesia Timur.">
-  <link rel="icon" href="assets/logos/logotype-square.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/logos/f-wing_1.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -75,7 +75,7 @@
           <img class="qit-bg" src="assets/images/pexels-kateryna-babaieva-1423213-3736102.jpg" alt="">
           <img class="qit-bg" src="assets/images/pexels-shamsuddin-habib-427046423-18293962.jpg" alt="">
         </div>
-        <div class="qit-track" id="qit-track">
+        <div class="qit-track">
           <div class="qit-slide">
             <div class="qit-slide__content">
               <div class="qit-slide__left">
@@ -102,7 +102,7 @@
                 <h3 class="qit-slide__title">Trustworthy</h3>
               </div>
               <div class="qit-slide__right">
-                <p class="qit-slide__body">Fira Trust pada saat ini telah membuat berbagai macam produk Truss dan Roof yang disesuaikan dengan kebutuhan pasar. Kami selalu menjamin menghasilkan produk yang berkualitas baik secara nasional maupun internasional.</p>
+                <p class="qit-slide__body">Fira menghadirkan berbagai produk yang telah dipercaya oleh pelanggan kami di seluruh Indonesia. Setiap produk dirancang dengan cermat untuk memenuhi kebutuhan pasar, sekaligus memenuhi standar kualitas nasional dan internasional yang ketat.</p>
               </div>
             </div>
           </div>
@@ -146,34 +146,23 @@
     </section>
 
     <!-- ── PRODUK OVERVIEW ── -->
-    <section class="home-products" aria-labelledby="ap-heading">
-      <div class="container">
+    <section class="prod-pin" aria-labelledby="ap-heading">
 
-        <div class="sec-header" data-animate>
-            <h2 class="sec-title" id="ap-heading">Produk</h2>
-        </div>
-
-        <div class="home-products__intro">
-
-          <p>
-            Baja yang kita kenal dan umum adalah Baja Siku, Baja WF, H, I dst, berbeda
-            dengan baja konvensional tersebut, baja ringan merupakan baja mutu tinggi yang
-            memiliki bobot ringan dan sangat tipis, namun memiliki kekuatan setara dengan
-            baja konvensional.
-          </p>
-        </div>
-
-        <!-- Kelebihan baja ringan -->
-        <p style="font-weight:700; margin-bottom:16px; color:var(--clr-blue);">
-          Kelebihan Baja Ringan (+)
+      <!-- LEFT: sticky panel — stays pinned while cards scroll -->
+      <div class="prod-pin__left">
+        <h2 class="prod-pin__title" id="ap-heading">Produk</h2>
+        <p class="prod-pin__desc">
+          Baja ringan adalah baja mutu tinggi yang ringan dan tipis,
+          namun memiliki kekuatan setara baja konvensional —
+          100% dapat didaur ulang dan diproduksi sesuai standar nasional.
         </p>
-        <p style="margin-bottom:28px;line-height:1.7">
-          Kekuatan tertinggi di antara semua bahan konstruksi. // 100% bisa didaur ulang. // 
-          Tidak akan membias dan tidak pernah berubah. // Terbuat dari bahan baku dan
-          berkonstruksi secara standar nasional.
-        </p>
+        <a href="produk.html" class="prod-pin__cta">
+          Lihat Semua Produk <span aria-hidden="true">→</span>
+        </a>
+      </div>
 
-        <!-- Product grid — one card per category -->
+      <!-- RIGHT: 2-col grid of square cards -->
+      <div class="prod-pin__right">
         <div class="home-prod-grid" data-cms="home-products" data-stagger>
           <!-- Populated by cms.js -->
           <a href="produk.html#atap"      class="home-prod-card"><span class="home-prod-card__label">Atap</span></a>
@@ -183,11 +172,8 @@
           <a href="produk.html#wallpanel" class="home-prod-card"><span class="home-prod-card__label">Wallpanel</span></a>
           <a href="produk.html#pvc"       class="home-prod-card"><span class="home-prod-card__label">PVC</span></a>
         </div>
-
-        <div class="home-produk-cta" style="margin-top: 16px;">
-          <a href="produk.html" class="cat-toggle">Tampil Katalog Lengkap</a>
-        </div>
       </div>
+
     </section>
 
     <!-- ── SERTIFIKASI ── -->
