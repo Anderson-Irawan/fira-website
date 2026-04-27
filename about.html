@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="base-url" content="">
-  <title>About — FIRA</title>
+  <title>Profil — FIRA</title>
   <meta name="description" content="PT Bangun Citra Irawan — Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.">
   <!-- Open Graph -->
   <meta property="og:title" content="FIRA — Produsen Baja Ringan">
@@ -18,7 +18,7 @@
 
   <!-- ── TOP NAV (injected by components.js) ── -->
   <div id="nav-placeholder" data-page="about"></div>
-  <script>!function(){try{var c=sessionStorage.getItem('fira-nav'),s=document.getElementById('nav-placeholder');if(!c||!s)return;var p=s.dataset.page||'',h=c;if(p)h=h.replace('href="'+p+'.html" class="navbar__link"','href="'+p+'.html" class="navbar__link active"');else{h=h.replace('class="navbar"','class="navbar is-hidden"').replace('<div class="nav-spacer" aria-hidden="true"></div>','');}s.outerHTML=h;}catch(e){}}();</script>
+  <script>!function(){try{var c=sessionStorage.getItem('fira-nav'),s=document.getElementById('nav-placeholder');if(!c||!s)return;var p=s.dataset.page||'',h=c;if(p){h=h.replace('href="'+p+'.html" class="navbar__link"','href="'+p+'.html" class="navbar__link active"');h=h.replace('class="navbar"','class="navbar navbar--transparent"');}else{h=h.replace('class="navbar"','class="navbar is-hidden"').replace('<div class="nav-spacer" aria-hidden="true"></div>','');}s.outerHTML=h;}catch(e){}}();</script>
 
   <main>
 
@@ -150,7 +150,7 @@
   <!-- ── FOOTER (injected by components.js) ── -->
   <div id="footer-placeholder" data-footer="v2"></div>
 
-  <script src="js/loader.js"></script>
-  <script src="js/components.js"></script>
-  <script src="js/cms.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/loader.js" defer></script>
+  <script src="js/components.js" defer></script>
+  <script src="js/cms.js" defer></script>
+  <script src="js/main.js" defer></script>

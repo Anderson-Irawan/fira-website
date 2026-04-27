@@ -7,9 +7,8 @@
 
 /* =====================================================
    SELF-HOSTED FONTS
-   Fira Sans     — primary UI, body, headings, logo
-   IBM Plex Sans — italic section titles, addresses,
-                   form labels, alternate accents
+   Fira Sans — primary UI, body, headings, logo
+   DM Sans   — body copy, form labels, alternate accents
    ===================================================== */
 
 /* Fira Sans */
@@ -32,9 +31,17 @@
 @font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-Black.ttf') format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
 @font-face { font-family: 'Fira Sans'; src: url('../fonts/fira-sans/FiraSans-BlackItalic.ttf') format('truetype'); font-weight: 900; font-style: italic; font-display: swap; }
 
-/* IBM Plex Sans (variable font: weights 100–700) */
-@font-face { font-family: 'IBM Plex Sans'; src: url('../fonts/ibm-plex-sans/IBMPlexSans-VariableFont_wdth%2Cwght.ttf') format('truetype-variations'), url('../fonts/ibm-plex-sans/IBMPlexSans-VariableFont_wdth%2Cwght.ttf') format('truetype'); font-weight: 100 700; font-style: normal; font-display: swap; }
-@font-face { font-family: 'IBM Plex Sans'; src: url('../fonts/ibm-plex-sans/IBMPlexSans-Italic-VariableFont_wdth%2Cwght.ttf') format('truetype-variations'), url('../fonts/ibm-plex-sans/IBMPlexSans-Italic-VariableFont_wdth%2Cwght.ttf') format('truetype'); font-weight: 100 700; font-style: italic; font-display: swap; }
+/* DM Sans */
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-LightItalic.ttf') format('truetype'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans/DMSans-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
 
 :root {
   /* --- COLOR PALETTE --- */
@@ -48,11 +55,10 @@
 
   /* --- TYPOGRAPHY ---
      --font-sans  → Fira Sans: body, nav, buttons, stats, logo, "TRUSTWORTHY."
-     --font-mono  → IBM Plex Sans: italic section headings, addresses,
-                    form labels, alternate accents
+     --font-mono  → DM Sans: body copy, form labels, alternate accents
   */
   --font-sans: 'Fira Sans', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'DM Sans', system-ui, sans-serif;
 
   /* --- LAYOUT --- */
   --max-w:      1200px;
@@ -62,9 +68,9 @@
   --sec-v-sm:   48px;
 
   /* --- BODY FONT SCALE --- */
-  --fs-body-sm: 12px;   /* meta/micro: tags, captions, eyebrows */
-  --fs-body-md: 14px;   /* standard: nav, buttons, labels, cards */
-  --fs-body-lg: 16px;   /* emphasized: main paragraph copy       */
+  --fs-body-sm: 14px;   /* meta/micro: tags, captions, eyebrows */
+  --fs-body-md: 18px;   /* standard: nav, buttons, labels, cards */
+  --fs-body-lg: 22px;   /* emphasized: main paragraph copy       */
 
   /* --- MISC --- */
   --radius:     6px;
@@ -76,7 +82,7 @@
    RESET
    ===================================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; background-color: #f7f4eb; }
+html { scroll-behavior: smooth; font-size: 16px; background-color: #120F0D; }
 body {
   font-family: var(--font-mono);
   font-weight: 400;
@@ -132,8 +138,8 @@ button { cursor: pointer; }
    .text-label → IBM Plex Sans 600     (nav, form labels, card names, eyebrow text)
    ===================================================== */
 .h-display  { font-family: var(--font-sans); font-style: normal; font-weight: 900; line-height: 1.05; }
-.h-section  { font-family: var(--font-sans); font-style: italic; font-weight: 700; line-height: 1.1;  }
-.h-eyebrow  { font-family: var(--font-sans); font-style: italic; font-weight: 500; line-height: 1.2;  }
+.h-section  { font-family: var(--font-sans); font-style: normal; font-weight: 700; line-height: 1.1;  }
+.h-eyebrow  { font-family: var(--font-sans); font-style: normal; font-weight: 500; line-height: 1.2;  }
 .text-body  { font-family: var(--font-mono); font-style: normal; font-weight: 400; font-size: var(--fs-body-lg); }
 .text-label { font-family: var(--font-mono); font-style: normal; font-weight: 600; font-size: var(--fs-body-md); }
 
@@ -147,7 +153,6 @@ button { cursor: pointer; }
 }
 .sec-title {
   font-family: var(--font-sans);
-  font-style: italic;
   font-weight: 700;
   font-size: clamp(22px, 2.5vw, 34px);
   line-height: 1.1;
@@ -178,6 +183,11 @@ button { cursor: pointer; }
   transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1), background-color 0.4s ease;
 }
 .navbar.logo-hidden { background: transparent; }
+
+/* Transparent state — hero pages: logo stays visible, bg fades in on scroll */
+.navbar--transparent {
+  background: transparent;
+}
 
 /* Hidden state — slides up out of view (used on home page hero) */
 .navbar.is-hidden {
@@ -218,9 +228,8 @@ button { cursor: pointer; }
    The outer <a> clips to one line; on hover the inner wrapper
    slides up to reveal the yellow duplicate beneath it.           */
 .navbar__link {
-  font-size: var(--fs-body-md);
+  font-size: var(--fs-body-sm);
   font-weight: 600;
-  letter-spacing: 0.03em;
   display: block;
   overflow: hidden;
   height: 1em;
@@ -391,7 +400,6 @@ button { cursor: pointer; }
 .footer__col-title {
   font-size: var(--fs-body-md);
   font-weight: 600;
-  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--clr-white);
   margin-bottom: 14px;
@@ -406,7 +414,7 @@ button { cursor: pointer; }
 }
 .footer__col li + li { margin-top: 4px; }
 .footer__col a {
-  font-size: var(--fs-body-md);
+  font-size: var(--fs-body-sm);
   color: var(--clr-white);
   transition: color var(--ease);
 }
@@ -421,7 +429,7 @@ button { cursor: pointer; }
   padding-top: 8px;
 }
 .footer__contact p {
-  font-size: var(--fs-body-md);
+  font-size: var(--fs-body-sm);
   color: var(--clr-white);
   line-height: 2;
 }
@@ -432,7 +440,8 @@ button { cursor: pointer; }
 .about-hero {
   background: var(--clr-black);
   padding: 80px var(--pad-x) 88px;
-  min-height: 92vh;
+  margin-top: calc(-1 * var(--nav-h));
+  min-height: calc(92vh + var(--nav-h));
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -469,7 +478,6 @@ button { cursor: pointer; }
   user-select: none;
 }
 .about-hero__quote {
-  font-style: italic;
   font-family: var(--font-sans);
   font-weight: 300;
   letter-spacing: -2px;
@@ -483,7 +491,9 @@ button { cursor: pointer; }
    ===================================================== */
 .page-hero {
   background: var(--clr-black);
-  min-height: 90vh;
+  margin-top: calc(-1 * var(--nav-h));
+  min-height: calc(90vh + var(--nav-h));
+  padding-top: var(--nav-h);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -594,7 +604,6 @@ button { cursor: pointer; }
 }
 
 .split__heading {
-  font-style: italic;
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: clamp(22px, 2.5vw, 34px);
@@ -882,7 +891,7 @@ img.qit-bg { filter: grayscale(100%); }
   margin-bottom: 14px;
 }
 .testi-card__text {
-  font-size: var(--fs-body-md);
+  font-size: var(--fs-body-sm);
   line-height: 1.7;
   color: var(--clr-black);
 }
@@ -918,7 +927,6 @@ img.qit-bg { filter: grayscale(100%); }
   font-family: var(--font-mono);
   font-size: clamp(13px, 1.4vw, 16px);
   font-weight: 400;
-  letter-spacing: 0.12em;
   color: var(--clr-white);
 }
 
@@ -1030,13 +1038,16 @@ img.qit-bg { filter: grayscale(100%); }
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
 }
 .home-hero__tagline {
-  max-width: 380px;
+  max-width: 50vw;
   margin-left: 2.5vw;
-  font-size: var(--fs-body-md);
-  line-height: 1.7;
+  font-size: clamp(22px, 3vw, 38px);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -2px;
+  line-height: 1.2;
   color: var(--clr-white);
 }
 
@@ -1164,11 +1175,10 @@ img.qit-bg { filter: grayscale(100%); }
   line-height: 1;
 }
 .stat__label {
-  font-size: var(--fs-body-sm);
-  font-weight: 600;
+  font-size: var(--fs-body-md);
+  font-weight: 500;
   color: var(--clr-white);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 
 /* ── PRODUK STICKY SPLIT ─────────────────────────────────────── */
@@ -1191,7 +1201,6 @@ img.qit-bg { filter: grayscale(100%); }
 .prod-pin__title {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-style: italic;
   font-size: clamp(22px, 2.5vw, 34px);
   line-height: 1;
   color: var(--clr-black);
@@ -1208,10 +1217,9 @@ img.qit-bg { filter: grayscale(100%); }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-weight: 700;
   font-size: 13px;
-  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--clr-black);
   text-decoration: none;
@@ -1272,7 +1280,6 @@ img.qit-bg { filter: grayscale(100%); }
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 18px;
-  font-style: italic;
   color: var(--clr-black);
   width: 100%;
   transition: color var(--ease);
@@ -1306,7 +1313,7 @@ img.qit-bg { filter: grayscale(100%); }
   max-width: 800px;
   margin-inline: auto;
   padding-inline: var(--pad-x);
-  margin-bottom: 56px;
+  margin-top: 8vh;
 }
 .search-bar {
   display: flex;
@@ -1337,7 +1344,7 @@ img.qit-bg { filter: grayscale(100%); }
 .catalogue {
   max-width: var(--max-w);
   margin-inline: auto;
-  padding: 0 var(--pad-x) 80px;
+  padding: 8vh var(--pad-x) 8vh;
 }
 .cat-section {
   margin-bottom: 60px;
@@ -1352,7 +1359,6 @@ img.qit-bg { filter: grayscale(100%); }
 }
 .cat-name {
   font-family: var(--font-sans);
-  font-style: italic;
   font-weight: 700;
   font-size: clamp(22px, 2.5vw, 34px);
 }
@@ -1374,7 +1380,6 @@ img.qit-bg { filter: grayscale(100%); }
   font-family: var(--font-mono);
   font-size: var(--fs-body-sm);
   font-weight: 600;
-  letter-spacing: 0.05em;
   cursor: pointer;
   border-radius: var(--radius);
   transition: background var(--ease), color var(--ease);
@@ -1419,9 +1424,16 @@ img.qit-bg { filter: grayscale(100%); }
   transition: transform var(--ease), box-shadow var(--ease);
 }
 .prod-card:hover {
+  transition: all 0.2s ease;
   transform: translateY(-4px);
   box-shadow: var(--shadow);
+  background: var(--clr-blue);
+  color: var(--clr-white);
+  .prod-card__spec {color: var(--clr-white);}
 }
+
+
+
 .prod-card__thumb {
   aspect-ratio: 1;
   background: var(--clr-gray);
@@ -1434,7 +1446,7 @@ img.qit-bg { filter: grayscale(100%); }
 }
 .prod-card__thumb img { width: 100%; height: 100%; object-fit: cover; }
 .prod-card__info { padding: 12px 14px 14px; }
-.prod-card__name { font-weight: 600; font-size: var(--fs-body-md); margin-bottom: 3px; }
+.prod-card__name { font-weight: 500; font-size: var(--fs-body-lg); margin-bottom: 3px; }
 .prod-card__spec { font-size: var(--fs-body-sm); color: var(--clr-black); }
 
 /* ── Project catalogue (projek.html) ───────────────────── */
@@ -1548,7 +1560,6 @@ img.qit-bg { filter: grayscale(100%); }
   padding: 14px 36px;
   font-weight: 600;
   font-size: var(--fs-body-md);
-  letter-spacing: 0.04em;
   border-radius: var(--radius);
   transition: opacity var(--ease), transform var(--ease);
 }
@@ -1600,7 +1611,7 @@ img.qit-bg { filter: grayscale(100%); }
   padding: 64px 56px;
 }
 .map-split__title {
-  font-style: italic;
+
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: clamp(22px, 2.5vw, 34px);
@@ -1623,7 +1634,6 @@ img.qit-bg { filter: grayscale(100%); }
   border-top: 1px solid rgba(255,255,255,0.2);
 }
 .map-hours__title {
-  font-style: italic;
   font-weight: 700;
   font-family: var(--font-sans);
   font-size: clamp(22px, 2.5vw, 34px);
@@ -1641,12 +1651,10 @@ img.qit-bg { filter: grayscale(100%); }
   font-weight: 600;
   color: var(--clr-yellow);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
   margin-bottom: 6px;
 }
 .hours__time {
   font-size: var(--fs-body-md);
-  font-weight: 900;
   color: var(--clr-white);
 }
 
@@ -1839,7 +1847,6 @@ main    { view-transition-name: page-main; }
   color: var(--clr-white);
   padding: 11px 14px;
   font-size: var(--fs-body-md);
-  font-family: var(--font-sans);
   transition: border-color 0.2s ease;
 }
 .ksb-form input::placeholder,
@@ -1922,32 +1929,29 @@ main    { view-transition-name: page-main; }
 
 /* Hours */
 .ksb__hours-title {
-  font-family: var(--font-mono);
-  font-style: italic;
+  font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(14px, 1.4vw, 18px);
+  font-size: var(--fs-body-lg);
   color: var(--clr-white);
   margin-bottom: 18px;
 }
 .ksb__hours-rows {
-  display: flex;
+  margin-top: 0.5vh;
   gap: 24px;
   flex-wrap: wrap;
 }
 .ksb__hours-rows .hours__day {
-  font-size: 10px;
-  color: rgba(255,255,255,0.55);
+  font-size: 0.8em;
+  color: rgba(255,255,255,0.5);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin: 3vh 0 2px;
 }
 .ksb__hours-rows .hours__time {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-family: var(--font-mono);
+  font-size: var(--fs-body-md);
   color: var(--clr-white);
 }
-.ksb__hours-rows .hours__time--closed { color: var(--clr-yellow); }
 
 /* ── Responsive ── */
 @media (max-width: 960px) {

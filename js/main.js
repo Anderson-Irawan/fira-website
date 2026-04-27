@@ -126,6 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // ─── TRANSPARENT NAVBAR ON HERO PAGES ─────────────────────
+  // about, produk, projek: navbar starts transparent over the
+  // hero, then fades to solid once the hero leaves the viewport.
+  const interiorHero = document.querySelector('.about-hero, .page-hero');
+  if (interiorHero && navbar) {
+    navbar.classList.add('navbar--transparent');
+    new IntersectionObserver(
+      ([entry]) => {
+        navbar.classList.toggle('navbar--transparent', entry.isIntersecting);
+      },
+      { threshold: 0 }
+    ).observe(interiorHero);
+  }
+
   // ─── PAGE-HERO PARALLAX (Produk / Projek) ──────────────────
   const pageHero = document.querySelector('.page-hero');
   if (pageHero && !noMotion) {

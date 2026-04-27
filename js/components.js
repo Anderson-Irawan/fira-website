@@ -48,7 +48,7 @@ const LOGO_FOOTER = `<img src="assets/logos/logotype.svg" alt="Fira" class="foot
 const NAV_LINKS = [
   { id: 'produk',  label: 'PRODUK',  href: 'produk.html' },
   { id: 'projek',  label: 'PROJEK',  href: 'projek.html' },
-  { id: 'about',   label: 'ABOUT',   href: 'about.html'  },
+  { id: 'about',   label: 'PROFIL',  href: 'about.html'  },
   { id: 'kontak',  label: 'KONTAK',  href: 'kontak.html' },
 ];
 
@@ -189,7 +189,7 @@ function renderFooter() {
         <ul>${produkLinks}</ul>
       </div>
       <div class="footer__col">
-        <a href="about.html" class="footer__col-title footer__col-title--link">About</a>
+        <a href="about.html" class="footer__col-title footer__col-title--link">Profil</a>
         <ul>${aboutLinks}</ul>
       </div>
       <div class="footer__col footer__contact">
@@ -254,7 +254,7 @@ function renderFooterV2() {
         <ul>${projekLinks}</ul>
       </div>
       <div class="footer__col">
-        <a href="about.html" class="footer__col-title footer__col-title--link">About</a>
+        <a href="about.html" class="footer__col-title footer__col-title--link">Profil</a>
         <ul>${aboutLinks}</ul>
       </div>
       <div class="footer__col footer__contact">
@@ -324,17 +324,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const ksbClose = document.getElementById('ksb-close');
 
   function openSidebar() {
+    const scrollbarW = window.innerWidth - document.documentElement.clientWidth;
+    const navbar = document.querySelector('.navbar');
+    document.body.style.paddingRight = scrollbarW + 'px';
+    if (navbar) navbar.style.right = scrollbarW + 'px';
+    document.body.style.overflow = 'hidden';
     sidebar.classList.add('is-open');
     overlay.classList.add('is-open');
     sidebar.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
     ksbClose.focus();
   }
   function closeSidebar() {
+    const navbar = document.querySelector('.navbar');
     sidebar.classList.remove('is-open');
     overlay.classList.remove('is-open');
     sidebar.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    if (navbar) navbar.style.right = '';
   }
 
   // Intercept every Kontak link across nav + footer
