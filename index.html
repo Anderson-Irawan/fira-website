@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,10 +19,6 @@
 
     <!-- ── HERO ── -->
     <section class="home-hero" aria-label="Hero">
-      <!--
-        Replace the img src below with a real factory/industrial photo.
-        Recommended: high-resolution landscape photo, dark tones.
-      -->
       <img
         class="home-hero__bg"
         src="assets/images/hero-img.jpg"
@@ -31,13 +27,13 @@
       >
       <div class="home-hero__overlay" aria-hidden="true"></div>
       <div class="home-hero__content">
-        
+
         <div class="home-hero__img">
           <img src="assets/logos/logotype-square.svg">
         </div>
 
-        <p class="home-hero__tagline">
-          PT Bangun Citra Irawan adalah produsen tunggal atau baja ringan Fira
+        <p class="home-hero__tagline" data-i18n="home.hero.tagline">
+          PT Bangun Citra Irawan adalah produsen tunggal atau baja ringan "Fira"
           yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.
         </p>
       </div>
@@ -49,12 +45,12 @@
         <p class="trustworthy__pre">We are ...</p>
         <h1 class="trustworthy__word" id="trust-heading" aria-label="QUALITY, INNOVATION, TRUSTWORTHY."><span id="typewriter-text"></span><span class="typewriter-cursor" aria-hidden="true">|</span></h1>
         <div class="trustworthy__body">
-          <p>
+          <p data-i18n-html="home.trust.body1">
             Baja ringan atau yang familiar kita sebut dengan <strong>Galvalume / Zincalume</strong>
             pada akhir-akhir ini mempunyai peranan yang penting dalam pembangunan
             perumahan maupun bangunan-bangunan tipis lainnya.
           </p>
-          <p>
+          <p data-i18n="home.trust.body2">
             Di rumahannya ini, banyak kebutuhan untuk bangunan yang membutuhkan dimensi
             yang lebar atau lantai yang tidak terlalu tinggi dan tidak terlalu berat.
             Rangka atap berbahan baja ringan dapat dibuat dengan rangka baja ringan karena
@@ -82,7 +78,7 @@
                 <h3 class="qit-slide__title">Quality</h3>
               </div>
               <div class="qit-slide__right">
-                <p class="qit-slide__body">Pabrik kami dilengkapi dengan fasilitas produksi yang lengkap dan berteknologi, seperti mesin roll-forming, crane, forklift, dan mesin slitting untuk memproduksi galvalume dengan kualitas terbaik. Kapasitas produksi mencapai 400 ton per bulan dengan tenaga kerja lebih dari 100 orang.</p>
+                <p class="qit-slide__body" data-i18n="qit.quality.body">Pabrik kami dilengkapi dengan fasilitas produksi yang lengkap dan berteknologi, seperti mesin roll-forming, crane, forklift, dan mesin slitting untuk memproduksi galvalume dengan kualitas terbaik. Kapasitas produksi mencapai 400 ton per bulan dengan tenaga kerja lebih dari 100 orang.</p>
               </div>
             </div>
           </div>
@@ -92,7 +88,7 @@
                 <h3 class="qit-slide__title">Innovation</h3>
               </div>
               <div class="qit-slide__right">
-                <p class="qit-slide__body">Inovasi dan produk yang unggul adalah keistimewaan kami. Kami terus berusaha untuk lebih baik, berinovasi dalam menghasilkan produk maupun layanan kepada pelanggan. Kami yakin bahwa kami harus didukung oleh pelayanan terbaik sehingga kami dapat semakin mantap dan selalu menjadi yang terdepan.</p>
+                <p class="qit-slide__body" data-i18n="qit.innovation.body">Inovasi dan produk yang unggul adalah keistimewaan kami. Kami terus berusaha untuk lebih baik, berinovasi dalam menghasilkan produk maupun layanan kepada pelanggan. Kami yakin bahwa kami harus didukung oleh pelayanan terbaik sehingga kami dapat semakin mantap dan selalu menjadi yang terdepan.</p>
               </div>
             </div>
           </div>
@@ -102,7 +98,7 @@
                 <h3 class="qit-slide__title">Trustworthy</h3>
               </div>
               <div class="qit-slide__right">
-                <p class="qit-slide__body">Fira menghadirkan berbagai produk yang telah dipercaya oleh pelanggan kami di seluruh Indonesia. Setiap produk dirancang dengan cermat untuk memenuhi kebutuhan pasar, sekaligus memenuhi standar kualitas nasional dan internasional yang ketat.</p>
+                <p class="qit-slide__body" data-i18n="qit.trust.body">Fira menghadirkan berbagai produk yang telah dipercaya oleh pelanggan kami di seluruh Indonesia. Setiap produk dirancang dengan cermat untuk memenuhi kebutuhan pasar, sekaligus memenuhi standar kualitas nasional dan internasional yang ketat.</p>
               </div>
             </div>
           </div>
@@ -125,7 +121,7 @@
     <section class="servis section" aria-labelledby="servis-heading">
       <div class="container">
         <div class="sec-header" data-animate>
-          <h2 class="sec-title" id="servis-heading">Servis Kita</h2>
+          <h2 class="sec-title" id="servis-heading" data-i18n="section.services">Servis Kita</h2>
         </div>
         <div class="servis-grid" data-cms="services" data-stagger>
           <!-- Populated by cms.js -->
@@ -150,14 +146,14 @@
 
       <!-- LEFT: sticky panel — stays pinned while cards scroll -->
       <div class="prod-pin__left">
-        <h2 class="sec-title" id="ap-heading" style="margin-bottom: 2vh;">Produk</h2>
-        <p class="prod-pin__desc">
+        <h2 class="sec-title" id="ap-heading" style="margin-bottom: 2vh;" data-i18n="section.products">Produk</h2>
+        <p class="prod-pin__desc" data-i18n="products.desc">
           Baja ringan adalah baja mutu tinggi yang ringan dan tipis,
           namun memiliki kekuatan setara baja konvensional —
           100% dapat didaur ulang dan diproduksi sesuai standar nasional.
         </p>
         <a href="produk.html" class="prod-pin__cta">
-          Lihat Semua Produk <span aria-hidden="true">→</span>
+          <span data-i18n="products.cta">Lihat Semua Produk</span> <span aria-hidden="true">→</span>
         </a>
       </div>
 
@@ -180,7 +176,7 @@
     <section class="sertifikasi section" id="sertifikasi" aria-labelledby="sert2-heading">
       <div class="container">
         <div class="sec-header" data-animate>
-          <h2 class="sec-title" id="sert2-heading">Sertifikasi</h2>
+          <h2 class="sec-title" id="sert2-heading" data-i18n="section.certifications">Sertifikasi</h2>
         </div>
         <div class="cert-grid" data-cms="certifications" data-stagger>
           <!-- Populated by cms.js -->
@@ -196,7 +192,7 @@
     <section class="testimoni section--sm" id="testimoni" aria-labelledby="testi2-heading">
       <div class="container">
         <div class="sec-header" data-animate>
-          <h2 class="sec-title" id="testi2-heading">Testimoni</h2>
+          <h2 class="sec-title" id="testi2-heading" data-i18n="section.testimonials">Testimoni</h2>
         </div>
         <div class="testi-grid" data-cms="testimonials" data-stagger>
           <!-- Populated by cms.js -->
@@ -212,5 +208,6 @@
   <script src="js/components.js" defer></script>
   <script src="js/cms.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/i18n.js" defer></script>
 </body>
 </html>

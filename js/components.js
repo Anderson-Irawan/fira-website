@@ -46,10 +46,10 @@ const LOGO_FOOTER = `<img src="assets/logos/logotype.svg" alt="Fira" class="foot
 
 // ─── NAV CONFIG ──────────────────────────────────────────────
 const NAV_LINKS = [
-  { id: 'produk',  label: 'PRODUK',  href: 'produk.html' },
-  { id: 'projek',  label: 'PROJEK',  href: 'projek.html' },
-  { id: 'about',   label: 'PROFIL',  href: 'about.html'  },
-  { id: 'kontak',  label: 'KONTAK',  href: 'kontak.html' },
+  { id: 'produk',  label: 'PRODUK',  href: 'produk.html',  i18nKey: 'nav.produk' },
+  { id: 'projek',  label: 'PROJEK',  href: 'projek.html',  i18nKey: 'nav.projek' },
+  { id: 'about',   label: 'PROFIL',  href: 'about.html',   i18nKey: 'nav.about'  },
+  { id: 'kontak',  label: 'KONTAK',  href: 'kontak.html',  i18nKey: 'nav.kontak' },
 ];
 
 // ─── FOOTER CONFIG ───────────────────────────────────────────
@@ -86,18 +86,18 @@ function renderKontakSidebar() {
   return `
 <aside id="kontak-sidebar" class="ksb" role="dialog" aria-label="Hubungi Kami" aria-modal="true" aria-hidden="true">
   <div class="ksb__form-col">
-    <h2 class="ksb__title">Kerja Sama<br>dengan Fira</h2>
+    <h2 class="ksb__title" data-i18n-html="kontak.title">Kerja Sama<br>dengan Fira</h2>
     <form id="ksb-form" class="ksb-form" action="#" method="POST" novalidate>
-      <div><input type="text"  name="nama"       placeholder="Nama ..."         required autocomplete="name"></div>
-      <div><input type="text"  name="departemen" placeholder="Departemen ..."></div>
-      <div><input type="tel"   name="telepon"    placeholder="Nomor telfon ..."          autocomplete="tel"></div>
-      <div><input type="email" name="email"      placeholder="Email ..."        required autocomplete="email"></div>
-      <div><textarea name="deskripsi" placeholder="Isi Pesan ..." rows="4"></textarea></div>
+      <div><input type="text"  name="nama"       placeholder="Nama ..."         required autocomplete="name"  data-i18n-placeholder="kontak.name.placeholder"></div>
+      <div><input type="text"  name="departemen" placeholder="Departemen ..."                                  data-i18n-placeholder="kontak.dept.placeholder"></div>
+      <div><input type="tel"   name="telepon"    placeholder="Nomor telfon ..."          autocomplete="tel"    data-i18n-placeholder="kontak.phone.placeholder"></div>
+      <div><input type="email" name="email"      placeholder="Email ..."        required autocomplete="email"  data-i18n-placeholder="kontak.email.placeholder"></div>
+      <div><textarea name="deskripsi" placeholder="Isi Pesan ..." rows="4"                                     data-i18n-placeholder="kontak.msg.placeholder"></textarea></div>
       <button type="submit" class="ksb__submit">
-        <span>KIRIM</span>
+        <span data-i18n="kontak.send">KIRIM</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
-      <p id="ksb-success" class="ksb__success" role="status" aria-live="polite">✓ Pesan berhasil terkirim!</p>
+      <p id="ksb-success" class="ksb__success" role="status" aria-live="polite" data-i18n="kontak.success">✓ Pesan berhasil terkirim!</p>
     </form>
   </div>
   <div class="ksb__info-col">
@@ -110,11 +110,11 @@ function renderKontakSidebar() {
     </div>
     <div class="ksb__divider" role="separator"></div>
     <div class="ksb__section">
-      <h3 class="ksb__hours-title">Jam Operasional</h3>
+      <h3 class="ksb__hours-title" data-i18n="kontak.hours">Jam Operasional</h3>
       <div class="ksb__hours-rows">
-        <div><p class="hours__day">Senin — Jumat</p><p class="hours__time">08:00 — 17:00</p></div>
-        <div><p class="hours__day">Sabtu</p><p class="hours__time">08:00 — 16:00</p></div>
-        <div><p class="hours__day">Minggu</p><p class="hours__time hours__time--closed">TUTUP</p></div>
+        <div><p class="hours__day" data-i18n="kontak.weekdays">Senin — Jumat</p><p class="hours__time">08:00 — 17:00</p></div>
+        <div><p class="hours__day" data-i18n="kontak.saturday">Sabtu</p><p class="hours__time">08:00 — 16:00</p></div>
+        <div><p class="hours__day" data-i18n="kontak.sunday">Minggu</p><p class="hours__time hours__time--closed" data-i18n="kontak.closed">TUTUP</p></div>
       </div>
     </div>
   </div>
@@ -126,12 +126,12 @@ function renderKontakSidebar() {
  * Standard top navbar — used on About, Produk, Kontak pages.
  */
 function renderNav(activePage = '') {
-  const links = NAV_LINKS.map(({ id, label, href }) =>
+  const links = NAV_LINKS.map(({ id, label, href, i18nKey }) =>
     `<li>
       <a href="${href}" class="navbar__link${activePage === id ? ' active' : ''}">
         <span class="navbar__link-inner">
-          <span>${label}</span>
-          <span aria-hidden="true">${label}</span>
+          <span data-i18n="${i18nKey}">${label}</span>
+          <span aria-hidden="true" data-i18n="${i18nKey}">${label}</span>
         </span>
       </a>
     </li>`
@@ -142,6 +142,21 @@ function renderNav(activePage = '') {
   <div class="navbar__inner">
     <a href="index.html" class="navbar__logo" aria-label="Fira — Home">${LOGO_NAV}</a>
     <ul class="navbar__links">${links}</ul>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+      <span class="lang-toggle__opt" data-lang="en">
+        <span class="lang-toggle__opt-inner">
+          <span>EN</span>
+          <span aria-hidden="true">EN</span>
+        </span>
+      </span>
+      <span class="lang-toggle__sep" aria-hidden="true">|</span>
+      <span class="lang-toggle__opt" data-lang="id">
+        <span class="lang-toggle__opt-inner">
+          <span>ID</span>
+          <span aria-hidden="true">ID</span>
+        </span>
+      </span>
+    </button>
   </div>
 </nav>
 <div class="nav-spacer" aria-hidden="true"></div>`;
@@ -197,7 +212,7 @@ function renderFooter() {
         <p>${phones}${CONTACT_INFO.address}</p>
       </div>
       <div class="footer__col footer__social-col">
-        <p class="footer__col-title">Ikuti Kami</p>
+        <p class="footer__col-title" data-i18n="footer.follow">Ikuti Kami</p>
         <div class="footer__social">
           <a href="#" class="footer__social-link" aria-label="Instagram" target="_blank" rel="noopener">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -246,19 +261,19 @@ function renderFooterV2() {
     </div>
     <div class="footer__cols">
       <div class="footer__col">
-        <a href="produk.html" class="footer__col-title footer__col-title--link">Produk</a>
+        <a href="produk.html" class="footer__col-title footer__col-title--link" data-i18n="footer.products">Produk</a>
         <ul>${produkLinks}</ul>
       </div>
       <div class="footer__col">
-        <a href="projek.html" class="footer__col-title footer__col-title--link">Projek</a>
+        <a href="projek.html" class="footer__col-title footer__col-title--link" data-i18n="footer.projects">Projek</a>
         <ul>${projekLinks}</ul>
       </div>
       <div class="footer__col">
-        <a href="about.html" class="footer__col-title footer__col-title--link">Profil</a>
+        <a href="about.html" class="footer__col-title footer__col-title--link" data-i18n="footer.profile">Profil</a>
         <ul>${aboutLinks}</ul>
       </div>
       <div class="footer__col footer__contact">
-        <a href="kontak.html" class="footer__col-title footer__col-title--link">Kontak</a>
+        <a href="kontak.html" class="footer__col-title footer__col-title--link" data-i18n="footer.contact">Kontak</a>
         <p>${phones}${CONTACT_INFO.address}</p>
         <div class="footer__social footer__social--inline">
           <a href="#" class="footer__social-link" aria-label="Instagram" target="_blank" rel="noopener">

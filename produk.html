@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
     <!-- ── HERO ── -->
     <section class="page-hero page-hero--produk" aria-label="Produk">
       <div class="page-hero__inner">
-        <h1 class="page-hero__title">Produk</h1>
+        <h1 class="page-hero__title" data-i18n="produk.hero">Produk</h1>
       </div>
     </section>
 
@@ -39,6 +39,7 @@
           class="search-bar__input"
           type="search"
           placeholder="Cari dari Katalog Produk Kami ..."
+          data-i18n-placeholder="products.search.placeholder"
           aria-label="Cari produk"
           autocomplete="off"
         >
@@ -50,7 +51,7 @@
       <div id="catalogue-root">
         <!-- Populated dynamically by cms.js from data/products.json -->
       </div>
-      <p id="search-empty" class="search-empty" role="status">
+      <p id="search-empty" class="search-empty" role="status" data-i18n="products.notfound">
         Produk tidak ditemukan. Coba kata kunci lain.
       </p>
     </div>
@@ -63,5 +64,6 @@
   <script src="js/components.js" defer></script>
   <script src="js/cms.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/i18n.js" defer></script>
 </body>
 </html>
