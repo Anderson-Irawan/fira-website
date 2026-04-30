@@ -323,6 +323,19 @@ function applyLanguage(lang) {
       opt.classList.toggle('is-active', opt.dataset.lang === lang);
     });
   });
+
+  // ── Re-cache translated nav so next page's IIFE starts in the right language ──
+  try {
+    const nav = document.querySelector('.navbar');
+    if (nav) {
+      const clone = nav.cloneNode(true);
+      clone.classList.remove('is-hidden', 'logo-hidden', 'navbar--transparent');
+      clone.removeAttribute('style');
+      clone.setAttribute('data-cached', '1');
+      clone.querySelectorAll('.navbar__link.active').forEach(l => l.classList.remove('active'));
+      sessionStorage.setItem('fira-nav', clone.outerHTML + '<div class="nav-spacer" aria-hidden="true"></div>');
+    }
+  } catch (_) {}
 }
 
 // ─── TOGGLE ──────────────────────────────────────────────────
