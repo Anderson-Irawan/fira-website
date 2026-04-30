@@ -72,6 +72,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // ─── PRODUCT CARD SCROLL PARALLAX ─────────────────────────
+  if (!noMotion) {
+    function updateCardParallax() {
+      const vh = window.innerHeight;
+      document.querySelectorAll('.home-prod-card').forEach(card => {
+        const img = card.querySelector('img');
+        if (!img) return;
+        const rect   = card.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const offset = (center - vh / 2) / vh;
+        const ty = Math.max(-15, Math.min(15, offset * vh * 0.06));
+        img.style.transform = `translateY(${ty.toFixed(1)}px) scale(1.2)`;
+      });
+    }
+
+    let rafCards = null;
+    window.addEventListener('scroll', () => {
+      if (rafCards) return;
+      rafCards = requestAnimationFrame(() => { updateCardParallax(); rafCards = null; });
+    }, { passive: true });
+    updateCardParallax();
+  }
+
   // ─── HORIZONTAL SCROLL SECTIONS (.qit-pin) ─────────────────
   // Generic — drives any number of pinned horizontal tracks on
   // the same page (index: QIT values; about: LVM sections).
@@ -99,8 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         track.style.transform = `translateX(${-tx.toFixed(1)}px)`;
 
-        const activeIdx = Math.round(progress * (SLIDE_COUNT - 1));
-        bgs.forEach((bg, i) => bg.classList.toggle('is-active', i === activeIdx));
+        const activeIdx  = Math.round(progress * (SLIDE_COUNT - 1));
+        const bgParallax = (progress - 0.5) * 60;
+        bgs.forEach((bg, i) => {
+          bg.classList.toggle('is-active', i === activeIdx);
+          if (bg.tagName === 'IMG') {
+            bg.style.transform = `translateY(${bgParallax.toFixed(1)}px)`;
+          }
+        });
       });
     }
 

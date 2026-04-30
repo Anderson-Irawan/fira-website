@@ -11,7 +11,7 @@
           "name": "Atap FR 4",
           "material": "Galvalume",
           "thickness": "0.25 mm",
-          "image": "assets/products/atap/atap fr 4.jpg",
+          "image": "assets/products/atap/atap placeholder.webp",
           "description": "Profil atap FR seri 4 untuk hunian residensial"
         },
         {
@@ -19,7 +19,7 @@
           "name": "Atap FR 5",
           "material": "Galvalume",
           "thickness": "0.25 mm",
-          "image": "assets/products/atap/atap fr 5.jpg",
+          "image": "assets/products/atap/atap placeholder.webp",
           "description": "Profil atap FR seri 5 ketebalan standar"
         },
         {
@@ -27,7 +27,7 @@
           "name": "Atap FR 9",
           "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "assets/products/atap/atap fr 9.jpg",
+          "image": "assets/products/atap/atap placeholder.webp",
           "description": "Profil atap FR seri 9 untuk kebutuhan semi-komersial"
         },
         {
@@ -35,7 +35,7 @@
           "name": "Atap FR 12",
           "material": "Galvalume",
           "thickness": "0.35 mm",
-          "image": "assets/products/atap/atap fr 12.jpg",
+          "image": "assets/products/atap/atap placeholder.webp",
           "description": "Profil atap FR seri 12 ketebalan premium"
         },
         {
@@ -43,7 +43,7 @@
           "name": "Nok Galvalum",
           "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "assets/products/atap/nok galvalum.jpg",
+          "image": "assets/products/atap/atap placeholder.webp",
           "description": "Ridge cap / nok galvalume untuk penutup puncak atap"
         },
         {
@@ -51,7 +51,7 @@
           "name": "Talang Jurai",
           "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "assets/products/atap/talang jurai.jpg",
+          "image": "assets/products/atap/atap placeholder.webp",
           "description": "Talang jurai untuk membuang air hujan di pertemuan atap"
         },
         {
@@ -59,7 +59,7 @@
           "name": "Talang Kotak",
           "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "assets/products/atap/talang kotak.jpg",
+          "image": "assets/products/atap/atap placeholder.webp",
           "description": "Talang kotak standar untuk saluran air hujan"
         },
         {
@@ -67,7 +67,7 @@
           "name": "Talang Tepi",
           "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "assets/products/atap/talang tepi.jpg",
+          "image": "assets/products/atap/atap placeholder.webp",
           "description": "Talang tepi untuk finishing ujung atap"
         }
       ]
@@ -82,7 +82,7 @@
           "name": "C Truss",
           "material": "Zincalume",
           "thickness": "0.75 mm",
-          "image": "assets/products/truss/c truss.png",
+          "image": "assets/products/truss/truss placeholder.webp",
           "description": "Profil C standar untuk rangka atap hunian"
         },
         {
@@ -90,7 +90,7 @@
           "name": "C Truss Mini",
           "material": "Zincalume",
           "thickness": "0.55 mm",
-          "image": "assets/products/truss/c truss mini.png",
+          "image": "assets/products/truss/truss placeholder.webp",
           "description": "Profil C mini untuk bentangan ringan"
         },
         {
@@ -98,7 +98,7 @@
           "name": "H Truss",
           "material": "Zincalume",
           "thickness": "0.75 mm",
-          "image": "assets/products/truss/h truss.png",
+          "image": "assets/products/truss/truss placeholder.webp",
           "description": "Profil H untuk rangka atap kuat dan stabil"
         },
         {
@@ -106,7 +106,7 @@
           "name": "U Truss",
           "material": "Zincalume",
           "thickness": "0.45 mm",
-          "image": "assets/products/truss/u truss.png",
+          "image": "assets/products/truss/truss placeholder.webp",
           "description": "Profil U penopang rangka atap dan partisi"
         }
       ]
@@ -121,7 +121,7 @@
           "name": "Reng 100",
           "material": "Zincalume",
           "thickness": "0.45 mm",
-          "image": "assets/products/reng/reng 100.png",
+          "image": "assets/products/reng/reng placeholder.webp",
           "description": "Reng 100 standar paling umum digunakan"
         },
         {
@@ -129,7 +129,7 @@
           "name": "Reng 35L",
           "material": "Zincalume",
           "thickness": "0.40 mm",
-          "image": "assets/products/reng/reng 35l.png",
+          "image": "assets/products/reng/reng placeholder.webp",
           "description": "Reng 35L ringan untuk hunian residensial"
         },
         {
@@ -137,7 +137,7 @@
           "name": "Reng 35M",
           "material": "Zincalume",
           "thickness": "0.45 mm",
-          "image": "assets/products/reng/reng 35m.png",
+          "image": "assets/products/reng/reng placeholder.webp",
           "description": "Reng 35M medium untuk ketebalan lebih"
         },
         {
@@ -145,7 +145,7 @@
           "name": "Reng Besar",
           "material": "Zincalume",
           "thickness": "0.55 mm",
-          "image": "assets/products/reng/reng besar.png",
+          "image": "assets/products/reng/reng placeholder.webp",
           "description": "Reng besar untuk beban dan bentangan ekstra"
         },
         {
@@ -153,7 +153,7 @@
           "name": "Reng Eco",
           "material": "Zincalume",
           "thickness": "0.35 mm",
-          "image": "assets/products/reng/reng eco.png",
+          "image": "assets/products/reng/reng placeholder.webp",
           "description": "Reng ekonomis tanpa mengorbankan kualitas"
         },
         {
@@ -161,7 +161,7 @@
           "name": "Reng Neo",
           "material": "Zincalume",
           "thickness": "0.40 mm",
-          "image": "assets/products/reng/reng neo.png",
+          "image": "assets/products/reng/reng placeholder.webp",
           "description": "Reng Neo seri terbaru dengan presisi tinggi"
         }
       ]
@@ -176,7 +176,7 @@
           "name": "Holo Plafon 2×4",
           "material": "Baja Ringan",
           "thickness": "0.8 mm",
-          "image": "assets/products/holo/holo plafon 2x4.jpg",
+          "image": "assets/products/holo/holo placeholder.webp",
           "description": "Holo plafon persegi panjang 2×4 cm standar"
         },
         {
@@ -184,7 +184,7 @@
           "name": "Holo Plafon 4×4",
           "material": "Baja Ringan",
           "thickness": "0.8 mm",
-          "image": "assets/products/holo/holo plafon 4x4.jpg",
+          "image": "assets/products/holo/holo placeholder.webp",
           "description": "Holo plafon persegi simetris 4×4 cm"
         },
         {
@@ -192,7 +192,7 @@
           "name": "Holo Wall Angle",
           "material": "Baja Ringan",
           "thickness": "0.4 mm",
-          "image": "assets/products/holo/holo wall angle.jpg",
+          "image": "assets/products/holo/holo placeholder.webp",
           "description": "Wall angle untuk penyelesaian tepi plafon"
         }
       ]
@@ -207,7 +207,7 @@
           "name": "Wallpanel Standar",
           "material": "Zincalume",
           "thickness": "0.30 mm",
-          "image": "",
+          "image": "assets/products/wallpanel/wallpanel placeholder.webp",
           "description": "Panel dinding standar untuk hunian"
         },
         {
@@ -215,7 +215,7 @@
           "name": "Wallpanel Premium",
           "material": "Zincalume",
           "thickness": "0.40 mm",
-          "image": "",
+          "image": "assets/products/wallpanel/wallpanel placeholder.webp",
           "description": "Panel dinding ketebalan premium"
         },
         {
@@ -223,7 +223,7 @@
           "name": "Wallpanel Insulasi",
           "material": "Sandwich Panel",
           "thickness": "50 mm",
-          "image": "",
+          "image": "assets/products/wallpanel/wallpanel placeholder.webp",
           "description": "Panel sandwich dengan lapisan insulasi termal"
         },
         {
@@ -231,7 +231,7 @@
           "name": "Wallpanel Custom",
           "material": "Zincalume",
           "thickness": "Custom",
-          "image": "",
+          "image": "assets/products/wallpanel/wallpanel placeholder.webp",
           "description": "Panel custom sesuai kebutuhan proyek"
         }
       ]
@@ -246,7 +246,7 @@
           "name": "PVC Ceiling 8mm",
           "material": "PVC",
           "thickness": "8 mm",
-          "image": "",
+          "image": "assets/products/pvc/pvc placeholder.webp",
           "description": "Plafon PVC putih bersih standar"
         },
         {
@@ -254,7 +254,7 @@
           "name": "PVC Wall Panel",
           "material": "PVC",
           "thickness": "8 mm",
-          "image": "",
+          "image": "assets/products/pvc/pvc placeholder.webp",
           "description": "Panel dinding PVC tahan lembab"
         },
         {
@@ -262,7 +262,7 @@
           "name": "PVC List / Cornice",
           "material": "PVC",
           "thickness": "2 mm",
-          "image": "",
+          "image": "assets/products/pvc/pvc placeholder.webp",
           "description": "Aksen list finishing PVC"
         },
         {
@@ -270,7 +270,7 @@
           "name": "PVC Custom",
           "material": "PVC",
           "thickness": "Custom",
-          "image": "",
+          "image": "assets/products/pvc/pvc placeholder.webp",
           "description": "Produk PVC sesuai order"
         }
       ]
@@ -285,7 +285,7 @@
           "name": "Fira Deck",
           "material": "Galvalume",
           "thickness": "0.75 mm",
-          "image": "assets/products/produk lain/fira deck.jpg",
+          "image": "assets/products/produk lain/produk lain placeholder.webp",
           "description": "Metal deck Fira untuk struktur lantai komposit"
         },
         {
@@ -293,7 +293,7 @@
           "name": "Mawar",
           "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "assets/products/produk lain/mawar.png",
+          "image": "assets/products/produk lain/produk lain placeholder.webp",
           "description": "Produk aksesori seri Mawar dari Fira"
         },
         {
@@ -301,7 +301,7 @@
           "name": "Raflesia",
           "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "assets/products/produk lain/raflesia.png",
+          "image": "assets/products/produk lain/produk lain placeholder.webp",
           "description": "Produk aksesori seri Raflesia dari Fira"
         },
         {
@@ -309,7 +309,7 @@
           "name": "Ventilasi",
           "material": "Galvalume",
           "thickness": "0.30 mm",
-          "image": "assets/products/produk lain/ventilasi.jpg",
+          "image": "assets/products/produk lain/produk lain placeholder.webp",
           "description": "Produk ventilasi Fira untuk sirkulasi udara optimal"
         }
       ]
