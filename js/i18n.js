@@ -39,6 +39,21 @@ const TRANSLATIONS = {
     'section.background':    'Background',
     'section.vision':        'Vision',
     'section.mission':       'Mission',
+    'section.sectors':       'Market Sectors',
+
+    /* ── MARKET SECTORS ─────────────────────────────── */
+    'sector.commercial':    'Commercial',
+    'sector.healthcare':    'Healthcare',
+    'sector.entertainment': 'Entertainment',
+    'sector.education':     'Education',
+    'sector.greenbuilding': 'Green Building',
+    'sector.restaurant':    'Restaurant',
+    'sector.interiors':     'Interiors',
+    'sector.residential':   'Residential',
+    'sector.factory':       'Factory',
+    'sector.warehouse':     'Warehouse',
+    'sector.religious':     'Religious',
+    'sector.sports':        'Sports Building',
 
     /* ── PRODUCTS SECTION ────────────────────────────── */
     'products.cta':                'View All Products',
@@ -147,6 +162,21 @@ const TRANSLATIONS = {
     'section.background':    'Latar<br>Belakang',
     'section.vision':        'Visi',
     'section.mission':       'Misi',
+    'section.sectors':       'Sektor Pasar',
+
+    /* ── MARKET SECTORS ─────────────────────────────── */
+    'sector.commercial':    'Komersial',
+    'sector.healthcare':    'Kesehatan',
+    'sector.entertainment': 'Hiburan',
+    'sector.education':     'Pendidikan',
+    'sector.greenbuilding': 'Bangunan Hijau',
+    'sector.restaurant':    'Restoran',
+    'sector.interiors':     'Interior',
+    'sector.residential':   'Residensial',
+    'sector.factory':       'Pabrik',
+    'sector.warehouse':     'Gudang',
+    'sector.religious':     'Tempat Ibadah',
+    'sector.sports':        'Fasilitas Olahraga',
 
     /* ── PRODUCTS SECTION ────────────────────────────── */
     'products.cta':                'Lihat Semua Produk',

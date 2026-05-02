@@ -344,6 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.paddingRight = scrollbarW + 'px';
     if (navbar) navbar.style.right = scrollbarW + 'px';
     document.body.style.overflow = 'hidden';
+    if (window.lenis) window.lenis.stop();
     sidebar.classList.add('is-open');
     overlay.classList.add('is-open');
     sidebar.setAttribute('aria-hidden', 'false');
@@ -357,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
     document.body.style.paddingRight = '';
     if (navbar) navbar.style.right = '';
+    if (window.lenis) window.lenis.start();
   }
 
   // Intercept every Kontak link across nav + footer
@@ -400,7 +402,10 @@ document.addEventListener('DOMContentLoaded', () => {
   btt.innerHTML = `<svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>`;
   document.body.appendChild(btt);
 
-  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  btt.addEventListener('click', () => {
+    if (window._scrollTo) window._scrollTo(0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   window.addEventListener('scroll', () => {
     btt.classList.toggle('back-to-top--visible', window.scrollY > 400);
@@ -412,4 +417,31 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     sessionStorage.setItem('fira-nav', renderNav('__none__'));
   } catch (_) {}
+
+  // ── Page transition overlay: fade out once page is ready ───
+  const ptOl = document.getElementById('fira-pt-ol');
+  if (ptOl) {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      ptOl.style.transition = 'opacity 0.3s ease';
+      ptOl.style.opacity = '0';
+      ptOl.addEventListener('transitionend', () => ptOl.remove(), { once: true });
+    }));
+  }
+
+  // ── Page transition: intercept internal link clicks ─────────
+  document.addEventListener('click', e => {
+    if (e.defaultPrevented) return;
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    try {
+      const url = new URL(href, location.href);
+      if (url.origin !== location.origin) return;
+      if (url.pathname === location.pathname) return;
+    } catch (_) { return; }
+    e.preventDefault();
+    try { sessionStorage.setItem('fira-pt', '1'); } catch (_) {}
+    location.href = href;
+  });
 });

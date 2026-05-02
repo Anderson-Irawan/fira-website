@@ -141,6 +141,56 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAllHs();
   }
 
+  // ─── QIT CARDS PARALLAX (index.html) ──────────────────────
+  // Each card moves at a slightly different speed so they appear
+  // to float in from different depths, settle at screen centre,
+  // then drift off as the user scrolls past.
+  const qitCards = [...document.querySelectorAll('.qit-card')];
+  if (qitCards.length && !noMotion) {
+    const SPEEDS = [0.32, 0.20, 0.28]; // staggered depth per card
+    function updateQitCards() {
+      const vh = window.innerHeight;
+      qitCards.forEach((card, i) => {
+        const rect  = card.getBoundingClientRect();
+        const dist  = (rect.top + rect.height / 2 - vh / 2) / vh;
+        const ty    = dist * vh * (SPEEDS[i] ?? 0.12);
+        card.style.transform = `translateY(${ty.toFixed(1)}px)`;
+      });
+    }
+    let rafQitCards = null;
+    window.addEventListener('scroll', () => {
+      if (rafQitCards) return;
+      rafQitCards = requestAnimationFrame(() => { updateQitCards(); rafQitCards = null; });
+    }, { passive: true });
+    updateQitCards();
+  }
+
+  // ─── MARKET SECTORS HORIZONTAL PARALLAX ───────────────────
+  // Row 1 slides left↔right, row 2 slides right↔left as the
+  // section moves through the viewport.
+  const sectorsSection = document.querySelector('.market-sectors');
+  if (sectorsSection && !noMotion) {
+    const row1 = sectorsSection.querySelector('.sectors-row--1');
+    const row2 = sectorsSection.querySelector('.sectors-row--2');
+    if (row1 && row2) {
+      function updateSectorsParallax() {
+        const vh   = window.innerHeight;
+        const vw   = window.innerWidth;
+        const rect = sectorsSection.getBoundingClientRect();
+        const progress = (rect.top + rect.height / 2 - vh / 2) / vh;
+        const tx = Math.max(-vw * 0.25, Math.min(vw * 0.25, progress * vw * 0.22));
+        row1.style.transform = `translateX(${tx.toFixed(1)}px)`;
+        row2.style.transform = `translateX(${(-tx).toFixed(1)}px)`;
+      }
+      let rafSectors = null;
+      window.addEventListener('scroll', () => {
+        if (rafSectors) return;
+        rafSectors = requestAnimationFrame(() => { updateSectorsParallax(); rafSectors = null; });
+      }, { passive: true });
+      updateSectorsParallax();
+    }
+  }
+
   // ─── ABOUT-HERO PARALLAX ───────────────────────────────────
   // Same scroll-from-top pattern as the home hero.
   const aboutHero = document.querySelector('.about-hero');
@@ -361,9 +411,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(a.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        const offset = 80; // account for fixed navbar
+        const offset = 80;
         const top    = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
+        if (window._scrollTo) window._scrollTo(top);
+        else window.scrollTo({ top, behavior: 'smooth' });
       }
     });
   });

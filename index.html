@@ -8,8 +8,11 @@
   <meta name="description" content="Tentang PT Bangun Citra Irawan — produsen baja ringan terpercaya di Indonesia Timur.">
   <link rel="icon" href="assets/logos/f-wing_1.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.33.0/dist/tabler-icons.min.css">
 </head>
 <body>
+<script>!function(){try{var f=sessionStorage.getItem('fira-pt');if(!f)return;sessionStorage.removeItem('fira-pt');var o=document.createElement('div');o.id='fira-pt-ol';o.style.cssText='position:fixed;inset:0;z-index:9999;background:#0e0e0e;display:flex;align-items:center;justify-content:center;';var m=document.querySelector('meta[name="base-url"]');o.innerHTML='<img src="'+(m?m.content:'')+'assets/logos/logotype-square.svg" style="width:60px;animation:loaderBounce 1s ease-in-out infinite" alt="">';document.body.appendChild(o);}catch(e){}}();</script>
 
   <!-- ── TOP NAV — starts hidden; slides in once hero scrolls off-screen ── -->
   <div id="nav-placeholder" data-page=""></div>
@@ -39,68 +42,38 @@
       </div>
     </section>
 
-    <!-- ── WE ARE ── -->
-    <section class="trustworthy" aria-labelledby="trust-heading">
-      <div class="trustworthy__inner" data-animate>
-        <p class="trustworthy__pre">We are ...</p>
-        <h1 class="trustworthy__word" id="trust-heading" aria-label="QUALITY, INNOVATION, TRUSTWORTHY."><span id="typewriter-text"></span><span class="typewriter-cursor" aria-hidden="true">|</span></h1>
-        <div class="trustworthy__body">
-          <p data-i18n-html="home.trust.body1">
-            Baja ringan atau yang familiar kita sebut dengan <strong>Galvalume / Zincalume</strong>
-            pada akhir-akhir ini mempunyai peranan yang penting dalam pembangunan
-            perumahan maupun bangunan-bangunan tipis lainnya.
-          </p>
-          <p data-i18n="home.trust.body2">
-            Di rumahannya ini, banyak kebutuhan untuk bangunan yang membutuhkan dimensi
-            yang lebar atau lantai yang tidak terlalu tinggi dan tidak terlalu berat.
-            Rangka atap berbahan baja ringan dapat dibuat dengan rangka baja ringan karena
-            ringan serta bisa memikul berbagai rangka atap yang terbuat dari bahan baja
-            ringan terus berinovasi untuk memberikan bahan bangunan berkualitas terbaik
-            untuk masyarakat Indonesia.
-          </p>
+    <!-- ── QUALITY / INNOVATION / TRUST ── -->
+    <div class="qit-cards">
+      <div class="qit-card" style="background-image:url('assets/images/pexels-rolledalloys-metal-supply-8973680.jpg')">
+        <div class="qit-card__overlay"></div>
+        <div class="qit-slide__content">
+          <div class="qit-slide__left">
+            <h3 class="qit-slide__title">Quality</h3>
+          </div>
+          <div class="qit-slide__right">
+            <p class="qit-slide__body" data-i18n="qit.quality.body">Pabrik kami dilengkapi dengan fasilitas produksi yang lengkap dan berteknologi, seperti mesin roll-forming, crane, forklift, dan mesin slitting untuk memproduksi galvalume dengan kualitas terbaik. Kapasitas produksi mencapai 400 ton per bulan dengan tenaga kerja lebih dari 100 orang.</p>
+          </div>
         </div>
       </div>
-    </section>
-
-    <!-- ── QUALITY / INNOVATION / TRUST ── -->
-    <div class="qit-pin">
-      <div class="qit-sticky">
-
-        <div class="qit-bg-layer" aria-hidden="true">
-          <img class="qit-bg" src="assets/images/pexels-rolledalloys-metal-supply-8973680.jpg" alt="">
-          <img class="qit-bg" src="assets/images/pexels-kateryna-babaieva-1423213-3736102.jpg" alt="">
-          <img class="qit-bg" src="assets/images/pexels-shamsuddin-habib-427046423-18293962.jpg" alt="">
+      <div class="qit-card" style="background-image:url('assets/images/pexels-kateryna-babaieva-1423213-3736102.jpg')">
+        <div class="qit-card__overlay"></div>
+        <div class="qit-slide__content">
+          <div class="qit-slide__left">
+            <h3 class="qit-slide__title">Innovation</h3>
+          </div>
+          <div class="qit-slide__right">
+            <p class="qit-slide__body" data-i18n="qit.innovation.body">Inovasi dan produk yang unggul adalah keistimewaan kami. Kami terus berusaha untuk lebih baik, berinovasi dalam menghasilkan produk maupun layanan kepada pelanggan. Kami yakin bahwa kami harus didukung oleh pelayanan terbaik sehingga kami dapat semakin mantap dan selalu menjadi yang terdepan.</p>
+          </div>
         </div>
-        <div class="qit-track">
-          <div class="qit-slide">
-            <div class="qit-slide__content">
-              <div class="qit-slide__left">
-                <h3 class="qit-slide__title">Quality</h3>
-              </div>
-              <div class="qit-slide__right">
-                <p class="qit-slide__body" data-i18n="qit.quality.body">Pabrik kami dilengkapi dengan fasilitas produksi yang lengkap dan berteknologi, seperti mesin roll-forming, crane, forklift, dan mesin slitting untuk memproduksi galvalume dengan kualitas terbaik. Kapasitas produksi mencapai 400 ton per bulan dengan tenaga kerja lebih dari 100 orang.</p>
-              </div>
-            </div>
+      </div>
+      <div class="qit-card" style="background-image:url('assets/images/pexels-shamsuddin-habib-427046423-18293962.jpg')">
+        <div class="qit-card__overlay"></div>
+        <div class="qit-slide__content">
+          <div class="qit-slide__left">
+            <h3 class="qit-slide__title">Trustworthy</h3>
           </div>
-          <div class="qit-slide">
-            <div class="qit-slide__content">
-              <div class="qit-slide__left">
-                <h3 class="qit-slide__title">Innovation</h3>
-              </div>
-              <div class="qit-slide__right">
-                <p class="qit-slide__body" data-i18n="qit.innovation.body">Inovasi dan produk yang unggul adalah keistimewaan kami. Kami terus berusaha untuk lebih baik, berinovasi dalam menghasilkan produk maupun layanan kepada pelanggan. Kami yakin bahwa kami harus didukung oleh pelayanan terbaik sehingga kami dapat semakin mantap dan selalu menjadi yang terdepan.</p>
-              </div>
-            </div>
-          </div>
-          <div class="qit-slide">
-            <div class="qit-slide__content">
-              <div class="qit-slide__left">
-                <h3 class="qit-slide__title">Trustworthy</h3>
-              </div>
-              <div class="qit-slide__right">
-                <p class="qit-slide__body" data-i18n="qit.trust.body">Fira menghadirkan berbagai produk yang telah dipercaya oleh pelanggan kami di seluruh Indonesia. Setiap produk dirancang dengan cermat untuk memenuhi kebutuhan pasar, sekaligus memenuhi standar kualitas nasional dan internasional yang ketat.</p>
-              </div>
-            </div>
+          <div class="qit-slide__right">
+            <p class="qit-slide__body" data-i18n="qit.trust.body">Fira menghadirkan berbagai produk yang telah dipercaya oleh pelanggan kami di seluruh Indonesia. Setiap produk dirancang dengan cermat untuk memenuhi kebutuhan pasar, sekaligus memenuhi standar kualitas nasional dan internasional yang ketat.</p>
           </div>
         </div>
       </div>
@@ -141,8 +114,74 @@
       </div>
     </section>
 
+    <!-- ── MARKET SECTORS ── -->
+    <section class="market-sectors section" aria-labelledby="sectors-heading">
+      <div class="container">
+        <div class="sec-header sec-header--center" data-animate>
+          <h2 class="sec-title" id="sectors-heading" data-i18n="section.sectors">Market Sectors</h2>
+        </div>
+        <div class="sectors-grid">
+
+          <div class="sectors-row sectors-row--1">
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-building-bank" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.commercial">Commercial</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-building-hospital" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.healthcare">Healthcare</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-movie" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.entertainment">Entertainment</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.education">Education</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.greenbuilding">Green Building</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.restaurant">Restaurant</p>
+            </div>
+          </div>
+
+          <div class="sectors-row sectors-row--2">
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-sofa" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.interiors">Interiors</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-home" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.residential">Residential</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-building-factory" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.factory">Factory</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-building-warehouse" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.warehouse">Warehouse</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-building-mosque" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.religious">Religious</p>
+            </div>
+            <div class="sector-card">
+              <div class="sector-card__icon"><i class="ti ti-building-stadium" aria-hidden="true"></i></div>
+              <p class="sector-card__label" data-i18n="sector.sports">Sports Building</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- ── PRODUK OVERVIEW ── -->
-    <section class="prod-pin" aria-labelledby="ap-heading">
+    <section class="prod-pin container" aria-labelledby="ap-heading">
 
       <!-- LEFT: sticky panel — stays pinned while cards scroll -->
       <div class="prod-pin__left">
@@ -204,6 +243,9 @@
 
   <div id="footer-placeholder" data-footer="v2"></div>
 
+  <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+  <script>window.lenis = new Lenis({ autoRaf: true })</script>
+  <script src="js/scroll.js" defer></script>
   <script src="js/loader.js" defer></script>
   <script src="js/components.js" defer></script>
   <script src="js/cms.js" defer></script>
