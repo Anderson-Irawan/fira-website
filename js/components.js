@@ -410,13 +410,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function openSidebar() {
     const scrollbarW = window.innerWidth - document.documentElement.clientWidth;
     const navbar = document.querySelector('.navbar');
-    const scrollY = window.scrollY;
-    document.body.dataset.scrollY = scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
     document.body.style.paddingRight = scrollbarW + 'px';
     if (navbar) navbar.style.right = scrollbarW + 'px';
+    document.body.style.overflow = 'hidden';
     if (window.lenis) window.lenis.stop();
     sidebar.classList.add('is-open');
     overlay.classList.add('is-open');
@@ -425,16 +421,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function closeSidebar() {
     const navbar = document.querySelector('.navbar');
-    const scrollY = parseInt(document.body.dataset.scrollY || '0');
     sidebar.classList.remove('is-open');
     overlay.classList.remove('is-open');
     sidebar.setAttribute('aria-hidden', 'true');
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
+    document.body.style.overflow = '';
     document.body.style.paddingRight = '';
     if (navbar) navbar.style.right = '';
-    window.scrollTo(0, scrollY);
     if (window.lenis) window.lenis.start();
   }
 
