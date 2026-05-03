@@ -2268,6 +2268,7 @@ main    { view-transition-name: page-main; }
   }
   .ksb__body {
     grid-template-columns: 1fr;
+    align-content: start;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
@@ -2277,6 +2278,8 @@ main    { view-transition-name: page-main; }
     padding-top: 88px;
   }
   .ksb__info-col { position: static; }
+  .ksb__section,
+  .ksb__divider { display: none; }
   .ksb__close {
     position: fixed;
     top: 0;
