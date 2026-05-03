@@ -370,6 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileOverlay?.classList.add('is-open');
     mobileNav?.setAttribute('aria-hidden', 'false');
     document.body.classList.add('mobile-nav-open');
+    document.querySelector('.navbar')?.classList.add('navbar--menu-open');
   }
   function closeMobileNav() {
     hamburger?.setAttribute('aria-expanded', 'false');
@@ -377,6 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileOverlay?.classList.remove('is-open');
     mobileNav?.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('mobile-nav-open');
+    document.querySelector('.navbar')?.classList.remove('navbar--menu-open');
   }
 
   hamburger?.addEventListener('click', () => {

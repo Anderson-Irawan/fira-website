@@ -28,6 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeHero = document.querySelector('.home-hero');
 
   if (navbar && homeHero) {
+    // Background: transparent while home hero is in view, solid once scrolled past
+    navbar.classList.add('navbar--transparent');
+    new IntersectionObserver(
+      (entries) => { navbar.classList.toggle('navbar--transparent', entries[0].isIntersecting); },
+      { threshold: 0 }
+    ).observe(homeHero);
+
     // Logo in nav only appears once the hero logo has scrolled off-screen
     const heroLogo = homeHero.querySelector('.home-hero__img');
     if (heroLogo) {

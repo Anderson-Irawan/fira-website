@@ -191,6 +191,11 @@ button { cursor: pointer; }
   background: transparent;
 }
 
+/* Force solid background when hamburger menu is open */
+.navbar.navbar--menu-open {
+  background: var(--clr-black);
+}
+
 /* Hidden state — slides up out of view (used on home page hero) */
 .navbar.is-hidden {
   transform: translateY(-100%);
