@@ -87,7 +87,7 @@ function renderKontakSidebar() {
 <aside id="kontak-sidebar" class="ksb" role="dialog" aria-label="Hubungi Kami" aria-modal="true" aria-hidden="true">
   <div class="ksb__body">
   <div class="ksb__form-col">
-    <h2 class="ksb__title" data-i18n-html="kontak.title">Kerja Sama<br>dengan Fira</h2>
+    <h2 class="ksb__title" data-i18n="kontak.title">Hubungi Kami</h2>
     <form id="ksb-form" class="ksb-form" action="#" method="POST" novalidate>
       <div><input type="text"  name="nama"       placeholder="Nama ..."         required autocomplete="name"  data-i18n-placeholder="kontak.name.placeholder"></div>
       <div><input type="text"  name="departemen" placeholder="Departemen ..."                                  data-i18n-placeholder="kontak.dept.placeholder"></div>

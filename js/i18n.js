@@ -119,7 +119,7 @@ const TRANSLATIONS = {
     'footer.follow':   'Follow Us',
 
     /* ── KONTAK SIDEBAR ──────────────────────────────── */
-    'kontak.title':   'Work with<br>Fira',
+    'kontak.title':   'Get in Touch',
     'kontak.send':    'SEND',
     'kontak.success': '✓ Message sent successfully!',
     'kontak.hours':   'Business Hours',
@@ -242,7 +242,7 @@ const TRANSLATIONS = {
     'footer.follow':   'Ikuti Kami',
 
     /* ── KONTAK SIDEBAR ──────────────────────────────── */
-    'kontak.title':   'Kerja Sama<br>dengan Fira',
+    'kontak.title':   'Hubungi Kami',
     'kontak.send':    'KIRIM',
     'kontak.success': '✓ Pesan berhasil terkirim!',
     'kontak.hours':   'Jam Operasional',
