@@ -87,7 +87,7 @@ html { scroll-behavior: smooth; font-size: 16px; background-color: #120F0D; }
 body {
   font-family: var(--font-mono);
   font-weight: 400;
-  letter-spacing: 0vw;
+  letter-spacing: 0;
   background-color: var(--clr-cream);
   color: var(--clr-black);
   line-height: 1.65;
@@ -1706,7 +1706,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   transition: transform var(--ease), box-shadow var(--ease);
 }
 .proj-card:hover {
-  background-color: var(--clr-blue)
+  background-color: var(--clr-blue);
   transform: translateY(-4px);
   box-shadow: var(--shadow);
 }
