@@ -16,7 +16,7 @@
 
   <!-- ── TOP NAV — starts hidden; slides in once hero scrolls off-screen ── -->
   <div id="nav-placeholder" data-page=""></div>
-  <script>!function(){try{var c=sessionStorage.getItem('fira-nav'),s=document.getElementById('nav-placeholder');if(!c||!s)return;var p=s.dataset.page||'',h=c;if(p)h=h.replace('href="'+p+'.html" class="navbar__link"','href="'+p+'.html" class="navbar__link active"');else{h=h.replace('class="navbar"','class="navbar logo-hidden"').replace('<div class="nav-spacer" aria-hidden="true"></div>','');}s.outerHTML=h;}catch(e){}}();</script>
+  <script>!function(){try{var c=sessionStorage.getItem('fira-nav-v2'),s=document.getElementById('nav-placeholder');if(!c||!s)return;var p=s.dataset.page||'',h=c;if(p)h=h.replace('href="'+p+'.html" class="navbar__link"','href="'+p+'.html" class="navbar__link active"');else{h=h.replace('class="navbar"','class="navbar logo-hidden"').replace('<div class="nav-spacer" aria-hidden="true"></div>','');}s.outerHTML=h;}catch(e){}}();</script>
 
   <main>
 
@@ -185,6 +185,7 @@
 
       <!-- LEFT: sticky panel — stays pinned while cards scroll -->
       <div class="prod-pin__left">
+        <img class="prod-pin__hero-img" src="assets/images/produk-1.jpg" alt="Produk Fira">
         <h2 class="sec-title" id="ap-heading" style="margin-bottom: 2vh;" data-i18n="section.products">Produk</h2>
         <p class="prod-pin__desc" data-i18n="products.desc">
           Baja ringan adalah baja mutu tinggi yang ringan dan tipis,

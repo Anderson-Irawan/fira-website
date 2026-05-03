@@ -7,6 +7,17 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = () => window.innerWidth <= 900;
+
+  // ─── VISI SLIDE — blue → black transition on mobile ───────
+  if (isMobile()) {
+    const visiSlide = document.querySelector('.qit-track .qit-slide:nth-child(2)');
+    if (visiSlide) {
+      new IntersectionObserver((entries) => {
+        visiSlide.classList.toggle('slide-dark', entries[0].isIntersecting);
+      }, { threshold: 0.3 }).observe(visiSlide);
+    }
+  }
 
   // ─── TOPNAV: SHOW/HIDE BASED ON HERO VISIBILITY ───────────
   // On the home page the top navbar starts hidden (see components.js).
@@ -72,35 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // ─── PRODUCT CARD SCROLL PARALLAX ─────────────────────────
-  if (!noMotion) {
-    function updateCardParallax() {
-      const vh = window.innerHeight;
-      document.querySelectorAll('.home-prod-card').forEach(card => {
-        const img = card.querySelector('img');
-        if (!img) return;
-        const rect   = card.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const offset = (center - vh / 2) / vh;
-        const ty = Math.max(-15, Math.min(15, offset * vh * 0.06));
-        img.style.transform = `translateY(${ty.toFixed(1)}px) scale(1.2)`;
-      });
-    }
-
-    let rafCards = null;
-    window.addEventListener('scroll', () => {
-      if (rafCards) return;
-      rafCards = requestAnimationFrame(() => { updateCardParallax(); rafCards = null; });
-    }, { passive: true });
-    updateCardParallax();
-  }
 
   // ─── HORIZONTAL SCROLL SECTIONS (.qit-pin) ─────────────────
   // Generic — drives any number of pinned horizontal tracks on
   // the same page (index: QIT values; about: LVM sections).
   const hsPins = [...document.querySelectorAll('.qit-pin')];
 
-  if (hsPins.length) {
+  if (hsPins.length && !isMobile()) {
     const hsInstances = hsPins.map(pinEl => {
       const track = pinEl.querySelector('.qit-track');
       if (!track) return null;
@@ -141,12 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAllHs();
   }
 
+
   // ─── QIT CARDS PARALLAX (index.html) ──────────────────────
   // Each card moves at a slightly different speed so they appear
   // to float in from different depths, settle at screen centre,
   // then drift off as the user scrolls past.
   const qitCards = [...document.querySelectorAll('.qit-card')];
-  if (qitCards.length && !noMotion) {
+  if (qitCards.length && !noMotion && !isMobile()) {
     const SPEEDS = [0.32, 0.20, 0.28]; // staggered depth per card
     function updateQitCards() {
       const vh = window.innerHeight;
@@ -169,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Row 1 slides left↔right, row 2 slides right↔left as the
   // section moves through the viewport.
   const sectorsSection = document.querySelector('.market-sectors');
-  if (sectorsSection && !noMotion) {
+  if (sectorsSection && !noMotion && !isMobile()) {
     const row1 = sectorsSection.querySelector('.sectors-row--1');
     const row2 = sectorsSection.querySelector('.sectors-row--2');
     if (row1 && row2) {

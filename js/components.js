@@ -18,7 +18,7 @@
 (function () {
   try {
     var ns  = document.getElementById('nav-placeholder');
-    var nav = sessionStorage.getItem('fira-nav');
+    var nav = sessionStorage.getItem('fira-nav-v2');
 
     if (ns && nav) {
       var page = ns.dataset.page || '';
@@ -85,6 +85,7 @@ function renderKontakSidebar() {
   const phones = CONTACT_INFO.phones.map(p => `<p>${p}</p>`).join('');
   return `
 <aside id="kontak-sidebar" class="ksb" role="dialog" aria-label="Hubungi Kami" aria-modal="true" aria-hidden="true">
+  <div class="ksb__body">
   <div class="ksb__form-col">
     <h2 class="ksb__title" data-i18n-html="kontak.title">Kerja Sama<br>dengan Fira</h2>
     <form id="ksb-form" class="ksb-form" action="#" method="POST" novalidate>
@@ -118,6 +119,7 @@ function renderKontakSidebar() {
       </div>
     </div>
   </div>
+  </div>
 </aside>
 <div id="kontak-overlay" class="kontak-overlay" aria-hidden="true"></div>`;
 }
@@ -137,29 +139,55 @@ function renderNav(activePage = '') {
     </li>`
   ).join('');
 
+  const mobileLinks = NAV_LINKS.map(({ id, label, href, i18nKey }) =>
+    id === 'kontak'
+      ? `<a href="kontak.html" class="mobile-nav__link${activePage === id ? ' active' : ''}" data-i18n="${i18nKey}">${label}</a>`
+      : `<a href="${href}" class="mobile-nav__link${activePage === id ? ' active' : ''}" data-i18n="${i18nKey}">${label}</a>`
+  ).join('');
+
   return `
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="navbar__inner">
     <a href="index.html" class="navbar__logo" aria-label="Fira — Home">${LOGO_NAV}</a>
     <ul class="navbar__links">${links}</ul>
-    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
-      <span class="lang-toggle__opt" data-lang="en">
-        <span class="lang-toggle__opt-inner">
-          <span>EN</span>
-          <span aria-hidden="true">EN</span>
+    <div class="navbar__right">
+      <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+        <span class="lang-toggle__opt" data-lang="en">
+          <span class="lang-toggle__opt-inner">
+            <span>EN</span>
+            <span aria-hidden="true">EN</span>
+          </span>
         </span>
-      </span>
-      <span class="lang-toggle__sep" aria-hidden="true">|</span>
-      <span class="lang-toggle__opt" data-lang="id">
-        <span class="lang-toggle__opt-inner">
-          <span>ID</span>
-          <span aria-hidden="true">ID</span>
+        <span class="lang-toggle__sep" aria-hidden="true">|</span>
+        <span class="lang-toggle__opt" data-lang="id">
+          <span class="lang-toggle__opt-inner">
+            <span>ID</span>
+            <span aria-hidden="true">ID</span>
+          </span>
         </span>
-      </span>
-    </button>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+      </button>
+    </div>
   </div>
 </nav>
-<div class="nav-spacer" aria-hidden="true"></div>`;
+<div class="nav-spacer" aria-hidden="true"></div>
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav__inner">
+    <a href="index.html" class="mobile-nav__link${activePage === '' ? ' active' : ''}" data-i18n="nav.home">HOME</a>
+    ${mobileLinks}
+    <div class="mobile-nav__divider"></div>
+    <div class="mobile-nav__lang">
+      <button class="mobile-lang-btn" data-lang="en">EN</button>
+      <span class="mobile-nav__lang-sep">|</span>
+      <button class="mobile-lang-btn" data-lang="id">ID</button>
+    </div>
+  </div>
+</div>
+<div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>`;
 }
 
 /**
@@ -331,6 +359,47 @@ document.addEventListener('DOMContentLoaded', () => {
       : renderFooter();
   }
 
+  // ── Hamburger / mobile nav ─────────────────────────────────
+  const hamburger     = document.getElementById('hamburger');
+  const mobileNav     = document.getElementById('mobile-nav');
+  const mobileOverlay = document.getElementById('mobile-nav-overlay');
+
+  function openMobileNav() {
+    hamburger?.setAttribute('aria-expanded', 'true');
+    mobileNav?.classList.add('is-open');
+    mobileOverlay?.classList.add('is-open');
+    mobileNav?.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('mobile-nav-open');
+  }
+  function closeMobileNav() {
+    hamburger?.setAttribute('aria-expanded', 'false');
+    mobileNav?.classList.remove('is-open');
+    mobileOverlay?.classList.remove('is-open');
+    mobileNav?.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('mobile-nav-open');
+  }
+
+  hamburger?.addEventListener('click', () => {
+    mobileNav?.classList.contains('is-open') ? closeMobileNav() : openMobileNav();
+  });
+  mobileOverlay?.addEventListener('click', closeMobileNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
+
+  // Mobile lang buttons mirror the main lang-toggle
+  document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('lang-toggle')
+        ?.querySelector(`[data-lang="${btn.dataset.lang}"]`)
+        ?.click();
+      closeMobileNav();
+    });
+  });
+
+  // Close mobile nav when any mobile link is clicked
+  document.querySelectorAll('.mobile-nav__link').forEach(link => {
+    link.addEventListener('click', closeMobileNav);
+  });
+
   // ── Kontak sidebar ─────────────────────────────────────────
   document.body.insertAdjacentHTML('beforeend', renderKontakSidebar());
 
@@ -415,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // renderNav('__none__') produces a base nav: no active link, no
   // is-hidden — the pre-render IIFE applies those per-page at runtime.
   try {
-    sessionStorage.setItem('fira-nav', renderNav('__none__'));
+    sessionStorage.setItem('fira-nav-v2', renderNav('__none__'));
   } catch (_) {}
 
   // ── Page transition overlay: fade out once page is ready ───

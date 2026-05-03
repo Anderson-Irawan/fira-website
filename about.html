@@ -19,7 +19,7 @@
 
   <!-- ── TOP NAV (injected by components.js) ── -->
   <div id="nav-placeholder" data-page="about"></div>
-  <script>!function(){try{var c=sessionStorage.getItem('fira-nav'),s=document.getElementById('nav-placeholder');if(!c||!s)return;var p=s.dataset.page||'',h=c;if(p){h=h.replace('href="'+p+'.html" class="navbar__link"','href="'+p+'.html" class="navbar__link active"');h=h.replace('class="navbar"','class="navbar navbar--transparent"');}else{h=h.replace('class="navbar"','class="navbar is-hidden"').replace('<div class="nav-spacer" aria-hidden="true"></div>','');}s.outerHTML=h;}catch(e){}}();</script>
+  <script>!function(){try{var c=sessionStorage.getItem('fira-nav-v2'),s=document.getElementById('nav-placeholder');if(!c||!s)return;var p=s.dataset.page||'',h=c;if(p){h=h.replace('href="'+p+'.html" class="navbar__link"','href="'+p+'.html" class="navbar__link active"');h=h.replace('class="navbar"','class="navbar navbar--transparent"');}else{h=h.replace('class="navbar"','class="navbar is-hidden"').replace('<div class="nav-spacer" aria-hidden="true"></div>','');}s.outerHTML=h;}catch(e){}}();</script>
 
   <main>
 
@@ -55,6 +55,7 @@
             </div>
           </div>
           <div class="qit-slide">
+            <img class="qit-slide__mobile-img" src="assets/images/pexels-sergey-sergeev-2153675005-32845690.jpg" alt="Visi">
             <div class="qit-slide__content">
               <div class="qit-slide__left">
                 <h2 class="qit-slide__title" data-i18n="section.vision">Visi</h2>
@@ -69,6 +70,7 @@
             </div>
           </div>
           <div class="qit-slide">
+            <img class="qit-slide__mobile-img" src="assets/images/15b802b453f98def427a14602c43f707.jpg" alt="Misi">
             <div class="qit-slide__content">
               <div class="qit-slide__left">
                 <h2 class="qit-slide__title" data-i18n="section.mission">Misi</h2>
@@ -87,30 +89,36 @@
       </div>
     </div>
 
-    <!-- ── QUALITY / INNOVATION / TRUST — stacked ── -->
-    <div class="qit-static">
-      <div class="qit-static__item" style="background-image:url('assets/images/pexels-rolledalloys-metal-supply-8973680.jpg')">
-        <div class="qit-static__overlay"></div>
+    <!-- ── QUALITY / INNOVATION / TRUST ── -->
+    <div class="qit-cards" style="background-color: var(--clr-cream); padding-top: 0;">
+      <div class="qit-card" style="background-image:url('assets/images/pexels-rolledalloys-metal-supply-8973680.jpg')">
+        <div class="qit-card__overlay"></div>
         <div class="qit-slide__content">
-          <div class="qit-slide__left"><h3 class="qit-slide__title">Quality</h3></div>
+          <div class="qit-slide__left">
+            <h3 class="qit-slide__title">Quality</h3>
+          </div>
           <div class="qit-slide__right">
             <p class="qit-slide__body" data-i18n="qit.quality.body">Pabrik kami dilengkapi dengan fasilitas produksi yang lengkap dan berteknologi, seperti mesin roll-forming, crane, forklift, dan mesin slitting untuk memproduksi galvalume dengan kualitas terbaik. Kapasitas produksi mencapai 400 ton per bulan dengan tenaga kerja lebih dari 100 orang.</p>
           </div>
         </div>
       </div>
-      <div class="qit-static__item" style="background-image:url('assets/images/pexels-kateryna-babaieva-1423213-3736102.jpg')">
-        <div class="qit-static__overlay"></div>
+      <div class="qit-card" style="background-image:url('assets/images/pexels-kateryna-babaieva-1423213-3736102.jpg')">
+        <div class="qit-card__overlay"></div>
         <div class="qit-slide__content">
-          <div class="qit-slide__left"><h3 class="qit-slide__title">Innovation</h3></div>
+          <div class="qit-slide__left">
+            <h3 class="qit-slide__title">Innovation</h3>
+          </div>
           <div class="qit-slide__right">
             <p class="qit-slide__body" data-i18n="qit.innovation.body">Inovasi dan produk yang unggul adalah keistimewaan kami. Kami terus berusaha untuk lebih baik, berinovasi dalam menghasilkan produk maupun layanan kepada pelanggan. Kami yakin bahwa kami harus didukung oleh pelayanan terbaik sehingga kami dapat semakin mantap dan selalu menjadi yang terdepan.</p>
           </div>
         </div>
       </div>
-      <div class="qit-static__item" style="background-image:url('assets/images/pexels-shamsuddin-habib-427046423-18293962.jpg')">
-        <div class="qit-static__overlay"></div>
+      <div class="qit-card" style="background-image:url('assets/images/pexels-shamsuddin-habib-427046423-18293962.jpg')">
+        <div class="qit-card__overlay"></div>
         <div class="qit-slide__content">
-          <div class="qit-slide__left"><h3 class="qit-slide__title">Trustworthy</h3></div>
+          <div class="qit-slide__left">
+            <h3 class="qit-slide__title">Trustworthy</h3>
+          </div>
           <div class="qit-slide__right">
             <p class="qit-slide__body" data-i18n="qit.trust.about.body">Fira Trust pada saat ini telah membuat berbagai macam produk Truss dan Roof yang disesuaikan dengan kebutuhan pasar. Kami selalu menjamin menghasilkan produk yang berkualitas baik secara nasional maupun internasional.</p>
           </div>
