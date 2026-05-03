@@ -407,9 +407,10 @@ button { cursor: pointer; }
   z-index: 189;
   background: rgba(0,0,0,0.5);
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.3s ease;
 }
-.mobile-nav-overlay.is-open { opacity: 1; }
+.mobile-nav-overlay.is-open { opacity: 1; pointer-events: auto; }
 body.mobile-nav-open { overflow: hidden; }
 
 /* ── Language switch overlay ─────────────────────────────── */
