@@ -19,7 +19,7 @@ const TRANSLATIONS = {
     'nav.kontak':  'CONTACT',
 
     /* ── HOME HERO ───────────────────────────────────── */
-    'home.hero.tagline': 'PT Bangun Citra Irawan is the sole manufacturer of "Fira" light steel — delivering the best quality, always innovating, and trustworthy.',
+    'home.hero.tagline': 'PT Bangun Citra Irawan is the sole manufacturer of "Fira" light steel, based in Surabaya, East Java — delivering the best quality, always innovating, and trustworthy.',
 
     /* ── HOME — TRUSTWORTHY SECTION ──────────────────── */
     'home.trust.body1': 'Light steel, commonly known as <strong>Galvalume / Zincalume</strong>, has recently played an important role in the construction of housing and other lightweight structures.',
@@ -59,7 +59,7 @@ const TRANSLATIONS = {
     'products.cta':                'View All Products',
     'products.desc':               'Light steel is high-strength, lightweight, and thin, yet has strength equivalent to conventional steel — 100% recyclable and produced to national standards.',
     'products.search.placeholder': 'Search our Product Catalogue ...',
-    'products.notfound':           'Product not found. Try a different keyword.',
+    'products.notfound':           'Product catalogue coming soon.',
 
     /* ── ABOUT PAGE ──────────────────────────────────── */
     'about.quote':    'We are a light steel manufacturer that delivers the best quality, always innovating, and trustworthy.',
@@ -76,6 +76,7 @@ const TRANSLATIONS = {
     'mission.4': 'Continuously innovating to create new light steel products.',
 
     /* ── STATS ───────────────────────────────────────── */
+    'stats.heading':  'Fira in Numbers',
     'stat.products': 'Products',
     'stat.projects':  'Projects',
     'stat.years':     'Years of Experience',
@@ -142,7 +143,7 @@ const TRANSLATIONS = {
     'nav.kontak':  'KONTAK',
 
     /* ── HOME HERO ───────────────────────────────────── */
-    'home.hero.tagline': 'PT Bangun Citra Irawan adalah produsen tunggal atau baja ringan "Fira" yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
+    'home.hero.tagline': 'PT Bangun Citra Irawan adalah produsen tunggal baja ringan "Fira" berbasis di Surabaya, Jawa Timur — yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
 
     /* ── HOME — TRUSTWORTHY SECTION ──────────────────── */
     'home.trust.body1': 'Baja ringan atau yang familiar kita sebut dengan <strong>Galvalume / Zincalume</strong> pada akhir-akhir ini mempunyai peranan yang penting dalam pembangunan perumahan maupun bangunan-bangunan tipis lainnya.',
@@ -182,7 +183,7 @@ const TRANSLATIONS = {
     'products.cta':                'Lihat Semua Produk',
     'products.desc':               'Baja ringan adalah baja mutu tinggi yang ringan dan tipis, namun memiliki kekuatan setara baja konvensional — 100% dapat didaur ulang dan diproduksi sesuai standar nasional.',
     'products.search.placeholder': 'Cari dari Katalog Produk Kami ...',
-    'products.notfound':           'Produk tidak ditemukan. Coba kata kunci lain.',
+    'products.notfound':           'Katalog produk segera hadir.',
 
     /* ── ABOUT PAGE ──────────────────────────────────── */
     'about.quote':    'Kami adalah produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
@@ -199,6 +200,7 @@ const TRANSLATIONS = {
     'mission.4': 'Terus berinovasi untuk membuat produk baru dari bahan baja ringan.',
 
     /* ── STATS ───────────────────────────────────────── */
+    'stats.heading':  'Fira dalam Angka',
     'stat.products': 'Produk',
     'stat.projects':  'Projek',
     'stat.years':     'Tahun Pengalaman',
