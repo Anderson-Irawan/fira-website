@@ -24,6 +24,10 @@ const TRANSLATIONS = {
     /* ── HOME HERO ───────────────────────────────────── */
     'home.hero.tagline': 'PT Bangun Citra Irawan is the sole manufacturer of "Fira" light steel, based in Surabaya, East Java — delivering the best quality, always innovating, and trustworthy.',
 
+    /* ── HOME HERO CTA ──────────────────────────────── */
+    'home.hero.cta':   'Browse Our Products',
+    'home.hero.quote': 'Get a Quote',
+
     /* ── HOME — TRUSTWORTHY SECTION ──────────────────── */
     'home.trust.body1': 'Light steel, commonly known as <strong>Galvalume / Zincalume</strong>, has recently played an important role in the construction of housing and other lightweight structures.',
     'home.trust.body2': 'Many construction projects today require wide spans or low-rise structures that are not too heavy. Light steel roof trusses are ideal for this — lightweight yet capable of supporting a range of roofing types. Fira continues to innovate, delivering the highest quality building materials for the people of Indonesia.',
@@ -115,6 +119,22 @@ const TRANSLATIONS = {
     'produk.hero': 'Products',
     'projek.hero': 'Projects',
 
+    /* ── OG META (about page) ───────────────────────── */
+    'og.title':   'FIRA — Light Steel Manufacturer',
+    'og.desc':    'Best quality, always innovating, and trustworthy.',
+
+    /* ── PAGE TITLES (dynamic) ──────────────────────── */
+    'page.title.index':  'Fira — Light Steel Manufacturer',
+    'page.title.about':  'Profile — FIRA',
+    'page.title.produk': 'Products — FIRA',
+    'page.title.projek': 'Projects — FIRA',
+
+    /* ── META DESCRIPTIONS (dynamic) ────────────────── */
+    'meta.desc.index':   'PT Bangun Citra Irawan — sole manufacturer of Fira light steel, based in Surabaya, East Java.',
+    'meta.desc.about':   'PT Bangun Citra Irawan — a light steel manufacturer delivering the best quality, always innovating, and trustworthy.',
+    'meta.desc.produk':  'Fira light steel product catalogue — Roofing, Truss, Purlin, Holo, Wall Panel, PVC and more.',
+    'meta.desc.projek':  'Fira light steel project gallery — Residential, Commercial, Industrial, and Institutional across East Java.',
+
     /* ── FOOTER ──────────────────────────────────────── */
     'footer.products': 'Products',
     'footer.projects': 'Projects',
@@ -132,8 +152,15 @@ const TRANSLATIONS = {
     'kontak.sunday':  'Sunday',
     'kontak.closed':  'CLOSED',
     'kontak.name.placeholder':  'Name ...',
-    'kontak.dept.placeholder':  'Department ...',
     'kontak.phone.placeholder': 'Phone number ...',
+    'kontak.project.label':       'Project Type ...',
+    'kontak.project.residential': 'Residential Roofing',
+    'kontak.project.commercial':  'Commercial Roofing',
+    'kontak.project.industrial':  'Industrial / Warehouse',
+    'kontak.project.truss':       'Truss Installation',
+    'kontak.project.fabrication': 'Custom Fabrication',
+    'kontak.project.other':       'Other',
+    'kontak.project.other.placeholder': 'Please describe your project ...',
     'kontak.email.placeholder': 'Email ...',
     'kontak.msg.placeholder':   'Message ...',
   },
@@ -150,6 +177,10 @@ const TRANSLATIONS = {
 
     /* ── HOME HERO ───────────────────────────────────── */
     'home.hero.tagline': 'PT Bangun Citra Irawan adalah produsen tunggal baja ringan "Fira" berbasis di Surabaya, Jawa Timur — yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
+
+    /* ── HOME HERO CTA ──────────────────────────────── */
+    'home.hero.cta':   'Lihat Produk Kami',
+    'home.hero.quote': 'Minta Penawaran',
 
     /* ── HOME — TRUSTWORTHY SECTION ──────────────────── */
     'home.trust.body1': 'Baja ringan atau yang familiar kita sebut dengan <strong>Galvalume / Zincalume</strong> pada akhir-akhir ini mempunyai peranan yang penting dalam pembangunan perumahan maupun bangunan-bangunan tipis lainnya.',
@@ -242,6 +273,22 @@ const TRANSLATIONS = {
     'produk.hero': 'Produk',
     'projek.hero': 'Projek',
 
+    /* ── OG META (about page) ───────────────────────── */
+    'og.title':   'FIRA — Produsen Baja Ringan',
+    'og.desc':    'Kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
+
+    /* ── PAGE TITLES (dynamic) ──────────────────────── */
+    'page.title.index':  'Fira — Produsen Baja Ringan',
+    'page.title.about':  'Profil — FIRA',
+    'page.title.produk': 'Produk — FIRA',
+    'page.title.projek': 'Projek — FIRA',
+
+    /* ── META DESCRIPTIONS (dynamic) ────────────────── */
+    'meta.desc.index':   'PT Bangun Citra Irawan — produsen tunggal baja ringan Fira berbasis di Surabaya, Jawa Timur.',
+    'meta.desc.about':   'PT Bangun Citra Irawan — Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
+    'meta.desc.produk':  'Katalog produk baja ringan Fira — Atap, Truss, Reng, Holo, Wallpanel, PVC dan lebih.',
+    'meta.desc.projek':  'Galeri projek baja ringan Fira — Residensial, Komersial, Industrial, dan Institutional di seluruh Jawa Timur.',
+
     /* ── FOOTER ──────────────────────────────────────── */
     'footer.products': 'Produk',
     'footer.projects': 'Projek',
@@ -259,15 +306,22 @@ const TRANSLATIONS = {
     'kontak.sunday':  'Minggu',
     'kontak.closed':  'TUTUP',
     'kontak.name.placeholder':  'Nama ...',
-    'kontak.dept.placeholder':  'Departemen ...',
     'kontak.phone.placeholder': 'Nomor telfon ...',
+    'kontak.project.label':       'Tipe Proyek ...',
+    'kontak.project.residential': 'Atap Residensial',
+    'kontak.project.commercial':  'Atap Komersial',
+    'kontak.project.industrial':  'Industrial / Gudang',
+    'kontak.project.truss':       'Pemasangan Truss',
+    'kontak.project.fabrication': 'Fabrikasi Khusus',
+    'kontak.project.other':       'Lainnya',
+    'kontak.project.other.placeholder': 'Ceritakan proyek Anda ...',
     'kontak.email.placeholder': 'Email ...',
     'kontak.msg.placeholder':   'Isi Pesan ...',
   },
 };
 
 // ─── CORE ────────────────────────────────────────────────────
-const DEFAULT_LANG = 'en';
+const DEFAULT_LANG = 'id';
 
 function getLang() {
   return localStorage.getItem('fira-lang') || DEFAULT_LANG;
@@ -354,6 +408,26 @@ function applyLanguage(lang) {
     const isOpen   = btn.getAttribute('aria-expanded') === 'true';
     if (lbl) lbl.textContent = isOpen ? t['btn.hide'] : t['btn.showmore'];
   });
+
+  // ── Page <title>, <meta description>, and OG tags ─────────
+  const pageId = document.body?.dataset.page;
+  if (pageId) {
+    const titleKey = `page.title.${pageId}`;
+    const descKey  = `meta.desc.${pageId}`;
+    if (t[titleKey]) document.title = t[titleKey];
+    if (t[descKey]) {
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', t[descKey]);
+    }
+  }
+  if (t['og.title']) {
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', t['og.title']);
+  }
+  if (t['og.desc']) {
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', t['og.desc']);
+  }
 
   // ── Update lang toggle button ──────────────────────────────
   document.querySelectorAll('.lang-toggle').forEach(btn => {

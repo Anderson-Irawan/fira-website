@@ -109,7 +109,20 @@ function renderKontakSidebar() {
     <h2 class="ksb__title" data-i18n="kontak.title">Hubungi Kami</h2>
     <form id="ksb-form" class="ksb-form" action="#" method="POST" novalidate>
       <div><input type="text"  name="nama"       placeholder="Nama ..."         required autocomplete="name"  data-i18n-placeholder="kontak.name.placeholder"></div>
-      <div><input type="text"  name="departemen" placeholder="Departemen ..."                                  data-i18n-placeholder="kontak.dept.placeholder"></div>
+      <div>
+        <select name="project_type" class="ksb-select">
+          <option value="" disabled selected data-i18n="kontak.project.label">Tipe Proyek ...</option>
+          <option value="residential"  data-i18n="kontak.project.residential">Atap Residensial</option>
+          <option value="commercial"   data-i18n="kontak.project.commercial">Atap Komersial</option>
+          <option value="industrial"   data-i18n="kontak.project.industrial">Industrial / Gudang</option>
+          <option value="truss"        data-i18n="kontak.project.truss">Pemasangan Truss</option>
+          <option value="fabrication"  data-i18n="kontak.project.fabrication">Fabrikasi Khusus</option>
+          <option value="other"        data-i18n="kontak.project.other">Lainnya</option>
+        </select>
+      </div>
+      <div id="ksb-other-wrap" style="display:none">
+        <input type="text" name="project_type_other" placeholder="Ceritakan proyek Anda ..." data-i18n-placeholder="kontak.project.other.placeholder">
+      </div>
       <div><input type="tel"   name="telepon"    placeholder="Nomor telfon ..."          autocomplete="tel"    data-i18n-placeholder="kontak.phone.placeholder"></div>
       <div><input type="email" name="email"      placeholder="Email ..."        required autocomplete="email"  data-i18n-placeholder="kontak.email.placeholder"></div>
       <div><textarea name="deskripsi" placeholder="Isi Pesan ..." rows="4"                                     data-i18n-placeholder="kontak.msg.placeholder"></textarea></div>
@@ -394,6 +407,15 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Pesan gagal terkirim. Silakan coba lagi.');
         btn.disabled = false;
       }
+    });
+  }
+
+  // ── Project type "Other" reveal ───────────────────────────
+  const projectSelect = document.querySelector('[name="project_type"]');
+  const otherWrap     = document.getElementById('ksb-other-wrap');
+  if (projectSelect && otherWrap) {
+    projectSelect.addEventListener('change', () => {
+      otherWrap.style.display = projectSelect.value === 'other' ? '' : 'none';
     });
   }
 
