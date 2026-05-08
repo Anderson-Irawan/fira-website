@@ -18,6 +18,9 @@ const TRANSLATIONS = {
     'nav.about':   'PROFILE',
     'nav.kontak':  'CONTACT',
 
+    /* ── BREADCRUMB ──────────────────────────────────── */
+    'breadcrumb.home': 'Home',
+
     /* ── HOME HERO ───────────────────────────────────── */
     'home.hero.tagline': 'PT Bangun Citra Irawan is the sole manufacturer of "Fira" light steel, based in Surabaya, East Java — delivering the best quality, always innovating, and trustworthy.',
 
@@ -141,6 +144,9 @@ const TRANSLATIONS = {
     'nav.projek':  'PROJEK',
     'nav.about':   'PROFIL',
     'nav.kontak':  'KONTAK',
+
+    /* ── BREADCRUMB ──────────────────────────────────── */
+    'breadcrumb.home': 'Beranda',
 
     /* ── HOME HERO ───────────────────────────────────── */
     'home.hero.tagline': 'PT Bangun Citra Irawan adalah produsen tunggal baja ringan "Fira" berbasis di Surabaya, Jawa Timur — yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',

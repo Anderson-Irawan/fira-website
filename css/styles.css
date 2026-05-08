@@ -1769,6 +1769,50 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
 .search-empty.visible { display: block; }
 
 /* =====================================================
+   BREADCRUMB
+   Sits inside .page-hero__inner, above the page title.
+   Supports up to 3 levels: Home › Section › Detail.
+   Hidden on mobile — not useful at small widths.
+   ===================================================== */
+.breadcrumb {
+  margin-top: 24px;
+}
+.breadcrumb__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.breadcrumb__item + .breadcrumb__item::before {
+  content: '›';
+  color: rgba(255,255,255,0.3);
+  font-size: 14px;
+  line-height: 1;
+}
+.breadcrumb__link {
+  color: rgba(255,255,255,0.5);
+  transition: color var(--ease);
+}
+.breadcrumb__link:hover { color: var(--clr-yellow); }
+.breadcrumb__item--current span { color: var(--clr-white); }
+
+@media (max-width: 900px) {
+  .breadcrumb { display: none; }
+}
+
+/* =====================================================
    CONTACT PAGE
    ===================================================== */
 .kontak-page { background: var(--clr-cream); }
