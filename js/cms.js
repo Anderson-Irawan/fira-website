@@ -60,6 +60,7 @@ const CAT_PREVIEW = 4; // cards shown before "Tampil Semua"
 
 /** Renders a single product card */
 function renderProdCard(p, catId) {
+  const spec = [p.material, p.thickness].filter(Boolean).join(' · ');
   return `
     <article class="prod-card" data-name="${p.name.toLowerCase()}" data-category="${catId}">
       ${p.image
@@ -68,7 +69,7 @@ function renderProdCard(p, catId) {
       }
       <div class="prod-card__info">
         <p class="prod-card__name">${p.name}</p>
-        <p class="prod-card__spec">${p.material} · ${p.thickness}</p>
+        ${spec ? `<p class="prod-card__spec">${spec}</p>` : ''}
       </div>
     </article>`;
 }
@@ -84,21 +85,19 @@ async function renderCatalogue() {
 
   try {
     const data = await fetchData();
-    root.innerHTML = data.categories.map(cat => {
+
+    const renderSection = cat => {
       const preview = cat.products.slice(0, CAT_PREVIEW);
       const extra   = cat.products.slice(CAT_PREVIEW);
       const hasMore = extra.length > 0;
-
       return `
-        <section class="cat-section" id="${cat.id}" data-category="${cat.id}">
-          <div class="cat-header">
-            <h2 class="cat-name">${cat.name}</h2>
-            ${hasMore ? `
-              <button class="cat-toggle" aria-expanded="false" data-cat="${cat.id}">
-                <span class="cat-toggle__label">Tampil Semua</span>
-                <span class="cat-toggle__count">(${cat.products.length})</span>
-                <svg class="cat-toggle__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>` : ''}
+        <section class="cat-section" id="${cat.id}" data-category="${cat.id}" data-group="${cat.group || ''}">
+          <div class="cat-header${hasMore ? ' cat-header--toggle' : ''}" ${hasMore ? `data-cat="${cat.id}" aria-expanded="false" role="button" tabindex="0" aria-label="Tampil semua ${cat.name}"` : ''}>
+            <div class="cat-header__text">
+              <h2 class="cat-name">${cat.name}</h2>
+              ${cat.description ? `<p class="cat-desc">${cat.description}</p>` : ''}
+            </div>
+            ${hasMore ? `<svg class="cat-toggle__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>` : ''}
           </div>
           <div class="prod-grid">
             ${preview.map(p => renderProdCard(p, cat.id)).join('')}
@@ -112,7 +111,32 @@ async function renderCatalogue() {
               </div>
             </div>` : ''}
         </section>`;
-    }).join('');
+    };
+
+    const items  = data.categories;
+    const parts  = [];
+    let   i      = 0;
+    while (i < items.length) {
+      const cat = items[i];
+      if (cat.type === 'group-header') {
+        const groupSections = [];
+        let j = i + 1;
+        while (j < items.length && items[j].group === cat.id) {
+          groupSections.push(items[j]);
+          j++;
+        }
+        parts.push(`
+          <div class="cat-group" id="group-${cat.id}">
+            <div class="cat-group-header" id="${cat.id}"><h2 class="cat-group-name">${cat.name}</h2></div>
+            ${groupSections.map(renderSection).join('')}
+          </div>`);
+        i = j;
+      } else {
+        parts.push(renderSection(cat));
+        i++;
+      }
+    }
+    root.innerHTML = parts.join('');
 
     initCatAccordion();
   } catch (e) {
@@ -130,21 +154,17 @@ function expandCat(catId, scroll = false) {
   if (!root) return;
 
   // Collapse all
-  root.querySelectorAll('.cat-toggle').forEach(b => {
+  root.querySelectorAll('.cat-header[data-cat]').forEach(b => {
     b.setAttribute('aria-expanded', 'false');
-    const lbl = b.querySelector('.cat-toggle__label');
-    if (lbl) lbl.textContent = 'Tampil Semua';
     document.getElementById(`overflow-${b.dataset.cat}`)?.classList.remove('prod-overflow--open');
   });
 
   // Expand target
   const section  = document.getElementById(catId);
-  const btn      = section?.querySelector('.cat-toggle');
+  const btn      = section?.querySelector('.cat-header[data-cat]');
   const overflow = document.getElementById(`overflow-${catId}`);
   if (btn && overflow) {
     btn.setAttribute('aria-expanded', 'true');
-    const lbl = btn.querySelector('.cat-toggle__label');
-    if (lbl) lbl.textContent = 'Sembunyikan';
     overflow.classList.add('prod-overflow--open');
   }
 
@@ -161,22 +181,25 @@ function initCatAccordion() {
   const root = document.getElementById('catalogue-root');
   if (!root) return;
 
-  root.addEventListener('click', e => {
-    const btn = e.target.closest('.cat-toggle');
-    if (!btn) return;
-
+  const toggle = btn => {
     const catId  = btn.dataset.cat;
     const isOpen = btn.getAttribute('aria-expanded') === 'true';
-
     if (isOpen) {
-      // Collapse this one
       btn.setAttribute('aria-expanded', 'false');
-      const lbl = btn.querySelector('.cat-toggle__label');
-      if (lbl) lbl.textContent = 'Tampil Semua';
       document.getElementById(`overflow-${catId}`)?.classList.remove('prod-overflow--open');
     } else {
       expandCat(catId);
     }
+  };
+
+  root.addEventListener('click', e => {
+    const btn = e.target.closest('.cat-header[data-cat]');
+    if (btn) toggle(btn);
+  });
+  root.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const btn = e.target.closest('.cat-header[data-cat]');
+    if (btn) { e.preventDefault(); toggle(btn); }
   });
 
   // Auto-expand from URL hash (e.g. produk.html#atap)
@@ -283,45 +306,43 @@ async function renderCertifications() {
       });
     });
 
-    // Remove any previously-injected toggle
-    g.parentElement.querySelector('.cert-toggle')?.remove();
-    g.closest('.container')?.querySelector('.sec-header .cat-toggle')?.remove();
+    // Make the entire sec-header the toggle (same pattern as cat-header--toggle)
+    const secHeader = g.closest('.container')?.querySelector('.sec-header');
+    if (secHeader && !secHeader.classList.contains('cat-header--toggle')) {
+      const arrowSVG = `<svg class="cat-toggle__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`;
+      secHeader.classList.add('cat-header--toggle');
+      secHeader.setAttribute('role', 'button');
+      secHeader.setAttribute('tabindex', '0');
+      secHeader.insertAdjacentHTML('beforeend', arrowSVG);
 
-    const btn = document.createElement('button');
-    btn.className = 'cat-toggle';
-    btn.innerHTML = `
-      <span class="cat-toggle__label">Tampil Semua</span>
-      <span class="cat-toggle__count">(${certs.length})</span>
-      <svg class="cat-toggle__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-    `;
-    btn.setAttribute('aria-expanded', 'false');
+      if (isAbout) {
+        secHeader.setAttribute('aria-expanded', 'false');
+        secHeader.setAttribute('aria-label', 'Tampil semua Sertifikasi');
 
-    if (isAbout) {
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        Array.from(g.querySelectorAll('.cert-card')).forEach((c, i) => {
-          c.classList.toggle('cert-hidden', expanded && i >= 4);
+        const toggle = () => {
+          const expanded = secHeader.getAttribute('aria-expanded') === 'true';
+          Array.from(g.querySelectorAll('.cert-card')).forEach((c, i) => {
+            c.classList.toggle('cert-hidden', expanded && i >= 4);
+          });
+          secHeader.setAttribute('aria-expanded', String(!expanded));
+        };
+
+        secHeader.addEventListener('click', toggle);
+        secHeader.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
         });
-        btn.setAttribute('aria-expanded', String(!expanded));
-        const lbl = btn.querySelector('.cat-toggle__label');
-        if (lbl) lbl.textContent = expanded ? 'Tampil Semua' : 'Sembunyikan';
-      });
 
-      if (new URLSearchParams(location.search).has('certs')) {
-        btn.click();
+        if (new URLSearchParams(location.search).has('certs')) {
+          toggle();
+        }
+      } else {
+        secHeader.addEventListener('click', () => {
+          window.location.href = 'about.html?certs=open#sertifikasi';
+        });
+        secHeader.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = 'about.html?certs=open#sertifikasi'; }
+        });
       }
-
-      // Place inside sec-header so it sits inline with the title, right-aligned
-      const secHeader = g.closest('.container')?.querySelector('.sec-header');
-      if (secHeader) secHeader.appendChild(btn);
-      else g.insertAdjacentElement('afterend', btn);
-    } else {
-      btn.addEventListener('click', () => {
-        window.location.href = 'about.html?certs=open#sertifikasi';
-      });
-      const secHeader = g.closest('.container')?.querySelector('.sec-header');
-      if (secHeader) secHeader.appendChild(btn);
-      else g.insertAdjacentElement('afterend', btn);
     }
   });
 }
@@ -418,11 +439,23 @@ async function renderAboutProducts() {
   if (!root) return;
 
   const data = await fetchData();
-  // Show one card per category
-  root.innerHTML = data.categories.map(cat => `
+
+  // Build a flat display list: one entry per top-level category or group.
+  // Group-headers become a single card; their sub-categories are skipped.
+  const display = [];
+  data.categories.forEach(cat => {
+    if (cat.type === 'group-header') {
+      const firstChild = data.categories.find(c => c.group === cat.id);
+      display.push({ id: cat.id, name: cat.name, image: firstChild?.products?.[0]?.image || null });
+    } else if (!cat.group) {
+      display.push({ id: cat.id, name: cat.name, image: cat.products?.[0]?.image || null });
+    }
+  });
+
+  root.innerHTML = display.map(cat => `
     <a href="produk.html#${cat.id}" class="home-prod-card">
-      ${cat.products[0]?.image
-        ? `<img src="${cat.products[0].image}" alt="${cat.name}" loading="lazy">`
+      ${cat.image
+        ? `<img src="${cat.image}" alt="${cat.name}" loading="lazy">`
         : ''
       }
       <span class="home-prod-card__label">${cat.name}</span>
@@ -473,14 +506,9 @@ async function renderProjects() {
 
       return `
         <section class="cat-section" id="${cat.id}" data-category="${cat.id}">
-          <div class="cat-header">
+          <div class="cat-header${hasMore ? ' cat-header--toggle' : ''}" ${hasMore ? `data-cat="${cat.id}" aria-expanded="false" role="button" tabindex="0" aria-label="Tampil semua ${cat.name}"` : ''}>
             <h2 class="cat-name">${cat.name}</h2>
-            ${hasMore ? `
-              <button class="cat-toggle" aria-expanded="false" data-cat="${cat.id}">
-                <span class="cat-toggle__label">Tampil Semua</span>
-                <span class="cat-toggle__count">(${cat.items.length})</span>
-                <svg class="cat-toggle__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>` : ''}
+            ${hasMore ? `<svg class="cat-toggle__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>` : ''}
           </div>
           <div class="proj-grid">
             ${preview.map(p => renderProjCard(p, cat.id)).join('')}
@@ -506,43 +534,40 @@ function initProjAccordion() {
   const root = document.getElementById('projek-root');
   if (!root) return;
 
-  root.addEventListener('click', e => {
-    const btn = e.target.closest('.cat-toggle');
-    if (!btn) return;
-
+  const toggle = btn => {
     const catId  = btn.dataset.cat;
     const isOpen = btn.getAttribute('aria-expanded') === 'true';
-
     if (isOpen) {
       btn.setAttribute('aria-expanded', 'false');
-      const lbl = btn.querySelector('.cat-toggle__label');
-      if (lbl) lbl.textContent = 'Tampil Semua';
       document.getElementById(`overflow-${catId}`)?.classList.remove('prod-overflow--open');
     } else {
-      // Collapse all others first
-      root.querySelectorAll('.cat-toggle').forEach(b => {
+      root.querySelectorAll('.cat-header[data-cat]').forEach(b => {
         b.setAttribute('aria-expanded', 'false');
-        const lbl = b.querySelector('.cat-toggle__label');
-        if (lbl) lbl.textContent = 'Tampil Semua';
         document.getElementById(`overflow-${b.dataset.cat}`)?.classList.remove('prod-overflow--open');
       });
       btn.setAttribute('aria-expanded', 'true');
-      const lbl = btn.querySelector('.cat-toggle__label');
-      if (lbl) lbl.textContent = 'Sembunyikan';
       document.getElementById(`overflow-${catId}`)?.classList.add('prod-overflow--open');
     }
+  };
+
+  root.addEventListener('click', e => {
+    const btn = e.target.closest('.cat-header[data-cat]');
+    if (btn) toggle(btn);
+  });
+  root.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const btn = e.target.closest('.cat-header[data-cat]');
+    if (btn) { e.preventDefault(); toggle(btn); }
   });
 
   const hash = window.location.hash.slice(1);
   if (hash && document.getElementById(hash)) {
     setTimeout(() => {
       const section  = document.getElementById(hash);
-      const btn      = section?.querySelector('.cat-toggle');
+      const btn      = section?.querySelector('.cat-header[data-cat]');
       const overflow = document.getElementById(`overflow-${hash}`);
       if (btn && overflow) {
         btn.setAttribute('aria-expanded', 'true');
-        const lbl = btn.querySelector('.cat-toggle__label');
-        if (lbl) lbl.textContent = 'Sembunyikan';
         overflow.classList.add('prod-overflow--open');
       }
       section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -555,6 +580,7 @@ function initProjAccordion() {
 function initSearch() {
   const input = document.getElementById('search-input');
   const empty = document.getElementById('search-empty');
+  const root  = document.getElementById('catalogue-root');
   if (!input) return;
 
   input.addEventListener('input', () => {
@@ -577,7 +603,7 @@ function initSearch() {
       if (!hasVisible) return;
 
       const overflow = sec.querySelector('.prod-overflow');
-      const btn      = sec.querySelector('.cat-toggle');
+      const btn      = sec.querySelector('.cat-header[data-cat]');
       if (!overflow || !btn) return;
 
       if (q) {
@@ -587,16 +613,19 @@ function initSearch() {
         if (overflowMatch) {
           overflow.classList.add('prod-overflow--open');
           btn.setAttribute('aria-expanded', 'true');
-          const lbl = btn.querySelector('.cat-toggle__label');
-          if (lbl) lbl.textContent = 'Sembunyikan';
         }
       } else {
         // Search cleared — collapse back to default
         overflow.classList.remove('prod-overflow--open');
         btn.setAttribute('aria-expanded', 'false');
-        const lbl = btn.querySelector('.cat-toggle__label');
-        if (lbl) lbl.textContent = 'Tampil Semua';
       }
+    });
+
+    // Hide group containers when all their sections are hidden
+    root.querySelectorAll('.cat-group').forEach(group => {
+      const sections  = [...group.querySelectorAll('.cat-section')];
+      const anyVisible = sections.some(s => s.style.display !== 'none');
+      group.style.display = anyVisible ? '' : 'none';
     });
 
     if (empty) empty.classList.toggle('visible', total === 0 && q.length > 0);

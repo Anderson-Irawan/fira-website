@@ -1,0 +1,398 @@
+{
+  "_comment": "FIRA Product Catalogue — edit this file to update all product listings on the website. To integrate a real CMS (Contentful, Sanity, etc.), replace the fetch call in js/cms.js with your CMS API endpoint and map the response to this same shape.",
+  "categories": [
+    {
+      "id": "atap",
+      "name": "Atap",
+      "description": "Produk atap baja ringan berkualitas tinggi untuk hunian dan komersial",
+      "products": [
+        {
+          "id": "atap-001",
+          "name": "Atap FR 4",
+          "material": "Galvalume",
+          "thickness": "0.25 mm",
+          "image": "assets/products/atap/atap fr 4.jpg",
+          "description": "Profil atap FR seri 4 untuk hunian residensial"
+        },
+        {
+          "id": "atap-002",
+          "name": "Atap FR 5",
+          "material": "Galvalume",
+          "thickness": "0.25 mm",
+          "image": "assets/products/atap/atap fr 5.jpg",
+          "description": "Profil atap FR seri 5 ketebalan standar"
+        },
+        {
+          "id": "atap-003",
+          "name": "Atap FR 9",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/atap fr 9.jpg",
+          "description": "Profil atap FR seri 9 untuk kebutuhan semi-komersial"
+        },
+        {
+          "id": "atap-004",
+          "name": "Atap FR 12",
+          "material": "Galvalume",
+          "thickness": "0.35 mm",
+          "image": "assets/products/atap/atap fr 12.jpg",
+          "description": "Profil atap FR seri 12 ketebalan premium"
+        },
+        {
+          "id": "atap-005",
+          "name": "Nok Galvalum",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/nok galvalum.jpg",
+          "description": "Ridge cap / nok galvalume untuk penutup puncak atap"
+        },
+        {
+          "id": "atap-006",
+          "name": "Talang Jurai",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/talang jurai.jpg",
+          "description": "Talang jurai untuk membuang air hujan di pertemuan atap"
+        },
+        {
+          "id": "atap-007",
+          "name": "Talang Kotak",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/talang kotak.jpg",
+          "description": "Talang kotak standar untuk saluran air hujan"
+        },
+        {
+          "id": "atap-008",
+          "name": "Talang Tepi",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/atap/talang tepi.jpg",
+          "description": "Talang tepi untuk finishing ujung atap"
+        }
+      ]
+    },
+    {
+      "id": "truss",
+      "name": "Truss",
+      "description": "Rangka atap baja ringan Fira Truss — kuat, ringan, terpercaya",
+      "products": [
+        {
+          "id": "truss-001",
+          "name": "C Truss",
+          "material": "Zincalume",
+          "thickness": "0.75 mm",
+          "image": "assets/products/truss/c truss.png",
+          "description": "Profil C standar untuk rangka atap hunian"
+        },
+        {
+          "id": "truss-002",
+          "name": "C Truss Mini",
+          "material": "Zincalume",
+          "thickness": "0.55 mm",
+          "image": "assets/products/truss/c truss mini.png",
+          "description": "Profil C mini untuk bentangan ringan"
+        },
+        {
+          "id": "truss-003",
+          "name": "H Truss",
+          "material": "Zincalume",
+          "thickness": "0.75 mm",
+          "image": "assets/products/truss/h truss.png",
+          "description": "Profil H untuk rangka atap kuat dan stabil"
+        },
+        {
+          "id": "truss-004",
+          "name": "U Truss",
+          "material": "Zincalume",
+          "thickness": "0.45 mm",
+          "image": "assets/products/truss/u truss.png",
+          "description": "Profil U penopang rangka atap dan partisi"
+        }
+      ]
+    },
+    {
+      "id": "reng",
+      "name": "Reng",
+      "description": "Reng baja ringan sebagai penopang penutup atap",
+      "products": [
+        {
+          "id": "reng-001",
+          "name": "Reng 100",
+          "material": "Zincalume",
+          "thickness": "0.45 mm",
+          "image": "assets/products/reng/reng 100.png",
+          "description": "Reng 100 standar paling umum digunakan"
+        },
+        {
+          "id": "reng-002",
+          "name": "Reng 35L",
+          "material": "Zincalume",
+          "thickness": "0.40 mm",
+          "image": "assets/products/reng/reng 35l.png",
+          "description": "Reng 35L ringan untuk hunian residensial"
+        },
+        {
+          "id": "reng-003",
+          "name": "Reng 35M",
+          "material": "Zincalume",
+          "thickness": "0.45 mm",
+          "image": "assets/products/reng/reng 35m.png",
+          "description": "Reng 35M medium untuk ketebalan lebih"
+        },
+        {
+          "id": "reng-004",
+          "name": "Reng Besar",
+          "material": "Zincalume",
+          "thickness": "0.55 mm",
+          "image": "assets/products/reng/reng besar.png",
+          "description": "Reng besar untuk beban dan bentangan ekstra"
+        },
+        {
+          "id": "reng-005",
+          "name": "Reng Eco",
+          "material": "Zincalume",
+          "thickness": "0.35 mm",
+          "image": "assets/products/reng/reng eco.png",
+          "description": "Reng ekonomis tanpa mengorbankan kualitas"
+        },
+        {
+          "id": "reng-006",
+          "name": "Reng Neo",
+          "material": "Zincalume",
+          "thickness": "0.40 mm",
+          "image": "assets/products/reng/reng neo.png",
+          "description": "Reng Neo seri terbaru dengan presisi tinggi"
+        }
+      ]
+    },
+    {
+      "id": "holo",
+      "name": "Holo",
+      "description": "Profil holo baja ringan berbagai ukuran untuk plafon dan rangka",
+      "products": [
+        {
+          "id": "holo-001",
+          "name": "Holo Plafon 2×4",
+          "material": "Baja Ringan",
+          "thickness": "0.8 mm",
+          "image": "assets/products/holo/holo plafon 2x4.jpg",
+          "description": "Holo plafon persegi panjang 2×4 cm standar"
+        },
+        {
+          "id": "holo-002",
+          "name": "Holo Plafon 4×4",
+          "material": "Baja Ringan",
+          "thickness": "0.8 mm",
+          "image": "assets/products/holo/holo plafon 4x4.jpg",
+          "description": "Holo plafon persegi simetris 4×4 cm"
+        },
+        {
+          "id": "holo-003",
+          "name": "Holo Wall Angle",
+          "material": "Baja Ringan",
+          "thickness": "0.4 mm",
+          "image": "assets/products/holo/holo wall angle.jpg",
+          "description": "Wall angle untuk penyelesaian tepi plafon"
+        }
+      ]
+    },
+    {
+      "id": "wallpanel",
+      "name": "Wallpanel",
+      "description": "Panel dinding baja ringan modern, ringan, dan mudah dipasang",
+      "products": [
+        {
+          "id": "wp-001",
+          "name": "Wallpanel Standar",
+          "material": "Zincalume",
+          "thickness": "0.30 mm",
+          "image": "",
+          "description": "Panel dinding standar untuk hunian"
+        },
+        {
+          "id": "wp-002",
+          "name": "Wallpanel Premium",
+          "material": "Zincalume",
+          "thickness": "0.40 mm",
+          "image": "",
+          "description": "Panel dinding ketebalan premium"
+        },
+        {
+          "id": "wp-003",
+          "name": "Wallpanel Insulasi",
+          "material": "Sandwich Panel",
+          "thickness": "50 mm",
+          "image": "",
+          "description": "Panel sandwich dengan lapisan insulasi termal"
+        },
+        {
+          "id": "wp-004",
+          "name": "Wallpanel Custom",
+          "material": "Zincalume",
+          "thickness": "Custom",
+          "image": "",
+          "description": "Panel custom sesuai kebutuhan proyek"
+        }
+      ]
+    },
+    {
+      "id": "pvc",
+      "name": "PVC",
+      "description": "Produk PVC berkualitas untuk plafon dan dinding interior",
+      "products": [
+        {
+          "id": "pvc-001",
+          "name": "PVC Ceiling 8mm",
+          "material": "PVC",
+          "thickness": "8 mm",
+          "image": "",
+          "description": "Plafon PVC putih bersih standar"
+        },
+        {
+          "id": "pvc-002",
+          "name": "PVC Wall Panel",
+          "material": "PVC",
+          "thickness": "8 mm",
+          "image": "",
+          "description": "Panel dinding PVC tahan lembab"
+        },
+        {
+          "id": "pvc-003",
+          "name": "PVC List / Cornice",
+          "material": "PVC",
+          "thickness": "2 mm",
+          "image": "",
+          "description": "Aksen list finishing PVC"
+        },
+        {
+          "id": "pvc-004",
+          "name": "PVC Custom",
+          "material": "PVC",
+          "thickness": "Custom",
+          "image": "",
+          "description": "Produk PVC sesuai order"
+        }
+      ]
+    },
+    {
+      "id": "produk-lain",
+      "name": "Produk Lain",
+      "description": "Aksesori dan produk pelengkap baja ringan dari Fira",
+      "products": [
+        {
+          "id": "lain-001",
+          "name": "Fira Deck",
+          "material": "Galvalume",
+          "thickness": "0.75 mm",
+          "image": "assets/products/produk lain/fira deck.jpg",
+          "description": "Metal deck Fira untuk struktur lantai komposit"
+        },
+        {
+          "id": "lain-002",
+          "name": "Mawar",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/produk lain/mawar.png",
+          "description": "Produk aksesori seri Mawar dari Fira"
+        },
+        {
+          "id": "lain-003",
+          "name": "Raflesia",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/produk lain/raflesia.png",
+          "description": "Produk aksesori seri Raflesia dari Fira"
+        },
+        {
+          "id": "lain-004",
+          "name": "Ventilasi",
+          "material": "Galvalume",
+          "thickness": "0.30 mm",
+          "image": "assets/products/produk lain/ventilasi.jpg",
+          "description": "Produk ventilasi Fira untuk sirkulasi udara optimal"
+        }
+      ]
+    }
+  ],
+  "certifications": [
+    { "id": "cert-001", "name": "Sertifikasi 1",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification1.png"  },
+    { "id": "cert-002", "name": "Sertifikasi 2",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification2.png"  },
+    { "id": "cert-003", "name": "Sertifikasi 3",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification3.png"  },
+    { "id": "cert-004", "name": "Sertifikasi 4",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification4.png"  },
+    { "id": "cert-005", "name": "Sertifikasi 5",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification5.png"  },
+    { "id": "cert-006", "name": "Sertifikasi 6",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification6.png"  },
+    { "id": "cert-007", "name": "Sertifikasi 7",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification7.png"  },
+    { "id": "cert-008", "name": "Sertifikasi 8",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification8.png"  },
+    { "id": "cert-009", "name": "Sertifikasi 9",  "issuer": "", "year": "", "image": "assets/certs/1551677007-certification9.png"  },
+    { "id": "cert-010", "name": "Sertifikasi 10", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification10.png" },
+    { "id": "cert-011", "name": "Sertifikasi 11", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification11.png" },
+    { "id": "cert-012", "name": "Sertifikasi 12", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification12.png" },
+    { "id": "cert-013", "name": "Sertifikasi 13", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification13.png" },
+    { "id": "cert-014", "name": "Sertifikasi 14", "issuer": "", "year": "", "image": "assets/certs/1551677007-certification14.png" }
+  ],
+  "testimonials": [
+    {
+      "name": "Imelda Mandeli",
+      "company": "",
+      "rating": 5,
+      "text": "I highly recommend this place to any one who wants great quality, honest value, and really great people."
+    },
+    {
+      "name": "Franata Mahardika",
+      "company": "",
+      "rating": 5,
+      "text": "I always trusted Fira to get the job done right, and at a fair price."
+    },
+    {
+      "name": "Tania",
+      "company": "",
+      "rating": 4,
+      "text": "Good service, honest work!"
+    }
+  ],
+  "stats": {
+    "products": 26,
+    "projects": 22,
+    "yearsExperience": 20,
+    "certifications": 14
+  },
+  "services": [
+    {
+      "id": "svc-001",
+      "name": "Atap Residensial",
+      "description": "Kami memasang atap rumah berkualitas tinggi yang tahan lama dan mencerminkan gaya pribadi Anda.",
+      "image": "assets/images/pexels-rezwan-1145434.jpg"
+    },
+    {
+      "id": "svc-002",
+      "name": "Atap Komersial",
+      "description": "Kami siap menangani pemasangan atap baru, penggantian atap, perbaikan, dan perawatan untuk seluruh fasilitas komersial dan industri.",
+      "image": "assets/images/pexels-equalstock-31112188.jpg"
+    },
+    {
+      "id": "svc-003",
+      "name": "Fabrikasi Galvalume",
+      "description": "Fabrikator galvalume kami menghadirkan produk pesanan khusus yang menawarkan presisi, kekuatan, dan keindahan.",
+      "image": "assets/images/pexels-rolledalloys-metal-supply-8973680.jpg"
+    }
+  ],
+  "company": {
+    "name": "PT Bangun Citra Irawan",
+    "brand": "Fira",
+    "tagline": "Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.",
+    "address": {
+      "street": "JL. Kedinding Tengah II No. 16",
+      "city": "Surabaya",
+      "postalCode": "60129",
+      "province": "Jawa Timur",
+      "country": "Indonesia"
+    },
+    "phones": ["+62 313 714 362", "+62 811 325 4929"],
+    "hours": {
+      "weekdays": { "label": "Senin — Jumat", "time": "08:00 — 17:00" },
+      "saturday": { "label": "Sabtu",          "time": "08:00 — 16:00" },
+      "sunday":   { "label": "Minggu",         "time": "TUTUP" }
+    }
+  }
+}

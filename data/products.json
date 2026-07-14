@@ -4,172 +4,116 @@
     {
       "id": "atap",
       "name": "Atap",
-      "description": "Produk atap baja ringan berkualitas tinggi untuk hunian dan komersial",
+      "description": "",
       "products": [
         {
           "id": "atap-001",
           "name": "Atap FR 4",
-          "material": "Galvalume",
-          "thickness": "0.25 mm",
-          "image": "assets/products/atap/atap placeholder.webp",
+          "material": "770 mm",
+          "thickness": "",
+          "image": "assets/products/atap/atap fr 4.jpg",
           "description": "Profil atap FR seri 4 untuk hunian residensial"
         },
         {
           "id": "atap-002",
           "name": "Atap FR 5",
-          "material": "Galvalume",
-          "thickness": "0.25 mm",
-          "image": "assets/products/atap/atap placeholder.webp",
+          "material": "750/1100 mm",
+          "thickness": "",
+          "image": "assets/products/atap/atap fr 5.jpg",
           "description": "Profil atap FR seri 5 ketebalan standar"
         },
         {
           "id": "atap-003",
           "name": "Atap FR 9",
-          "material": "Galvalume",
-          "thickness": "0.30 mm",
-          "image": "assets/products/atap/atap placeholder.webp",
+          "material": "680 mm",
+          "thickness": "",
+          "image": "assets/products/atap/atap fr 9.jpg",
           "description": "Profil atap FR seri 9 untuk kebutuhan semi-komersial"
         },
         {
           "id": "atap-004",
           "name": "Atap FR 12",
-          "material": "Galvalume",
-          "thickness": "0.35 mm",
-          "image": "assets/products/atap/atap placeholder.webp",
+          "material": "930 mm",
+          "thickness": "",
+          "image": "assets/products/atap/atap fr 12.jpg",
           "description": "Profil atap FR seri 12 ketebalan premium"
+        },
+        {
+          "id": "atap-deck",
+          "name": "Fira Deck",
+          "material": "",
+          "thickness": "",
+          "image": "assets/products/atap/fira deck.jpg",
+          "description": ""
         },
         {
           "id": "atap-005",
           "name": "Nok Galvalum",
-          "material": "Galvalume",
-          "thickness": "0.30 mm",
-          "image": "assets/products/atap/atap placeholder.webp",
+          "material": "",
+          "thickness": "",
+          "image": "assets/products/atap/nok galvalum.jpg",
           "description": "Ridge cap / nok galvalume untuk penutup puncak atap"
         },
         {
           "id": "atap-006",
           "name": "Talang Jurai",
-          "material": "Galvalume",
-          "thickness": "0.30 mm",
-          "image": "assets/products/atap/atap placeholder.webp",
+          "material": "",
+          "thickness": "",
+          "image": "assets/products/atap/talang jurai.jpg",
           "description": "Talang jurai untuk membuang air hujan di pertemuan atap"
         },
         {
           "id": "atap-007",
           "name": "Talang Kotak",
-          "material": "Galvalume",
-          "thickness": "0.30 mm",
-          "image": "assets/products/atap/atap placeholder.webp",
+          "material": "",
+          "thickness": "",
+          "image": "assets/products/atap/talang kotak.jpg",
           "description": "Talang kotak standar untuk saluran air hujan"
         },
         {
           "id": "atap-008",
           "name": "Talang Tepi",
-          "material": "Galvalume",
-          "thickness": "0.30 mm",
-          "image": "assets/products/atap/atap placeholder.webp",
+          "material": "",
+          "thickness": "",
+          "image": "assets/products/atap/talang tepi.jpg",
           "description": "Talang tepi untuk finishing ujung atap"
         }
       ]
     },
     {
       "id": "truss",
-      "name": "Truss",
-      "description": "Rangka atap baja ringan Fira Truss — kuat, ringan, terpercaya",
+      "type": "group-header",
+      "name": "Truss"
+    },
+    {
+      "id": "truss-cuh",
+      "group": "truss",
+      "name": "C/U/H Truss",
+      "description": "",
       "products": [
-        {
-          "id": "truss-001",
-          "name": "C Truss",
-          "material": "Zincalume",
-          "thickness": "0.75 mm",
-          "image": "assets/products/truss/truss placeholder.webp",
-          "description": "Profil C standar untuk rangka atap hunian"
-        },
-        {
-          "id": "truss-002",
-          "name": "C Truss Mini",
-          "material": "Zincalume",
-          "thickness": "0.55 mm",
-          "image": "assets/products/truss/truss placeholder.webp",
-          "description": "Profil C mini untuk bentangan ringan"
-        },
-        {
-          "id": "truss-003",
-          "name": "H Truss",
-          "material": "Zincalume",
-          "thickness": "0.75 mm",
-          "image": "assets/products/truss/truss placeholder.webp",
-          "description": "Profil H untuk rangka atap kuat dan stabil"
-        },
-        {
-          "id": "truss-004",
-          "name": "U Truss",
-          "material": "Zincalume",
-          "thickness": "0.45 mm",
-          "image": "assets/products/truss/truss placeholder.webp",
-          "description": "Profil U penopang rangka atap dan partisi"
-        }
+        { "id": "truss-c",      "name": "C Truss",      "material": "33 × 75 × 35 mm", "thickness": "", "image": "assets/products/truss/cuh/c truss.png" },
+        { "id": "truss-c-mini", "name": "C Truss Mini", "material": "23 × 75 × 25 mm", "thickness": "", "image": "assets/products/truss/cuh/c truss mini.png" },
+        { "id": "truss-h",      "name": "H Truss",      "material": "70 × 45 mm",       "thickness": "", "image": "assets/products/truss/cuh/h truss.png" },
+        { "id": "truss-u",      "name": "U Truss",      "material": "70 × 47 mm",       "thickness": "", "image": "assets/products/truss/cuh/u truss.png" }
       ]
     },
     {
-      "id": "reng",
+      "id": "truss-reng",
+      "group": "truss",
       "name": "Reng",
-      "description": "Reng baja ringan sebagai penopang penutup atap",
+      "description": "",
       "products": [
-        {
-          "id": "reng-001",
-          "name": "Reng 100",
-          "material": "Zincalume",
-          "thickness": "0.45 mm",
-          "image": "assets/products/reng/reng placeholder.webp",
-          "description": "Reng 100 standar paling umum digunakan"
-        },
-        {
-          "id": "reng-002",
-          "name": "Reng 35L",
-          "material": "Zincalume",
-          "thickness": "0.40 mm",
-          "image": "assets/products/reng/reng placeholder.webp",
-          "description": "Reng 35L ringan untuk hunian residensial"
-        },
-        {
-          "id": "reng-003",
-          "name": "Reng 35M",
-          "material": "Zincalume",
-          "thickness": "0.45 mm",
-          "image": "assets/products/reng/reng placeholder.webp",
-          "description": "Reng 35M medium untuk ketebalan lebih"
-        },
-        {
-          "id": "reng-004",
-          "name": "Reng Besar",
-          "material": "Zincalume",
-          "thickness": "0.55 mm",
-          "image": "assets/products/reng/reng placeholder.webp",
-          "description": "Reng besar untuk beban dan bentangan ekstra"
-        },
-        {
-          "id": "reng-005",
-          "name": "Reng Eco",
-          "material": "Zincalume",
-          "thickness": "0.35 mm",
-          "image": "assets/products/reng/reng placeholder.webp",
-          "description": "Reng ekonomis tanpa mengorbankan kualitas"
-        },
-        {
-          "id": "reng-006",
-          "name": "Reng Neo",
-          "material": "Zincalume",
-          "thickness": "0.40 mm",
-          "image": "assets/products/reng/reng placeholder.webp",
-          "description": "Reng Neo seri terbaru dengan presisi tinggi"
-        }
+        { "id": "reng-100",   "name": "Reng 100",   "material": "30 × 59 mm", "thickness": "", "image": "assets/products/truss/reng/reng 100.png" },
+        { "id": "reng-35l",   "name": "Reng 35L",   "material": "36 × 65 mm", "thickness": "", "image": "assets/products/truss/reng/reng 35l.png" },
+        { "id": "reng-35m",   "name": "Reng 35M",   "material": "35 × 70 mm", "thickness": "", "image": "assets/products/truss/reng/reng 35m.png" },
+{ "id": "reng-eco",   "name": "Reng Eco",   "material": "25 × 59 mm", "thickness": "", "image": "assets/products/truss/reng/reng eco.png" },
+        { "id": "reng-neo",   "name": "Reng Neo",   "material": "30 × 45 mm", "thickness": "", "image": "assets/products/truss/reng/reng neo.png" }
       ]
     },
     {
       "id": "holo",
       "name": "Holo",
-      "description": "Profil holo baja ringan berbagai ukuran untuk plafon dan rangka",
+      "description": "",
       "products": [
         {
           "id": "holo-001",
@@ -199,119 +143,210 @@
     },
     {
       "id": "wallpanel",
-      "name": "Wallpanel",
-      "description": "Panel dinding baja ringan modern, ringan, dan mudah dipasang",
+      "type": "group-header",
+      "name": "Wallpanel"
+    },
+    {
+      "id": "wallpanel-21cm",
+      "group": "wallpanel",
+      "name": "21 cm Series",
+      "description": "",
       "products": [
-        {
-          "id": "wp-001",
-          "name": "Wallpanel Standar",
-          "material": "Zincalume",
-          "thickness": "0.30 mm",
-          "image": "assets/products/wallpanel/wallpanel placeholder.webp",
-          "description": "Panel dinding standar untuk hunian"
-        },
-        {
-          "id": "wp-002",
-          "name": "Wallpanel Premium",
-          "material": "Zincalume",
-          "thickness": "0.40 mm",
-          "image": "assets/products/wallpanel/wallpanel placeholder.webp",
-          "description": "Panel dinding ketebalan premium"
-        },
-        {
-          "id": "wp-003",
-          "name": "Wallpanel Insulasi",
-          "material": "Sandwich Panel",
-          "thickness": "50 mm",
-          "image": "assets/products/wallpanel/wallpanel placeholder.webp",
-          "description": "Panel sandwich dengan lapisan insulasi termal"
-        },
-        {
-          "id": "wp-004",
-          "name": "Wallpanel Custom",
-          "material": "Zincalume",
-          "thickness": "Custom",
-          "image": "assets/products/wallpanel/wallpanel placeholder.webp",
-          "description": "Panel custom sesuai kebutuhan proyek"
-        }
+        { "id": "fwg-001", "name": "FWG-001", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-001.jpg" },
+        { "id": "fwg-002", "name": "FWG-002", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-002.jpg" },
+        { "id": "fwg-003", "name": "FWG-003", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-003.jpg" },
+        { "id": "fwg-004", "name": "FWG-004", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-004.jpg" },
+        { "id": "fwg-005", "name": "FWG-005", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-005.jpg" },
+        { "id": "fwg-006", "name": "FWG-006", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-006.jpg" },
+        { "id": "fwg-007", "name": "FWG-007", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-007.jpg" },
+        { "id": "fwg-008", "name": "FWG-008", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-008.jpg" },
+        { "id": "fwg-010", "name": "FWG-010", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-010.jpg" },
+        { "id": "fwg-011", "name": "FWG-011", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-011.jpg" },
+        { "id": "fwg-012", "name": "FWG-012", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-012.jpg" },
+        { "id": "fwg-013", "name": "FWG-013", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-013.jpg" },
+        { "id": "fwg-015", "name": "FWG-015", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-015.jpg" },
+        { "id": "fwg-016", "name": "FWG-016", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-016.jpg" },
+        { "id": "fwg-017", "name": "FWG-017", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-017.jpg" }
       ]
     },
     {
-      "id": "pvc",
-      "name": "PVC",
-      "description": "Produk PVC berkualitas untuk plafon dan dinding interior",
+      "id": "wallpanel-16cm",
+      "group": "wallpanel",
+      "name": "16 cm Series",
+      "description": "",
       "products": [
-        {
-          "id": "pvc-001",
-          "name": "PVC Ceiling 8mm",
-          "material": "PVC",
-          "thickness": "8 mm",
-          "image": "assets/products/pvc/pvc placeholder.webp",
-          "description": "Plafon PVC putih bersih standar"
-        },
-        {
-          "id": "pvc-002",
-          "name": "PVC Wall Panel",
-          "material": "PVC",
-          "thickness": "8 mm",
-          "image": "assets/products/pvc/pvc placeholder.webp",
-          "description": "Panel dinding PVC tahan lembab"
-        },
-        {
-          "id": "pvc-003",
-          "name": "PVC List / Cornice",
-          "material": "PVC",
-          "thickness": "2 mm",
-          "image": "assets/products/pvc/pvc placeholder.webp",
-          "description": "Aksen list finishing PVC"
-        },
-        {
-          "id": "pvc-004",
-          "name": "PVC Custom",
-          "material": "PVC",
-          "thickness": "Custom",
-          "image": "assets/products/pvc/pvc placeholder.webp",
-          "description": "Produk PVC sesuai order"
-        }
+        { "id": "fwp-001", "name": "FWP-001", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-001.jpg" },
+        { "id": "fwp-002", "name": "FWP-002", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-002.jpg" },
+        { "id": "fwp-003", "name": "FWP-003", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-003.jpg" },
+        { "id": "fwp-004", "name": "FWP-004", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-004.jpg" },
+        { "id": "fwp-005", "name": "FWP-005", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-005.jpg" },
+        { "id": "fwp-009", "name": "FWP-009", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-009.jpg" },
+        { "id": "fwp-010", "name": "FWP-010", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-010.jpg" },
+        { "id": "fwp-011", "name": "FWP-011", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-011.jpg" },
+        { "id": "fwp-012", "name": "FWP-012", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-012.jpg" },
+        { "id": "fwp-014", "name": "FWP-014", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-014.jpg" },
+        { "id": "fwp-018", "name": "FWP-018", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-018.jpg" },
+        { "id": "fwp-022", "name": "FWP-022", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-022.jpg" },
+        { "id": "fwp-025", "name": "FWP-025", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-025.jpg" },
+        { "id": "fwp-026", "name": "FWP-026", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-026.jpg" },
+        { "id": "fwp-027", "name": "FWP-027", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-027.jpg" },
+        { "id": "fww-1101", "name": "FWW-1101", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1101.jpg" },
+        { "id": "fww-1102", "name": "FWW-1102", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1102.jpg" },
+        { "id": "fww-1103", "name": "FWW-1103", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1103.jpg" },
+        { "id": "fww-1104", "name": "FWW-1104", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1104.jpg" },
+        { "id": "fww-1105", "name": "FWW-1105", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1105.jpg" },
+        { "id": "fww-1106", "name": "FWW-1106", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1106.jpg" },
+        { "id": "fww-1107", "name": "FWW-1107", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1107.jpg" },
+        { "id": "fww-1108", "name": "FWW-1108", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1108.jpg" },
+        { "id": "fww-1110", "name": "FWW-1110", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1110.jpg" },
+        { "id": "fww-1111", "name": "FWW-1111", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1111.jpg" },
+        { "id": "fww-1112", "name": "FWW-1112", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1112.jpg" },
+        { "id": "fww-1113", "name": "FWW-1113", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1113.jpg" },
+        { "id": "fww-1115", "name": "FWW-1115", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1115.jpg" },
+        { "id": "fww-1116", "name": "FWW-1116", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1116.jpg" },
+        { "id": "fww-1117", "name": "FWW-1117", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1117.jpg" }
       ]
     },
     {
-      "id": "produk-lain",
-      "name": "Produk Lain",
-      "description": "Aksesori dan produk pelengkap baja ringan dari Fira",
+      "id": "wallpanel-15cm",
+      "group": "wallpanel",
+      "name": "15 cm Series",
+      "description": "",
       "products": [
-        {
-          "id": "lain-001",
-          "name": "Fira Deck",
-          "material": "Galvalume",
-          "thickness": "0.75 mm",
-          "image": "assets/products/produk lain/produk lain placeholder.webp",
-          "description": "Metal deck Fira untuk struktur lantai komposit"
-        },
-        {
-          "id": "lain-002",
-          "name": "Mawar",
-          "material": "Galvalume",
-          "thickness": "0.30 mm",
-          "image": "assets/products/produk lain/produk lain placeholder.webp",
-          "description": "Produk aksesori seri Mawar dari Fira"
-        },
-        {
-          "id": "lain-003",
-          "name": "Raflesia",
-          "material": "Galvalume",
-          "thickness": "0.30 mm",
-          "image": "assets/products/produk lain/produk lain placeholder.webp",
-          "description": "Produk aksesori seri Raflesia dari Fira"
-        },
-        {
-          "id": "lain-004",
-          "name": "Ventilasi",
-          "material": "Galvalume",
-          "thickness": "0.30 mm",
-          "image": "assets/products/produk lain/produk lain placeholder.webp",
-          "description": "Produk ventilasi Fira untuk sirkulasi udara optimal"
-        }
+        { "id": "fww-1201", "name": "FWW-1201", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1201.jpg" },
+        { "id": "fww-1202", "name": "FWW-1202", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1202.jpg" },
+        { "id": "fww-1203", "name": "FWW-1203", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1203.jpg" },
+        { "id": "fww-1204", "name": "FWW-1204", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1204.jpg" },
+        { "id": "fww-1206", "name": "FWW-1206", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1206.jpg" },
+        { "id": "fww-1207", "name": "FWW-1207", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1207.jpg" },
+        { "id": "fww-1208", "name": "FWW-1208", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1208.jpg" },
+        { "id": "fww-1209", "name": "FWW-1209", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1209.jpg" },
+        { "id": "fww-1210", "name": "FWW-1210", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1210.jpg" },
+        { "id": "fww-1211", "name": "FWW-1211", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1211.jpg" },
+        { "id": "fww-1212", "name": "FWW-1212", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1212.jpg" },
+        { "id": "fww-1213", "name": "FWW-1213", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1213.jpg" },
+        { "id": "fww-1214", "name": "FWW-1214", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1214.jpg" },
+        { "id": "fww-1215", "name": "FWW-1215", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1215.jpg" },
+        { "id": "fww-1216", "name": "FWW-1216", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1216.jpg" }
+      ]
+    },
+    {
+      "id": "wallpanel-aksesoris",
+      "group": "wallpanel",
+      "name": "Accessories",
+      "description": "",
+      "products": [
+        { "id": "flw-001", "name": "FLW-001", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-001.jpg" },
+        { "id": "flw-002", "name": "FLW-002", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-002.jpg" },
+        { "id": "flw-003", "name": "FLW-003", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-003.jpg" },
+        { "id": "flw-004", "name": "FLW-004", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-004.jpg" },
+        { "id": "flw-006", "name": "FLW-006", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-006.jpg" },
+        { "id": "flw-007", "name": "FLW-007", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-007.jpg" },
+        { "id": "flw-008", "name": "FLW-008", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-008.jpg" },
+        { "id": "flw-010", "name": "FLW-010", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-010.jpg" },
+        { "id": "flw-017", "name": "FLW-017", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-017.jpg" },
+        { "id": "kancing-partisi", "name": "Kancing Partisi", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/Kancing Partisi.jpg" }
+      ]
+    },
+    {
+      "id": "plafond",
+      "type": "group-header",
+      "name": "Plafond"
+    },
+    {
+      "id": "plafond-sparkling",
+      "group": "plafond",
+      "name": "Sparkling Series",
+      "description": "400 × 20 × 0,8 cm",
+      "products": [
+        { "id": "fp-0004", "name": "FP-0004", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-0004.jpg" },
+        { "id": "fp-2001", "name": "FP-2001", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2001.jpg" },
+        { "id": "fp-2008", "name": "FP-2008", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2008.jpg" },
+        { "id": "fp-2009", "name": "FP-2009", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2009.jpg" },
+        { "id": "fp-2011", "name": "FP-2011", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2011.jpg" },
+        { "id": "fp-2012", "name": "FP-2012", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2012.jpg" },
+        { "id": "fp-2022", "name": "FP-2022", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2022.jpg" },
+        { "id": "fp-2024", "name": "FP-2024", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2024.jpg" },
+        { "id": "fp-2032", "name": "FP-2032", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2032.jpg" },
+        { "id": "fp-2034", "name": "FP-2034", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2034.jpg" },
+        { "id": "fp-2039", "name": "FP-2039", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2039.jpg" },
+        { "id": "fp-2045", "name": "FP-2045", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2045.jpg" },
+        { "id": "fp-2049", "name": "FP-2049", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2049.jpg" },
+        { "id": "fp-2051", "name": "FP-2051", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2051.jpg" },
+        { "id": "fp-2058", "name": "FP-2058", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2058.jpg" },
+        { "id": "fp-2063", "name": "FP-2063", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2063.jpg" },
+        { "id": "fp-2076", "name": "FP-2076", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2076.jpg" },
+        { "id": "fp-2083", "name": "FP-2083", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2083.jpg" },
+        { "id": "fp-3001", "name": "FP-3001", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3001.jpg" },
+        { "id": "fp-3002", "name": "FP-3002", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3002.jpg" },
+        { "id": "fp-3006", "name": "FP-3006", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3006.jpg" },
+        { "id": "fp-3008", "name": "FP-3008", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3008.jpg" },
+        { "id": "fp-3009", "name": "FP-3009", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3009.jpg" },
+        { "id": "fp-3010", "name": "FP-3010", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3010.jpg" },
+        { "id": "fp-3012", "name": "FP-3012", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3012.jpg" },
+        { "id": "fp-3013", "name": "FP-3013", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3013.jpg" },
+        { "id": "fp-3014", "name": "FP-3014", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3014.jpg" },
+        { "id": "fp-3020", "name": "FP-3020", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3020.jpg" },
+        { "id": "fp-3021", "name": "FP-3021", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3021.jpg" },
+        { "id": "fp-3022", "name": "FP-3022", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3022.jpg" }
+      ]
+    },
+    {
+      "id": "plafond-classic",
+      "group": "plafond",
+      "name": "Classic White Series",
+      "description": "400 × 20 × 0,8 cm",
+      "products": [
+        { "id": "fp-0001", "name": "FP-0001", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-0001.jpg" },
+        { "id": "fp-0006", "name": "FP-0006", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-0006.jpg" },
+        { "id": "fp-2002", "name": "FP-2002", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2002.jpg" },
+        { "id": "fp-2005", "name": "FP-2005", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2005.jpg" },
+        { "id": "fp-2015", "name": "FP-2015", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2015.jpg" },
+        { "id": "fp-2048", "name": "FP-2048", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2048.jpg" },
+        { "id": "fp-2050", "name": "FP-2050", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2050.jpg" },
+        { "id": "fp-2055", "name": "FP-2055", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2055.jpg" },
+        { "id": "fp-2056", "name": "FP-2056", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2056.jpg" },
+        { "id": "fp-2057", "name": "FP-2057", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2057.jpg" }
+      ]
+    },
+    {
+      "id": "plafond-vintage",
+      "group": "plafond",
+      "name": "Vintage Wood Series",
+      "description": "400 × 20 × 0,7 cm",
+      "products": [
+        { "id": "fp-1001", "name": "FP-1001", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1001.jpg" },
+        { "id": "fp-1002", "name": "FP-1002", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1002.jpg" },
+        { "id": "fp-1003", "name": "FP-1003", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1003.jpg" },
+        { "id": "fp-1004", "name": "FP-1004", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1004.jpg" },
+        { "id": "fp-1005", "name": "FP-1005", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1005.jpg" },
+        { "id": "fp-1006", "name": "FP-1006", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1006.jpg" },
+        { "id": "fp-1007", "name": "FP-1007", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1007.jpg" },
+        { "id": "fp-1008", "name": "FP-1008", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1008.jpg" },
+        { "id": "fp-1009", "name": "FP-1009", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1009.jpg" },
+        { "id": "fp-1010", "name": "FP-1010", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1010.jpg" },
+        { "id": "fp-1011", "name": "FP-1011", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1011.jpg" },
+        { "id": "fp-1012", "name": "FP-1012", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1012.jpg" },
+        { "id": "fp-1013", "name": "FP-1013", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1013.jpg" },
+        { "id": "fp-1014", "name": "FP-1014", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1014.jpg" },
+        { "id": "fp-1015", "name": "FP-1015", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1015.jpg" },
+        { "id": "fp-1016", "name": "FP-1016", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1016.jpg" },
+        { "id": "fp-1017", "name": "FP-1017", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1017.jpg" },
+        { "id": "fp-1018", "name": "FP-1018", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1018.jpg" },
+        { "id": "fp-1019", "name": "FP-1019", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1019.jpg" },
+        { "id": "fp-1020", "name": "FP-1020", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1020.jpg" }
+      ]
+    },
+    {
+      "id": "plafond-list",
+      "group": "plafond",
+      "name": "List Series",
+      "description": "",
+      "products": [
+        { "id": "fl-101", "name": "FL-101", "material": "4 x 3,5 cm", "thickness": "", "image": "assets/products/plafond/list series/FL-101.jpg" },
+        { "id": "fl-201", "name": "FL-201", "material": "3 x 1,2 cm", "thickness": "", "image": "assets/products/plafond/list series/FL-201.jpg" },
+        { "id": "fl-301", "name": "FL-301", "material": "4 x 1,3 cm", "thickness": "", "image": "assets/products/plafond/list series/FL-301.jpg" },
+        { "id": "fl-401", "name": "FL-401", "material": "3,5 x 3,2 cm", "thickness": "", "image": "assets/products/plafond/list series/FL-401.jpg" }
       ]
     }
   ],
