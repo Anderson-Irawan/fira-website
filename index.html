@@ -106,42 +106,6 @@
       </div>
     </div>
 
-    <!-- ── STATS ── -->
-    <section class="stats" aria-label="Statistik perusahaan">
-      <h2 class="stats__heading" data-i18n="stats.heading">Fira dalam Angka</h2>
-      <div class="stats__inner" data-cms="stats" data-stagger>
-        <!-- Populated by cms.js -->
-        <div class="stat"><p class="stat__number">26</p><p class="stat__label">Produk</p></div>
-        <div class="stat"><p class="stat__number">22</p><p class="stat__label">Projek</p></div>
-        <div class="stat"><p class="stat__number">20</p><p class="stat__label">Tahun Pengalaman</p></div>
-        <div class="stat"><p class="stat__number">14</p><p class="stat__label">Sertifikasi</p></div>
-      </div>
-    </section>
-
-    <!-- ── SERVIS KITA ── -->
-    <section class="servis section" aria-labelledby="servis-heading">
-      <div class="container">
-        <div class="sec-header" data-animate>
-          <h2 class="sec-title" id="servis-heading" data-i18n="section.services">Servis Kita</h2>
-        </div>
-        <div class="servis-grid" data-cms="services" data-stagger>
-          <!-- Populated by cms.js -->
-          <div class="servis-card">
-            <div class="servis-card__img"></div>
-            <p class="servis-card__name">Atap Residensial</p>
-          </div>
-          <div class="servis-card">
-            <div class="servis-card__img"></div>
-            <p class="servis-card__name">Atap Komersial</p>
-          </div>
-          <div class="servis-card">
-            <div class="servis-card__img"></div>
-            <p class="servis-card__name">Fabrikasi Galvalume</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ── MARKET SECTORS ── -->
     <section class="market-sectors section" aria-labelledby="sectors-heading">
       <div class="container">
@@ -211,8 +175,8 @@
     <!-- ── PRODUK OVERVIEW ── -->
     <section class="prod-pin container" aria-labelledby="ap-heading">
 
-      <!-- LEFT: sticky panel — stays pinned while cards scroll -->
-      <div class="prod-pin__left">
+      <!-- TOP: overview spans full width -->
+      <div class="prod-pin__top">
         <img class="prod-pin__hero-img" src="assets/images/produk-1.jpg" alt="Produk Fira">
         <h2 class="sec-title" id="ap-heading" style="margin-bottom: 2vh;" data-i18n="section.products">Produk</h2>
         <p class="prod-pin__desc" data-i18n="products.desc">
@@ -220,40 +184,20 @@
           namun memiliki kekuatan setara baja konvensional —
           100% dapat didaur ulang dan diproduksi sesuai standar nasional.
         </p>
-        <a href="produk.html" class="prod-pin__cta">
-          <span data-i18n="products.cta">Lihat Semua Produk</span> <span aria-hidden="true">→</span>
-        </a>
       </div>
 
-      <!-- RIGHT: 2-col grid of square cards -->
-      <div class="prod-pin__right">
-        <div class="home-prod-grid" data-cms="home-products" data-stagger>
-          <!-- Populated by cms.js -->
-          <a href="produk.html#atap"      class="home-prod-card"><span class="home-prod-card__label">Atap</span></a>
-          <a href="produk.html#truss"     class="home-prod-card"><span class="home-prod-card__label">Truss</span></a>
-          <a href="produk.html#reng"      class="home-prod-card"><span class="home-prod-card__label">Reng</span></a>
-          <a href="produk.html#holo"      class="home-prod-card"><span class="home-prod-card__label">Holo</span></a>
-          <a href="produk.html#wallpanel" class="home-prod-card"><span class="home-prod-card__label">Wallpanel</span></a>
-          <a href="produk.html#pvc"       class="home-prod-card"><span class="home-prod-card__label">PVC</span></a>
-        </div>
+      <!-- BOTTOM: 3-col grid, one card per section -->
+      <div class="home-prod-grid" data-cms="home-products" data-stagger>
+        <!-- Populated by cms.js -->
+        <a href="produk.html#atap"      class="home-prod-card"><div class="home-prod-card__overlay" aria-hidden="true"></div><span class="home-prod-card__label">Roof</span></a>
+        <a href="produk.html#truss"     class="home-prod-card"><div class="home-prod-card__overlay" aria-hidden="true"></div><span class="home-prod-card__label">Truss</span></a>
+        <a href="produk.html#wallpanel" class="home-prod-card"><div class="home-prod-card__overlay" aria-hidden="true"></div><span class="home-prod-card__label">Panel</span></a>
       </div>
 
-    </section>
+      <a href="produk.html" class="prod-pin__cta">
+        <span data-i18n="products.cta">Lihat Semua Produk</span> <span aria-hidden="true">→</span>
+      </a>
 
-    <!-- ── SERTIFIKASI ── -->
-    <section class="sertifikasi section" id="sertifikasi" aria-labelledby="sert2-heading">
-      <div class="container">
-        <div class="sec-header" data-animate>
-          <h2 class="sec-title" id="sert2-heading" data-i18n="section.certifications">Sertifikasi</h2>
-        </div>
-        <div class="cert-grid" data-cms="certifications" data-stagger>
-          <!-- Populated by cms.js -->
-          <div class="cert-card">SNI</div>
-          <div class="cert-card">ISO 9001</div>
-          <div class="cert-card">Halal</div>
-          <div class="cert-card">TKDN</div>
-        </div>
-      </div>
     </section>
 
     <!-- ── TESTIMONI ── -->

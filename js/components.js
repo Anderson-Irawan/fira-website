@@ -53,12 +53,9 @@ const FOOTER_PROJEK = [
   { label: 'Institutional', href: 'projek.html#institutional' },
 ];
 const FOOTER_PRODUK = [
-  { label: 'Atap',        href: 'produk.html#atap'      },
+  { label: 'Roof',        href: 'produk.html#atap'      },
   { label: 'Truss',       href: 'produk.html#truss'     },
-  { label: 'Reng',        href: 'produk.html#reng'      },
-  { label: 'Holo',        href: 'produk.html#holo'      },
-  { label: 'Wallpanel',   href: 'produk.html#wallpanel' },
-  { label: 'PVC',         href: 'produk.html#pvc'       },
+  { label: 'Panel',       href: 'produk.html#wallpanel' },
   { label: 'Produk Lain', href: 'produk.html'           },
 ];
 const FOOTER_ABOUT = [

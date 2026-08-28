@@ -432,7 +432,7 @@ async function renderServices() {
 }
 
 /**
- * Renders featured product overview on about page
+ * Renders the 3-section product overview (Roof / Truss / Panel) on the homepage
  */
 async function renderAboutProducts() {
   const root = document.querySelector('[data-cms="home-products"]');
@@ -440,27 +440,35 @@ async function renderAboutProducts() {
 
   const data = await fetchData();
 
-  // Build a flat display list: one entry per top-level category or group.
-  // Group-headers become a single card; their sub-categories are skipped.
-  const display = [];
-  data.categories.forEach(cat => {
+  const getCategoryImage = (catId) => {
+    const cat = data.categories.find(c => c.id === catId);
+    if (!cat) return null;
     if (cat.type === 'group-header') {
       const firstChild = data.categories.find(c => c.group === cat.id);
-      display.push({ id: cat.id, name: cat.name, image: firstChild?.products?.[0]?.image || null });
-    } else if (!cat.group) {
-      display.push({ id: cat.id, name: cat.name, image: cat.products?.[0]?.image || null });
+      return firstChild?.products?.[0]?.image || null;
     }
-  });
+    return cat.products?.[0]?.image || null;
+  };
 
-  root.innerHTML = display.map(cat => `
-    <a href="produk.html#${cat.id}" class="home-prod-card">
-      ${cat.image
-        ? `<img src="${cat.image}" alt="${cat.name}" loading="lazy">`
+  const sections = [
+    { anchor: 'atap',      name: 'Roof',  catIds: ['atap'] },
+    { anchor: 'truss',     name: 'Truss', catIds: ['truss', 'holo'] },
+    { anchor: 'wallpanel', name: 'Panel', catIds: ['wallpanel', 'plafond'] },
+  ];
+
+  root.innerHTML = sections.map(sec => {
+    const image = sec.catIds.map(getCategoryImage).find(Boolean) || null;
+    return `
+    <a href="produk.html#${sec.anchor}" class="home-prod-card">
+      ${image
+        ? `<img src="${image}" alt="${sec.name}" loading="lazy">`
         : ''
       }
-      <span class="home-prod-card__label">${cat.name}</span>
+      <div class="home-prod-card__overlay" aria-hidden="true"></div>
+      <span class="home-prod-card__label">${sec.name}</span>
     </a>
-  `).join('');
+  `;
+  }).join('');
 }
 
 // ─── PROJECT CATALOGUE ───────────────────────────────────────

@@ -1499,19 +1499,14 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   font-weight: 500;
 }
 
-/* ── PRODUK STICKY SPLIT ─────────────────────────────────────── */
+/* ── PRODUK OVERVIEW ─────────────────────────────────────── */
 .prod-pin {
-  display: flex;
-  align-items: flex-start;
   background: var(--clr-cream);
+  padding-top: 80px;
   padding-bottom: 10vh;
 }
-.prod-pin__left {
-  position: sticky;
-  top: calc(50vh - 330px);
-  width: 50%;
-  flex-shrink: 0;
-  padding: 80px 5vw 0 0;
+.prod-pin__top {
+  margin-bottom: 48px;
 }
 .prod-pin__hero-img {
   width: 100%;
@@ -1525,12 +1520,13 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   line-height: 1.75;
   color: var(--clr-black);
   opacity: 0.65;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
 }
 .prod-pin__cta {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin-top: 32px;
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 13px;
@@ -1543,50 +1539,54 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   transition: color var(--ease);
 }
 .prod-pin__cta:hover { color: var(--clr-blue); }
-.prod-pin__right {
-  flex: 1;
-  padding: 80px 0 0 0;
-  min-width: 0;
-}
 .home-prod-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-bottom: 24px;
 }
+/* Card style matches .qit-card: full-bleed photo, gradient overlay, title bottom-left */
 .home-prod-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--clr-white);
-  border-radius: var(--radius);
+  position: relative;
+  display: block;
+  border-radius: 20px;
   overflow: hidden;
+  height: clamp(320px, 55vh, 520px);
+  background-color: #111;
   text-decoration: none;
-  color: var(--clr-black);
-  transition: transform var(--ease), box-shadow var(--ease), background var(--ease), color var(--ease);
+  color: var(--clr-white);
+  transition: transform var(--ease), box-shadow var(--ease);
 }
 .home-prod-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
 }
 .home-prod-card img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 4/3;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
+.home-prod-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 55%);
+  z-index: 1;
+}
 .home-prod-card__label {
-  padding: 16px 14px 14px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 32px 28px;
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: var(--fs-body-lg);
-  background: var(--clr-black);
-  color: var(--clr-white);
-  transition: background var(--ease);
+  font-size: var(--fs-heading-md);
+  letter-spacing: -1px;
+  line-height: 1;
 }
-.home-prod-card:hover .home-prod-card__label {
-  background: var(--clr-blue);
-}
-/* Two-column square cards inside the sticky split */
+/* Three-column cards under the produk overview */
 .prod-pin .home-prod-grid { margin-bottom: 0; }
 
 /* =====================================================
@@ -2131,10 +2131,8 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   .qit-cards { grid-template-columns: 1fr; padding: 40px var(--pad-x); }
   .qit-card { transform: none !important; }
 
-  /* ── Product sticky split → stacked ── */
-  .prod-pin { flex-direction: column; padding-inline: 0; }
-  .prod-pin__left { position: static; width: 100%; height: auto; padding: 60px var(--pad-x) 32px; }
-  .prod-pin__right { padding: 0 var(--pad-x) 60px; }
+  /* ── Product overview ── */
+  .prod-pin { padding: 60px var(--pad-x) 60px; }
   .prod-pin__hero-img { height: 220px; }
 
   /* ── Grids ── */
@@ -2143,7 +2141,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   .testi-card { width: 280px; }
   .stats { padding: 40px var(--pad-x) 48px; }
   .stats__inner { grid-template-columns: repeat(2, 1fr); }
-  .home-prod-grid { grid-template-columns: repeat(2, 1fr); }
+  .home-prod-grid { grid-template-columns: 1fr; }
   .sectors-row { grid-template-columns: repeat(3, 1fr); }
   .sectors-row .sector-card { transform: none !important; }
   .prod-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2186,7 +2184,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   .cert-grid { grid-template-columns: repeat(2, 1fr); }
   .servis-grid { grid-template-columns: 1fr; }
   .sectors-row { grid-template-columns: repeat(2, 1fr); }
-  .home-prod-grid { grid-template-columns: 1fr 1fr; }
+  .home-prod-grid { grid-template-columns: 1fr; }
 }
 
 /* =====================================================
