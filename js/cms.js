@@ -121,13 +121,13 @@ function catalogueTabGroups(tabKey) {
   if (cat && cat.type !== 'group-header') {
     return {
       hasSub: false,
-      groups: { [tab.label]: cat.products.map(p => ({ ...p, catId: cat.id, tagLabel: tab.label })) },
+      groups: { [tab.label]: cat.products.map(p => ({ ...p, catId: cat.id, tagLabel: tab.label, showType: false })) },
     };
   }
 
   const groups = {};
   cats.filter(c => c.group === tabKey).forEach(sub => {
-    groups[sub.name] = sub.products.map(p => ({ ...p, catId: sub.id, groupId: tabKey, tagLabel: sub.name }));
+    groups[sub.name] = sub.products.map(p => ({ ...p, catId: sub.id, groupId: tabKey, tagLabel: sub.name, showType: true }));
   });
   return { hasSub: true, groups };
 }
@@ -140,9 +140,16 @@ function catalogueAllProducts() {
   });
 }
 
-/** Renders a single product card — tag above the photo, name/spec below it. */
+/**
+ * Renders a single product card — name below the photo, with its spec line
+ * beneath that. The spec line leads with the subtype (e.g. "C Truss") only
+ * when the product belongs to a subtype group; when the card's only "type"
+ * is the tab it's already under (e.g. every Roof card just saying "Roof"),
+ * that label is redundant and is left off.
+ */
 function renderProdCard(p) {
-  const spec = [p.material, p.thickness].filter(Boolean).join(' · ');
+  const specParts = [p.showType ? p.tagLabel : null, p.material, p.thickness].filter(Boolean);
+  const spec = specParts.join(' · ');
   const searchable = normalizeSearchText([
     p.name,
     p.material,
@@ -154,7 +161,6 @@ function renderProdCard(p) {
   ].filter(Boolean).join(' '));
   return `
     <article class="prod-card" data-search="${searchable}">
-      <p class="prod-card__tag">${p.tagLabel}</p>
       <div class="prod-card__photo">
         ${p.image
           ? `<img class="prod-card__img" src="${p.image}" alt="${p.name}" loading="lazy">`
@@ -195,7 +201,7 @@ async function renderCatalogue() {
       setTimeout(() => root.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     }
   } catch (e) {
-    root.innerHTML = `<p style="color:red;padding:24px">Gagal memuat katalog produk. (${e.message})</p>`;
+    root.innerHTML = `<p style="color:red;padding:24px">${i18nText('error.produk', { msg: e.message }, `Gagal memuat katalog produk. (${e.message})`)}</p>`;
   }
 }
 
@@ -203,7 +209,7 @@ function renderCatTabs() {
   const tabsEl = document.getElementById('cat-tabs');
   if (!tabsEl) return;
   tabsEl.innerHTML = CATALOGUE_TABS.map(t => `
-    <button class="tab" data-cat="${t.key}" aria-selected="${t.key === _catActiveTab}">${t.label}</button>
+    <button class="tab" data-cat="${t.key}" aria-selected="${t.key === _catActiveTab}">${i18nText('tab.' + t.key, null, t.label)}</button>
   `).join('');
   tabsEl.querySelectorAll('.tab').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -225,7 +231,7 @@ function renderCatSubtabs() {
   if (!hasSub) { subtabsEl.innerHTML = ''; return; }
 
   const names = Object.keys(groups);
-  subtabsEl.innerHTML = [`<button class="subtab" data-sub="all" aria-selected="${_catActiveSub === 'all'}">Semua</button>`]
+  subtabsEl.innerHTML = [`<button class="subtab" data-sub="all" aria-selected="${_catActiveSub === 'all'}">${i18nText('subtab.all', null, 'Semua')}</button>`]
     .concat(names.map(n => `<button class="subtab" data-sub="${n}" aria-selected="${_catActiveSub === n}">${n}</button>`))
     .join('');
   subtabsEl.querySelectorAll('.subtab').forEach(btn => {
@@ -262,8 +268,8 @@ function renderCatalogueGrid() {
   gridEl.style.display = items.length ? 'grid' : 'none';
   if (countEl) {
     countEl.textContent = q
-      ? `${items.length} hasil untuk "${input.value.trim()}"`
-      : `${items.length} produk`;
+      ? i18nText('catalogue.searchcount', { n: items.length, q: input.value.trim() }, `${items.length} hasil untuk "${input.value.trim()}"`)
+      : i18nText('catalogue.count', { n: items.length }, `${items.length} produk`);
   }
   if (empty) empty.classList.toggle('visible', items.length === 0);
 
@@ -282,10 +288,10 @@ function _lbBuild() {
   el.setAttribute('role', 'dialog');
   el.setAttribute('aria-modal', 'true');
   el.innerHTML = `
-    <button class="lightbox-close" aria-label="Tutup">&times;</button>
-    <button class="lightbox-prev" aria-label="Sebelumnya">&#8249;</button>
+    <button class="lightbox-close" aria-label="${i18nText('lightbox.close', null, 'Tutup')}">&times;</button>
+    <button class="lightbox-prev" aria-label="${i18nText('lightbox.prev', null, 'Sebelumnya')}">&#8249;</button>
     <img class="lightbox-img" src="" alt="">
-    <button class="lightbox-next" aria-label="Berikutnya">&#8250;</button>
+    <button class="lightbox-next" aria-label="${i18nText('lightbox.next', null, 'Berikutnya')}">&#8250;</button>
   `;
   document.body.appendChild(el);
   el.querySelector('.lightbox-close').addEventListener('click', _lbClose);
@@ -377,7 +383,6 @@ async function renderCertifications() {
 
       if (isAbout) {
         secHeader.setAttribute('aria-expanded', 'false');
-        secHeader.setAttribute('aria-label', 'Tampil semua Sertifikasi');
 
         const toggle = () => {
           const expanded = secHeader.getAttribute('aria-expanded') === 'true';
@@ -403,6 +408,11 @@ async function renderCertifications() {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = 'about.html?certs=open#sertifikasi'; }
         });
       }
+    }
+    // Kept fresh on every render (including a language switch), unlike
+    // the one-time setup above which only runs the first time.
+    if (secHeader && isAbout) {
+      secHeader.setAttribute('aria-label', i18nText('cert.toggle.aria', null, 'Tampil semua Sertifikasi'));
     }
   });
 }
@@ -462,10 +472,10 @@ async function renderStats() {
   </svg>`;
 
   root.innerHTML = `
-    <div class="stat">${ICON_PRODUK}<p class="stat__number">${s.products}</p><p class="stat__label">Produk</p></div>
-    <div class="stat">${ICON_PROJEK}<p class="stat__number">${s.projects}</p><p class="stat__label">Projek</p></div>
-    <div class="stat">${ICON_TAHUN}<p class="stat__number">${s.yearsExperience}</p><p class="stat__label">Tahun Pengalaman</p></div>
-    <div class="stat">${ICON_SERTIF}<p class="stat__number">${s.certifications}</p><p class="stat__label">Sertifikasi</p></div>
+    <div class="stat">${ICON_PRODUK}<p class="stat__number">${s.products}</p><p class="stat__label">${i18nText('stat.products', null, 'Produk')}</p></div>
+    <div class="stat">${ICON_PROJEK}<p class="stat__number">${s.projects}</p><p class="stat__label">${i18nText('stat.projects', null, 'Projek')}</p></div>
+    <div class="stat">${ICON_TAHUN}<p class="stat__number">${s.yearsExperience}</p><p class="stat__label">${i18nText('stat.years', null, 'Tahun Pengalaman')}</p></div>
+    <div class="stat">${ICON_SERTIF}<p class="stat__number">${s.certifications}</p><p class="stat__label">${i18nText('stat.certs', null, 'Sertifikasi')}</p></div>
   `;
 }
 
@@ -477,18 +487,22 @@ async function renderServices() {
   if (!root) return;
 
   const data = await fetchData();
-  root.innerHTML = data.services.map(s => `
+  root.innerHTML = data.services.map((s, i) => {
+    const name = i18nText(`service.${i + 1}.name`, null, s.name);
+    const desc = i18nText(`service.${i + 1}.desc`, null, s.description);
+    return `
     <article class="servis-card">
       <div class="servis-card__img">
         ${s.image
-          ? `<img src="${s.image}" alt="${s.name}" loading="lazy">`
+          ? `<img src="${s.image}" alt="${name}" loading="lazy">`
           : ''
         }
       </div>
-      <p class="servis-card__name">${s.name}</p>
-      ${s.description ? `<p class="servis-card__desc">${s.description}</p>` : ''}
+      <p class="servis-card__name">${name}</p>
+      ${desc ? `<p class="servis-card__desc">${desc}</p>` : ''}
     </article>
-  `).join('');
+  `;
+  }).join('');
 }
 
 /**
@@ -518,14 +532,15 @@ async function renderAboutProducts() {
 
   root.innerHTML = sections.map(sec => {
     const image = sec.catIds.map(getCategoryImage).find(Boolean) || null;
+    const label = i18nText('homeprod.' + sec.anchor, null, sec.name);
     return `
     <a href="produk.html#${sec.anchor}" class="home-prod-card">
       ${image
-        ? `<img src="${image}" alt="${sec.name}" loading="lazy">`
+        ? `<img src="${image}" alt="${label}" loading="lazy">`
         : ''
       }
       <div class="home-prod-card__overlay" aria-hidden="true"></div>
-      <span class="home-prod-card__label">${sec.name}</span>
+      <span class="home-prod-card__label">${label}</span>
     </a>
   `;
   }).join('');
@@ -550,9 +565,10 @@ function placeholderProjThumb(name) {
 }
 
 function renderProjCard(item) {
+  const categoryLabel = i18nText('cat.' + item.categoryId, null, item.category);
   return `
     <article class="proj-card">
-      <p class="proj-card__category">${item.category}</p>
+      <p class="proj-card__category">${categoryLabel}</p>
       <div class="proj-card__photo">
         ${item.image
           ? `<img class="proj-card__img" src="${item.image}" alt="${item.name}" loading="lazy">`
@@ -566,15 +582,20 @@ function renderProjCard(item) {
     </article>`;
 }
 
+/** Every project across every category, flattened and sorted newest → oldest. */
+function getAllProjectsSorted(data) {
+  return data.projects
+    .flatMap(cat => cat.items.map(item => ({ ...item, category: cat.name, categoryId: cat.id })))
+    .sort((a, b) => Number(b.year) - Number(a.year));
+}
+
 async function renderProjects() {
   const root = document.getElementById('projek-root');
   if (!root) return;
 
   try {
     const data = await fetchData();
-    _projItems = data.projects
-      .flatMap(cat => cat.items.map(item => ({ ...item, category: cat.name })))
-      .sort((a, b) => Number(b.year) - Number(a.year));
+    _projItems = getAllProjectsSorted(data);
 
     root.innerHTML = `
       <div class="proj-grid" id="proj-grid"></div>
@@ -584,7 +605,7 @@ async function renderProjects() {
     _projPage = 1;
     renderProjPage();
   } catch (e) {
-    root.innerHTML = `<p style="color:red;padding:24px">Gagal memuat katalog projek. (${e.message})</p>`;
+    root.innerHTML = `<p style="color:red;padding:24px">${i18nText('error.projek', { msg: e.message }, `Gagal memuat katalog projek. (${e.message})`)}</p>`;
   }
 }
 
@@ -607,13 +628,14 @@ function renderProjPage() {
     nums += `<button class="pager__num" aria-current="${n === _projPage}" data-page="${n}">${n}</button>`;
   }
 
+  pager.setAttribute('aria-label', i18nText('pager.aria', null, 'Pagination'));
   pager.innerHTML = `
-    <button class="pager__btn pager__btn--prev" id="proj-prev" ${prevDisabled ? 'disabled' : ''} aria-label="Halaman sebelumnya">
-      <span aria-hidden="true">←</span><span class="pager__btn-label">Sebelumnya</span>
+    <button class="pager__btn pager__btn--prev" id="proj-prev" ${prevDisabled ? 'disabled' : ''} aria-label="${i18nText('pager.prev.aria', null, 'Halaman sebelumnya')}">
+      <span aria-hidden="true">←</span><span class="pager__btn-label">${i18nText('pager.prev', null, 'Sebelumnya')}</span>
     </button>
     <div class="pager__nums">${nums}</div>
-    <button class="pager__btn pager__btn--next" id="proj-next" ${nextDisabled ? 'disabled' : ''} aria-label="Halaman berikutnya">
-      <span class="pager__btn-label">Berikutnya</span><span aria-hidden="true">→</span>
+    <button class="pager__btn pager__btn--next" id="proj-next" ${nextDisabled ? 'disabled' : ''} aria-label="${i18nText('pager.next.aria', null, 'Halaman berikutnya')}">
+      <span class="pager__btn-label">${i18nText('pager.next', null, 'Berikutnya')}</span><span aria-hidden="true">→</span>
     </button>
   `;
 
@@ -632,6 +654,73 @@ function goToProjPage(n) {
   document.getElementById('projek-root')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+// ─── HOME PAGE — PROJECTS OVERVIEW SLIDESHOW ──────────────────
+// Most recent 6 projects (by year), auto-advancing crossfade with dots.
+// Re-reads data/products.json each render, so it stays in sync as
+// projects are added — no hardcoded list to maintain.
+
+const HOME_PROJ_COUNT = 6;
+let _homeProjSlides  = [];
+let _homeProjDots    = [];
+let _homeProjIdx     = 0;
+let _homeProjTimer   = null;
+
+const PIN_SVG = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`;
+
+function goHomeProjSlide(idx) {
+  if (!_homeProjSlides.length) return;
+  _homeProjSlides[_homeProjIdx]?.classList.remove('is-active');
+  _homeProjDots[_homeProjIdx]?.classList.remove('is-active');
+  _homeProjIdx = idx;
+  _homeProjSlides[_homeProjIdx]?.classList.add('is-active');
+  _homeProjDots[_homeProjIdx]?.classList.add('is-active');
+}
+
+async function renderHomeProjects() {
+  const root = document.querySelector('[data-cms="home-projects-show"]');
+  if (!root) return;
+
+  if (_homeProjTimer) { clearInterval(_homeProjTimer); _homeProjTimer = null; }
+
+  const data  = await fetchData();
+  const items = getAllProjectsSorted(data).slice(0, HOME_PROJ_COUNT);
+
+  root.innerHTML = `
+    <div class="home-projects__dots" id="home-projects-dots"></div>
+    ${items.map(item => `
+      <div class="home-projects__slide">
+        ${item.image
+          ? `<img src="${item.image}" alt="${item.name}" loading="lazy">`
+          : placeholderProjThumb(item.name)
+        }
+        <div class="home-projects__scrim" aria-hidden="true"></div>
+        <div class="home-projects__cap">
+          <p class="home-projects__cap-name">${item.name}</p>
+          <p class="home-projects__cap-loc">${PIN_SVG}${item.location}</p>
+        </div>
+      </div>
+    `).join('')}
+  `;
+
+  _homeProjSlides = Array.from(root.querySelectorAll('.home-projects__slide'));
+  const dotsEl = document.getElementById('home-projects-dots');
+  _homeProjDots = items.map((_, idx) => {
+    const dot = document.createElement('button');
+    dot.className = 'home-projects__dot';
+    dot.setAttribute('aria-label', i18nText('a11y.slide', { n: idx + 1 }, `Slide ${idx + 1}`));
+    dot.addEventListener('click', () => goHomeProjSlide(idx));
+    dotsEl.appendChild(dot);
+    return dot;
+  });
+
+  _homeProjIdx = -1;
+  goHomeProjSlide(0);
+
+  if (items.length > 1) {
+    _homeProjTimer = setInterval(() => goHomeProjSlide((_homeProjIdx + 1) % items.length), 4200);
+  }
+}
+
 // ─── SEARCH ──────────────────────────────────────────────────
 
 function initSearch() {
@@ -640,6 +729,34 @@ function initSearch() {
   // Searching runs across the whole catalogue regardless of the active tab —
   // see renderCatalogueGrid().
   input.addEventListener('input', renderCatalogueGrid);
+}
+
+/**
+ * Re-renders every CMS-driven, dynamically-built piece of UI so it picks
+ * up the current language. Plain data-i18n swaps (handled in i18n.js)
+ * can't reach this content because it's assembled from data/products.json
+ * at render time rather than sitting in the HTML as static text. Called
+ * from applyLanguage() in i18n.js on both initial load and language toggle.
+ */
+function refreshCmsLanguage() {
+  if (_catalogueData) {
+    renderCatTabs();
+    renderCatSubtabs();
+    renderCatalogueGrid();
+  }
+  if (_projItems.length) renderProjPage();
+  if (document.querySelector('[data-cms="home-projects-show"]')) renderHomeProjects();
+  if (document.querySelector('[data-cms="stats"]')) renderStats();
+  if (document.querySelector('[data-cms="services"]')) renderServices();
+  if (document.querySelector('[data-cms="home-products"]')) renderAboutProducts();
+  if (document.querySelectorAll('[data-cms="certifications"]').length) renderCertifications();
+
+  const lb = document.getElementById('cert-lightbox');
+  if (lb) {
+    lb.querySelector('.lightbox-close')?.setAttribute('aria-label', i18nText('lightbox.close', null, 'Tutup'));
+    lb.querySelector('.lightbox-prev')?.setAttribute('aria-label', i18nText('lightbox.prev', null, 'Sebelumnya'));
+    lb.querySelector('.lightbox-next')?.setAttribute('aria-label', i18nText('lightbox.next', null, 'Berikutnya'));
+  }
 }
 
 // ─── INIT ─────────────────────────────────────────────────────
@@ -653,6 +770,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderStats(),
     renderServices(),
     renderAboutProducts(),
+    renderHomeProjects(),
   ]);
   initSearch();
+
+  // The above is async (data fetch), so i18n.js's own DOMContentLoaded
+  // listener can fire and apply the saved language before any of this
+  // content exists. Re-apply now that it's actually in the DOM.
+  if (typeof applyLanguage === 'function') applyLanguage(getLang());
 });

@@ -163,6 +163,48 @@ const TRANSLATIONS = {
     'kontak.project.other.placeholder': 'Please describe your project ...',
     'kontak.email.placeholder': 'Email ...',
     'kontak.msg.placeholder':   'Message ...',
+
+    /* ── PRODUCT CATALOGUE TABS (produk.html) ────────── */
+    'tab.atap':      'Roof',
+    'tab.truss':     'Truss',
+    'tab.holo':      'Holo',
+    'tab.wallpanel': 'Panel',
+    'tab.plafond':   'Plafond',
+    'subtab.all':    'All',
+    'catalogue.count':       '{n} products',
+    'catalogue.searchcount': '{n} results for "{q}"',
+
+    /* ── HOME PRODUCT OVERVIEW CARDS ─────────────────── */
+    'homeprod.atap':      'Roof',
+    'homeprod.truss':     'Truss',
+    'homeprod.wallpanel': 'Panel',
+
+    /* ── HOME PROJECTS OVERVIEW ──────────────────────── */
+    'home.projects.title': 'Projects',
+    'home.projects.desc':  'For over two decades, Fira has supplied and installed light steel roofing, truss, and structural systems across East Java and beyond. Our work spans everything from family homes to schools, hospitals, and commercial developments, each one built on the same standard of precision and durability. Take a look at a few of our recent installations, or browse the full project gallery.',
+    'home.projects.cta':   'View All Projects',
+    'a11y.slide':          'Slide {n}',
+
+    /* ── PROJECT PAGINATION ──────────────────────────── */
+    'pager.aria':      'Pagination',
+    'pager.prev':      'Previous',
+    'pager.next':      'Next',
+    'pager.prev.aria': 'Previous page',
+    'pager.next.aria': 'Next page',
+
+    /* ── CERTIFICATION LIGHTBOX ──────────────────────── */
+    'lightbox.close': 'Close',
+    'lightbox.prev':  'Previous',
+    'lightbox.next':  'Next',
+    'cert.toggle.aria': 'Show all Certifications',
+
+    /* ── ERRORS ───────────────────────────────────────── */
+    'error.produk': 'Could not load the product catalogue. ({msg})',
+    'error.projek': 'Could not load the project catalogue. ({msg})',
+
+    /* ── MISC ARIA LABELS ────────────────────────────── */
+    'kontak.close':     'Close',
+    'a11y.backtotop':   'Back to top',
   },
 
   id: {
@@ -317,8 +359,62 @@ const TRANSLATIONS = {
     'kontak.project.other.placeholder': 'Ceritakan proyek Anda ...',
     'kontak.email.placeholder': 'Email ...',
     'kontak.msg.placeholder':   'Isi Pesan ...',
+
+    /* ── PRODUCT CATALOGUE TABS (produk.html) ────────── */
+    'tab.atap':      'Atap',
+    'tab.truss':     'Truss',
+    'tab.holo':      'Holo',
+    'tab.wallpanel': 'Panel',
+    'tab.plafond':   'Plafond',
+    'subtab.all':    'Semua',
+    'catalogue.count':       '{n} produk',
+    'catalogue.searchcount': '{n} hasil untuk "{q}"',
+
+    /* ── HOME PRODUCT OVERVIEW CARDS ─────────────────── */
+    'homeprod.atap':      'Atap',
+    'homeprod.truss':     'Truss',
+    'homeprod.wallpanel': 'Panel',
+
+    /* ── HOME PROJECTS OVERVIEW ──────────────────────── */
+    'home.projects.title': 'Projek',
+    'home.projects.desc':  'Selama lebih dari dua dekade, Fira telah memasok dan memasang atap, rangka baja ringan, dan sistem struktural di seluruh Jawa Timur dan sekitarnya. Pekerjaan kami mencakup mulai dari rumah tinggal hingga sekolah, rumah sakit, dan pengembangan komersial, semuanya dibangun dengan standar presisi dan ketahanan yang sama. Lihat beberapa hasil pemasangan terbaru kami, atau jelajahi galeri projek kami secara lengkap.',
+    'home.projects.cta':   'Lihat Semua Projek',
+    'a11y.slide':          'Slide ke-{n}',
+
+    /* ── PROJECT PAGINATION ──────────────────────────── */
+    'pager.aria':      'Navigasi Halaman',
+    'pager.prev':      'Sebelumnya',
+    'pager.next':      'Berikutnya',
+    'pager.prev.aria': 'Halaman sebelumnya',
+    'pager.next.aria': 'Halaman berikutnya',
+
+    /* ── CERTIFICATION LIGHTBOX ──────────────────────── */
+    'lightbox.close': 'Tutup',
+    'lightbox.prev':  'Sebelumnya',
+    'lightbox.next':  'Berikutnya',
+    'cert.toggle.aria': 'Tampil semua Sertifikasi',
+
+    /* ── ERRORS ───────────────────────────────────────── */
+    'error.produk': 'Gagal memuat katalog produk. ({msg})',
+    'error.projek': 'Gagal memuat katalog projek. ({msg})',
+
+    /* ── MISC ARIA LABELS ────────────────────────────── */
+    'kontak.close':     'Tutup',
+    'a11y.backtotop':   'Kembali ke atas',
   },
 };
+
+// ─── LOOKUP HELPER (for CMS-rendered / dynamic strings in cms.js) ─────
+function i18nText(key, vars, fallback) {
+  const dict = TRANSLATIONS[getLang()] || TRANSLATIONS[DEFAULT_LANG];
+  let str = dict[key] !== undefined ? dict[key] : (fallback !== undefined ? fallback : key);
+  if (vars) {
+    Object.keys(vars).forEach(k => {
+      str = String(str).replace(new RegExp('\\{' + k + '\\}', 'g'), vars[k]);
+    });
+  }
+  return str;
+}
 
 // ─── CORE ────────────────────────────────────────────────────
 const DEFAULT_LANG = 'id';
@@ -371,35 +467,21 @@ function applyLanguage(lang) {
     if (t[key] !== undefined) el.placeholder = t[key];
   });
 
-  // ── CMS-rendered: stat labels ──────────────────────────────
-  const statKeys = ['stat.products', 'stat.projects', 'stat.years', 'stat.certs'];
-  document.querySelectorAll('.stat__label').forEach((el, i) => {
-    if (statKeys[i] && t[statKeys[i]]) el.textContent = t[statKeys[i]];
+  // aria-label attributes
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const key = el.dataset.i18nAria;
+    if (t[key] !== undefined) el.setAttribute('aria-label', t[key]);
   });
 
-  // ── CMS-rendered: service cards ────────────────────────────
-  document.querySelectorAll('.servis-card__name').forEach((el, i) => {
-    const key = `service.${i + 1}.name`;
-    if (t[key]) el.textContent = t[key];
-  });
-  document.querySelectorAll('.servis-card__desc').forEach((el, i) => {
-    const key = `service.${i + 1}.desc`;
-    if (t[key]) el.textContent = t[key];
-  });
+  // Note: stat labels and service cards are CMS-rendered (data-driven
+  // from cms.js) and are re-rendered with the right language by
+  // refreshCmsLanguage() below rather than patched here.
 
   // ── CMS-rendered: category headings (products + projects) ──
   document.querySelectorAll('.cat-section .cat-name').forEach(el => {
     const section = el.closest('.cat-section');
     const catId   = section?.dataset.category || section?.id;
     if (catId && t[`cat.${catId}`]) el.textContent = t[`cat.${catId}`];
-  });
-
-  // ── CMS-rendered: home product card labels ─────────────────
-  document.querySelectorAll('.home-prod-card .home-prod-card__label').forEach(el => {
-    const link  = el.closest('a');
-    const href  = link?.getAttribute('href') || '';
-    const match = href.match(/#(.+)$/);
-    if (match && t[`cat.${match[1]}`]) el.textContent = t[`cat.${match[1]}`];
   });
 
   // ── CMS-rendered: "Show All / Show Less" toggle labels ─────
@@ -435,6 +517,13 @@ function applyLanguage(lang) {
       opt.classList.toggle('is-active', opt.dataset.lang === lang);
     });
   });
+
+  // ── CMS-rendered content (catalogue tabs/count, project pager,
+  //    stats, services, home product cards, certifications) is built
+  //    by cms.js and can't be swapped with plain textContent — it has
+  //    to be re-rendered with the new language. Defined in cms.js;
+  //    guarded here since not every page loads cms.js the same way.
+  if (typeof refreshCmsLanguage === 'function') refreshCmsLanguage();
 
   // ── Re-cache translated nav so next page's IIFE starts in the right language ──
   try {

@@ -78,7 +78,7 @@ function phonesHTML() {
 
 function renderKontakSidebar() {
   return `
-<aside id="kontak-sidebar" class="ksb" role="dialog" aria-label="Hubungi Kami" aria-modal="true" aria-hidden="true">
+<aside id="kontak-sidebar" class="ksb" role="dialog" aria-label="Hubungi Kami" data-i18n-aria="kontak.title" aria-modal="true" aria-hidden="true">
   <div class="ksb__body">
   <div class="ksb__form-col">
     <h2 class="ksb__title" data-i18n="kontak.title">Hubungi Kami</h2>
@@ -109,7 +109,7 @@ function renderKontakSidebar() {
     </form>
   </div>
   <div class="ksb__info-col">
-    <button class="ksb__close" id="ksb-close" aria-label="Tutup">
+    <button class="ksb__close" id="ksb-close" aria-label="Tutup" data-i18n-aria="kontak.close">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div class="ksb__section ksb__section--top">
@@ -386,7 +386,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Back-to-top button ────────────────────────────────────
   const btt = document.createElement('button');
   btt.className = 'back-to-top';
-  btt.setAttribute('aria-label', 'Kembali ke atas');
+  btt.setAttribute('data-i18n-aria', 'a11y.backtotop');
+  btt.setAttribute('aria-label', typeof i18nText === 'function' ? i18nText('a11y.backtotop', null, 'Kembali ke atas') : 'Kembali ke atas');
   btt.innerHTML = `<svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>`;
   document.body.appendChild(btt);
   btt.addEventListener('click', () => {
