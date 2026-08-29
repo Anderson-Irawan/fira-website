@@ -45,7 +45,7 @@ function starRating(n) {
 }
 
 function placeholderThumb(name) {
-  return `<div class="prod-card__thumb" aria-label="${name} placeholder">
+  return `<div class="prod-card__thumb" aria-label="${name} placeholder" aria-hidden="true">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <rect x="3" y="3" width="18" height="18" rx="2"/>
       <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -54,19 +54,113 @@ function placeholderThumb(name) {
   </div>`;
 }
 
+// ─── SEARCH TEXT NORMALIZATION ────────────────────────────────
+// Shared by card indexing (render time) and the search input (query time)
+// so "ctruss", "C-Truss", "c  truss" and "C Truss" all normalize the same way.
+
+// Extra words each category should also match on — covers the English
+// labels used on the homepage (Roof/Truss/Panel) differing from the
+// Indonesian category names used here (Atap/Wallpanel/Plafond).
+const CATEGORY_SEARCH_ALIASES = {
+  atap:     ['roof'],
+  wallpanel:['panel'],
+  plafond:  ['panel', 'plafon', 'ceiling'],
+  holo:     ['plafon', 'ceiling'],
+};
+
+function normalizeSearchText(str) {
+  return (str || '')
+    .toString()
+    .toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '') // strip diacritics
+    .replace(/[^a-z0-9]+/g, ' ')                       // punctuation/hyphens → space
+    .trim()
+    .replace(/\s+/g, ' ');
+}
+
+/**
+ * True if `haystack` (already normalized) matches `rawQuery`.
+ * Matches both "glued" queries (no spaces, e.g. "ctruss") via a compact
+ * substring check, and multi-word queries in any order via per-token AND.
+ */
+function searchTextMatches(haystack, rawQuery) {
+  const q = normalizeSearchText(rawQuery);
+  if (!q) return true;
+  const haystackCompact = haystack.replace(/\s+/g, '');
+  const qCompact = q.replace(/\s+/g, '');
+  if (haystackCompact.includes(qCompact)) return true;
+  return q.split(' ').filter(Boolean).every(tok => haystack.includes(tok));
+}
+
 // ─── RENDERERS ───────────────────────────────────────────────
 
-const CAT_PREVIEW = 4; // cards shown before "Tampil Semua"
+/**
+ * Product catalogue (produk.html) — tabs stand in for numbered pages
+ * (Roof / Truss / Holo / Panel / Plafond), with subtype pills for
+ * categories that have subgroups (Truss, Panel, Plafond). Search runs
+ * across the whole catalogue regardless of the active tab.
+ */
+const CATALOGUE_TABS = [
+  { key: 'atap',      label: 'Roof' },
+  { key: 'truss',     label: 'Truss' },
+  { key: 'holo',      label: 'Holo' },
+  { key: 'wallpanel', label: 'Panel' },
+  { key: 'plafond',   label: 'Plafond' },
+];
 
-/** Renders a single product card */
-function renderProdCard(p, catId) {
+let _catalogueData = null;
+let _catActiveTab  = CATALOGUE_TABS[0].key;
+let _catActiveSub  = 'all';
+
+/** Builds { hasSub, groups: { subLabel: [product...] } } for one tab. */
+function catalogueTabGroups(tabKey) {
+  const cats  = _catalogueData.categories;
+  const tab   = CATALOGUE_TABS.find(t => t.key === tabKey);
+  const cat   = cats.find(c => c.id === tabKey);
+
+  if (cat && cat.type !== 'group-header') {
+    return {
+      hasSub: false,
+      groups: { [tab.label]: cat.products.map(p => ({ ...p, catId: cat.id, tagLabel: tab.label })) },
+    };
+  }
+
+  const groups = {};
+  cats.filter(c => c.group === tabKey).forEach(sub => {
+    groups[sub.name] = sub.products.map(p => ({ ...p, catId: sub.id, groupId: tabKey, tagLabel: sub.name }));
+  });
+  return { hasSub: true, groups };
+}
+
+/** Flat list of every product across every tab, tagged for search + the card label. */
+function catalogueAllProducts() {
+  return CATALOGUE_TABS.flatMap(t => {
+    const { groups } = catalogueTabGroups(t.key);
+    return Object.values(groups).flat();
+  });
+}
+
+/** Renders a single product card — tag above the photo, name/spec below it. */
+function renderProdCard(p) {
   const spec = [p.material, p.thickness].filter(Boolean).join(' · ');
+  const searchable = normalizeSearchText([
+    p.name,
+    p.material,
+    p.thickness,
+    p.description,
+    p.tagLabel,
+    ...(CATEGORY_SEARCH_ALIASES[p.catId] || []),
+    ...(CATEGORY_SEARCH_ALIASES[p.groupId] || []),
+  ].filter(Boolean).join(' '));
   return `
-    <article class="prod-card" data-name="${p.name.toLowerCase()}" data-category="${catId}">
-      ${p.image
-        ? `<div class="prod-card__thumb"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>`
-        : placeholderThumb(p.name)
-      }
+    <article class="prod-card" data-search="${searchable}">
+      <p class="prod-card__tag">${p.tagLabel}</p>
+      <div class="prod-card__photo">
+        ${p.image
+          ? `<img class="prod-card__img" src="${p.image}" alt="${p.name}" loading="lazy">`
+          : placeholderThumb(p.name)
+        }
+      </div>
       <div class="prod-card__info">
         <p class="prod-card__name">${p.name}</p>
         ${spec ? `<p class="prod-card__spec">${spec}</p>` : ''}
@@ -74,140 +168,106 @@ function renderProdCard(p, catId) {
     </article>`;
 }
 
-/**
- * Renders the full product catalogue on produk.html.
- * Categories with >CAT_PREVIEW products show a toggle to expand/collapse.
- * Only one category can be expanded at a time (accordion).
- */
 async function renderCatalogue() {
   const root = document.getElementById('catalogue-root');
   if (!root) return;
 
   try {
-    const data = await fetchData();
+    _catalogueData = await fetchData();
 
-    const renderSection = cat => {
-      const preview = cat.products.slice(0, CAT_PREVIEW);
-      const extra   = cat.products.slice(CAT_PREVIEW);
-      const hasMore = extra.length > 0;
-      return `
-        <section class="cat-section" id="${cat.id}" data-category="${cat.id}" data-group="${cat.group || ''}">
-          <div class="cat-header${hasMore ? ' cat-header--toggle' : ''}" ${hasMore ? `data-cat="${cat.id}" aria-expanded="false" role="button" tabindex="0" aria-label="Tampil semua ${cat.name}"` : ''}>
-            <div class="cat-header__text">
-              <h2 class="cat-name">${cat.name}</h2>
-              ${cat.description ? `<p class="cat-desc">${cat.description}</p>` : ''}
-            </div>
-            ${hasMore ? `<svg class="cat-toggle__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>` : ''}
-          </div>
-          <div class="prod-grid">
-            ${preview.map(p => renderProdCard(p, cat.id)).join('')}
-          </div>
-          ${hasMore ? `
-            <div class="prod-overflow" id="overflow-${cat.id}">
-              <div class="prod-overflow__inner">
-                <div class="prod-grid">
-                  ${extra.map(p => renderProdCard(p, cat.id)).join('')}
-                </div>
-              </div>
-            </div>` : ''}
-        </section>`;
-    };
+    const hash = window.location.hash.slice(1);
+    if (CATALOGUE_TABS.some(t => t.key === hash)) _catActiveTab = hash;
 
-    const items  = data.categories;
-    const parts  = [];
-    let   i      = 0;
-    while (i < items.length) {
-      const cat = items[i];
-      if (cat.type === 'group-header') {
-        const groupSections = [];
-        let j = i + 1;
-        while (j < items.length && items[j].group === cat.id) {
-          groupSections.push(items[j]);
-          j++;
-        }
-        parts.push(`
-          <div class="cat-group" id="group-${cat.id}">
-            <div class="cat-group-header" id="${cat.id}"><h2 class="cat-group-name">${cat.name}</h2></div>
-            ${groupSections.map(renderSection).join('')}
-          </div>`);
-        i = j;
-      } else {
-        parts.push(renderSection(cat));
-        i++;
-      }
+    root.innerHTML = `
+      <div class="cat-tabs-row">
+        <nav class="tabs" id="cat-tabs" aria-label="Kategori produk"></nav>
+        <p class="result-count" id="cat-count"></p>
+      </div>
+      <nav class="subtabs" id="cat-subtabs" aria-label="Subkategori"></nav>
+      <div class="prod-grid" id="prod-grid"></div>
+    `;
+
+    renderCatTabs();
+    renderCatSubtabs();
+    renderCatalogueGrid();
+
+    if (hash && CATALOGUE_TABS.some(t => t.key === hash)) {
+      setTimeout(() => root.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     }
-    root.innerHTML = parts.join('');
-
-    initCatAccordion();
   } catch (e) {
     root.innerHTML = `<p style="color:red;padding:24px">Gagal memuat katalog produk. (${e.message})</p>`;
   }
 }
 
-/**
- * Expands a category section (collapses all others first).
- * @param {string} catId  — category id
- * @param {boolean} scroll — whether to scroll the section into view
- */
-function expandCat(catId, scroll = false) {
-  const root = document.getElementById('catalogue-root');
-  if (!root) return;
-
-  // Collapse all
-  root.querySelectorAll('.cat-header[data-cat]').forEach(b => {
-    b.setAttribute('aria-expanded', 'false');
-    document.getElementById(`overflow-${b.dataset.cat}`)?.classList.remove('prod-overflow--open');
+function renderCatTabs() {
+  const tabsEl = document.getElementById('cat-tabs');
+  if (!tabsEl) return;
+  tabsEl.innerHTML = CATALOGUE_TABS.map(t => `
+    <button class="tab" data-cat="${t.key}" aria-selected="${t.key === _catActiveTab}">${t.label}</button>
+  `).join('');
+  tabsEl.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      _catActiveTab = btn.dataset.cat;
+      _catActiveSub = 'all';
+      const input = document.getElementById('search-input');
+      if (input) input.value = '';
+      renderCatTabs();
+      renderCatSubtabs();
+      renderCatalogueGrid();
+    });
   });
-
-  // Expand target
-  const section  = document.getElementById(catId);
-  const btn      = section?.querySelector('.cat-header[data-cat]');
-  const overflow = document.getElementById(`overflow-${catId}`);
-  if (btn && overflow) {
-    btn.setAttribute('aria-expanded', 'true');
-    overflow.classList.add('prod-overflow--open');
-  }
-
-  if (scroll && section) {
-    // Wait one frame so layout settles before scrolling
-    requestAnimationFrame(() =>
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    );
-  }
 }
 
-/** Wires up accordion toggle clicks and hash-based auto-expand */
-function initCatAccordion() {
-  const root = document.getElementById('catalogue-root');
-  if (!root) return;
+function renderCatSubtabs() {
+  const subtabsEl = document.getElementById('cat-subtabs');
+  if (!subtabsEl) return;
+  const { hasSub, groups } = catalogueTabGroups(_catActiveTab);
+  if (!hasSub) { subtabsEl.innerHTML = ''; return; }
 
-  const toggle = btn => {
-    const catId  = btn.dataset.cat;
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    if (isOpen) {
-      btn.setAttribute('aria-expanded', 'false');
-      document.getElementById(`overflow-${catId}`)?.classList.remove('prod-overflow--open');
-    } else {
-      expandCat(catId);
-    }
-  };
-
-  root.addEventListener('click', e => {
-    const btn = e.target.closest('.cat-header[data-cat]');
-    if (btn) toggle(btn);
+  const names = Object.keys(groups);
+  subtabsEl.innerHTML = [`<button class="subtab" data-sub="all" aria-selected="${_catActiveSub === 'all'}">Semua</button>`]
+    .concat(names.map(n => `<button class="subtab" data-sub="${n}" aria-selected="${_catActiveSub === n}">${n}</button>`))
+    .join('');
+  subtabsEl.querySelectorAll('.subtab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      _catActiveSub = btn.dataset.sub;
+      renderCatSubtabs();
+      renderCatalogueGrid();
+    });
   });
-  root.addEventListener('keydown', e => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    const btn = e.target.closest('.cat-header[data-cat]');
-    if (btn) { e.preventDefault(); toggle(btn); }
-  });
+}
 
-  // Auto-expand from URL hash (e.g. produk.html#atap)
-  const hash = window.location.hash.slice(1);
-  if (hash && document.getElementById(hash)) {
-    // Small delay so grid has painted before we scroll
-    setTimeout(() => expandCat(hash, true), 100);
+function renderCatalogueGrid() {
+  const gridEl  = document.getElementById('prod-grid');
+  const countEl = document.getElementById('cat-count');
+  const empty   = document.getElementById('search-empty');
+  if (!gridEl || !_catalogueData) return;
+
+  const input = document.getElementById('search-input');
+  const q     = input ? input.value.trim() : '';
+
+  let items;
+  if (q) {
+    items = catalogueAllProducts().filter(p => searchTextMatches(
+      normalizeSearchText([p.name, p.material, p.thickness, p.description, p.tagLabel].filter(Boolean).join(' ')),
+      q
+    ));
+  } else {
+    const { groups } = catalogueTabGroups(_catActiveTab);
+    items = Object.entries(groups)
+      .filter(([name]) => _catActiveSub === 'all' || name === _catActiveSub)
+      .flatMap(([, list]) => list);
   }
+
+  gridEl.style.display = items.length ? 'grid' : 'none';
+  if (countEl) {
+    countEl.textContent = q
+      ? `${items.length} hasil untuk "${input.value.trim()}"`
+      : `${items.length} produk`;
+  }
+  if (empty) empty.classList.toggle('visible', items.length === 0);
+
+  gridEl.innerHTML = items.map(renderProdCard).join('');
 }
 
 // ─── CERT LIGHTBOX ───────────────────────────────────────────
@@ -472,11 +532,15 @@ async function renderAboutProducts() {
 }
 
 // ─── PROJECT CATALOGUE ───────────────────────────────────────
+// Flat, paginated grid — no category sections. Sorted newest → oldest,
+// PROJ_PER_PAGE items per page, on both desktop and mobile.
 
-const PROJ_PREVIEW = 3; // cards shown before "Tampil Semua"
+const PROJ_PER_PAGE = 8;
+let _projItems = [];
+let _projPage  = 1;
 
 function placeholderProjThumb(name) {
-  return `<div class="proj-card__thumb" aria-label="${name} placeholder">
+  return `<div class="proj-card__thumb" aria-label="${name} placeholder" aria-hidden="true">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <rect x="3" y="3" width="18" height="18" rx="2"/>
       <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -485,17 +549,19 @@ function placeholderProjThumb(name) {
   </div>`;
 }
 
-function renderProjCard(item, catId) {
+function renderProjCard(item) {
   return `
-    <article class="proj-card" data-category="${catId}">
-      ${item.image
-        ? `<div class="proj-card__thumb"><img src="${item.image}" alt="${item.name}" loading="lazy"></div>`
-        : placeholderProjThumb(item.name)
-      }
+    <article class="proj-card">
+      <p class="proj-card__category">${item.category}</p>
+      <div class="proj-card__photo">
+        ${item.image
+          ? `<img class="proj-card__img" src="${item.image}" alt="${item.name}" loading="lazy">`
+          : placeholderProjThumb(item.name)
+        }
+      </div>
       <div class="proj-card__info">
         <p class="proj-card__name">${item.name}</p>
         <p class="proj-card__meta">${item.location}</p>
-        <p class="proj-card__meta">${item.year}</p>
       </div>
     </article>`;
 }
@@ -506,138 +572,74 @@ async function renderProjects() {
 
   try {
     const data = await fetchData();
-    root.innerHTML = data.projects.map(cat => {
-      const sorted  = [...cat.items].sort((a, b) => b.year - a.year);
-      const preview = sorted.slice(0, PROJ_PREVIEW);
-      const extra   = sorted.slice(PROJ_PREVIEW);
-      const hasMore = extra.length > 0;
+    _projItems = data.projects
+      .flatMap(cat => cat.items.map(item => ({ ...item, category: cat.name })))
+      .sort((a, b) => Number(b.year) - Number(a.year));
 
-      return `
-        <section class="cat-section" id="${cat.id}" data-category="${cat.id}">
-          <div class="cat-header${hasMore ? ' cat-header--toggle' : ''}" ${hasMore ? `data-cat="${cat.id}" aria-expanded="false" role="button" tabindex="0" aria-label="Tampil semua ${cat.name}"` : ''}>
-            <h2 class="cat-name">${cat.name}</h2>
-            ${hasMore ? `<svg class="cat-toggle__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>` : ''}
-          </div>
-          <div class="proj-grid">
-            ${preview.map(p => renderProjCard(p, cat.id)).join('')}
-          </div>
-          ${hasMore ? `
-            <div class="prod-overflow" id="overflow-${cat.id}">
-              <div class="prod-overflow__inner">
-                <div class="proj-grid">
-                  ${extra.map(p => renderProjCard(p, cat.id)).join('')}
-                </div>
-              </div>
-            </div>` : ''}
-        </section>`;
-    }).join('');
+    root.innerHTML = `
+      <div class="proj-grid" id="proj-grid"></div>
+      <nav class="pager" id="proj-pager" aria-label="Pagination"></nav>
+    `;
 
-    initProjAccordion();
+    _projPage = 1;
+    renderProjPage();
   } catch (e) {
     root.innerHTML = `<p style="color:red;padding:24px">Gagal memuat katalog projek. (${e.message})</p>`;
   }
 }
 
-function initProjAccordion() {
-  const root = document.getElementById('projek-root');
-  if (!root) return;
+function renderProjPage() {
+  const grid  = document.getElementById('proj-grid');
+  const pager = document.getElementById('proj-pager');
+  if (!grid || !pager) return;
 
-  const toggle = btn => {
-    const catId  = btn.dataset.cat;
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    if (isOpen) {
-      btn.setAttribute('aria-expanded', 'false');
-      document.getElementById(`overflow-${catId}`)?.classList.remove('prod-overflow--open');
-    } else {
-      root.querySelectorAll('.cat-header[data-cat]').forEach(b => {
-        b.setAttribute('aria-expanded', 'false');
-        document.getElementById(`overflow-${b.dataset.cat}`)?.classList.remove('prod-overflow--open');
-      });
-      btn.setAttribute('aria-expanded', 'true');
-      document.getElementById(`overflow-${catId}`)?.classList.add('prod-overflow--open');
-    }
-  };
+  const pageCount = Math.max(1, Math.ceil(_projItems.length / PROJ_PER_PAGE));
+  _projPage = Math.min(Math.max(_projPage, 1), pageCount);
+  const start = (_projPage - 1) * PROJ_PER_PAGE;
 
-  root.addEventListener('click', e => {
-    const btn = e.target.closest('.cat-header[data-cat]');
-    if (btn) toggle(btn);
-  });
-  root.addEventListener('keydown', e => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    const btn = e.target.closest('.cat-header[data-cat]');
-    if (btn) { e.preventDefault(); toggle(btn); }
-  });
+  grid.innerHTML = _projItems.slice(start, start + PROJ_PER_PAGE).map(renderProjCard).join('');
 
-  const hash = window.location.hash.slice(1);
-  if (hash && document.getElementById(hash)) {
-    setTimeout(() => {
-      const section  = document.getElementById(hash);
-      const btn      = section?.querySelector('.cat-header[data-cat]');
-      const overflow = document.getElementById(`overflow-${hash}`);
-      if (btn && overflow) {
-        btn.setAttribute('aria-expanded', 'true');
-        overflow.classList.add('prod-overflow--open');
-      }
-      section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+  const prevDisabled = _projPage === 1;
+  const nextDisabled = _projPage === pageCount;
+
+  let nums = '';
+  for (let n = 1; n <= pageCount; n++) {
+    nums += `<button class="pager__num" aria-current="${n === _projPage}" data-page="${n}">${n}</button>`;
   }
+
+  pager.innerHTML = `
+    <button class="pager__btn pager__btn--prev" id="proj-prev" ${prevDisabled ? 'disabled' : ''} aria-label="Halaman sebelumnya">
+      <span aria-hidden="true">←</span><span class="pager__btn-label">Sebelumnya</span>
+    </button>
+    <div class="pager__nums">${nums}</div>
+    <button class="pager__btn pager__btn--next" id="proj-next" ${nextDisabled ? 'disabled' : ''} aria-label="Halaman berikutnya">
+      <span class="pager__btn-label">Berikutnya</span><span aria-hidden="true">→</span>
+    </button>
+  `;
+
+  document.getElementById('proj-prev').addEventListener('click', () => goToProjPage(_projPage - 1));
+  document.getElementById('proj-next').addEventListener('click', () => goToProjPage(_projPage + 1));
+  pager.querySelectorAll('.pager__num').forEach(btn => {
+    btn.addEventListener('click', () => goToProjPage(+btn.dataset.page));
+  });
+}
+
+function goToProjPage(n) {
+  const pageCount = Math.max(1, Math.ceil(_projItems.length / PROJ_PER_PAGE));
+  if (n < 1 || n > pageCount || n === _projPage) return;
+  _projPage = n;
+  renderProjPage();
+  document.getElementById('projek-root')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ─── SEARCH ──────────────────────────────────────────────────
 
 function initSearch() {
   const input = document.getElementById('search-input');
-  const empty = document.getElementById('search-empty');
-  const root  = document.getElementById('catalogue-root');
   if (!input) return;
-
-  input.addEventListener('input', () => {
-    const q     = input.value.toLowerCase().trim();
-    const cards = document.querySelectorAll('.prod-card');
-    const secs  = document.querySelectorAll('.cat-section');
-    let   total = 0;
-
-    cards.forEach(card => {
-      const match = !q || card.dataset.name.includes(q);
-      card.style.display = match ? '' : 'none';
-      if (match) total++;
-    });
-
-    secs.forEach(sec => {
-      const allCards   = [...sec.querySelectorAll('.prod-card')];
-      const hasVisible = allCards.some(c => c.style.display !== 'none');
-      sec.style.display = hasVisible ? '' : 'none';
-
-      if (!hasVisible) return;
-
-      const overflow = sec.querySelector('.prod-overflow');
-      const btn      = sec.querySelector('.cat-header[data-cat]');
-      if (!overflow || !btn) return;
-
-      if (q) {
-        // Auto-expand if any overflow card matches
-        const overflowMatch = [...overflow.querySelectorAll('.prod-card')]
-          .some(c => c.style.display !== 'none');
-        if (overflowMatch) {
-          overflow.classList.add('prod-overflow--open');
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      } else {
-        // Search cleared — collapse back to default
-        overflow.classList.remove('prod-overflow--open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Hide group containers when all their sections are hidden
-    root.querySelectorAll('.cat-group').forEach(group => {
-      const sections  = [...group.querySelectorAll('.cat-section')];
-      const anyVisible = sections.some(s => s.style.display !== 'none');
-      group.style.display = anyVisible ? '' : 'none';
-    });
-
-    if (empty) empty.classList.toggle('visible', total === 0 && q.length > 0);
-  });
+  // Searching runs across the whole catalogue regardless of the active tab —
+  // see renderCatalogueGrid().
+  input.addEventListener('input', renderCatalogueGrid);
 }
 
 // ─── INIT ─────────────────────────────────────────────────────

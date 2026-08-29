@@ -46,24 +46,6 @@ const NAV_LINKS = [
 ];
 
 // ─── FOOTER CONFIG ───────────────────────────────────────────
-const FOOTER_PROJEK = [
-  { label: 'Residensial',   href: 'projek.html#residensial'   },
-  { label: 'Komersial',     href: 'projek.html#komersial'     },
-  { label: 'Industrial',    href: 'projek.html#industrial'    },
-  { label: 'Institutional', href: 'projek.html#institutional' },
-];
-const FOOTER_PRODUK = [
-  { label: 'Roof',        href: 'produk.html#atap'      },
-  { label: 'Truss',       href: 'produk.html#truss'     },
-  { label: 'Panel',       href: 'produk.html#wallpanel' },
-  { label: 'Produk Lain', href: 'produk.html'           },
-];
-const FOOTER_ABOUT = [
-  { label: 'Tentang Kita', href: 'about.html'             },
-  { label: 'Visi & Misi',  href: 'about.html#visi-misi'  },
-  { label: 'Sertifikasi',  href: 'about.html#sertifikasi' },
-  { label: 'Testimoni',    href: 'about.html#testimoni'   },
-];
 const CONTACT_INFO = {
   phones:  ['+62 313 714 362', '+62 811 325 4929'],
   address: 'Jalan Kedinding Tengah II No. 16<br>Surabaya, Jawa Timur<br>60129, Indonesia',
@@ -80,10 +62,6 @@ const SOCIAL_LINKS = [
 ];
 
 // ─── SHARED HELPERS ───────────────────────────────────────────
-
-function linkList(links) {
-  return links.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('');
-}
 
 function renderSocialIcons(cls = 'footer__social') {
   const icons = SOCIAL_LINKS.map(({ label, href, svg, external }) =>
@@ -237,11 +215,7 @@ function renderFooter() {
     <div class="footer__cols">
       <div class="footer__col">
         <a href="produk.html" class="footer__col-title footer__col-title--link">Produk</a>
-        <ul>${linkList(FOOTER_PRODUK)}</ul>
-      </div>
-      <div class="footer__col">
         <a href="about.html" class="footer__col-title footer__col-title--link">Profil</a>
-        <ul>${linkList(FOOTER_ABOUT)}</ul>
       </div>
       <div class="footer__col footer__contact">
         <a href="kontak.html" class="footer__col-title footer__col-title--link">Kontak</a>
@@ -267,15 +241,8 @@ function renderFooterV2() {
     <div class="footer__cols">
       <div class="footer__col">
         <a href="produk.html" class="footer__col-title footer__col-title--link" data-i18n="footer.products">Produk</a>
-        <ul>${linkList(FOOTER_PRODUK)}</ul>
-      </div>
-      <div class="footer__col">
         <a href="projek.html" class="footer__col-title footer__col-title--link" data-i18n="footer.projects">Projek</a>
-        <ul>${linkList(FOOTER_PROJEK)}</ul>
-      </div>
-      <div class="footer__col">
         <a href="about.html" class="footer__col-title footer__col-title--link" data-i18n="footer.profile">Profil</a>
-        <ul>${linkList(FOOTER_ABOUT)}</ul>
       </div>
       <div class="footer__col footer__contact">
         <a href="kontak.html" class="footer__col-title footer__col-title--link" data-i18n="footer.contact">Kontak</a>
