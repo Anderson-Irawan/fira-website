@@ -81,7 +81,7 @@
 
   --fs-heading:    clamp(22px, 2.5vw, 34px); /* T3 — standard section titles                 */
   --ls-heading:    -0.04em;
-  --fw-heading:    200;
+  --fw-heading:    400;
 
   --fs-title:      22px;                     /* T4 — card titles (product/project names)     */
   --ls-title:      -0.03em;
@@ -1314,7 +1314,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   max-width: 50vw;
   font-size: var(--fs-heading-md);
   font-family: var(--font-sans);
-  font-weight: var(--fw-heading);
+  font-weight: 200;
   letter-spacing: var(--ls-heading);
   line-height: 1.2;
   color: var(--clr-white);
