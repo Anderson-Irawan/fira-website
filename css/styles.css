@@ -45,11 +45,10 @@
 
 :root {
   /* --- COLOR PALETTE --- */
-  --clr-blue:        #0A4BFF;   /* Primary brand blue          */
+  --clr-blue:        #2554d7;   /* Primary brand blue          */
   --clr-yellow:      #FFD52E;   /* Accent / highlight yellow   */
-  --clr-cream:       #F6F6F1;   /* Page background             */
   --clr-black:       #120F0D;   /* Near-black for text/navbar  */
-  --clr-white:       #F6F6F1;
+  --clr-white:       #f4f9f9;   /* Page background             */
   --clr-gray:        #50514F;   /* Placeholder / muted         */
   --clr-gray-mid:    var(--clr-gray);
 
@@ -118,13 +117,18 @@
    RESET
    ===================================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; background-color: #120F0D; }
+/* No `scroll-behavior: smooth` here — Lenis (see js/scroll.js) owns all
+   smooth scrolling site-wide. Letting the browser's native smooth-scroll
+   fight Lenis's own rAF-driven scrolling on every frame is what caused
+   the snapping/stutter when scrolling normally, most noticeable on
+   longer pages like projek. */
+html { font-size: 16px; background-color: #120F0D; }
 body {
   font-family: var(--font-mono);
   font-weight: var(--fw-body);
   font-size: var(--fs-body);
   letter-spacing: var(--ls-body);
-  background-color: var(--clr-cream);
+  background-color: var(--clr-white);
   color: var(--clr-black);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -154,7 +158,7 @@ button { cursor: pointer; }
 
 .bg-blue        { background-color: var(--clr-blue); }
 .bg-black       { background-color: var(--clr-black); }
-.bg-cream       { background-color: var(--clr-cream); }
+.bg-cream       { background-color: var(--clr-white); }
 .bg-white       { background-color: var(--clr-white); }
 .text-white     { color: var(--clr-white); }
 .text-yellow    { color: var(--clr-yellow); }
@@ -242,10 +246,6 @@ button { cursor: pointer; }
   pointer-events: none;
 }
 
-/* When topnav is hidden, the spacer below it is irrelevant */
-.navbar.is-hidden + .nav-spacer {
-  display: none;
-}
 .navbar__inner {
   width: 100%;
   max-width: var(--max-w);
@@ -586,7 +586,7 @@ body.mobile-nav-open { overflow: hidden; }
 }
 .footer__logo-wrap {
   flex: 0 0 52%;
-  color: var(--clr-cream);
+  color: var(--clr-white);
   /* SVG fills with currentColor */
 }
 .footer__logo-wrap svg,
@@ -1006,7 +1006,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
 /* =====================================================
    SERTIFIKASI
    ===================================================== */
-.sertifikasi { background: var(--clr-cream); }
+.sertifikasi { background: var(--clr-white); }
 .cert-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1095,7 +1095,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
 /* =====================================================
    TESTIMONI
    ===================================================== */
-.testimoni { background: var(--clr-cream); padding-top: 0; padding-bottom: var(--sec-v); }
+.testimoni { background: var(--clr-white); padding-top: 0; padding-bottom: var(--sec-v); }
 
 /* Marquee container — clips the scrolling track */
 .testi-grid {
@@ -1410,12 +1410,12 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   max-width: 400vw;
   font-size: var(--fs-body-md);
   line-height: 1.75;
-  color: var(--clr-cream);
+  color: var(--clr-white);
 }
 .trustworthy__body p + p { margin-top: 14px; }
 
 /* Servis Kita */
-.servis { background: var(--clr-cream); }
+.servis { background: var(--clr-white); }
 .servis-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1496,7 +1496,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
 
 /* ── MARKET SECTORS ─────────────────────────────────────────── */
 .market-sectors {
-  background: var(--clr-cream);
+  background: var(--clr-white);
   overflow: hidden;
 }
 
@@ -1540,7 +1540,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
 
 /* ── PRODUK OVERVIEW ─────────────────────────────────────── */
 .prod-pin {
-  background: var(--clr-cream);
+  background: var(--clr-white);
   padding-top: 80px;
   padding-bottom: 10vh;
 }
@@ -1631,7 +1631,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
 .prod-pin .home-prod-grid { margin-bottom: 0; }
 
 /* ── HOME — PROJECTS OVERVIEW (title + copy | slideshow) ──── */
-.home-projects { background: var(--clr-cream); }
+.home-projects { background: var(--clr-white); }
 .home-projects__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1729,7 +1729,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
    PRODUCTS PAGE
    ===================================================== */
 .produk-page {
-  background: var(--clr-cream);
+  background: var(--clr-white);
 }
 /* Search bar */
 .search-wrap {
@@ -1740,14 +1740,24 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--clr-yellow);
+  background: #d7d7cf;
   border-radius: var(--radius);
-  padding: 8px 16px 8px 12px;
+  padding: 8px 16px 8px 24px;
+  transition: background var(--ease);
+}
+.search-bar:hover,
+.search-bar:focus-within {
+  background: var(--clr-blue);
 }
 .search-bar__icon {
   display: flex;
   align-items: center;
   color: var(--clr-black);
+  transition: color var(--ease);
+}
+.search-bar:hover .search-bar__icon,
+.search-bar:focus-within .search-bar__icon {
+  color: var(--clr-white);
 }
 .search-bar__input {
   flex: 1;
@@ -1756,8 +1766,17 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   font-weight: 400;
   color: var(--clr-black);
   padding: 12px 0;
+  transition: color var(--ease);
 }
-.search-bar__input::placeholder { color: rgba(0,0,0,0.45); }
+.search-bar__input::placeholder { color: rgba(0,0,0,0.45); transition: color var(--ease); }
+.search-bar:hover .search-bar__input,
+.search-bar:focus-within .search-bar__input {
+  color: var(--clr-white);
+}
+.search-bar:hover .search-bar__input::placeholder,
+.search-bar:focus-within .search-bar__input::placeholder {
+  color: rgba(246,246,241,0.7);
+}
 
 /* Catalogue */
 .catalogue {
@@ -1924,7 +1943,18 @@ body[data-page="produk"] .catalogue {
   color: var(--clr-black);
   text-decoration: none;
   cursor: pointer;
+  animation: aniFadeUp 0.5s ease both;
 }
+/* Staggered per card so a fresh page of cards fades in rather than
+   blinking in all at once — matches PROJ_PER_PAGE (8) in cms.js. */
+.proj-card:nth-child(1) { animation-delay: 0s;    }
+.proj-card:nth-child(2) { animation-delay: 0.04s; }
+.proj-card:nth-child(3) { animation-delay: 0.08s; }
+.proj-card:nth-child(4) { animation-delay: 0.12s; }
+.proj-card:nth-child(5) { animation-delay: 0.16s; }
+.proj-card:nth-child(6) { animation-delay: 0.2s;  }
+.proj-card:nth-child(7) { animation-delay: 0.24s; }
+.proj-card:nth-child(8) { animation-delay: 0.28s; }
 .proj-card__category {
   font-family: var(--font-mono);
   font-size: var(--fs-body-sm);
@@ -2109,7 +2139,7 @@ body[data-page="produk"] .catalogue {
 /* =====================================================
    CONTACT PAGE
    ===================================================== */
-.kontak-page { background: var(--clr-cream); }
+.kontak-page { background: var(--clr-white); }
 
 .kontak-form-wrap {
   max-width: 860px;

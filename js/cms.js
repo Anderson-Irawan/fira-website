@@ -651,7 +651,20 @@ function goToProjPage(n) {
   if (n < 1 || n > pageCount || n === _projPage) return;
   _projPage = n;
   renderProjPage();
-  document.getElementById('projek-root')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Scroll the grid back to the top of the viewport — mobile only (same
+  // breakpoint as the arrows-only pager, see .pager__btn-label in
+  // styles.css). Desktop stays put; mobile's pager sits right under a
+  // full page of cards, so jumping back up keeps the next page in view.
+  // Routed through Lenis (like the back-to-top button) rather than native
+  // scrollIntoView — Lenis owns the page's scroll physics, so calling
+  // scrollIntoView directly fought it and only "won" on some pages.
+  const root = document.getElementById('projek-root');
+  if (root && window.matchMedia('(max-width: 600px)').matches) {
+    const y = window.scrollY + root.getBoundingClientRect().top;
+    if (window._scrollTo) window._scrollTo(y);
+    else root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 // ─── HOME PAGE — PROJECTS OVERVIEW SLIDESHOW ──────────────────
