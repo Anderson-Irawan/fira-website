@@ -1,82 +1,132 @@
 {
   "_comment": "FIRA Product Catalogue — edit this file to update all product listings on the website. To integrate a real CMS (Contentful, Sanity, etc.), replace the fetch call in js/cms.js with your CMS API endpoint and map the response to this same shape.",
+  "_schema": "Dimensions live in width/length/height/thickness (plain strings). Any field that differs by language is an { id, en } object — cms.js picks the active one at render time. Category-level length/width/thickness/profile are shared by every product inside that category (a colour-variant card inherits them rather than repeating them 15-30 times) — see wallpanel-* and plafond-* below.",
   "categories": [
     {
       "id": "atap",
+      "type": "group-header",
+      "name": "Atap"
+    },
+    {
+      "id": "atap-galvalum",
+      "group": "atap",
       "name": "Atap",
+      "nameEn": "Roofing",
       "description": "",
       "products": [
         {
           "id": "atap-001",
           "name": "Atap FR 4",
-          "material": "770 mm",
-          "thickness": "",
-          "image": "assets/products/atap/atap fr 4.jpg",
-          "description": "Profil atap FR seri 4 untuk hunian residensial"
+          "width": "770 mm",
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "GL / PPGL, AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Profil atap FR seri 4 untuk hunian residensial", "en": "Wide trapezoidal roofing profile for residential housing." },
+          "image": "assets/products/atap/atap fr 4.jpg"
         },
         {
           "id": "atap-002",
           "name": "Atap FR 5",
-          "material": "750/1100 mm",
-          "thickness": "",
-          "image": "assets/products/atap/atap fr 5.jpg",
-          "description": "Profil atap FR seri 5 ketebalan standar"
+          "width": "750 mm / 1050 mm",
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "GL / PPGL, AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Profil atap FR seri 5 ketebalan standar", "en": "Trapezoidal roofing profile, two width options." },
+          "image": "assets/products/atap/atap fr 5.jpg"
         },
         {
           "id": "atap-003",
           "name": "Atap FR 9",
-          "material": "680 mm",
-          "thickness": "",
-          "image": "assets/products/atap/atap fr 9.jpg",
-          "description": "Profil atap FR seri 9 untuk kebutuhan semi-komersial"
+          "width": "680 mm",
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "GL / PPGL, AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Profil atap FR seri 9 untuk kebutuhan semi-komersial", "en": "Fine corrugation roofing profile." },
+          "image": "assets/products/atap/atap fr 9.jpg"
         },
         {
           "id": "atap-004",
           "name": "Atap FR 12",
-          "material": "930 mm",
-          "thickness": "",
-          "image": "assets/products/atap/atap fr 12.jpg",
-          "description": "Profil atap FR seri 12 ketebalan premium"
+          "width": "930 mm",
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "GL / PPGL, AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Profil atap FR seri 12 ketebalan premium", "en": "Wide fine-corrugation roofing profile." },
+          "image": "assets/products/atap/atap fr 12.jpg"
         },
         {
           "id": "atap-deck",
           "name": "Fira Deck",
-          "material": "",
-          "thickness": "",
-          "image": "assets/products/atap/fira deck.jpg",
-          "description": ""
+          "width": "1000 mm",
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "GL / PPGL, AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Floor deck bergelombang dengan emboss, untuk pelat lantai komposit.", "en": "Embossed corrugated floor decking for composite floor slabs." },
+          "image": "assets/products/atap/fira deck.jpg"
         },
         {
           "id": "atap-005",
           "name": "Nok Galvalum",
-          "material": "",
-          "thickness": "",
-          "image": "assets/products/atap/nok galvalum.jpg",
-          "description": "Ridge cap / nok galvalume untuk penutup puncak atap"
-        },
+          "width": "450 mm",
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "GL / PPGL, AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Ridge cap / nok galvalume untuk penutup puncak atap", "en": "Ridge capping for galvalume roofing." },
+          "image": "assets/products/atap/nok galvalum.jpg"
+        }
+      ]
+    },
+    {
+      "id": "atap-talang",
+      "group": "atap",
+      "name": "Talang",
+      "nameEn": "Guttering",
+      "description": "",
+      "products": [
         {
           "id": "atap-006",
           "name": "Talang Jurai",
-          "material": "",
-          "thickness": "",
-          "image": "assets/products/atap/talang jurai.jpg",
-          "description": "Talang jurai untuk membuang air hujan di pertemuan atap"
-        },
-        {
-          "id": "atap-007",
-          "name": "Talang Kotak",
-          "material": "",
-          "thickness": "",
-          "image": "assets/products/atap/talang kotak.jpg",
-          "description": "Talang kotak standar untuk saluran air hujan"
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Talang jurai untuk membuang air hujan di pertemuan atap", "en": "Gutter for the valley where two roof planes meet." },
+          "image": "assets/products/atap/talang jurai.jpg"
         },
         {
           "id": "atap-008",
           "name": "Talang Tepi",
-          "material": "",
-          "thickness": "",
-          "image": "assets/products/atap/talang tepi.jpg",
-          "description": "Talang tepi untuk finishing ujung atap"
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Talang tepi untuk finishing ujung atap", "en": "Gutter for the roof edge." },
+          "image": "assets/products/atap/talang tepi.jpg"
+        },
+        {
+          "id": "talang-roll",
+          "name": "Talang Roll",
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Talang gulungan siap potong sesuai kebutuhan panjang.", "en": "Coil gutter stock, cut to the length required." },
+          "image": "assets/products/atap/talang roll.jpg"
+        },
+        {
+          "id": "talang-tengah",
+          "name": "Talang Tengah",
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Talang untuk bagian tengah bentang atap.", "en": "Gutter running through the middle of a roof span." },
+          "image": "assets/products/atap/talang tengah.jpg"
+        },
+        {
+          "id": "flashing",
+          "name": "Flashing",
+          "thickness": "0.2 mm – 0.5 mm",
+          "specification": "AZ 100",
+          "certification": { "id": "Bahan ber-SNI", "en": "SNI-certified material" },
+          "description": { "id": "Profil penutup sambungan atap dan dinding.", "en": "Profile that closes the junction between roof and wall." },
+          "image": "assets/products/atap/flashing.jpg"
         }
       ]
     },
@@ -91,10 +141,61 @@
       "name": "C/U/H Truss",
       "description": "",
       "products": [
-        { "id": "truss-c",      "name": "C Truss",      "material": "33 × 75 × 35 mm", "thickness": "", "image": "assets/products/truss/cuh/c truss.png" },
-        { "id": "truss-c-mini", "name": "C Truss Mini", "material": "23 × 75 × 25 mm", "thickness": "", "image": "assets/products/truss/cuh/c truss mini.png" },
-        { "id": "truss-h",      "name": "H Truss",      "material": "70 × 45 mm",       "thickness": "", "image": "assets/products/truss/cuh/h truss.png" },
-        { "id": "truss-u",      "name": "U Truss",      "material": "70 × 47 mm",       "thickness": "", "image": "assets/products/truss/cuh/u truss.png" }
+        {
+          "id": "truss-c", "name": "C Truss",
+          "length": "75 mm", "width": "33 mm", "height": "35 mm",
+          "thickness": "0.5 mm – 1.00 mm", "specification": "G550, AZ 100",
+          "material": { "id": "Baja ringan", "en": "Light-gauge steel" },
+          "description": { "id": "Kuda-kuda rangka atap baja ringan untuk rumah dengan bentang 5–10 meter.", "en": "Light-gauge steel roof truss for houses with a 5–10 metre span." },
+          "applications": [
+            { "id": "Untuk kuda-kuda rangka atap baja ringan", "en": "For light-gauge steel roof trusses" },
+            { "id": "Rumah dengan bentang 5–10 meter", "en": "Houses with a 5–10 metre span" },
+            { "id": "Dapat digunakan untuk dinding partisi", "en": "Can be used for partition walls" },
+            { "id": "Dapat dicopel (digabung)", "en": "Can be coupled (joined together)" }
+          ],
+          "image": "assets/products/truss/cuh/c truss.png"
+        },
+        {
+          "id": "truss-c-mini", "name": "C Truss Mini",
+          "length": "75 mm", "width": "23 mm", "height": "25 mm",
+          "thickness": "0.5 mm – 1.00 mm", "specification": "G550, AZ 100",
+          "material": { "id": "Baja ringan", "en": "Light-gauge steel" },
+          "description": { "id": "Varian ringan untuk kremona kuda-kuda rangka atap baja ringan.", "en": "Lightweight variant for the kremona web of a light-gauge steel roof truss." },
+          "applications": [
+            { "id": "Untuk kremona kuda-kuda rangka atap baja ringan", "en": "For the kremona web of light-gauge steel roof trusses" },
+            { "id": "Dapat dicopel (digabung)", "en": "Can be coupled (joined together)" }
+          ],
+          "image": "assets/products/truss/cuh/c truss mini.png"
+        },
+        {
+          "id": "truss-u", "name": "U Truss",
+          "width": "47 mm", "height": "70 mm",
+          "thickness": "0.5 mm – 1.00 mm", "specification": "G550, AZ 100",
+          "material": { "id": "Baja ringan", "en": "Light-gauge steel" },
+          "description": { "id": "Profil U yang lebih kuat dibanding C Truss, untuk bentang 5–20 meter.", "en": "U-profile, stronger than C Truss, for spans of 5–20 metres." },
+          "applications": [
+            { "id": "Untuk kuda-kuda rangka atap baja ringan", "en": "For light-gauge steel roof trusses" },
+            { "id": "Rumah dengan bentang 5–20 meter", "en": "Houses with a 5–20 metre span" },
+            { "id": "Biasa dikombinasi dengan H Truss", "en": "Usually combined with H Truss" },
+            { "id": "Lebih kuat dibanding C Truss", "en": "Stronger than C Truss" }
+          ],
+          "image": "assets/products/truss/cuh/u truss.png"
+        },
+        {
+          "id": "truss-h", "name": "H Truss",
+          "width": "45 mm", "height": "70 mm",
+          "thickness": "0.5 mm – 1.00 mm", "specification": "G550, AZ 100",
+          "material": { "id": "Baja ringan", "en": "Light-gauge steel" },
+          "description": { "id": "Profil H tertutup untuk bentang 5–20 meter, juga dapat dipakai sebagai tiang penyangga bangunan.", "en": "Closed H-profile for spans of 5–20 metres, also usable as a structural support column." },
+          "applications": [
+            { "id": "Untuk kuda-kuda rangka atap baja ringan", "en": "For light-gauge steel roof trusses" },
+            { "id": "Rumah dengan bentang 5–20 meter", "en": "Houses with a 5–20 metre span" },
+            { "id": "Biasa dikombinasi dengan U Truss", "en": "Usually combined with U Truss" },
+            { "id": "Lebih kuat dibanding C Truss", "en": "Stronger than C Truss" },
+            { "id": "Dapat digunakan untuk tiang penyangga bangunan", "en": "Can be used as a building support column" }
+          ],
+          "image": "assets/products/truss/cuh/h truss.png"
+        }
       ]
     },
     {
@@ -103,250 +204,328 @@
       "name": "Reng",
       "description": "",
       "products": [
-        { "id": "reng-100",   "name": "Reng 100",   "material": "30 × 59 mm", "thickness": "", "image": "assets/products/truss/reng/reng 100.png" },
-        { "id": "reng-35l",   "name": "Reng 35L",   "material": "36 × 65 mm", "thickness": "", "image": "assets/products/truss/reng/reng 35l.png" },
-        { "id": "reng-35m",   "name": "Reng 35M",   "material": "35 × 70 mm", "thickness": "", "image": "assets/products/truss/reng/reng 35m.png" },
-{ "id": "reng-eco",   "name": "Reng Eco",   "material": "25 × 59 mm", "thickness": "", "image": "assets/products/truss/reng/reng eco.png" },
-        { "id": "reng-neo",   "name": "Reng Neo",   "material": "30 × 45 mm", "thickness": "", "image": "assets/products/truss/reng/reng neo.png" }
+        {
+          "id": "reng-100", "name": "Reng 100",
+          "width": "59 mm", "height": "30 mm", "specification": "G550, AZ 100",
+          "material": { "id": "Baja ringan", "en": "Light-gauge steel" },
+          "description": { "id": "Penggunaan umum untuk genteng.", "en": "General use with roof tiles." },
+          "image": "assets/products/truss/reng/reng 100.png"
+        },
+        {
+          "id": "reng-35l", "name": "Reng 35L",
+          "width": "65 mm", "height": "35 mm", "specification": "G550, AZ 100",
+          "material": { "id": "Baja ringan", "en": "Light-gauge steel" },
+          "description": { "id": "Penggunaan umum untuk genteng.", "en": "General use with roof tiles." },
+          "image": "assets/products/truss/reng/reng 35l.png"
+        },
+        {
+          "id": "reng-35m", "name": "Reng 35M",
+          "width": "70 mm", "height": "35 mm", "specification": "G550, AZ 100",
+          "material": { "id": "Baja ringan", "en": "Light-gauge steel" },
+          "description": { "id": "Untuk atap spandek dan industri.", "en": "For spandek and industrial roofing." },
+          "image": "assets/products/truss/reng/reng 35m.png"
+        },
+        {
+          "id": "reng-eco", "name": "Reng Eco",
+          "width": "59 mm", "height": "25 mm", "specification": "G550, AZ 100",
+          "material": { "id": "Baja ringan", "en": "Light-gauge steel" },
+          "description": { "id": "Penggunaan umum untuk genteng.", "en": "General use with roof tiles." },
+          "image": "assets/products/truss/reng/reng eco.png"
+        },
+        {
+          "id": "reng-neo", "name": "Reng Neo",
+          "width": "45 mm", "height": "30 mm", "specification": "G550, AZ 100",
+          "material": { "id": "Baja ringan", "en": "Light-gauge steel" },
+          "description": { "id": "Penggunaan umum untuk genteng.", "en": "General use with roof tiles." },
+          "image": "assets/products/truss/reng/reng neo.png"
+        }
       ]
     },
     {
       "id": "holo",
+      "group": "truss",
       "name": "Holo",
       "description": "",
       "products": [
         {
           "id": "holo-001",
           "name": "Holo Plafon 2×4",
-          "material": "Baja Ringan",
+          "material": { "id": "Baja Ringan", "en": "Light-gauge steel" },
           "thickness": "0.8 mm",
-          "image": "assets/products/holo/holo placeholder.webp",
-          "description": "Holo plafon persegi panjang 2×4 cm standar"
+          "image": "assets/products/truss/holo/holo 2x4.jpg",
+          "description": { "id": "Holo plafon persegi panjang 2×4 cm standar" }
         },
         {
           "id": "holo-002",
           "name": "Holo Plafon 4×4",
-          "material": "Baja Ringan",
+          "material": { "id": "Baja Ringan", "en": "Light-gauge steel" },
           "thickness": "0.8 mm",
-          "image": "assets/products/holo/holo placeholder.webp",
-          "description": "Holo plafon persegi simetris 4×4 cm"
+          "image": "assets/products/truss/holo/holo4x4.jpg",
+          "description": { "id": "Holo plafon persegi simetris 4×4 cm" }
         },
         {
           "id": "holo-003",
           "name": "Holo Wall Angle",
-          "material": "Baja Ringan",
+          "material": { "id": "Baja Ringan", "en": "Light-gauge steel" },
           "thickness": "0.4 mm",
-          "image": "assets/products/holo/holo placeholder.webp",
-          "description": "Wall angle untuk penyelesaian tepi plafon"
+          "image": "assets/products/truss/holo/wall angle.jpg",
+          "description": { "id": "Wall angle untuk penyelesaian tepi plafon" }
         }
       ]
     },
     {
       "id": "wallpanel",
       "type": "group-header",
-      "name": "Wallpanel"
+      "name": "Wallpanel",
+      "description": { "id": "Panel dinding PVC dekoratif dengan profil bergaris untuk interior rumah, kantor, dan komersial.", "en": "Decorative PVC wall panelling with a fluted profile for residential, office and commercial interiors." },
+      "features": [
+        { "id": "Anti rayap — material PVC tidak mengandung selulosa", "en": "Termiteproof — PVC contains no cellulose" },
+        { "id": "Tahan air — aman dari kebocoran dan kelapukan", "en": "Water resistant — safe from leaks and rot" },
+        { "id": "Instalasi mudah — cukup dengan peralatan sederhana", "en": "Easy to install — needs only simple tools" },
+        { "id": "Perawatan mudah — cukup dengan alat pembersih biasa", "en": "Easy to maintain — cleans with ordinary household cleaners" }
+      ]
     },
     {
       "id": "wallpanel-21cm",
       "group": "wallpanel",
       "name": "21 cm Series",
-      "description": "",
+      "nameEn": "21 cm Series Wall Panel",
+      "length": "3 m", "width": "21 cm",
+      "profile": { "overallWidth": "201 mm", "coverageWidth": "180 mm", "depth": "15 mm", "ribLayout": "46 / 21 / 46 / 21 / 46 mm" },
+      "description": { "id": "Panel bergaris lebar untuk dinding aksen berskala besar seperti ruang tamu, kepala ranjang, dan backdrop TV.", "en": "Wide-fluted panel for large-scale accent walls such as living rooms, headboards and TV backdrops." },
       "products": [
-        { "id": "fwg-001", "name": "FWG-001", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-001.jpg" },
-        { "id": "fwg-002", "name": "FWG-002", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-002.jpg" },
-        { "id": "fwg-003", "name": "FWG-003", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-003.jpg" },
-        { "id": "fwg-004", "name": "FWG-004", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-004.jpg" },
-        { "id": "fwg-005", "name": "FWG-005", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-005.jpg" },
-        { "id": "fwg-006", "name": "FWG-006", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-006.jpg" },
-        { "id": "fwg-007", "name": "FWG-007", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-007.jpg" },
-        { "id": "fwg-008", "name": "FWG-008", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-008.jpg" },
-        { "id": "fwg-010", "name": "FWG-010", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-010.jpg" },
-        { "id": "fwg-011", "name": "FWG-011", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-011.jpg" },
-        { "id": "fwg-012", "name": "FWG-012", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-012.jpg" },
-        { "id": "fwg-013", "name": "FWG-013", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-013.jpg" },
-        { "id": "fwg-015", "name": "FWG-015", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-015.jpg" },
-        { "id": "fwg-016", "name": "FWG-016", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-016.jpg" },
-        { "id": "fwg-017", "name": "FWG-017", "material": "", "thickness": "", "image": "assets/products/wallpanel/21 cm/FWG-017.jpg" }
+        { "id": "fwg-001", "name": "FWG-001", "descriptor": { "id": "Serat kayu merah anggur tua", "en": "Deep burgundy wood grain" }, "image": "assets/products/wallpanel/21 cm/FWG-001.jpg" },
+        { "id": "fwg-002", "name": "FWG-002", "descriptor": { "id": "Serat kayu mahoni merah terang", "en": "Bright red mahogany wood grain" }, "image": "assets/products/wallpanel/21 cm/FWG-002.jpg" },
+        { "id": "fwg-003", "name": "FWG-003", "descriptor": { "id": "Serat kayu jati keemasan", "en": "Golden teak wood grain" }, "image": "assets/products/wallpanel/21 cm/FWG-003.jpg" },
+        { "id": "fwg-004", "name": "FWG-004", "descriptor": { "id": "Serat kayu ash pasir pucat", "en": "Pale sand ash wood grain" }, "image": "assets/products/wallpanel/21 cm/FWG-004.jpg" },
+        { "id": "fwg-005", "name": "FWG-005", "descriptor": { "id": "Tekstur beton abu-abu muda", "en": "Light grey concrete texture" }, "image": "assets/products/wallpanel/21 cm/FWG-005.jpg" },
+        { "id": "fwg-006", "name": "FWG-006", "descriptor": { "id": "Putih polos", "en": "Plain white" }, "image": "assets/products/wallpanel/21 cm/FWG-006.jpg" },
+        { "id": "fwg-007", "name": "FWG-007", "descriptor": { "id": "Marmer hitam urat emas", "en": "Black marble with gold veining" }, "image": "assets/products/wallpanel/21 cm/FWG-007.jpg" },
+        { "id": "fwg-008", "name": "FWG-008", "descriptor": { "id": "Serat kayu walnut hangat, glossy", "en": "Warm walnut wood grain, gloss" }, "image": "assets/products/wallpanel/21 cm/FWG-008.jpg" },
+        { "id": "fwg-010", "name": "FWG-010", "descriptor": { "id": "Serat kayu mahoni coklat kemerahan", "en": "Reddish-brown mahogany wood grain" }, "image": "assets/products/wallpanel/21 cm/FWG-010.jpg" },
+        { "id": "fwg-011", "name": "FWG-011", "descriptor": { "id": "Serat kayu ceri merah tua, glossy", "en": "Dark cherry wood grain, gloss" }, "image": "assets/products/wallpanel/21 cm/FWG-011.jpg" },
+        { "id": "fwg-012", "name": "FWG-012", "descriptor": { "id": "Serat kayu jati oranye kecoklatan", "en": "Orange-brown teak wood grain" }, "image": "assets/products/wallpanel/21 cm/FWG-012.jpg" },
+        { "id": "fwg-013", "name": "FWG-013", "descriptor": { "id": "Serat kayu oak taupe pucat", "en": "Pale taupe oak wood grain" }, "image": "assets/products/wallpanel/21 cm/FWG-013.jpg" },
+        { "id": "fwg-015", "name": "FWG-015", "descriptor": { "id": "Serat kayu oak natural terang", "en": "Light natural oak wood grain" }, "image": "assets/products/wallpanel/21 cm/FWG-015.jpg" },
+        { "id": "fwg-016", "name": "FWG-016", "descriptor": { "id": "Marmer putih urat abu-abu", "en": "White marble with grey veining" }, "image": "assets/products/wallpanel/21 cm/FWG-016.jpg" },
+        { "id": "fwg-017", "name": "FWG-017", "descriptor": { "id": "Serat kayu oak abu-abu kecoklatan", "en": "Warm grey washed oak wood grain" }, "image": "assets/products/wallpanel/21 cm/FWG-017.jpg" }
       ]
     },
     {
-      "id": "wallpanel-16cm",
+      "id": "wallpanel-16-fwp",
       "group": "wallpanel",
-      "name": "16 cm Series",
-      "description": "",
+      "name": "16 cm Series (FWP)",
+      "nameEn": "16 cm Series Wall Panel (FWP)",
+      "length": "3 m / 4 m", "width": "16 cm",
+      "profile": { "overallWidth": "21 cm", "coverageWidth": "17 cm", "ribLayout": "8 × 20 mm" },
+      "description": { "id": "Panel bergaris kotak dengan rongga terbuka, tersedia dalam dua pilihan panjang untuk menyesuaikan tinggi plafon.", "en": "Square-fluted panel with open cavities, offered in two lengths to suit different ceiling heights." },
       "products": [
-        { "id": "fwp-001", "name": "FWP-001", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-001.jpg" },
-        { "id": "fwp-002", "name": "FWP-002", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-002.jpg" },
-        { "id": "fwp-003", "name": "FWP-003", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-003.jpg" },
-        { "id": "fwp-004", "name": "FWP-004", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-004.jpg" },
-        { "id": "fwp-005", "name": "FWP-005", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-005.jpg" },
-        { "id": "fwp-009", "name": "FWP-009", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-009.jpg" },
-        { "id": "fwp-010", "name": "FWP-010", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-010.jpg" },
-        { "id": "fwp-011", "name": "FWP-011", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-011.jpg" },
-        { "id": "fwp-012", "name": "FWP-012", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-012.jpg" },
-        { "id": "fwp-014", "name": "FWP-014", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-014.jpg" },
-        { "id": "fwp-018", "name": "FWP-018", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-018.jpg" },
-        { "id": "fwp-022", "name": "FWP-022", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-022.jpg" },
-        { "id": "fwp-025", "name": "FWP-025", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-025.jpg" },
-        { "id": "fwp-026", "name": "FWP-026", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-026.jpg" },
-        { "id": "fwp-027", "name": "FWP-027", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWP-027.jpg" },
-        { "id": "fww-1101", "name": "FWW-1101", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1101.jpg" },
-        { "id": "fww-1102", "name": "FWW-1102", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1102.jpg" },
-        { "id": "fww-1103", "name": "FWW-1103", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1103.jpg" },
-        { "id": "fww-1104", "name": "FWW-1104", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1104.jpg" },
-        { "id": "fww-1105", "name": "FWW-1105", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1105.jpg" },
-        { "id": "fww-1106", "name": "FWW-1106", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1106.jpg" },
-        { "id": "fww-1107", "name": "FWW-1107", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1107.jpg" },
-        { "id": "fww-1108", "name": "FWW-1108", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1108.jpg" },
-        { "id": "fww-1110", "name": "FWW-1110", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1110.jpg" },
-        { "id": "fww-1111", "name": "FWW-1111", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1111.jpg" },
-        { "id": "fww-1112", "name": "FWW-1112", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1112.jpg" },
-        { "id": "fww-1113", "name": "FWW-1113", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1113.jpg" },
-        { "id": "fww-1115", "name": "FWW-1115", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1115.jpg" },
-        { "id": "fww-1116", "name": "FWW-1116", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1116.jpg" },
-        { "id": "fww-1117", "name": "FWW-1117", "material": "", "thickness": "", "image": "assets/products/wallpanel/16 cm/FWW-1117.jpg" }
+        { "id": "fwp-001", "name": "FWP-001", "descriptor": { "id": "Serat kayu walnut coklat tua", "en": "Dark walnut wood grain" }, "image": "assets/products/wallpanel/16 cm/FWP-001.jpg" },
+        { "id": "fwp-002", "name": "FWP-002", "descriptor": { "id": "Kayu apung abu-abu kebiruan", "en": "Pale blue-grey driftwood" }, "image": "assets/products/wallpanel/16 cm/FWP-002.jpg" },
+        { "id": "fwp-003", "name": "FWP-003", "descriptor": { "id": "Serat kayu oak natural terang", "en": "Light natural oak wood grain" }, "image": "assets/products/wallpanel/16 cm/FWP-003.jpg" },
+        { "id": "fwp-004", "name": "FWP-004", "descriptor": { "id": "Serat kayu mahoni merah oranye", "en": "Orange-red mahogany wood grain" }, "image": "assets/products/wallpanel/16 cm/FWP-004.jpg" },
+        { "id": "fwp-005", "name": "FWP-006", "descriptor": { "id": "Serat kayu ash coklat kemerahan", "en": "Reddish-brown ash wood grain" }, "image": "assets/products/wallpanel/16 cm/FWP-005.jpg" },
+        { "id": "fwp-009", "name": "FWP-009", "descriptor": { "id": "Kayu lapuk abu-abu terang", "en": "Light grey weathered wood" }, "image": "assets/products/wallpanel/16 cm/FWP-009.jpg" },
+        { "id": "fwp-010", "name": "FWP-010", "descriptor": { "id": "Serat kayu oak greige pucat", "en": "Pale greige oak wood grain" }, "image": "assets/products/wallpanel/16 cm/FWP-010.jpg" },
+        { "id": "fwp-011", "name": "FWP-011", "descriptor": { "id": "Serat kayu abu-abu sedang", "en": "Mid grey wood grain" }, "image": "assets/products/wallpanel/16 cm/FWP-011.jpg" },
+        { "id": "fwp-012", "name": "FWP-012", "descriptor": { "id": "Serat kayu walnut gelap bertekstur", "en": "Dark walnut with pronounced grain" }, "image": "assets/products/wallpanel/16 cm/FWP-012.jpg" },
+        { "id": "fwp-014", "name": "FWP-014", "descriptor": { "id": "Biru debu doff", "en": "Dusty blue matte" }, "image": "assets/products/wallpanel/16 cm/FWP-014.jpg" },
+        { "id": "fwp-018", "name": "FWP-018", "descriptor": { "id": "Kayu oak asap keunguan", "en": "Smoked purple-brown oak" }, "image": "assets/products/wallpanel/16 cm/FWP-018.jpg" },
+        { "id": "fwp-022", "name": "FWP-022", "descriptor": { "id": "Serat kayu jati cognac, glossy", "en": "Rich cognac teak, gloss" }, "image": "assets/products/wallpanel/16 cm/FWP-022.jpg" },
+        { "id": "fwp-025", "name": "FWP-025", "descriptor": { "id": "Serat kayu oak madu keemasan", "en": "Golden honey oak wood grain" }, "image": "assets/products/wallpanel/16 cm/FWP-025.jpg" },
+        { "id": "fwp-026", "name": "FWP-026", "descriptor": { "id": "Serat kayu coklat cokelat tua", "en": "Dark chocolate brown wood grain" }, "image": "assets/products/wallpanel/16 cm/FWP-026.jpg" },
+        { "id": "fwp-027", "name": "FWP-027", "descriptor": { "id": "Putih polos", "en": "Plain white" }, "image": "assets/products/wallpanel/16 cm/FWP-027.jpg" }
+      ]
+    },
+    {
+      "id": "wallpanel-16-fww",
+      "group": "wallpanel",
+      "name": "16 cm Series (FWW)",
+      "nameEn": "16 cm Series Wall Panel (FWW)",
+      "length": "3 m", "width": "16 cm",
+      "description": { "id": "Varian seri 16 cm dengan profil bergaris rapat dan sudut tajam, hanya tersedia dalam panjang 3 meter.", "en": "A 16 cm series variant with a tighter, sharper-edged fluted profile, supplied in 3 metre lengths only." },
+      "products": [
+        { "id": "fww-1101", "name": "FWW-1101", "descriptor": { "id": "Serat kayu merah anggur tua", "en": "Deep burgundy wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1101.jpg" },
+        { "id": "fww-1102", "name": "FWW-1102", "descriptor": { "id": "Serat kayu mahoni merah terang", "en": "Bright red mahogany wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1102.jpg" },
+        { "id": "fww-1103", "name": "FWW-1103", "descriptor": { "id": "Serat kayu oak coklat keemasan", "en": "Golden brown oak wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1103.jpg" },
+        { "id": "fww-1104", "name": "FWW-1104", "descriptor": { "id": "Serat kayu oak pasir terang", "en": "Light sandy oak wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1104.jpg" },
+        { "id": "fww-1105", "name": "FWW-1105", "descriptor": { "id": "Tekstur linen kayu abu-abu muda", "en": "Light grey linen-texture wood" }, "image": "assets/products/wallpanel/16 cm/FWW-1105.jpg" },
+        { "id": "fww-1106", "name": "FWW-1106", "descriptor": { "id": "Putih keabu-abuan lembut", "en": "Soft white-grey" }, "image": "assets/products/wallpanel/16 cm/FWW-1106.jpg" },
+        { "id": "fww-1107", "name": "FWW-1107", "descriptor": { "id": "Marmer hitam urat oranye keemasan", "en": "Black marble with orange-gold veining" }, "image": "assets/products/wallpanel/16 cm/FWW-1107.jpg" },
+        { "id": "fww-1108", "name": "FWW-1108", "descriptor": { "id": "Serat kayu jati oranye kecoklatan", "en": "Orange-brown teak wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1108.jpg" },
+        { "id": "fww-1110", "name": "FWW-1110", "descriptor": { "id": "Serat kayu mahoni merah kecoklatan", "en": "Red-brown mahogany wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1110.jpg" },
+        { "id": "fww-1111", "name": "FWW-1111", "descriptor": { "id": "Serat kayu ceri merah tua", "en": "Deep red cherry wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1111.jpg" },
+        { "id": "fww-1112", "name": "FWW-1112", "descriptor": { "id": "Serat kayu oak coklat keemasan", "en": "Mid golden brown oak wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1112.jpg" },
+        { "id": "fww-1113", "name": "FWW-1113", "descriptor": { "id": "Serat kayu oak madu terang", "en": "Light honey oak wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1113.jpg" },
+        { "id": "fww-1115", "name": "FWW-1115", "descriptor": { "id": "Serat kayu oak krem pucat", "en": "Pale cream oak wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1115.jpg" },
+        { "id": "fww-1116", "name": "FWW-1116", "descriptor": { "id": "Marmer putih urat abu-abu", "en": "White marble with grey veining" }, "image": "assets/products/wallpanel/16 cm/FWW-1116.jpg" },
+        { "id": "fww-1117", "name": "FWW-1117", "descriptor": { "id": "Serat kayu taupe kelabu hangat", "en": "Warm grey-taupe wood grain" }, "image": "assets/products/wallpanel/16 cm/FWW-1117.jpg" }
       ]
     },
     {
       "id": "wallpanel-15cm",
       "group": "wallpanel",
       "name": "15 cm Series",
-      "description": "",
+      "nameEn": "15 cm Series Wall Panel",
+      "_note": "PDF source labels these codes FW-12xx; the site's existing images/ids use FWW-12xx — flagged for confirmation, not renamed.",
+      "length": "3 m / 4 m", "width": "15 cm",
+      "profile": { "overallWidth": "18 cm", "coverageWidth": "15 cm", "ribLayout": "28 / 22 / 28 / 22 / 28 / 22 mm" },
+      "description": { "id": "Panel bergaris lebar-sempit bergantian, memberikan bayangan yang lebih dalam pada permukaan dinding.", "en": "Panel with alternating wide and narrow ribs, casting a deeper shadow line across the wall." },
       "products": [
-        { "id": "fww-1201", "name": "FWW-1201", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1201.jpg" },
-        { "id": "fww-1202", "name": "FWW-1202", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1202.jpg" },
-        { "id": "fww-1203", "name": "FWW-1203", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1203.jpg" },
-        { "id": "fww-1204", "name": "FWW-1204", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1204.jpg" },
-        { "id": "fww-1206", "name": "FWW-1206", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1206.jpg" },
-        { "id": "fww-1207", "name": "FWW-1207", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1207.jpg" },
-        { "id": "fww-1208", "name": "FWW-1208", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1208.jpg" },
-        { "id": "fww-1209", "name": "FWW-1209", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1209.jpg" },
-        { "id": "fww-1210", "name": "FWW-1210", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1210.jpg" },
-        { "id": "fww-1211", "name": "FWW-1211", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1211.jpg" },
-        { "id": "fww-1212", "name": "FWW-1212", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1212.jpg" },
-        { "id": "fww-1213", "name": "FWW-1213", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1213.jpg" },
-        { "id": "fww-1214", "name": "FWW-1214", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1214.jpg" },
-        { "id": "fww-1215", "name": "FWW-1215", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1215.jpg" },
-        { "id": "fww-1216", "name": "FWW-1216", "material": "", "thickness": "", "image": "assets/products/wallpanel/15 cm/FWW-1216.jpg" }
+        { "id": "fww-1201", "name": "FWW-1201", "descriptor": { "id": "Serat kayu oak pirang pucat", "en": "Pale blonde oak wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1201.jpg" },
+        { "id": "fww-1202", "name": "FWW-1202", "descriptor": { "id": "Serat kayu walnut natural sedang", "en": "Medium natural walnut wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1202.jpg" },
+        { "id": "fww-1203", "name": "FWW-1203", "descriptor": { "id": "Serat kayu jati coklat hangat", "en": "Warm brown teak wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1203.jpg" },
+        { "id": "fww-1204", "name": "FWW-1204", "descriptor": { "id": "Putih keabu-abuan doff", "en": "Off-white grey matte" }, "image": "assets/products/wallpanel/15 cm/FWW-1204.jpg" },
+        { "id": "fww-1206", "name": "FWW-1206", "descriptor": { "id": "Serat kayu walnut asap gelap", "en": "Dark smoked walnut wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1206.jpg" },
+        { "id": "fww-1207", "name": "FWW-1207", "descriptor": { "id": "Biru navy doff", "en": "Deep navy blue matte" }, "image": "assets/products/wallpanel/15 cm/FWW-1207.jpg" },
+        { "id": "fww-1208", "name": "FWW-1208", "descriptor": { "id": "Putih polos", "en": "Plain white" }, "image": "assets/products/wallpanel/15 cm/FWW-1208.jpg" },
+        { "id": "fww-1209", "name": "FWW-1209", "descriptor": { "id": "Serat kayu abu-abu sedang", "en": "Mid grey wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1209.jpg" },
+        { "id": "fww-1210", "name": "FWW-1210", "descriptor": { "id": "Serat kayu walnut keemasan", "en": "Warm golden walnut wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1210.jpg" },
+        { "id": "fww-1211", "name": "FWW-1211", "descriptor": { "id": "Serat kayu madu keemasan", "en": "Golden honey wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1211.jpg" },
+        { "id": "fww-1212", "name": "FWW-1212", "descriptor": { "id": "Serat kayu ceri merah tua, glossy", "en": "Deep red cherry, gloss" }, "image": "assets/products/wallpanel/15 cm/FWW-1212.jpg" },
+        { "id": "fww-1213", "name": "FWW-1213", "descriptor": { "id": "Serat kayu oak abu-abu terang", "en": "Light grey washed oak wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1213.jpg" },
+        { "id": "fww-1214", "name": "FWW-1214", "descriptor": { "id": "Serat kayu merah anggur keunguan", "en": "Burgundy purple wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1214.jpg" },
+        { "id": "fww-1215", "name": "FWW-1215", "descriptor": { "id": "Serat kayu ash krem pucat", "en": "Pale cream ash wood grain" }, "image": "assets/products/wallpanel/15 cm/FWW-1215.jpg" },
+        { "id": "fww-1216", "name": "FWW-1216", "descriptor": { "id": "Marmer hitam urat emas", "en": "Black marble with gold veining" }, "image": "assets/products/wallpanel/15 cm/FWW-1216.jpg" }
       ]
     },
     {
       "id": "wallpanel-aksesoris",
       "group": "wallpanel",
       "name": "Accessories",
-      "description": "",
+      "nameEn": "Accessories",
+      "description": { "id": "List siku penutup sambungan dan tepi panel dinding, tersedia dalam warna yang menyesuaikan panel.", "en": "L-profile trim that closes panel joints and edges, available in colours matched to the panels." },
       "products": [
-        { "id": "flw-001", "name": "FLW-001", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-001.jpg" },
-        { "id": "flw-002", "name": "FLW-002", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-002.jpg" },
-        { "id": "flw-003", "name": "FLW-003", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-003.jpg" },
-        { "id": "flw-004", "name": "FLW-004", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-004.jpg" },
-        { "id": "flw-006", "name": "FLW-006", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-006.jpg" },
-        { "id": "flw-007", "name": "FLW-007", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-007.jpg" },
-        { "id": "flw-008", "name": "FLW-008", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-008.jpg" },
-        { "id": "flw-010", "name": "FLW-010", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-010.jpg" },
-        { "id": "flw-017", "name": "FLW-017", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/FLW-017.jpg" },
-        { "id": "kancing-partisi", "name": "Kancing Partisi", "material": "", "thickness": "", "image": "assets/products/wallpanel/accessories/Kancing Partisi.jpg" }
+        { "id": "flw-001", "name": "FLW-001", "width": "2 cm", "height": "1 cm", "descriptor": { "id": "Serat kayu coklat sedang", "en": "Medium brown wood grain" }, "image": "assets/products/wallpanel/accessories/FLW-001.jpg" },
+        { "id": "flw-002", "name": "FLW-002", "width": "2 cm", "height": "1 cm", "descriptor": { "id": "Kayu abu-abu terang", "en": "Light grey washed wood" }, "image": "assets/products/wallpanel/accessories/FLW-002.jpg" },
+        { "id": "flw-003", "name": "FLW-003", "width": "2 cm", "height": "1 cm", "descriptor": { "id": "Serat kayu coklat keemasan", "en": "Golden brown wood grain" }, "image": "assets/products/wallpanel/accessories/FLW-003.jpg" },
+        { "id": "flw-004", "name": "FLW-004", "width": "2 cm", "height": "1 cm", "descriptor": { "id": "Mahoni merah oranye", "en": "Red-orange mahogany" }, "image": "assets/products/wallpanel/accessories/FLW-004.jpg" },
+        { "id": "flw-006", "name": "FLW-006", "width": "2 cm", "height": "1 cm", "descriptor": { "id": "Serat kayu oak kemerahan", "en": "Warm reddish oak grain" }, "image": "assets/products/wallpanel/accessories/FLW-006.jpg" },
+        { "id": "flw-007", "name": "FLW-007", "width": "2 cm", "height": "1 cm", "descriptor": { "id": "Ceri merah tua, glossy", "en": "Deep red cherry, gloss" }, "image": "assets/products/wallpanel/accessories/FLW-007.jpg" },
+        { "id": "flw-008", "name": "FLW-008", "width": "2 cm", "height": "1 cm", "descriptor": { "id": "Kayu cokelat espresso gelap", "en": "Dark espresso brown wood" }, "image": "assets/products/wallpanel/accessories/FLW-008.jpg" },
+        { "id": "flw-010", "name": "FLW-010", "width": "2 cm", "height": "1 cm", "descriptor": { "id": "Kayu putih keabu-abuan pucat", "en": "Pale grey-white washed wood" }, "image": "assets/products/wallpanel/accessories/FLW-010.jpg" },
+        { "id": "flw-017", "name": "FLW-017", "width": "2 cm", "height": "1 cm", "descriptor": { "id": "Putih polos", "en": "Plain white" }, "image": "assets/products/wallpanel/accessories/FLW-017.jpg" },
+        {
+          "id": "kancing-partisi", "name": "Kancing Partisi",
+          "width": "5 cm", "height": "3.4 cm",
+          "description": { "id": "Pengunci logam untuk pemasangan wall panel sebagai dinding partisi.", "en": "Metal fixing clip for installing wall panels as a partition wall." },
+          "image": "assets/products/wallpanel/accessories/Kancing Partisi.jpg"
+        }
       ]
     },
     {
       "id": "plafond",
       "type": "group-header",
-      "name": "Plafond"
+      "name": "Plafond",
+      "description": { "id": "Plafon PVC lembaran dengan tiga seri motif — dari permukaan glossy bermotif hingga kayu doff — untuk hunian dan ruang komersial.", "en": "Sheet PVC ceiling panelling in three pattern series — from patterned gloss surfaces to matte woodgrain — for homes and commercial spaces." },
+      "features": [
+        { "id": "Anti rayap — material PVC tidak mengandung selulosa", "en": "Termiteproof — PVC contains no cellulose" },
+        { "id": "Tahan air — aman dari kebocoran dan kelapukan", "en": "Water resistant — safe from leaks and rot" },
+        { "id": "Perawatan mudah — cukup dengan alat pembersih biasa", "en": "Easy to maintain — cleans with ordinary household cleaners" },
+        { "id": "Beragam varian warna dan motif", "en": "Wide range of colours and patterns" }
+      ]
     },
     {
       "id": "plafond-sparkling",
       "group": "plafond",
       "name": "Sparkling Series",
-      "description": "400 × 20 × 0,8 cm",
+      "nameEn": "Sparkling Series Ceiling Panel",
+      "length": "4 m", "width": "20 cm", "thickness": "8 mm",
+      "description": { "id": "Seri dengan permukaan glossy dan motif dekoratif — marmer, geometris, floral, dan efek holografik.", "en": "Gloss-finish series with decorative patterns — marble, geometric, floral and holographic effects." },
       "products": [
-        { "id": "fp-0004", "name": "FP-0004", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-0004.jpg" },
-        { "id": "fp-2001", "name": "FP-2001", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2001.jpg" },
-        { "id": "fp-2008", "name": "FP-2008", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2008.jpg" },
-        { "id": "fp-2009", "name": "FP-2009", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2009.jpg" },
-        { "id": "fp-2011", "name": "FP-2011", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2011.jpg" },
-        { "id": "fp-2012", "name": "FP-2012", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2012.jpg" },
-        { "id": "fp-2022", "name": "FP-2022", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2022.jpg" },
-        { "id": "fp-2024", "name": "FP-2024", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2024.jpg" },
-        { "id": "fp-2032", "name": "FP-2032", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2032.jpg" },
-        { "id": "fp-2034", "name": "FP-2034", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2034.jpg" },
-        { "id": "fp-2039", "name": "FP-2039", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2039.jpg" },
-        { "id": "fp-2045", "name": "FP-2045", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2045.jpg" },
-        { "id": "fp-2049", "name": "FP-2049", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2049.jpg" },
-        { "id": "fp-2051", "name": "FP-2051", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2051.jpg" },
-        { "id": "fp-2058", "name": "FP-2058", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2058.jpg" },
-        { "id": "fp-2063", "name": "FP-2063", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2063.jpg" },
-        { "id": "fp-2076", "name": "FP-2076", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2076.jpg" },
-        { "id": "fp-2083", "name": "FP-2083", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-2083.jpg" },
-        { "id": "fp-3001", "name": "FP-3001", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3001.jpg" },
-        { "id": "fp-3002", "name": "FP-3002", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3002.jpg" },
-        { "id": "fp-3006", "name": "FP-3006", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3006.jpg" },
-        { "id": "fp-3008", "name": "FP-3008", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3008.jpg" },
-        { "id": "fp-3009", "name": "FP-3009", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3009.jpg" },
-        { "id": "fp-3010", "name": "FP-3010", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3010.jpg" },
-        { "id": "fp-3012", "name": "FP-3012", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3012.jpg" },
-        { "id": "fp-3013", "name": "FP-3013", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3013.jpg" },
-        { "id": "fp-3014", "name": "FP-3014", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3014.jpg" },
-        { "id": "fp-3020", "name": "FP-3020", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3020.jpg" },
-        { "id": "fp-3021", "name": "FP-3021", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3021.jpg" },
-        { "id": "fp-3022", "name": "FP-3022", "material": "", "thickness": "", "image": "assets/products/plafond/sparkling/FP-3022.jpg" }
+        { "id": "fp-0004", "name": "FP-0004", "descriptor": { "id": "Serat kayu gading pucat", "en": "Ivory light wood grain" }, "image": "assets/products/plafond/sparkling/FP-0004.jpg" },
+        { "id": "fp-2001", "name": "FP-2001", "descriptor": { "id": "Hitam glossy dengan gelombang perak", "en": "Gloss black with silver wave lines" }, "image": "assets/products/plafond/sparkling/FP-2001.jpg" },
+        { "id": "fp-2008", "name": "FP-2008", "descriptor": { "id": "Hitam dengan pusaran pita perunggu perak", "en": "Black with bronze and silver ribbon swirl" }, "image": "assets/products/plafond/sparkling/FP-2008.jpg" },
+        { "id": "fp-2009", "name": "FP-2009", "descriptor": { "id": "Putih dengan motif kotak holografik", "en": "White with holographic square outline motif" }, "image": "assets/products/plafond/sparkling/FP-2009.jpg" },
+        { "id": "fp-2011", "name": "FP-2011", "descriptor": { "id": "Putih dengan motif lingkaran merah hitam", "en": "White with red and black ring motif" }, "image": "assets/products/plafond/sparkling/FP-2011.jpg" },
+        { "id": "fp-2012", "name": "FP-2012", "descriptor": { "id": "Krem gelombang perak dengan panel hijau limau", "en": "Cream silver waves with lime green panel" }, "image": "assets/products/plafond/sparkling/FP-2012.jpg" },
+        { "id": "fp-2022", "name": "FP-2022", "descriptor": { "id": "Merah crimson pekat", "en": "Deep crimson red" }, "image": "assets/products/plafond/sparkling/FP-2022.jpg" },
+        { "id": "fp-2024", "name": "FP-2024", "descriptor": { "id": "Putih dengan motif batu kerikil", "en": "White with pebble outline motif" }, "image": "assets/products/plafond/sparkling/FP-2024.jpg" },
+        { "id": "fp-2032", "name": "FP-2032", "descriptor": { "id": "Bingkai tumpal biru dengan damask krem", "en": "Blue-grey greek-key border with cream damask" }, "image": "assets/products/plafond/sparkling/FP-2032.jpg" },
+        { "id": "fp-2034", "name": "FP-2034", "descriptor": { "id": "Putih kebiruan dengan garis vertikal halus", "en": "Pale blue-white with fine vertical lines" }, "image": "assets/products/plafond/sparkling/FP-2034.jpg" },
+        { "id": "fp-2039", "name": "FP-2039", "descriptor": { "id": "Marmer krem dengan pita garis hitam", "en": "Cream marble with black stripe band" }, "image": "assets/products/plafond/sparkling/FP-2039.jpg" },
+        { "id": "fp-2045", "name": "FP-2045", "descriptor": { "id": "Hitam dengan motif bulu holografik", "en": "Black with holographic plume motif" }, "image": "assets/products/plafond/sparkling/FP-2045.jpg" },
+        { "id": "fp-2049", "name": "FP-2049", "descriptor": { "id": "Biru kehitaman dengan sapuan gelombang", "en": "Dark blue-black with brushstroke waves" }, "image": "assets/products/plafond/sparkling/FP-2049.jpg" },
+        { "id": "fp-2051", "name": "FP-2051", "descriptor": { "id": "Marmer putih urat abu-abu", "en": "White marble with grey veining" }, "image": "assets/products/plafond/sparkling/FP-2051.jpg" },
+        { "id": "fp-2058", "name": "FP-2058", "descriptor": { "id": "Serat kayu kuning keemasan", "en": "Golden yellow wood grain" }, "image": "assets/products/plafond/sparkling/FP-2058.jpg" },
+        { "id": "fp-2063", "name": "FP-2063", "descriptor": { "id": "Marmer krem dengan urat amber", "en": "Cream marble with amber veining" }, "image": "assets/products/plafond/sparkling/FP-2063.jpg" },
+        { "id": "fp-2076", "name": "FP-2076", "descriptor": { "id": "Krem mutiara berkilau", "en": "Pearlescent cream" }, "image": "assets/products/plafond/sparkling/FP-2076.jpg" },
+        { "id": "fp-2083", "name": "FP-2083", "descriptor": { "id": "Putih dengan garis gelombang emas", "en": "White with gold and grey wave lines" }, "image": "assets/products/plafond/sparkling/FP-2083.jpg" },
+        { "id": "fp-3001", "name": "FP-3001", "descriptor": { "id": "Serat kayu oranye amber hangat", "en": "Warm amber-orange wood grain" }, "image": "assets/products/plafond/sparkling/FP-3001.jpg" },
+        { "id": "fp-3002", "name": "FP-3002", "descriptor": { "id": "Serat kayu oker keemasan", "en": "Golden ochre wood grain" }, "image": "assets/products/plafond/sparkling/FP-3002.jpg" },
+        { "id": "fp-3006", "name": "FP-3006", "descriptor": { "id": "Serat kayu merah bata", "en": "Brick red wood grain" }, "image": "assets/products/plafond/sparkling/FP-3006.jpg" },
+        { "id": "fp-3008", "name": "FP-3008", "descriptor": { "id": "Coklat maroon sangat gelap", "en": "Very dark maroon brown" }, "image": "assets/products/plafond/sparkling/FP-3008.jpg" },
+        { "id": "fp-3009", "name": "FP-3009", "descriptor": { "id": "Serat kayu kuning cerah bermata kayu", "en": "Bright yellow wood grain with knots" }, "image": "assets/products/plafond/sparkling/FP-3009.jpg" },
+        { "id": "fp-3010", "name": "FP-3010", "descriptor": { "id": "Serat kayu tembaga muda", "en": "Light copper wood grain" }, "image": "assets/products/plafond/sparkling/FP-3010.jpg" },
+        { "id": "fp-3012", "name": "FP-3012", "descriptor": { "id": "Serat kayu merah oranye terang", "en": "Bright red-orange wood grain" }, "image": "assets/products/plafond/sparkling/FP-3012.jpg" },
+        { "id": "fp-3013", "name": "FP-3013", "descriptor": { "id": "Serat kayu ungu mauve", "en": "Mauve plum wood grain" }, "image": "assets/products/plafond/sparkling/FP-3013.jpg" },
+        { "id": "fp-3014", "name": "FP-3014", "descriptor": { "id": "Serat kayu abu-abu", "en": "Grey wood grain" }, "image": "assets/products/plafond/sparkling/FP-3014.jpg" },
+        { "id": "fp-3020", "name": "FP-3020", "descriptor": { "id": "Kayu gradasi abu-abu kecoklatan", "en": "Grey-brown gradient wood grain" }, "image": "assets/products/plafond/sparkling/FP-3020.jpg" },
+        { "id": "fp-3021", "name": "FP-3021", "descriptor": { "id": "Kayu cokelat tua", "en": "Dark chocolate brown wood grain" }, "image": "assets/products/plafond/sparkling/FP-3021.jpg" },
+        { "id": "fp-3022", "name": "FP-3022", "descriptor": { "id": "Kayu coklat kemerahan glossy", "en": "Reddish-brown gloss wood grain" }, "image": "assets/products/plafond/sparkling/FP-3022.jpg" }
       ]
     },
     {
       "id": "plafond-classic",
       "group": "plafond",
       "name": "Classic White Series",
-      "description": "400 × 20 × 0,8 cm",
+      "nameEn": "Classic White Series Ceiling Panel",
+      "length": "4 m", "width": "20 cm", "thickness": "8 mm",
+      "description": { "id": "Seri putih dan krem, dari polos hingga bermotif garis dan ornamen halus, untuk plafon yang bersih dan netral.", "en": "White and cream series, from plain to finely lined and ornamented, for a clean neutral ceiling." },
       "products": [
-        { "id": "fp-0001", "name": "FP-0001", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-0001.jpg" },
-        { "id": "fp-0006", "name": "FP-0006", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-0006.jpg" },
-        { "id": "fp-2002", "name": "FP-2002", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2002.jpg" },
-        { "id": "fp-2005", "name": "FP-2005", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2005.jpg" },
-        { "id": "fp-2015", "name": "FP-2015", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2015.jpg" },
-        { "id": "fp-2048", "name": "FP-2048", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2048.jpg" },
-        { "id": "fp-2050", "name": "FP-2050", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2050.jpg" },
-        { "id": "fp-2055", "name": "FP-2055", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2055.jpg" },
-        { "id": "fp-2056", "name": "FP-2056", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2056.jpg" },
-        { "id": "fp-2057", "name": "FP-2057", "material": "", "thickness": "", "image": "assets/products/plafond/classic white/FP-2057.jpg" }
+        { "id": "fp-0001", "name": "FP-0001", "descriptor": { "id": "Putih glossy polos", "en": "Plain gloss white" }, "image": "assets/products/plafond/classic white/FP-0001.jpg" },
+        { "id": "fp-0006", "name": "FP-0006", "descriptor": { "id": "Putih gading lembut", "en": "Soft ivory white" }, "image": "assets/products/plafond/classic white/FP-0006.jpg" },
+        { "id": "fp-2002", "name": "FP-2002", "descriptor": { "id": "Putih dengan gelombang biru perak", "en": "White with silver-blue wave lines" }, "image": "assets/products/plafond/classic white/FP-2002.jpg" },
+        { "id": "fp-2005", "name": "FP-2005", "descriptor": { "id": "Putih dengan bingkai tumpal dan motif mawar", "en": "White with greek-key border and rose motif" }, "image": "assets/products/plafond/classic white/FP-2005.jpg" },
+        { "id": "fp-2015", "name": "FP-2015", "descriptor": { "id": "Putih dengan garis rambut vertikal", "en": "White with fine vertical hairlines" }, "image": "assets/products/plafond/classic white/FP-2015.jpg" },
+        { "id": "fp-2048", "name": "FP-2048", "descriptor": { "id": "Putih dengan garis halus vertikal", "en": "White with fine vertical pinstripes" }, "image": "assets/products/plafond/classic white/FP-2048.jpg" },
+        { "id": "fp-2050", "name": "FP-2050", "descriptor": { "id": "Putih dengan serat kayu abu-abu samar", "en": "White with subtle grey wood grain" }, "image": "assets/products/plafond/classic white/FP-2050.jpg" },
+        { "id": "fp-2055", "name": "FP-2055", "descriptor": { "id": "Putih dengan pita garis hitam rapat", "en": "White with dense black pinstripe band" }, "image": "assets/products/plafond/classic white/FP-2055.jpg" },
+        { "id": "fp-2056", "name": "FP-2056", "descriptor": { "id": "Krem dengan kisi berlian dan motif bintang", "en": "Cream with diamond lattice and star motif" }, "image": "assets/products/plafond/classic white/FP-2056.jpg" },
+        { "id": "fp-2057", "name": "FP-2057", "descriptor": { "id": "Putih dengan kisi berlian abu-abu", "en": "White with grey diamond lattice" }, "image": "assets/products/plafond/classic white/FP-2057.jpg" }
       ]
     },
     {
       "id": "plafond-vintage",
       "group": "plafond",
       "name": "Vintage Wood Series",
-      "description": "400 × 20 × 0,7 cm",
+      "nameEn": "Vintage Wood Series Ceiling Panel",
+      "length": "4 m", "width": "20 cm", "thickness": "7 mm",
+      "description": { "id": "Seri serat kayu dengan permukaan doff, memberikan kesan kayu asli tanpa pantulan cahaya.", "en": "Woodgrain series with a matte surface, reading as real timber without light reflection." },
       "products": [
-        { "id": "fp-1001", "name": "FP-1001", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1001.jpg" },
-        { "id": "fp-1002", "name": "FP-1002", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1002.jpg" },
-        { "id": "fp-1003", "name": "FP-1003", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1003.jpg" },
-        { "id": "fp-1004", "name": "FP-1004", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1004.jpg" },
-        { "id": "fp-1005", "name": "FP-1005", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1005.jpg" },
-        { "id": "fp-1006", "name": "FP-1006", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1006.jpg" },
-        { "id": "fp-1007", "name": "FP-1007", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1007.jpg" },
-        { "id": "fp-1008", "name": "FP-1008", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1008.jpg" },
-        { "id": "fp-1009", "name": "FP-1009", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1009.jpg" },
-        { "id": "fp-1010", "name": "FP-1010", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1010.jpg" },
-        { "id": "fp-1011", "name": "FP-1011", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1011.jpg" },
-        { "id": "fp-1012", "name": "FP-1012", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1012.jpg" },
-        { "id": "fp-1013", "name": "FP-1013", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1013.jpg" },
-        { "id": "fp-1014", "name": "FP-1014", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1014.jpg" },
-        { "id": "fp-1015", "name": "FP-1015", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1015.jpg" },
-        { "id": "fp-1016", "name": "FP-1016", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1016.jpg" },
-        { "id": "fp-1017", "name": "FP-1017", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1017.jpg" },
-        { "id": "fp-1018", "name": "FP-1018", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1018.jpg" },
-        { "id": "fp-1019", "name": "FP-1019", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1019.jpg" },
-        { "id": "fp-1020", "name": "FP-1020", "material": "", "thickness": "", "image": "assets/products/plafond/vintage wood/FP-1020.jpg" }
+        { "id": "fp-1001", "name": "FP-1001", "descriptor": { "id": "Kayu coklat oranye terbakar", "en": "Burnt orange-brown wood" }, "image": "assets/products/plafond/vintage wood/FP-1001.jpg" },
+        { "id": "fp-1002", "name": "FP-1002", "descriptor": { "id": "Mahoni merah tua", "en": "Deep red mahogany" }, "image": "assets/products/plafond/vintage wood/FP-1002.jpg" },
+        { "id": "fp-1003", "name": "FP-1003", "descriptor": { "id": "Cokelat tua pekat", "en": "Dark chocolate brown" }, "image": "assets/products/plafond/vintage wood/FP-1003.jpg" },
+        { "id": "fp-1004", "name": "FP-1004", "descriptor": { "id": "Kayu ash putih keabu-abuan", "en": "Pale grey-white ash" }, "image": "assets/products/plafond/vintage wood/FP-1004.jpg" },
+        { "id": "fp-1005", "name": "FP-1005", "descriptor": { "id": "Putih dengan serat gelombang lembut", "en": "White with soft wave grain" }, "image": "assets/products/plafond/vintage wood/FP-1005.jpg" },
+        { "id": "fp-1006", "name": "FP-1006", "descriptor": { "id": "Putih kebiruan es", "en": "Pale ice blue-white" }, "image": "assets/products/plafond/vintage wood/FP-1006.jpg" },
+        { "id": "fp-1007", "name": "FP-1007", "descriptor": { "id": "Serat kayu jati oranye hangat", "en": "Warm orange teak grain" }, "image": "assets/products/plafond/vintage wood/FP-1007.jpg" },
+        { "id": "fp-1008", "name": "FP-1008", "descriptor": { "id": "Serat kayu ash krem terang", "en": "Light cream ash grain" }, "image": "assets/products/plafond/vintage wood/FP-1008.jpg" },
+        { "id": "fp-1009", "name": "FP-1009", "descriptor": { "id": "Kayu pinus rustic coklat zaitun", "en": "Olive-brown rustic pine" }, "image": "assets/products/plafond/vintage wood/FP-1009.jpg" },
+        { "id": "fp-1010", "name": "FP-1010", "descriptor": { "id": "Kayu pinus rustic zaitun bermata kayu", "en": "Dark olive rustic pine with knots" }, "image": "assets/products/plafond/vintage wood/FP-1010.jpg" },
+        { "id": "fp-1011", "name": "FP-1011", "descriptor": { "id": "Ungu terong kecoklatan", "en": "Deep aubergine purple-brown" }, "image": "assets/products/plafond/vintage wood/FP-1011.jpg" },
+        { "id": "fp-1012", "name": "FP-1012", "descriptor": { "id": "Serat kayu oak pasir pucat", "en": "Pale sand oak grain" }, "image": "assets/products/plafond/vintage wood/FP-1012.jpg" },
+        { "id": "fp-1013", "name": "FP-1013", "descriptor": { "id": "Kayu merah muda mauve", "en": "Dusty rose mauve wood" }, "image": "assets/products/plafond/vintage wood/FP-1013.jpg" },
+        { "id": "fp-1014", "name": "FP-1014", "descriptor": { "id": "Serat kayu eboni mendekati hitam", "en": "Near-black ebony grain" }, "image": "assets/products/plafond/vintage wood/FP-1014.jpg" },
+        { "id": "fp-1015", "name": "FP-1015", "descriptor": { "id": "Serat kayu oak cokelat muda", "en": "Light tan oak grain" }, "image": "assets/products/plafond/vintage wood/FP-1015.jpg" },
+        { "id": "fp-1016", "name": "FP-1016", "descriptor": { "id": "Merah anggur pekat", "en": "Deep burgundy red" }, "image": "assets/products/plafond/vintage wood/FP-1016.jpg" },
+        { "id": "fp-1017", "name": "FP-1017", "descriptor": { "id": "Putih gading dengan serat samar", "en": "Off-white with faint wood grain" }, "image": "assets/products/plafond/vintage wood/FP-1017.jpg" },
+        { "id": "fp-1018", "name": "FP-1018", "descriptor": { "id": "Kayu aqua kehijauan pucat", "en": "Pale aqua washed wood" }, "image": "assets/products/plafond/vintage wood/FP-1018.jpg" },
+        { "id": "fp-1019", "name": "FP-1019", "descriptor": { "id": "Kayu abu-abu kehijauan berkilau", "en": "Pale iridescent grey-green wood" }, "image": "assets/products/plafond/vintage wood/FP-1019.jpg" },
+        { "id": "fp-1020", "name": "FP-1020", "descriptor": { "id": "Kayu ungu lilac keabu-abuan", "en": "Pale lilac-grey wood" }, "image": "assets/products/plafond/vintage wood/FP-1020.jpg" }
       ]
     },
     {
       "id": "plafond-list",
       "group": "plafond",
       "name": "List Series",
-      "description": "",
+      "nameEn": "Ceiling Trim (List Series)",
+      "description": { "id": "Penyambung dan pelengkap plafon PVC untuk menutup tepi, sambungan, dan sudut.", "en": "Connectors and finishing trims for PVC ceilings, closing edges, joints and corners." },
       "products": [
-        { "id": "fl-101", "name": "FL-101", "material": "4 x 3,5 cm", "thickness": "", "image": "assets/products/plafond/list series/FL-101.jpg" },
-        { "id": "fl-201", "name": "FL-201", "material": "3 x 1,2 cm", "thickness": "", "image": "assets/products/plafond/list series/FL-201.jpg" },
-        { "id": "fl-301", "name": "FL-301", "material": "4 x 1,3 cm", "thickness": "", "image": "assets/products/plafond/list series/FL-301.jpg" },
-        { "id": "fl-401", "name": "FL-401", "material": "3,5 x 3,2 cm", "thickness": "", "image": "assets/products/plafond/list series/FL-401.jpg" }
+        { "id": "fl-101", "name": "FL-101", "width": "4 cm", "height": "3.5 cm", "descriptor": { "id": "Lis Profil", "en": "Profile Trim" }, "image": "assets/products/plafond/list series/FL-101.jpg" },
+        { "id": "fl-201", "name": "FL-201", "width": "3 cm", "height": "1.2 cm", "descriptor": { "id": "Lis Tutup", "en": "Closing Trim" }, "image": "assets/products/plafond/list series/FL-201.jpg" },
+        { "id": "fl-301", "name": "FL-301", "width": "4 cm", "height": "1.3 cm", "descriptor": { "id": "Lis Sambung", "en": "Joining Trim" }, "image": "assets/products/plafond/list series/FL-301.jpg" },
+        { "id": "fl-401", "name": "FL-401", "width": "3.5 cm", "height": "3.2 cm", "descriptor": { "id": "Lis Dekor", "en": "Decorative Trim" }, "image": "assets/products/plafond/list series/FL-401.jpg" }
       ]
     }
   ],
@@ -421,7 +600,7 @@
         { "id": "res-002", "name": "Kenjeran",          "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/kenjeran - surabaya - 2019.jpg" },
         { "id": "res-003", "name": "Laguna",            "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/laguna - surabaya - 2019.jpg" },
         { "id": "res-004", "name": "Lebak Jaya III",   "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/lebak jaya iii - surabaya - 2019.jpg" },
-        { "id": "res-005", "name": "Pantai Menteri",   "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/pantai menteri - surabaya - 2019.jpg" },
+        { "id": "res-005", "name": "Pantai Mentari",   "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/pantai mentari - surabaya - 2019.jpg" },
         { "id": "res-006", "name": "Pondok Candra",    "location": "Surabaya",   "year": "2019", "image": "assets/projects/residential/pondok candra - surabaya - 2019.jpg" },
         { "id": "res-007", "name": "Puri Cempaka",     "location": "Malang",     "year": "2019", "image": "assets/projects/residential/puri cempaka - malang - 2019.jpg" },
         { "id": "res-008", "name": "Rumah",            "location": "Banyuwangi", "year": "2019", "image": "assets/projects/residential/rumah - banyuwangi - 2019.jpg" },

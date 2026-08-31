@@ -167,7 +167,6 @@ const TRANSLATIONS = {
     /* ── PRODUCT CATALOGUE TABS (produk.html) ────────── */
     'tab.atap':      'Roof',
     'tab.truss':     'Truss',
-    'tab.holo':      'Holo',
     'tab.wallpanel': 'Panel',
     'tab.plafond':   'Plafond',
     'subtab.all':    'All',
@@ -205,12 +204,23 @@ const TRANSLATIONS = {
     /* ── MISC ARIA LABELS ────────────────────────────── */
     'kontak.close':     'Close',
     'a11y.backtotop':   'Back to top',
+
+    /* ── PRODUCT CARD / DETAIL PANEL ──────────────────── */
+    'dim.width':  'Width',
+    'dim.length': 'Length',
+    'dim.height': 'Height',
+    'detail.series':        'Series',
+    'detail.material':      'Material',
+    'detail.thickness':     'Thickness',
+    'detail.specification': 'Specification',
+    'detail.certification': 'Certification',
+    'detail.applications':  'Applications',
   },
 
   id: {
     /* ── NAV ─────────────────────────────────────────── */
     'nav.produk':  'PRODUK',
-    'nav.projek':  'PROJEK',
+    'nav.projek':  'PROYEK',
     'nav.about':   'PROFIL',
     'nav.kontak':  'KONTAK',
 
@@ -271,7 +281,7 @@ const TRANSLATIONS = {
 
     /* ── VISION & MISSION ────────────────────────────── */
     'vision.1': 'Menjadi perusahaan yang memproduksi bahan baja ringan dengan kualitas yang dapat dipertanggungjawabkan.',
-    'vision.2': 'Menjadi perusahaan yang dapat mengerjakan semua projek baja ringan dengan baik, tepat, dan berkualitas.',
+    'vision.2': 'Menjadi perusahaan yang dapat mengerjakan semua proyek baja ringan dengan baik, tepat, dan berkualitas.',
     'vision.3': 'Menjadi perusahaan yang terintegrasi baik sehingga mampu memasarkan produknya ke seluruh Indonesia.',
     'mission.1': 'Mendukung konsumen dan meningkatkan kepercayaan konsumen dengan produk Fira Truss & Roof.',
     'mission.2': 'Mengutamakan jasa distribusi dengan mengandeng distributor lokal di berbagai daerah di Indonesia.',
@@ -281,7 +291,7 @@ const TRANSLATIONS = {
     /* ── STATS ───────────────────────────────────────── */
     'stats.heading':  'Fira dalam Angka',
     'stat.products': 'Produk',
-    'stat.projects':  'Projek',
+    'stat.projects':  'Proyek',
     'stat.years':     'Tahun Pengalaman',
     'stat.certs':     'Sertifikasi',
 
@@ -313,7 +323,7 @@ const TRANSLATIONS = {
 
     /* ── PAGE HERO TITLES ────────────────────────────── */
     'produk.hero': 'Produk',
-    'projek.hero': 'Projek',
+    'projek.hero': 'Proyek',
 
     /* ── OG META (about page) ───────────────────────── */
     'og.title':   'FIRA — Produsen Baja Ringan',
@@ -323,17 +333,17 @@ const TRANSLATIONS = {
     'page.title.index':  'Fira — Produsen Baja Ringan',
     'page.title.about':  'Profil — FIRA',
     'page.title.produk': 'Produk — FIRA',
-    'page.title.projek': 'Projek — FIRA',
+    'page.title.projek': 'Proyek — FIRA',
 
     /* ── META DESCRIPTIONS (dynamic) ────────────────── */
     'meta.desc.index':   'PT Bangun Citra Irawan — produsen tunggal baja ringan Fira berbasis di Surabaya, Jawa Timur.',
     'meta.desc.about':   'PT Bangun Citra Irawan — Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
     'meta.desc.produk':  'Katalog produk baja ringan Fira — Atap, Truss, Reng, Holo, Wallpanel, PVC dan lebih.',
-    'meta.desc.projek':  'Galeri projek baja ringan Fira — Residensial, Komersial, Industrial, dan Institutional di seluruh Jawa Timur.',
+    'meta.desc.projek':  'Galeri proyek baja ringan Fira — Residensial, Komersial, Industrial, dan Institutional di seluruh Jawa Timur.',
 
     /* ── FOOTER ──────────────────────────────────────── */
     'footer.products': 'Produk',
-    'footer.projects': 'Projek',
+    'footer.projects': 'Proyek',
     'footer.profile':  'Profil',
     'footer.contact':  'Kontak',
     'footer.follow':   'Ikuti Kami',
@@ -363,7 +373,6 @@ const TRANSLATIONS = {
     /* ── PRODUCT CATALOGUE TABS (produk.html) ────────── */
     'tab.atap':      'Atap',
     'tab.truss':     'Truss',
-    'tab.holo':      'Holo',
     'tab.wallpanel': 'Panel',
     'tab.plafond':   'Plafond',
     'subtab.all':    'Semua',
@@ -376,9 +385,9 @@ const TRANSLATIONS = {
     'homeprod.wallpanel': 'Panel',
 
     /* ── HOME PROJECTS OVERVIEW ──────────────────────── */
-    'home.projects.title': 'Projek',
-    'home.projects.desc':  'Selama lebih dari dua dekade, Fira telah memasok dan memasang atap, rangka baja ringan, dan sistem struktural di seluruh Jawa Timur dan sekitarnya. Pekerjaan kami mencakup mulai dari rumah tinggal hingga sekolah, rumah sakit, dan pengembangan komersial, semuanya dibangun dengan standar presisi dan ketahanan yang sama. Lihat beberapa hasil pemasangan terbaru kami, atau jelajahi galeri projek kami secara lengkap.',
-    'home.projects.cta':   'Lihat Semua Projek',
+    'home.projects.title': 'Proyek',
+    'home.projects.desc':  'Selama lebih dari dua dekade, Fira telah memasok dan memasang atap, rangka baja ringan, dan sistem struktural di seluruh Jawa Timur dan sekitarnya. Pekerjaan kami mencakup mulai dari rumah tinggal hingga sekolah, rumah sakit, dan pengembangan komersial, semuanya dibangun dengan standar presisi dan ketahanan yang sama. Lihat beberapa hasil pemasangan terbaru kami, atau jelajahi galeri proyek kami secara lengkap.',
+    'home.projects.cta':   'Lihat Semua Proyek',
     'a11y.slide':          'Slide ke-{n}',
 
     /* ── PROJECT PAGINATION ──────────────────────────── */
@@ -396,11 +405,22 @@ const TRANSLATIONS = {
 
     /* ── ERRORS ───────────────────────────────────────── */
     'error.produk': 'Gagal memuat katalog produk. ({msg})',
-    'error.projek': 'Gagal memuat katalog projek. ({msg})',
+    'error.projek': 'Gagal memuat katalog proyek. ({msg})',
 
     /* ── MISC ARIA LABELS ────────────────────────────── */
     'kontak.close':     'Tutup',
     'a11y.backtotop':   'Kembali ke atas',
+
+    /* ── PRODUCT CARD / DETAIL PANEL ──────────────────── */
+    'dim.width':  'Lebar',
+    'dim.length': 'Panjang',
+    'dim.height': 'Tinggi',
+    'detail.series':        'Seri',
+    'detail.material':      'Material',
+    'detail.thickness':     'Ketebalan',
+    'detail.specification': 'Spesifikasi',
+    'detail.certification': 'Sertifikasi',
+    'detail.applications':  'Aplikasi',
   },
 };
 

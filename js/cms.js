@@ -68,6 +68,47 @@ const CATEGORY_SEARCH_ALIASES = {
   holo:     ['plafon', 'ceiling'],
 };
 
+/**
+ * Reads a value that may be a plain string or a bilingual { id, en } object
+ * and returns whichever matches the current language (falling back to
+ * whatever is available). Every product field that differs by language —
+ * descriptions, material, certification, applications, colour descriptors —
+ * is stored this way in products.json.
+ */
+function pickLang(val) {
+  if (val == null) return '';
+  if (typeof val === 'string') return val;
+  const lang = (typeof getLang === 'function') ? getLang() : 'id';
+  return val[lang] || val.id || val.en || '';
+}
+
+// Humanized labels for camelCase profile keys (overallWidth → "Overall
+// Width", etc.) — kept as one lookup so any new profile field just needs a
+// label added here instead of hand-formatting text at each call site.
+const PROFILE_LABELS = {
+  overallWidth: 'Overall Width',
+  coverageWidth: 'Coverage Width',
+  depth: 'Depth',
+  ribLayout: 'Rib Layout',
+};
+function humanizeKey(key) {
+  if (PROFILE_LABELS[key]) return PROFILE_LABELS[key];
+  // Fallback for any key not explicitly listed above: "someFieldName" → "Some Field Name"
+  return key.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase());
+}
+
+/**
+ * "Width: x | Length: x | Height: x" — only the dimensions a product
+ * actually has are shown, always in this order.
+ */
+function dimsCaption(p) {
+  const order = [['width', 'dim.width', 'Width'], ['length', 'dim.length', 'Length'], ['height', 'dim.height', 'Height']];
+  return order
+    .filter(([k]) => p[k])
+    .map(([k, i18nKey, fallback]) => `${i18nText(i18nKey, null, fallback)}: ${p[k]}`)
+    .join(' | ');
+}
+
 function normalizeSearchText(str) {
   return (str || '')
     .toString()
@@ -103,7 +144,6 @@ function searchTextMatches(haystack, rawQuery) {
 const CATALOGUE_TABS = [
   { key: 'atap',      label: 'Roof' },
   { key: 'truss',     label: 'Truss' },
-  { key: 'holo',      label: 'Holo' },
   { key: 'wallpanel', label: 'Panel' },
   { key: 'plafond',   label: 'Plafond' },
 ];
@@ -111,6 +151,17 @@ const CATALOGUE_TABS = [
 let _catalogueData = null;
 let _catActiveTab  = CATALOGUE_TABS[0].key;
 let _catActiveSub  = 'all';
+
+// Fields a category can carry once for every product inside it — a colour
+// variant (there can be 15-30 per series) inherits these instead of
+// repeating them on every single entry. A product's own value, if it has
+// one, always wins over the inherited one.
+const INHERITABLE_FIELDS = ['length', 'width', 'height', 'thickness', 'specification', 'profile', 'description'];
+function inheritedFields(source) {
+  const out = {};
+  INHERITABLE_FIELDS.forEach(f => { if (source[f] !== undefined) out[f] = source[f]; });
+  return out;
+}
 
 /** Builds { hasSub, groups: { subLabel: [product...] } } for one tab. */
 function catalogueTabGroups(tabKey) {
@@ -121,13 +172,18 @@ function catalogueTabGroups(tabKey) {
   if (cat && cat.type !== 'group-header') {
     return {
       hasSub: false,
-      groups: { [tab.label]: cat.products.map(p => ({ ...p, catId: cat.id, tagLabel: tab.label, showType: false })) },
+      groups: { [tab.label]: cat.products.map(p => ({ ...inheritedFields(cat), ...p, catId: cat.id, tagLabel: tab.label, showType: false })) },
     };
   }
 
   const groups = {};
   cats.filter(c => c.group === tabKey).forEach(sub => {
-    groups[sub.name] = sub.products.map(p => ({ ...p, catId: sub.id, groupId: tabKey, tagLabel: sub.name, showType: true }));
+    groups[sub.name] = sub.products.map(p => ({
+      ...inheritedFields(sub), ...p,
+      catId: sub.id, groupId: tabKey,
+      tagLabel: sub.name, tagLabelEn: sub.nameEn,
+      showType: true,
+    }));
   });
   return { hasSub: true, groups };
 }
@@ -141,26 +197,30 @@ function catalogueAllProducts() {
 }
 
 /**
- * Renders a single product card — name below the photo, with its spec line
- * beneath that. The spec line leads with the subtype (e.g. "C Truss") only
- * when the product belongs to a subtype group; when the card's only "type"
- * is the tab it's already under (e.g. every Roof card just saying "Roof"),
- * that label is redundant and is left off.
+ * Renders a single product card — name below the photo, a "Width: x |
+ * Length: x | Height: x" dimension caption under that (only the dimensions
+ * the product actually has), then a spec line: the colour/finish descriptor
+ * for a variant (e.g. "Serat kayu merah anggur tua"), or material · thickness
+ * for a plain product. Clicking the card opens the full detail view (specs,
+ * certification, applications, etc. — everything that doesn't fit here).
  */
-function renderProdCard(p) {
-  const specParts = [p.showType ? p.tagLabel : null, p.material, p.thickness].filter(Boolean);
-  const spec = specParts.join(' · ');
+function renderProdCard(p, idx) {
+  const dims       = dimsCaption(p);
+  const descriptor = pickLang(p.descriptor);
+  const materialText = p.material ? pickLang(p.material) : '';
+  const spec = descriptor || [materialText, p.thickness].filter(Boolean).join(' · ');
   const searchable = normalizeSearchText([
     p.name,
-    p.material,
+    descriptor,
+    materialText,
     p.thickness,
-    p.description,
+    pickLang(p.description),
     p.tagLabel,
     ...(CATEGORY_SEARCH_ALIASES[p.catId] || []),
     ...(CATEGORY_SEARCH_ALIASES[p.groupId] || []),
   ].filter(Boolean).join(' '));
   return `
-    <article class="prod-card" data-search="${searchable}">
+    <article class="prod-card" data-idx="${idx}" data-search="${searchable}" role="button" tabindex="0">
       <div class="prod-card__photo">
         ${p.image
           ? `<img class="prod-card__img" src="${p.image}" alt="${p.name}" loading="lazy">`
@@ -169,6 +229,7 @@ function renderProdCard(p) {
       </div>
       <div class="prod-card__info">
         <p class="prod-card__name">${p.name}</p>
+        ${dims ? `<p class="prod-card__dims">${dims}</p>` : ''}
         ${spec ? `<p class="prod-card__spec">${spec}</p>` : ''}
       </div>
     </article>`;
@@ -243,6 +304,8 @@ function renderCatSubtabs() {
   });
 }
 
+let _catCurrentItems = [];
+
 function renderCatalogueGrid() {
   const gridEl  = document.getElementById('prod-grid');
   const countEl = document.getElementById('cat-count');
@@ -255,7 +318,7 @@ function renderCatalogueGrid() {
   let items;
   if (q) {
     items = catalogueAllProducts().filter(p => searchTextMatches(
-      normalizeSearchText([p.name, p.material, p.thickness, p.description, p.tagLabel].filter(Boolean).join(' ')),
+      normalizeSearchText([p.name, pickLang(p.material), p.thickness, pickLang(p.descriptor), pickLang(p.description), p.tagLabel].filter(Boolean).join(' ')),
       q
     ));
   } else {
@@ -273,7 +336,97 @@ function renderCatalogueGrid() {
   }
   if (empty) empty.classList.toggle('visible', items.length === 0);
 
-  gridEl.innerHTML = items.map(renderProdCard).join('');
+  _catCurrentItems = items;
+  gridEl.innerHTML = items.map((p, i) => renderProdCard(p, i)).join('');
+  gridEl.querySelectorAll('.prod-card').forEach(card => {
+    const open = () => _prodDetailOpen(_catCurrentItems[+card.dataset.idx]);
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+  });
+}
+
+// ─── PRODUCT DETAIL MODAL ─────────────────────────────────────
+// Everything that doesn't fit on the compact card (description, material,
+// specification, certification, profile, applications) — reuses the same
+// .lightbox-overlay pattern as the certification lightbox below.
+let _prodDetailItem = null;
+
+function _prodDetailBuild() {
+  if (document.getElementById('prod-detail-modal')) return;
+  const el = document.createElement('div');
+  el.id        = 'prod-detail-modal';
+  el.className = 'lightbox-overlay';
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-modal', 'true');
+  el.innerHTML = `
+    <div class="prod-detail">
+      <button class="prod-detail__close lightbox-close" aria-label="${i18nText('lightbox.close', null, 'Tutup')}">&times;</button>
+      <div class="prod-detail__photo" id="prod-detail-photo"></div>
+      <div class="prod-detail__body" id="prod-detail-body"></div>
+    </div>
+  `;
+  document.body.appendChild(el);
+  el.querySelector('.prod-detail__close').addEventListener('click', _prodDetailClose);
+  el.addEventListener('click', e => { if (e.target === el) _prodDetailClose(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('prod-detail-modal')?.classList.contains('is-open')) _prodDetailClose();
+  });
+}
+
+function _prodDetailRender() {
+  const p = _prodDetailItem;
+  if (!p) return;
+  const photo = document.getElementById('prod-detail-photo');
+  const body  = document.getElementById('prod-detail-body');
+  if (!photo || !body) return;
+
+  photo.innerHTML = p.image
+    ? `<img src="${p.image}" alt="${p.name}">`
+    : placeholderThumb(p.name);
+
+  const dims = dimsCaption(p);
+  const descriptor = pickLang(p.descriptor);
+  const description = pickLang(p.description);
+  const seriesName = p.showType ? [p.tagLabel, p.tagLabelEn].filter(Boolean).join(' // ') : null;
+
+  const metaRows = [];
+  if (p.showType && seriesName) metaRows.push([i18nText('detail.series', null, 'Series'), seriesName]);
+  if (p.material) metaRows.push([i18nText('detail.material', null, 'Material'), pickLang(p.material)]);
+  if (p.thickness) metaRows.push([i18nText('detail.thickness', null, 'Thickness'), p.thickness]);
+  if (p.specification) metaRows.push([i18nText('detail.specification', null, 'Specification'), p.specification]);
+  if (p.certification) metaRows.push([i18nText('detail.certification', null, 'Certification'), pickLang(p.certification)]);
+  if (p.profile) {
+    Object.entries(p.profile).forEach(([k, v]) => metaRows.push([humanizeKey(k), v]));
+  }
+
+  body.innerHTML = `
+    ${seriesName ? `<p class="prod-detail__tag">${p.tagLabel}</p>` : (p.catId ? `<p class="prod-detail__tag">${i18nText('cat.' + p.catId, null, p.tagLabel || '')}</p>` : '')}
+    <h2 class="prod-detail__name">${p.name}</h2>
+    ${descriptor ? `<p class="prod-detail__descriptor">${descriptor}</p>` : ''}
+    ${dims ? `<div class="prod-detail__dims">${dims.split(' | ').map(d => `<span class="dim-pill">${d}</span>`).join('')}</div>` : ''}
+    ${description ? `<p class="prod-detail__desc">${description}</p>` : ''}
+    ${metaRows.length ? `<dl class="prod-detail__meta">${metaRows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : ''}
+    ${(p.applications && p.applications.length) ? `
+      <p class="prod-detail__apps-title">${i18nText('detail.applications', null, 'Applications')}</p>
+      <ul class="prod-detail__apps">${p.applications.map(a => `<li>${pickLang(a)}</li>`).join('')}</ul>
+    ` : ''}
+  `;
+}
+
+function _prodDetailOpen(p) {
+  if (!p) return;
+  _prodDetailBuild();
+  _prodDetailItem = p;
+  _prodDetailRender();
+  document.getElementById('prod-detail-modal').classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function _prodDetailClose() {
+  document.getElementById('prod-detail-modal')?.classList.remove('is-open');
+  document.body.style.overflow = '';
 }
 
 // ─── CERT LIGHTBOX ───────────────────────────────────────────
@@ -473,7 +626,7 @@ async function renderStats() {
 
   root.innerHTML = `
     <div class="stat">${ICON_PRODUK}<p class="stat__number">${s.products}</p><p class="stat__label">${i18nText('stat.products', null, 'Produk')}</p></div>
-    <div class="stat">${ICON_PROJEK}<p class="stat__number">${s.projects}</p><p class="stat__label">${i18nText('stat.projects', null, 'Projek')}</p></div>
+    <div class="stat">${ICON_PROJEK}<p class="stat__number">${s.projects}</p><p class="stat__label">${i18nText('stat.projects', null, 'Proyek')}</p></div>
     <div class="stat">${ICON_TAHUN}<p class="stat__number">${s.yearsExperience}</p><p class="stat__label">${i18nText('stat.years', null, 'Tahun Pengalaman')}</p></div>
     <div class="stat">${ICON_SERTIF}<p class="stat__number">${s.certifications}</p><p class="stat__label">${i18nText('stat.certs', null, 'Sertifikasi')}</p></div>
   `;
@@ -605,7 +758,7 @@ async function renderProjects() {
     _projPage = 1;
     renderProjPage();
   } catch (e) {
-    root.innerHTML = `<p style="color:red;padding:24px">${i18nText('error.projek', { msg: e.message }, `Gagal memuat katalog projek. (${e.message})`)}</p>`;
+    root.innerHTML = `<p style="color:red;padding:24px">${i18nText('error.projek', { msg: e.message }, `Gagal memuat katalog proyek. (${e.message})`)}</p>`;
   }
 }
 
@@ -769,6 +922,12 @@ function refreshCmsLanguage() {
     lb.querySelector('.lightbox-close')?.setAttribute('aria-label', i18nText('lightbox.close', null, 'Tutup'));
     lb.querySelector('.lightbox-prev')?.setAttribute('aria-label', i18nText('lightbox.prev', null, 'Sebelumnya'));
     lb.querySelector('.lightbox-next')?.setAttribute('aria-label', i18nText('lightbox.next', null, 'Berikutnya'));
+  }
+
+  const pdModal = document.getElementById('prod-detail-modal');
+  if (pdModal) {
+    pdModal.querySelector('.prod-detail__close')?.setAttribute('aria-label', i18nText('lightbox.close', null, 'Tutup'));
+    if (_prodDetailItem) _prodDetailRender(); // re-picks bilingual fields for the new language
   }
 }
 

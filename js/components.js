@@ -40,7 +40,7 @@ const LOGO_FOOTER = `<img src="assets/logos/logotype.svg" alt="Fira" class="foot
 // ─── NAV CONFIG ──────────────────────────────────────────────
 const NAV_LINKS = [
   { id: 'produk', label: 'PRODUK', href: 'produk.html', i18nKey: 'nav.produk' },
-  { id: 'projek', label: 'PROJEK', href: 'projek.html', i18nKey: 'nav.projek' },
+  { id: 'projek', label: 'PROYEK', href: 'projek.html', i18nKey: 'nav.projek' },
   { id: 'about',  label: 'PROFIL', href: 'about.html',  i18nKey: 'nav.about'  },
   { id: 'kontak', label: 'KONTAK', href: 'kontak.html', i18nKey: 'nav.kontak' },
 ];
@@ -241,7 +241,7 @@ function renderFooterV2() {
     <div class="footer__cols">
       <div class="footer__col">
         <a href="produk.html" class="footer__col-title footer__col-title--link" data-i18n="footer.products">Produk</a>
-        <a href="projek.html" class="footer__col-title footer__col-title--link" data-i18n="footer.projects">Projek</a>
+        <a href="projek.html" class="footer__col-title footer__col-title--link" data-i18n="footer.projects">Proyek</a>
         <a href="about.html" class="footer__col-title footer__col-title--link" data-i18n="footer.profile">Profil</a>
       </div>
       <div class="footer__col footer__contact">

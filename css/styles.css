@@ -1092,6 +1092,136 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
 .lightbox-prev { left: 16px; }
 .lightbox-next { right: 16px; }
 
+/* ── Product detail panel — reuses .lightbox-overlay as its backdrop ── */
+.prod-detail {
+  position: relative;
+  background: var(--clr-white);
+  border-radius: 20px;
+  max-width: 880px;
+  width: min(92vw, 880px);
+  max-height: 88vh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: var(--clr-black);
+  text-align: left;
+}
+.prod-detail__close.lightbox-close {
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(18,15,13,0.55);
+  color: var(--clr-white);
+  font-size: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.prod-detail__photo {
+  position: relative;
+  border-radius: 20px 0 0 20px;
+  overflow: hidden;
+  min-height: 320px;
+  background-color: #111;
+}
+.prod-detail__photo img,
+.prod-detail__photo .prod-card__thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.prod-detail__body { padding: 40px 40px 40px 32px; }
+.prod-detail__tag {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-caption);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-caption);
+  text-transform: uppercase;
+  color: var(--clr-blue);
+  margin-bottom: 10px;
+}
+.prod-detail__name {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-heading);
+  letter-spacing: var(--ls-heading);
+  line-height: 1.1;
+}
+.prod-detail__descriptor {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-body);
+  font-size: var(--fs-body-md);
+  color: var(--clr-gray);
+  margin-top: 4px;
+}
+.prod-detail__dims {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.prod-detail__dims .dim-pill {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: var(--ls-caption);
+  background: rgba(18,15,13,0.06);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.prod-detail__desc {
+  font-weight: var(--fw-body);
+  font-size: var(--fs-body-md);
+  line-height: 1.7;
+  color: var(--clr-black);
+  margin-top: 18px;
+}
+.prod-detail__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 16px;
+  font-size: var(--fs-caption);
+  margin-top: 20px;
+}
+.prod-detail__meta dt { color: var(--clr-gray); }
+.prod-detail__meta dd { font-weight: 500; }
+.prod-detail__apps-title {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-caption);
+  text-transform: uppercase;
+  color: var(--clr-gray);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.prod-detail__apps { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.prod-detail__apps li {
+  font-size: var(--fs-body-md);
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+.prod-detail__apps li::before {
+  content: '';
+  position: absolute; left: 0; top: 8px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--clr-yellow);
+}
+@media (max-width: 720px) {
+  .prod-detail { grid-template-columns: 1fr; max-height: 92vh; }
+  .prod-detail__photo { border-radius: 20px 20px 0 0; min-height: 220px; }
+  .prod-detail__body { padding: 28px 24px; }
+}
+
 /* =====================================================
    TESTIMONI
    ===================================================== */
@@ -1782,7 +1912,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
 .catalogue {
   max-width: var(--max-w);
   margin-inline: auto;
-  padding: 2vh var(--pad-x) 8vh;
+  padding: 4vh var(--pad-x) 8vh;
 }
 /* Projek/Produk pages: let the grid run wider than the standard content
    cap — only the responsive side padding bounds it, edge-to-edge. */
@@ -1925,7 +2055,8 @@ body[data-page="produk"] .catalogue {
   color: var(--clr-gray-mid);
 }
 .prod-card__info { margin-top: 14px; }
-.prod-card__name { font-family: var(--font-sans); font-weight: var(--fw-title); font-size: var(--fs-body-lg); letter-spacing: var(--ls-title); margin-bottom: 3px; }
+.prod-card__name { font-family: var(--font-sans); font-weight: var(--fw-title); font-size: var(--fs-body-lg); letter-spacing: var(--ls-title); margin-bottom: 4px; }
+.prod-card__dims { font-family: var(--font-mono); font-weight: 500; font-size: var(--fs-body-sm); letter-spacing: var(--ls-caption); color: var(--clr-black); margin-bottom: 3px; }
 .prod-card__spec { font-family: var(--font-mono); font-weight: var(--fw-caption); font-size: var(--fs-body-sm); letter-spacing: var(--ls-caption); color: var(--clr-gray); }
 
 /* ── Project catalogue (projek.html) ───────────────────── */
