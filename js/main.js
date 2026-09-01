@@ -26,6 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
     new IntersectionObserver(fn, opts).observe(el);
   }
 
+  // Fires onChange(true/false) based on scroll position against the
+  // element's own rendered height — e.g. fraction 0.6 means "true" until
+  // 60% of the element has scrolled past its top edge, then "false". Direct
+  // math instead of IntersectionObserver rootMargin percentages, which are
+  // relative to the viewport and don't scale with the target's own height.
+  function watchScrollPast(el, fraction, onChange) {
+    if (!el) return;
+    const check = () => {
+      const scrolledPast = -el.getBoundingClientRect().top;
+      onChange(scrolledPast < el.offsetHeight * fraction);
+    };
+    onScroll(check);
+    check();
+  }
+
   // ─── VISI SLIDE — blue → black transition on mobile ──────────
   if (isMobile()) {
     const visiSlide = document.querySelector('.qit-track .qit-slide:nth-child(2)');
@@ -38,9 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const footer   = document.querySelector('.footer');
 
   if (navbar && homeHero) {
-    // Transparent background while hero is in view
+    // Transparent background while hero is in view — switches to solid
+    // black once ~60% of the hero's own height has scrolled past.
     navbar.classList.add('navbar--transparent');
-    observe(homeHero, ([e]) => navbar.classList.toggle('navbar--transparent', e.isIntersecting));
+    watchScrollPast(homeHero, 0.6, inView => navbar.classList.toggle('navbar--transparent', inView));
 
     // Nav logo hidden while hero logo is in view
     observe(homeHero.querySelector('.home-hero__img'),
@@ -164,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const interiorHero = document.querySelector('.about-hero, .page-hero');
   if (interiorHero && navbar) {
     navbar.classList.add('navbar--transparent');
-    observe(interiorHero, ([e]) => navbar.classList.toggle('navbar--transparent', e.isIntersecting));
+    watchScrollPast(interiorHero, 0.6, inView => navbar.classList.toggle('navbar--transparent', inView));
   }
 
   // ─── CONTACT FORM ─────────────────────────────────────────────

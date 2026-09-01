@@ -2024,6 +2024,21 @@ body[data-page="produk"] .catalogue {
   text-decoration: none;
   cursor: pointer;
 }
+/* Fade-in on tab switch only (not subtab filters or search) — same
+   aniFadeUp animation as .proj-card's page-turn, applied via the
+   .prod-card--enter modifier that cms.js adds just for tab switches. */
+.prod-card--enter { animation: aniFadeUp 0.5s ease both; }
+.prod-card--enter:nth-child(1)  { animation-delay: 0s;    }
+.prod-card--enter:nth-child(2)  { animation-delay: 0.03s; }
+.prod-card--enter:nth-child(3)  { animation-delay: 0.06s; }
+.prod-card--enter:nth-child(4)  { animation-delay: 0.09s; }
+.prod-card--enter:nth-child(5)  { animation-delay: 0.12s; }
+.prod-card--enter:nth-child(6)  { animation-delay: 0.15s; }
+.prod-card--enter:nth-child(7)  { animation-delay: 0.18s; }
+.prod-card--enter:nth-child(8)  { animation-delay: 0.21s; }
+.prod-card--enter:nth-child(9)  { animation-delay: 0.24s; }
+.prod-card--enter:nth-child(10) { animation-delay: 0.27s; }
+.prod-card--enter:nth-child(n+11) { animation-delay: 0.3s; }
 .prod-card__photo {
   position: relative;
   border-radius: 20px;
@@ -2062,7 +2077,7 @@ body[data-page="produk"] .catalogue {
 /* ── Project catalogue (projek.html) ───────────────────── */
 .proj-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* keep 4 columns — 8 items/page (PROJ_PER_PAGE) always fills two clean rows */
   gap: 48px 16px; /* extra row gap now that each card carries text above & below */
 }
 /* Card: category above, photo (with the shared .home-prod-card__overlay
@@ -2086,20 +2101,14 @@ body[data-page="produk"] .catalogue {
 .proj-card:nth-child(6) { animation-delay: 0.2s;  }
 .proj-card:nth-child(7) { animation-delay: 0.24s; }
 .proj-card:nth-child(8) { animation-delay: 0.28s; }
-.proj-card__category {
-  font-family: var(--font-mono);
-  font-size: var(--fs-body-sm);
-  font-weight: var(--fw-caption);
-  text-transform: uppercase;
-  letter-spacing: var(--ls-caption);
-  color: var(--clr-blue);
-  margin-bottom: 10px;
-}
 .proj-card__photo {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  aspect-ratio: 5 / 4;
+  /* Project cards are 4/row (wider) vs product cards' 5/row (narrower);
+     a shorter ratio here — rather than matching prod-card's 5:4 — is what
+     actually brings the two pages' rendered card heights in line. */
+  aspect-ratio: 3 / 2;
   background-color: #111;
   transition: box-shadow var(--ease);
 }
@@ -2134,6 +2143,10 @@ body[data-page="produk"] .catalogue {
   letter-spacing: var(--ls-caption);
   color: var(--clr-gray);
   line-height: 1.6;
+}
+.proj-card__category {
+  color: var(--clr-blue);
+  text-transform: uppercase;
 }
 
 /* ── Pagination (projek.html) ─────────────────────────────

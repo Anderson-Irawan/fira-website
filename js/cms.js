@@ -204,7 +204,7 @@ function catalogueAllProducts() {
  * for a plain product. Clicking the card opens the full detail view (specs,
  * certification, applications, etc. — everything that doesn't fit here).
  */
-function renderProdCard(p, idx) {
+function renderProdCard(p, idx, animate) {
   const dims       = dimsCaption(p);
   const descriptor = pickLang(p.descriptor);
   const materialText = p.material ? pickLang(p.material) : '';
@@ -220,7 +220,7 @@ function renderProdCard(p, idx) {
     ...(CATEGORY_SEARCH_ALIASES[p.groupId] || []),
   ].filter(Boolean).join(' '));
   return `
-    <article class="prod-card" data-idx="${idx}" data-search="${searchable}" role="button" tabindex="0">
+    <article class="prod-card${animate ? ' prod-card--enter' : ''}" data-idx="${idx}" data-search="${searchable}" role="button" tabindex="0">
       <div class="prod-card__photo">
         ${p.image
           ? `<img class="prod-card__img" src="${p.image}" alt="${p.name}" loading="lazy">`
@@ -256,7 +256,7 @@ async function renderCatalogue() {
 
     renderCatTabs();
     renderCatSubtabs();
-    renderCatalogueGrid();
+    renderCatalogueGrid(true); // fade in on first load, same as a tab switch
 
     if (hash && CATALOGUE_TABS.some(t => t.key === hash)) {
       setTimeout(() => root.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
@@ -280,7 +280,7 @@ function renderCatTabs() {
       if (input) input.value = '';
       renderCatTabs();
       renderCatSubtabs();
-      renderCatalogueGrid();
+      renderCatalogueGrid(true); // fade the new tab's cards in — matches projek.html's page-turn animation
     });
   });
 }
@@ -306,7 +306,12 @@ function renderCatSubtabs() {
 
 let _catCurrentItems = [];
 
-function renderCatalogueGrid() {
+/**
+ * @param {boolean} animate - Only true when a top-level tab (Roof/Truss/
+ * Panel/Plafond) was just switched, not for subtab pills or search typing —
+ * matches the request to only animate on tab switches, not filtering.
+ */
+function renderCatalogueGrid(animate) {
   const gridEl  = document.getElementById('prod-grid');
   const countEl = document.getElementById('cat-count');
   const empty   = document.getElementById('search-empty');
@@ -337,7 +342,7 @@ function renderCatalogueGrid() {
   if (empty) empty.classList.toggle('visible', items.length === 0);
 
   _catCurrentItems = items;
-  gridEl.innerHTML = items.map((p, i) => renderProdCard(p, i)).join('');
+  gridEl.innerHTML = items.map((p, i) => renderProdCard(p, i, animate)).join('');
   gridEl.querySelectorAll('.prod-card').forEach(card => {
     const open = () => _prodDetailOpen(_catCurrentItems[+card.dataset.idx]);
     card.addEventListener('click', open);
@@ -721,7 +726,6 @@ function renderProjCard(item) {
   const categoryLabel = i18nText('cat.' + item.categoryId, null, item.category);
   return `
     <article class="proj-card">
-      <p class="proj-card__category">${categoryLabel}</p>
       <div class="proj-card__photo">
         ${item.image
           ? `<img class="proj-card__img" src="${item.image}" alt="${item.name}" loading="lazy">`
@@ -730,7 +734,7 @@ function renderProjCard(item) {
       </div>
       <div class="proj-card__info">
         <p class="proj-card__name">${item.name}</p>
-        <p class="proj-card__meta">${item.location}</p>
+        <p class="proj-card__meta">${item.location} <span class="proj-card__category">| ${categoryLabel}</span></p>
       </div>
     </article>`;
 }
