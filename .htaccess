@@ -1,0 +1,28 @@
+# FIRA website — clean URLs (no .html extension)
+# ================================================
+# Every internal link in the site already points to the clean form
+# (e.g. /produk, /about, /). This file makes the *server* match that:
+#   1. If someone requests /produk.html or /index.html directly (an old
+#      bookmark, a search engine link, someone typing it in), send a
+#      permanent redirect to the clean URL so the address bar updates.
+#   2. When the browser asks for the clean URL (/produk), quietly serve
+#      the matching .html file underneath — the address bar never changes.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # /index.html -> /
+  RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ /? [R=301,L]
+
+  # /page.html -> /page (any other page)
+  RewriteCond %{THE_REQUEST} /([^.\s]+)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Serve the real .html file for a clean-URL request, without
+  # changing what's shown in the address bar.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([^.]+)$ $1.html [L]
+</IfModule>

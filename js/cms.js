@@ -280,7 +280,7 @@ function renderCatTabs() {
       if (input) input.value = '';
       renderCatTabs();
       renderCatSubtabs();
-      renderCatalogueGrid(true); // fade the new tab's cards in — matches projek.html's page-turn animation
+      renderCatalogueGrid(true); // fade the new tab's cards in — matches proyek.html's page-turn animation
     });
   });
 }
@@ -499,7 +499,7 @@ async function renderCertifications() {
 
   const data    = await fetchData();
   const certs   = data.certifications;
-  const isAbout = window.location.pathname.endsWith('about.html');
+  const isAbout = document.body.dataset.page === 'about';
 
   _lbCerts = certs.filter(c => c.image);
   if (_lbCerts.length) _lbBuild();
@@ -560,10 +560,10 @@ async function renderCertifications() {
         }
       } else {
         secHeader.addEventListener('click', () => {
-          window.location.href = 'about.html?certs=open#sertifikasi';
+          window.location.href = '/about.html?certs=open#sertifikasi';
         });
         secHeader.addEventListener('keydown', e => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = 'about.html?certs=open#sertifikasi'; }
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = '/about.html?certs=open#sertifikasi'; }
         });
       }
     }
@@ -611,7 +611,7 @@ async function renderStats() {
     <path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>
   </svg>`;
 
-  const ICON_PROJEK = `<svg class="stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  const ICON_PROYEK = `<svg class="stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <rect width="16" height="20" x="4" y="2" rx="2"/>
     <path d="M9 22v-4h6v4"/>
     <path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/>
@@ -631,7 +631,7 @@ async function renderStats() {
 
   root.innerHTML = `
     <div class="stat">${ICON_PRODUK}<p class="stat__number">${s.products}</p><p class="stat__label">${i18nText('stat.products', null, 'Produk')}</p></div>
-    <div class="stat">${ICON_PROJEK}<p class="stat__number">${s.projects}</p><p class="stat__label">${i18nText('stat.projects', null, 'Proyek')}</p></div>
+    <div class="stat">${ICON_PROYEK}<p class="stat__number">${s.projects}</p><p class="stat__label">${i18nText('stat.projects', null, 'Proyek')}</p></div>
     <div class="stat">${ICON_TAHUN}<p class="stat__number">${s.yearsExperience}</p><p class="stat__label">${i18nText('stat.years', null, 'Tahun Pengalaman')}</p></div>
     <div class="stat">${ICON_SERTIF}<p class="stat__number">${s.certifications}</p><p class="stat__label">${i18nText('stat.certs', null, 'Sertifikasi')}</p></div>
   `;
@@ -692,7 +692,7 @@ async function renderAboutProducts() {
     const image = sec.catIds.map(getCategoryImage).find(Boolean) || null;
     const label = i18nText('homeprod.' + sec.anchor, null, sec.name);
     return `
-    <a href="produk.html#${sec.anchor}" class="home-prod-card">
+    <a href="/produk.html#${sec.anchor}" class="home-prod-card">
       ${image
         ? `<img src="${image}" alt="${label}" loading="lazy">`
         : ''
@@ -747,7 +747,7 @@ function getAllProjectsSorted(data) {
 }
 
 async function renderProjects() {
-  const root = document.getElementById('projek-root');
+  const root = document.getElementById('proyek-root');
   if (!root) return;
 
   try {
@@ -762,7 +762,7 @@ async function renderProjects() {
     _projPage = 1;
     renderProjPage();
   } catch (e) {
-    root.innerHTML = `<p style="color:red;padding:24px">${i18nText('error.projek', { msg: e.message }, `Gagal memuat katalog proyek. (${e.message})`)}</p>`;
+    root.innerHTML = `<p style="color:red;padding:24px">${i18nText('error.proyek', { msg: e.message }, `Gagal memuat katalog proyek. (${e.message})`)}</p>`;
   }
 }
 
@@ -816,7 +816,7 @@ function goToProjPage(n) {
   // Routed through Lenis (like the back-to-top button) rather than native
   // scrollIntoView — Lenis owns the page's scroll physics, so calling
   // scrollIntoView directly fought it and only "won" on some pages.
-  const root = document.getElementById('projek-root');
+  const root = document.getElementById('proyek-root');
   if (root && window.matchMedia('(max-width: 600px)').matches) {
     const y = window.scrollY + root.getBoundingClientRect().top;
     if (window._scrollTo) window._scrollTo(y);

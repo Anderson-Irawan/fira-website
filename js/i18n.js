@@ -14,7 +14,7 @@ const TRANSLATIONS = {
   en: {
     /* ── NAV ─────────────────────────────────────────── */
     'nav.produk':  'PRODUCTS',
-    'nav.projek':  'PROJECTS',
+    'nav.proyek':  'PROJECTS',
     'nav.about':   'PROFILE',
     'nav.kontak':  'CONTACT',
 
@@ -22,7 +22,7 @@ const TRANSLATIONS = {
     'breadcrumb.home': 'Home',
 
     /* ── HOME HERO ───────────────────────────────────── */
-    'home.hero.tagline': 'PT Bangun Citra Irawan is the sole manufacturer of "Fira" light steel, based in Surabaya, East Java — delivering the best quality, always innovating, and trustworthy.',
+    'home.hero.tagline': 'PT Bangun Citra Irawan is the sole manufacturer of "Fira" light steel, based in Surabaya, East Java, delivering the best quality, always innovating, and trustworthy.',
 
     /* ── HOME HERO CTA ──────────────────────────────── */
     'home.hero.cta':   'Browse Our Products',
@@ -30,7 +30,7 @@ const TRANSLATIONS = {
 
     /* ── HOME — TRUSTWORTHY SECTION ──────────────────── */
     'home.trust.body1': 'Light steel, commonly known as <strong>Galvalume / Zincalume</strong>, has recently played an important role in the construction of housing and other lightweight structures.',
-    'home.trust.body2': 'Many construction projects today require wide spans or low-rise structures that are not too heavy. Light steel roof trusses are ideal for this — lightweight yet capable of supporting a range of roofing types. Fira continues to innovate, delivering the highest quality building materials for the people of Indonesia.',
+    'home.trust.body2': 'Many construction projects today require wide spans or low-rise structures that are not too heavy. Light steel roof trusses are ideal for this: lightweight yet capable of supporting a range of roofing types. Fira continues to innovate, delivering the highest quality building materials for the people of Indonesia.',
 
     /* ── QIT SLIDES ──────────────────────────────────── */
     'qit.quality.body':    'Our factory is equipped with complete and advanced production facilities, including roll-forming machines, cranes, forklifts, and slitting machines to produce galvalume of the highest quality. Production capacity reaches 400 tonnes per month with a workforce of over 100 people.',
@@ -64,7 +64,7 @@ const TRANSLATIONS = {
 
     /* ── PRODUCTS SECTION ────────────────────────────── */
     'products.cta':                'View All Products',
-    'products.desc':               'Light steel is high-strength, lightweight, and thin, yet has strength equivalent to conventional steel — 100% recyclable and produced to national standards.',
+    'products.desc':               'Light steel is high-strength, lightweight, and thin, yet has strength equivalent to conventional steel, 100% recyclable and produced to national standards.',
     'products.search.placeholder': 'Search our Product Catalogue ...',
     'products.notfound':           'Product catalogue coming soon.',
 
@@ -117,23 +117,23 @@ const TRANSLATIONS = {
 
     /* ── PAGE HERO TITLES ────────────────────────────── */
     'produk.hero': 'Products',
-    'projek.hero': 'Projects',
+    'proyek.hero': 'Projects',
 
     /* ── OG META (about page) ───────────────────────── */
-    'og.title':   'FIRA — Light Steel Manufacturer',
+    'og.title':   'FIRA | Light Steel Manufacturer',
     'og.desc':    'Best quality, always innovating, and trustworthy.',
 
     /* ── PAGE TITLES (dynamic) ──────────────────────── */
-    'page.title.index':  'Fira — Light Steel Manufacturer',
-    'page.title.about':  'Profile — FIRA',
-    'page.title.produk': 'Products — FIRA',
-    'page.title.projek': 'Projects — FIRA',
+    'page.title.index':  'Fira | Light Steel Manufacturer',
+    'page.title.about':  'Profile | FIRA',
+    'page.title.produk': 'Products | FIRA',
+    'page.title.proyek': 'Projects | FIRA',
 
     /* ── META DESCRIPTIONS (dynamic) ────────────────── */
-    'meta.desc.index':   'PT Bangun Citra Irawan — sole manufacturer of Fira light steel, based in Surabaya, East Java.',
-    'meta.desc.about':   'PT Bangun Citra Irawan — a light steel manufacturer delivering the best quality, always innovating, and trustworthy.',
-    'meta.desc.produk':  'Fira light steel product catalogue — Roofing, Truss, Purlin, Holo, Wall Panel, PVC and more.',
-    'meta.desc.projek':  'Fira light steel project gallery — Residential, Commercial, Industrial, and Institutional across East Java.',
+    'meta.desc.index':   'PT Bangun Citra Irawan, sole manufacturer of Fira light steel, based in Surabaya, East Java.',
+    'meta.desc.about':   'PT Bangun Citra Irawan, a light steel manufacturer delivering the best quality, always innovating, and trustworthy.',
+    'meta.desc.produk':  'Fira light steel product catalogue: Roofing, Truss, Purlin, Holo, Wall Panel, PVC and more.',
+    'meta.desc.proyek':  'Fira light steel project gallery: Residential, Commercial, Industrial, and Institutional across East Java.',
 
     /* ── FOOTER ──────────────────────────────────────── */
     'footer.products': 'Products',
@@ -145,9 +145,12 @@ const TRANSLATIONS = {
     /* ── KONTAK SIDEBAR ──────────────────────────────── */
     'kontak.title':   'Get in Touch',
     'kontak.send':    'SEND',
+    'kontak.sending': 'Sending...',
+    'kontak.sent':    'Sent ✓',
+    'kontak.error':   'Message failed to send. Please try again or contact us directly.',
     'kontak.success': '✓ Message sent successfully!',
     'kontak.hours':   'Business Hours',
-    'kontak.weekdays':'Monday — Friday',
+    'kontak.weekdays':'Monday - Friday',
     'kontak.saturday':'Saturday',
     'kontak.sunday':  'Sunday',
     'kontak.closed':  'CLOSED',
@@ -199,7 +202,7 @@ const TRANSLATIONS = {
 
     /* ── ERRORS ───────────────────────────────────────── */
     'error.produk': 'Could not load the product catalogue. ({msg})',
-    'error.projek': 'Could not load the project catalogue. ({msg})',
+    'error.proyek': 'Could not load the project catalogue. ({msg})',
 
     /* ── MISC ARIA LABELS ────────────────────────────── */
     'kontak.close':     'Close',
@@ -220,7 +223,7 @@ const TRANSLATIONS = {
   id: {
     /* ── NAV ─────────────────────────────────────────── */
     'nav.produk':  'PRODUK',
-    'nav.projek':  'PROYEK',
+    'nav.proyek':  'PROYEK',
     'nav.about':   'PROFIL',
     'nav.kontak':  'KONTAK',
 
@@ -228,7 +231,7 @@ const TRANSLATIONS = {
     'breadcrumb.home': 'Beranda',
 
     /* ── HOME HERO ───────────────────────────────────── */
-    'home.hero.tagline': 'PT Bangun Citra Irawan adalah produsen tunggal baja ringan "Fira" berbasis di Surabaya, Jawa Timur — yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
+    'home.hero.tagline': 'PT Bangun Citra Irawan adalah produsen tunggal baja ringan "Fira" berbasis di Surabaya, Jawa Timur, yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
 
     /* ── HOME HERO CTA ──────────────────────────────── */
     'home.hero.cta':   'Lihat Produk Kami',
@@ -270,7 +273,7 @@ const TRANSLATIONS = {
 
     /* ── PRODUCTS SECTION ────────────────────────────── */
     'products.cta':                'Lihat Semua Produk',
-    'products.desc':               'Baja ringan adalah baja mutu tinggi yang ringan dan tipis, namun memiliki kekuatan setara baja konvensional — 100% dapat didaur ulang dan diproduksi sesuai standar nasional.',
+    'products.desc':               'Baja ringan adalah baja mutu tinggi yang ringan dan tipis, namun memiliki kekuatan setara baja konvensional, 100% dapat didaur ulang dan diproduksi sesuai standar nasional.',
     'products.search.placeholder': 'Cari dari Katalog Produk Kami ...',
     'products.notfound':           'Katalog produk segera hadir.',
 
@@ -323,23 +326,23 @@ const TRANSLATIONS = {
 
     /* ── PAGE HERO TITLES ────────────────────────────── */
     'produk.hero': 'Produk',
-    'projek.hero': 'Proyek',
+    'proyek.hero': 'Proyek',
 
     /* ── OG META (about page) ───────────────────────── */
-    'og.title':   'FIRA — Produsen Baja Ringan',
+    'og.title':   'FIRA | Produsen Baja Ringan',
     'og.desc':    'Kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
 
     /* ── PAGE TITLES (dynamic) ──────────────────────── */
-    'page.title.index':  'Fira — Produsen Baja Ringan',
-    'page.title.about':  'Profil — FIRA',
-    'page.title.produk': 'Produk — FIRA',
-    'page.title.projek': 'Proyek — FIRA',
+    'page.title.index':  'Fira | Produsen Baja Ringan',
+    'page.title.about':  'Profil | FIRA',
+    'page.title.produk': 'Produk | FIRA',
+    'page.title.proyek': 'Proyek | FIRA',
 
     /* ── META DESCRIPTIONS (dynamic) ────────────────── */
-    'meta.desc.index':   'PT Bangun Citra Irawan — produsen tunggal baja ringan Fira berbasis di Surabaya, Jawa Timur.',
-    'meta.desc.about':   'PT Bangun Citra Irawan — Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
-    'meta.desc.produk':  'Katalog produk baja ringan Fira — Atap, Truss, Reng, Holo, Wallpanel, PVC dan lebih.',
-    'meta.desc.projek':  'Galeri proyek baja ringan Fira — Residensial, Komersial, Industrial, dan Institutional di seluruh Jawa Timur.',
+    'meta.desc.index':   'PT Bangun Citra Irawan, produsen tunggal baja ringan Fira berbasis di Surabaya, Jawa Timur.',
+    'meta.desc.about':   'PT Bangun Citra Irawan, Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.',
+    'meta.desc.produk':  'Katalog produk baja ringan Fira: Atap, Truss, Reng, Holo, Wallpanel, PVC dan lebih.',
+    'meta.desc.proyek':  'Galeri proyek baja ringan Fira: Residensial, Komersial, Industrial, dan Institutional di seluruh Jawa Timur.',
 
     /* ── FOOTER ──────────────────────────────────────── */
     'footer.products': 'Produk',
@@ -351,9 +354,12 @@ const TRANSLATIONS = {
     /* ── KONTAK SIDEBAR ──────────────────────────────── */
     'kontak.title':   'Hubungi Kami',
     'kontak.send':    'KIRIM',
+    'kontak.sending': 'Mengirim...',
+    'kontak.sent':    'Terkirim ✓',
+    'kontak.error':   'Pesan gagal terkirim. Silakan coba lagi atau hubungi kami langsung.',
     'kontak.success': '✓ Pesan berhasil terkirim!',
     'kontak.hours':   'Jam Operasional',
-    'kontak.weekdays':'Senin — Jumat',
+    'kontak.weekdays':'Senin - Jumat',
     'kontak.saturday':'Sabtu',
     'kontak.sunday':  'Minggu',
     'kontak.closed':  'TUTUP',
@@ -405,7 +411,7 @@ const TRANSLATIONS = {
 
     /* ── ERRORS ───────────────────────────────────────── */
     'error.produk': 'Gagal memuat katalog produk. ({msg})',
-    'error.projek': 'Gagal memuat katalog proyek. ({msg})',
+    'error.proyek': 'Gagal memuat katalog proyek. ({msg})',
 
     /* ── MISC ARIA LABELS ────────────────────────────── */
     'kontak.close':     'Tutup',

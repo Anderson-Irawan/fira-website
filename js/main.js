@@ -183,28 +183,30 @@ document.addEventListener('DOMContentLoaded', () => {
     watchScrollPast(interiorHero, 0.6, inView => navbar.classList.toggle('navbar--transparent', inView));
   }
 
-  // ─── CONTACT FORM ─────────────────────────────────────────────
-  const form = document.getElementById('contact-form');
+  // ─── CONTACT FORM (kontak sidebar — #ksb-form) ────────────────
+  const form = document.getElementById('ksb-form');
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn     = form.querySelector('button[type="submit"]');
-      const success = document.getElementById('form-success');
-      btn.disabled    = true;
-      btn.textContent = 'Mengirim...';
+      const btn     = form.querySelector('.ksb__submit');
+      const label   = btn.querySelector('span'); // set text on the label span, not the button itself — it also holds the send icon
+      const success = document.getElementById('ksb-success');
+      btn.disabled = true;
+      label.textContent = i18nText('kontak.sending', null, 'Mengirim...');
       try {
-        const res = await fetch(form.action, {
+        const res  = await fetch(form.action, {
           method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' },
         });
-        if (res.ok) {
+        const data = await res.json().catch(() => null);
+        if (res.ok && (!data || data.success !== false)) {
           form.reset();
           if (success) success.classList.add('show');
-          btn.textContent = 'Terkirim ✓';
+          label.textContent = i18nText('kontak.sent', null, 'Terkirim ✓');
         } else throw new Error();
       } catch {
-        alert('Pesan gagal terkirim. Silakan coba lagi atau hubungi kami langsung.');
-        btn.disabled    = false;
-        btn.textContent = 'Kirim Pesan';
+        alert(i18nText('kontak.error', null, 'Pesan gagal terkirim. Silakan coba lagi atau hubungi kami langsung.'));
+        btn.disabled = false;
+        label.textContent = i18nText('kontak.send', null, 'Kirim Pesan');
       }
     });
   }

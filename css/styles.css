@@ -121,7 +121,7 @@
    smooth scrolling site-wide. Letting the browser's native smooth-scroll
    fight Lenis's own rAF-driven scrolling on every frame is what caused
    the snapping/stutter when scrolling normally, most noticeable on
-   longer pages like projek. */
+   longer pages like proyek. */
 html { font-size: 16px; background-color: #120F0D; }
 body {
   font-family: var(--font-mono);
@@ -706,7 +706,7 @@ body.mobile-nav-open { overflow: hidden; }
 }
 
 /* =====================================================
-   HERO — INTERIOR PAGES (Produk, Projek)
+   HERO — INTERIOR PAGES (Produk, Proyek)
    ===================================================== */
 .page-hero {
   background: var(--clr-black);
@@ -734,7 +734,7 @@ body.mobile-nav-open { overflow: hidden; }
   z-index: 0;
 }
 .page-hero--produk::before { background-image: url('../assets/images/produk-1.jpg'); }
-.page-hero--projek::before { background-image: url('../assets/images/pexels-rezwan-1145434.jpg'); }
+.page-hero--proyek::before { background-image: url('../assets/images/pexels-rezwan-1145434.jpg'); }
 .page-hero__inner {
   position: relative;
   z-index: 1;
@@ -1721,7 +1721,7 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   display: block;
   border-radius: 20px;
   overflow: hidden;
-  height: clamp(320px, 55vh, 520px);
+  height: clamp(220px, 34vh, 360px);
   background-color: #111;
   text-decoration: none;
   color: var(--clr-white);
@@ -1914,9 +1914,9 @@ img.qit-bg { filter: grayscale(100%); inset: -40px 0; height: calc(100% + 80px);
   margin-inline: auto;
   padding: 4vh var(--pad-x) 8vh;
 }
-/* Projek/Produk pages: let the grid run wider than the standard content
-   cap — only the responsive side padding bounds it, edge-to-edge. */
-body[data-page="projek"] .catalogue,
+/* Proyek/Produk pages: let the grid run wider than the standard content
+   cap, only the responsive side padding bounds it, edge-to-edge. */
+body[data-page="proyek"] .catalogue,
 body[data-page="produk"] .catalogue {
   max-width: none;
 }
@@ -2074,7 +2074,7 @@ body[data-page="produk"] .catalogue {
 .prod-card__dims { font-family: var(--font-mono); font-weight: 500; font-size: var(--fs-body-sm); letter-spacing: var(--ls-caption); color: var(--clr-black); margin-bottom: 3px; }
 .prod-card__spec { font-family: var(--font-mono); font-weight: var(--fw-caption); font-size: var(--fs-body-sm); letter-spacing: var(--ls-caption); color: var(--clr-gray); }
 
-/* ── Project catalogue (projek.html) ───────────────────── */
+/* ── Project catalogue (proyek.html) ───────────────────── */
 .proj-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* keep 4 columns — 8 items/page (PROJ_PER_PAGE) always fills two clean rows */
@@ -2149,7 +2149,7 @@ body[data-page="produk"] .catalogue {
   text-transform: uppercase;
 }
 
-/* ── Pagination (projek.html) ─────────────────────────────
+/* ── Pagination (proyek.html) ─────────────────────────────
    Prev on the left, page numbers in the middle, Next on the right;
    both arrows disable/grey out at the first/last page. ── */
 .pager {
@@ -2457,6 +2457,33 @@ body[data-page="produk"] .catalogue {
   transform: translateY(-3px);
 }
 
+/* Email-link toast — shows the address on-screen when a mailto link is
+   clicked, since the visitor's device isn't guaranteed to have a mail app
+   configured to handle it (see .back-to-top above for the same z-index tier) */
+.email-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%) translateY(12px);
+  background: var(--clr-black);
+  color: var(--clr-white);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-caption);
+  padding: 12px 20px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+}
+.email-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* Form success message */
 .form-success {
   display: none;
@@ -2493,6 +2520,15 @@ body[data-page="produk"] .catalogue {
   .home-hero__tagline { max-width: 100%; }
   .home-hero { justify-content: center; }
   .about-hero__quote-mark { font-size: clamp(100px, 26vw, 160px); }
+
+  /* ── Page hero (Produk/Proyek titles): sit nearer the top instead of
+     dead-centre in a 90vh block, which reads as "too low" on mobile ── */
+  .page-hero {
+    min-height: auto;
+    justify-content: flex-start;
+    padding-top: calc(var(--nav-h) + 56px);
+    padding-bottom: 56px;
+  }
 
   /* ── Sidenav: hidden on mobile ── */
   .sidenav, .sidenav-logo { display: none !important; }

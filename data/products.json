@@ -279,10 +279,10 @@
       "name": "Wallpanel",
       "description": { "id": "Panel dinding PVC dekoratif dengan profil bergaris untuk interior rumah, kantor, dan komersial.", "en": "Decorative PVC wall panelling with a fluted profile for residential, office and commercial interiors." },
       "features": [
-        { "id": "Anti rayap — material PVC tidak mengandung selulosa", "en": "Termiteproof — PVC contains no cellulose" },
-        { "id": "Tahan air — aman dari kebocoran dan kelapukan", "en": "Water resistant — safe from leaks and rot" },
-        { "id": "Instalasi mudah — cukup dengan peralatan sederhana", "en": "Easy to install — needs only simple tools" },
-        { "id": "Perawatan mudah — cukup dengan alat pembersih biasa", "en": "Easy to maintain — cleans with ordinary household cleaners" }
+        { "id": "Anti rayap: material PVC tidak mengandung selulosa", "en": "Termiteproof: PVC contains no cellulose" },
+        { "id": "Tahan air: aman dari kebocoran dan kelapukan", "en": "Water resistant: safe from leaks and rot" },
+        { "id": "Instalasi mudah: cukup dengan peralatan sederhana", "en": "Easy to install: needs only simple tools" },
+        { "id": "Perawatan mudah: cukup dengan alat pembersih biasa", "en": "Easy to maintain: cleans with ordinary household cleaners" }
       ]
     },
     {
@@ -417,11 +417,11 @@
       "id": "plafond",
       "type": "group-header",
       "name": "Plafond",
-      "description": { "id": "Plafon PVC lembaran dengan tiga seri motif — dari permukaan glossy bermotif hingga kayu doff — untuk hunian dan ruang komersial.", "en": "Sheet PVC ceiling panelling in three pattern series — from patterned gloss surfaces to matte woodgrain — for homes and commercial spaces." },
+      "description": { "id": "Plafon PVC lembaran dengan tiga seri motif, dari permukaan glossy bermotif hingga kayu doff, untuk hunian dan ruang komersial.", "en": "Sheet PVC ceiling panelling in three pattern series, from patterned gloss surfaces to matte woodgrain, for homes and commercial spaces." },
       "features": [
-        { "id": "Anti rayap — material PVC tidak mengandung selulosa", "en": "Termiteproof — PVC contains no cellulose" },
-        { "id": "Tahan air — aman dari kebocoran dan kelapukan", "en": "Water resistant — safe from leaks and rot" },
-        { "id": "Perawatan mudah — cukup dengan alat pembersih biasa", "en": "Easy to maintain — cleans with ordinary household cleaners" },
+        { "id": "Anti rayap: material PVC tidak mengandung selulosa", "en": "Termiteproof: PVC contains no cellulose" },
+        { "id": "Tahan air: aman dari kebocoran dan kelapukan", "en": "Water resistant: safe from leaks and rot" },
+        { "id": "Perawatan mudah: cukup dengan alat pembersih biasa", "en": "Easy to maintain: cleans with ordinary household cleaners" },
         { "id": "Beragam varian warna dan motif", "en": "Wide range of colours and patterns" }
       ]
     },
@@ -431,7 +431,7 @@
       "name": "Sparkling Series",
       "nameEn": "Sparkling Series Ceiling Panel",
       "length": "4 m", "width": "20 cm", "thickness": "8 mm",
-      "description": { "id": "Seri dengan permukaan glossy dan motif dekoratif — marmer, geometris, floral, dan efek holografik.", "en": "Gloss-finish series with decorative patterns — marble, geometric, floral and holographic effects." },
+      "description": { "id": "Seri dengan permukaan glossy dan motif dekoratif: marmer, geometris, floral, dan efek holografik.", "en": "Gloss-finish series with decorative patterns: marble, geometric, floral and holographic effects." },
       "products": [
         { "id": "fp-0004", "name": "FP-0004", "descriptor": { "id": "Serat kayu gading pucat", "en": "Ivory light wood grain" }, "image": "assets/products/plafond/sparkling/FP-0004.jpg" },
         { "id": "fp-2001", "name": "FP-2001", "descriptor": { "id": "Hitam glossy dengan gelombang perak", "en": "Gloss black with silver wave lines" }, "image": "assets/products/plafond/sparkling/FP-2001.jpg" },
@@ -650,10 +650,10 @@
       "province": "Jawa Timur",
       "country": "Indonesia"
     },
-    "phones": ["+62 313 714 362", "+62 811 325 4929"],
+    "phones": ["+62 31 3714 362", "+62 811 325 4929"],
     "hours": {
-      "weekdays": { "label": "Senin — Jumat", "time": "08:00 — 17:00" },
-      "saturday": { "label": "Sabtu",          "time": "08:00 — 16:00" },
+      "weekdays": { "label": "Senin - Jumat", "time": "08:00 - 17:00" },
+      "saturday": { "label": "Sabtu",          "time": "08:00 - 16:00" },
       "sunday":   { "label": "Minggu",         "time": "TUTUP" }
     }
   }

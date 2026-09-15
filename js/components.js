@@ -20,8 +20,8 @@
       var html = nav;
       if (page) {
         html = html.replace(
-          'href="' + page + '.html" class="navbar__link"',
-          'href="' + page + '.html" class="navbar__link active"'
+          'href="/' + page + '.html" class="navbar__link"',
+          'href="/' + page + '.html" class="navbar__link active"'
         );
       } else {
         html = html
@@ -39,15 +39,15 @@ const LOGO_FOOTER = `<img src="assets/logos/logotype.svg" alt="Fira" class="foot
 
 // ─── NAV CONFIG ──────────────────────────────────────────────
 const NAV_LINKS = [
-  { id: 'produk', label: 'PRODUK', href: 'produk.html', i18nKey: 'nav.produk' },
-  { id: 'projek', label: 'PROYEK', href: 'projek.html', i18nKey: 'nav.projek' },
-  { id: 'about',  label: 'PROFIL', href: 'about.html',  i18nKey: 'nav.about'  },
-  { id: 'kontak', label: 'KONTAK', href: 'kontak.html', i18nKey: 'nav.kontak' },
+  { id: 'produk', label: 'PRODUK', href: '/produk.html', i18nKey: 'nav.produk' },
+  { id: 'proyek', label: 'PROYEK', href: '/proyek.html', i18nKey: 'nav.proyek' },
+  { id: 'about',  label: 'PROFIL', href: '/about.html',  i18nKey: 'nav.about'  },
+  { id: 'kontak', label: 'KONTAK', href: '/kontak.html', i18nKey: 'nav.kontak' },
 ];
 
 // ─── FOOTER CONFIG ───────────────────────────────────────────
 const CONTACT_INFO = {
-  phones:  ['+62 313 714 362', '+62 811 325 4929'],
+  phones:  ['+62 31 3714 362', '+62 811 325 4929'],
   address: 'Jalan Kedinding Tengah II No. 16<br>Surabaya, Jawa Timur<br>60129, Indonesia',
 };
 
@@ -55,10 +55,8 @@ const CONTACT_INFO = {
 const SOCIAL_LINKS = [
   { label: 'Instagram', href: 'https://www.instagram.com/firalume/', svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`, external: true },
   { label: 'Facebook',  href: 'https://www.facebook.com/p/Firalume-100084510353513/', svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`, external: true },
-  { label: 'WhatsApp',  href: 'https://wa.me/6285199616087', svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>`, external: true },
-  { label: 'TikTok',    href: '#', svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/></svg>`, external: true },
-  { label: 'LinkedIn',  href: '#', svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`, external: true },
-  { label: 'Email',     href: 'mailto:#', svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>`, external: false },
+  { label: 'WhatsApp',  href: 'https://wa.me/628113254929', svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>`, external: true },
+  { label: 'Email',     href: 'mailto:info@atapku.com', svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>`, external: false },
 ];
 
 // ─── SHARED HELPERS ───────────────────────────────────────────
@@ -82,7 +80,9 @@ function renderKontakSidebar() {
   <div class="ksb__body">
   <div class="ksb__form-col">
     <h2 class="ksb__title" data-i18n="kontak.title">Hubungi Kami</h2>
-    <form id="ksb-form" class="ksb-form" action="#" method="POST" novalidate>
+    <form id="ksb-form" class="ksb-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+      <input type="hidden" name="subject" value="New inquiry from the Fira website">
       <div><input type="text"  name="nama"       placeholder="Nama ..."         required autocomplete="name"  data-i18n-placeholder="kontak.name.placeholder"></div>
       <div>
         <select name="project_type" class="ksb-select">
@@ -120,8 +120,8 @@ function renderKontakSidebar() {
     <div class="ksb__section">
       <h3 class="ksb__hours-title" data-i18n="kontak.hours">Jam Operasional</h3>
       <div class="ksb__hours-rows">
-        <div><p class="hours__day" data-i18n="kontak.weekdays">Senin — Jumat</p><p class="hours__time">08:00 — 17:00</p></div>
-        <div><p class="hours__day" data-i18n="kontak.saturday">Sabtu</p><p class="hours__time">08:00 — 16:00</p></div>
+        <div><p class="hours__day" data-i18n="kontak.weekdays">Senin - Jumat</p><p class="hours__time">08:00 - 17:00</p></div>
+        <div><p class="hours__day" data-i18n="kontak.saturday">Sabtu</p><p class="hours__time">08:00 - 16:00</p></div>
         <div><p class="hours__day" data-i18n="kontak.sunday">Minggu</p><p class="hours__time hours__time--closed" data-i18n="kontak.closed">TUTUP</p></div>
       </div>
     </div>
@@ -150,7 +150,7 @@ function renderNav(activePage = '') {
   return `
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo" aria-label="Fira — Home">${LOGO_NAV}</a>
+    <a href="/" class="navbar__logo" aria-label="Fira Home">${LOGO_NAV}</a>
     <ul class="navbar__links">${links}</ul>
     <div class="navbar__right">
       <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
@@ -173,7 +173,7 @@ function renderNav(activePage = '') {
 <div class="nav-spacer" aria-hidden="true"></div>
 <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
   <div class="mobile-nav__inner">
-    <a href="index.html" class="mobile-nav__link${activePage === '' ? ' active' : ''}" data-i18n="nav.home">HOME</a>
+    <a href="/" class="mobile-nav__link${activePage === '' ? ' active' : ''}" data-i18n="nav.home">HOME</a>
     ${mobileLinks}
     <div class="mobile-nav__divider"></div>
     <div class="mobile-nav__lang">
@@ -196,7 +196,7 @@ function renderSideNav(activePage = '') {
 
   const logoHTML = activePage === ''
     ? ''
-    : `<a href="index.html" class="sidenav-logo" aria-label="Fira — Home">${LOGO_NAV}</a>`;
+    : `<a href="/" class="sidenav-logo" aria-label="Fira Home">${LOGO_NAV}</a>`;
 
   return `${logoHTML}
 <nav class="sidenav" role="navigation" aria-label="Main navigation">
@@ -210,15 +210,15 @@ function renderFooter() {
 <footer class="footer" role="contentinfo">
   <div class="footer__inner">
     <div class="footer__logo-wrap">
-      <a href="index.html" aria-label="Fira — Home">${LOGO_FOOTER}</a>
+      <a href="/" aria-label="Fira Home">${LOGO_FOOTER}</a>
     </div>
     <div class="footer__cols">
       <div class="footer__col">
-        <a href="produk.html" class="footer__col-title footer__col-title--link">Produk</a>
-        <a href="about.html" class="footer__col-title footer__col-title--link">Profil</a>
+        <a href="/produk.html" class="footer__col-title footer__col-title--link">Produk</a>
+        <a href="/about.html" class="footer__col-title footer__col-title--link">Profil</a>
       </div>
       <div class="footer__col footer__contact">
-        <a href="kontak.html" class="footer__col-title footer__col-title--link">Kontak</a>
+        <a href="/kontak.html" class="footer__col-title footer__col-title--link">Kontak</a>
         <p>${phones}${CONTACT_INFO.address}</p>
       </div>
       <div class="footer__col footer__social-col">
@@ -236,16 +236,16 @@ function renderFooterV2() {
 <footer class="footer footer--v2" role="contentinfo">
   <div class="footer__inner">
     <div class="footer__logo-wrap">
-      <a href="index.html" aria-label="Fira — Home">${LOGO_FOOTER}</a>
+      <a href="/" aria-label="Fira Home">${LOGO_FOOTER}</a>
     </div>
     <div class="footer__cols">
       <div class="footer__col">
-        <a href="produk.html" class="footer__col-title footer__col-title--link" data-i18n="footer.products">Produk</a>
-        <a href="projek.html" class="footer__col-title footer__col-title--link" data-i18n="footer.projects">Proyek</a>
-        <a href="about.html" class="footer__col-title footer__col-title--link" data-i18n="footer.profile">Profil</a>
+        <a href="/produk.html" class="footer__col-title footer__col-title--link" data-i18n="footer.products">Produk</a>
+        <a href="/proyek.html" class="footer__col-title footer__col-title--link" data-i18n="footer.projects">Proyek</a>
+        <a href="/about.html" class="footer__col-title footer__col-title--link" data-i18n="footer.profile">Profil</a>
       </div>
       <div class="footer__col footer__contact">
-        <a href="kontak.html" class="footer__col-title footer__col-title--link" data-i18n="footer.contact">Kontak</a>
+        <a href="/kontak.html" class="footer__col-title footer__col-title--link" data-i18n="footer.contact">Kontak</a>
         <p>${phones}${CONTACT_INFO.address}</p>
         ${renderSocialIcons('footer__social footer__social--inline')}
       </div>
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.lenis) window.lenis.start();
   }
 
-  document.querySelectorAll('a[href="kontak.html"]').forEach(link => {
+  document.querySelectorAll('a[href="/kontak.html"]').forEach(link => {
     link.addEventListener('click', e => { e.preventDefault(); openSidebar(); });
   });
   ksbClose.addEventListener('click', closeSidebar);
@@ -409,6 +409,36 @@ document.addEventListener('DOMContentLoaded', () => {
       ptOl.style.opacity = '0';
       ptOl.addEventListener('transitionend', () => ptOl.remove(), { once: true });
     }));
+  }
+
+  // ── mailto links: a mail app isn't guaranteed to be configured on the
+  // visitor's device, so clicking one can silently do nothing. Always show
+  // the address on-screen (zero dependencies, always works) and additionally
+  // copy it to the clipboard when the browser supports that (upgrades the
+  // message, but the visible address doesn't depend on it succeeding).
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href^="mailto:"]');
+    if (!link) return;
+    const email = link.getAttribute('href').replace(/^mailto:/, '').split('?')[0];
+    if (!email) return;
+    showEmailToast(email, false);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(() => showEmailToast(email, true)).catch(() => {});
+    }
+  });
+
+  function showEmailToast(email, copied) {
+    let toast = document.getElementById('email-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'email-toast';
+      toast.className = 'email-toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = copied ? email + ' (copied to clipboard)' : email;
+    toast.classList.add('is-visible');
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => toast.classList.remove('is-visible'), 4000);
   }
 
   // ── Page transitions — intercept internal link clicks ────

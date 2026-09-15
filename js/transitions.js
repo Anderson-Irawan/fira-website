@@ -68,7 +68,7 @@
   // ── CSS ::before hero backgrounds — not in <img> tags, mapped manually ─
   var HERO_BG = {
     'produk.html': 'assets/images/produk-1.jpg',
-    'projek.html': 'assets/images/pexels-rezwan-1145434.jpg',
+    'proyek.html': 'assets/images/pexels-rezwan-1145434.jpg',
   };
 
   // ── Image preloader ──────────────────────────────────────────
@@ -138,7 +138,7 @@
             if (m) try { loads.push(preloadImg(new URL(m[1], base).href)); } catch (err) {}
           });
 
-          // 3. CSS ::before hero background (produk / projek pages)
+          // 3. CSS ::before hero background (produk / proyek pages)
           if (HERO_BG[destFile]) {
             try { loads.push(preloadImg(new URL(HERO_BG[destFile], base).href)); } catch (err) {}
           }

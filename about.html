@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="base-url" content="">
-  <title>Profil — FIRA</title>
-  <meta name="description" content="PT Bangun Citra Irawan — Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.">
+  <title>Profil</title>
+  <meta name="description" content="PT Bangun Citra Irawan, Produsen baja ringan yang memberikan kualitas terbaik, selalu berinovasi, dan dapat diandalkan.">
   <!-- Open Graph -->
-  <meta property="og:title" content="FIRA — Produsen Baja Ringan">
+  <meta property="og:title" content="FIRA | Produsen Baja Ringan">
   <meta property="og:description" content="Kualitas terbaik, selalu berinovasi, dan dapat diandalkan.">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/logos/f-wing_1.svg" type="image/svg+xml">
@@ -19,7 +19,7 @@
 
   <!-- ── TOP NAV (injected by components.js) ── -->
   <div id="nav-placeholder" data-page="about"></div>
-  <script>!function(){try{var c=sessionStorage.getItem('fira-nav-v2'),s=document.getElementById('nav-placeholder');if(!c||!s)return;var p=s.dataset.page||'',h=c;if(p){h=h.replace('href="'+p+'.html" class="navbar__link"','href="'+p+'.html" class="navbar__link active"');h=h.replace('class="navbar"','class="navbar navbar--transparent"');}else{h=h.replace('class="navbar"','class="navbar is-hidden"').replace('<div class="nav-spacer" aria-hidden="true"></div>','');}s.outerHTML=h;}catch(e){}}();</script>
+  <script>!function(){try{var c=sessionStorage.getItem('fira-nav-v2'),s=document.getElementById('nav-placeholder');if(!c||!s)return;var p=s.dataset.page||'',h=c;if(p){h=h.replace('href="/'+p+'.html" class="navbar__link"','href="/'+p+'.html" class="navbar__link active"');h=h.replace('class="navbar"','class="navbar navbar--transparent"');}else{h=h.replace('class="navbar"','class="navbar is-hidden"').replace('<div class="nav-spacer" aria-hidden="true"></div>','');}s.outerHTML=h;}catch(e){}}();</script>
 
   <main>
 
@@ -145,11 +145,16 @@
 
   <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
   <script>window.lenis = new Lenis({ autoRaf: true })</script>
-  <script src="js/scroll.js" defer></script>
-  <script src="js/loader.js" defer></script>
-  <script src="js/components.js" defer></script>
-  <script src="js/cms.js" defer></script>
-  <script src="js/main.js" defer></script>
-  <script src="js/i18n.js" defer></script>
+  <script>
+    // Cache-bust local JS the same way styles.css already is — these get
+    // hand-edited over FTP often, and a stale cached copy silently serving
+    // old behaviour (e.g. old links) is a repeat source of confusion.
+    (function () {
+      var t = Date.now();
+      ['js/scroll.js', 'js/loader.js', 'js/components.js', 'js/cms.js', 'js/main.js', 'js/i18n.js'].forEach(function (src) {
+        document.write('<script src="' + src + '?t=' + t + '" defer><\/script>');
+      });
+    })();
+  </script>
 </body>
 </html>
